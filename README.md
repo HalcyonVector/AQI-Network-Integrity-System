@@ -10,9 +10,10 @@ Faridabad) that will eventually:
 4. Attribute PM2.5 spikes to regional stubble-burning transport (NASA FIRMS fire data +
    wind vectors) versus local sources.
 
-CPCB station data, NASA FIRMS fire detections, and satellite AOD sampling are built
-so far. ERA5 wind/met (Copernicus CDS) and the modeling/dashboard layers are not
-started.
+All four data pipelines are built: CPCB station data, NASA FIRMS fire detections,
+satellite AOD sampling, and ERA5 wind. The modeling layers (drift detection,
+gap-filling, neighbor-consistency, stubble-burning attribution) and dashboard are
+not started.
 
 ## Component: CPCB fetch script
 
@@ -206,6 +207,68 @@ One row per station per date:
 | `station`, `city` | matches the CPCB station naming exactly, for joining |
 | `aod_047`, `aod_055` | AOD at 0.47µm / 0.55µm, scaled; `NaN` if cloud/quality-masked |
 
+## Component: ERA5 wind (Copernicus Climate Data Store)
+
+`scripts/fetch_era5_wind.py` pulls 3-hourly ERA5 10m wind vectors (u/v components,
+derived speed and "blowing-from" direction) over the same Punjab/Haryana/NCR/western-UP
+belt as the FIRMS pull — the wind data component 3 (neighbor consistency) and
+component 4 (stubble-burning transport attribution) both need.
+
+### Setup (all through your own account — not something this script can do for you)
+
+1. Register at [cds.climate.copernicus.eu](https://cds.climate.copernicus.eu), then
+   get your Personal Access Token from your [profile page](https://cds.climate.copernicus.eu/profile).
+2. **Manually accept the Terms of Use** on the
+   [ERA5 hourly single levels dataset page](https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels)
+   (bottom of the download form). The API silently rejects requests until you do
+   this — it can't be done through the API itself.
+3. Add to `.env`:
+   ```
+   CDSAPI_URL=https://cds.climate.copernicus.eu/api
+   CDSAPI_KEY=your-uid:your-api-key
+   ```
+   (Confirmed against the installed `cdsapi` 0.7.7 source: despite the "Personal
+   Access Token" naming on the CDS website, the library still expects and validates
+   a `<UID>:<KEY>` pair via HTTP Basic Auth — paste your token exactly as shown on
+   your profile page.)
+
+### Run manually
+
+```bash
+python scripts/fetch_era5_wind.py                    # 6 days ago (UTC)
+python scripts/fetch_era5_wind.py --date 2026-09-01
+```
+
+Appends to `data/raw/era5_wind_YYYY-MM-DD.csv`. **Requests can queue on CDS's
+compute backend** — this is normal, not a bug; the client blocks and polls until
+ready by default. First run may take a while.
+
+### Why 6 days back by default, and NetCDF instead of GRIB
+
+Final ERA5 reanalysis has ~5 day latency; anything more recent is served from ERA5T
+(preliminary, can still be revised) instead, distinguished by an `expver` dimension
+in the response. Defaulting to 6 days back stays safely inside "final" territory;
+pass `--date` explicitly if you want the more recent (possibly-preliminary) data.
+
+Requested as NetCDF, not GRIB: GRIB parsing needs the `cfgrib` package, which in turn
+needs the native ecCodes C library — confirmed by testing that it has no working
+pip-installable path on Windows (`cfgrib` imports fine, then fails at runtime with
+`Cannot find the ecCodes library`). NetCDF sidesteps this entirely since `netCDF4`
+ships its own binaries.
+
+### Data schema
+
+One row per grid point per 3-hourly timestamp:
+
+| column | meaning |
+|---|---|
+| `fetched_at_utc` | when this script pulled the record |
+| `time` | ERA5 timestamp (UTC) |
+| `latitude`, `longitude` | ERA5 grid point (not station-aligned — this is a coarser reanalysis grid, ~0.25°) |
+| `u10_ms`, `v10_ms` | raw 10m wind components (m/s) |
+| `wind_speed_ms` | derived magnitude |
+| `wind_from_deg` | derived direction wind is blowing *from*, meteorological convention (0=N, 90=E) |
+
 ## Reachability check (2026-09-17, from the same machine this pipeline runs on)
 
 | Source | Status |
@@ -220,7 +283,6 @@ rule out an API-layer restriction the way CPCB's User-Agent gate did.
 
 ## Not yet built
 
-- ERA5 wind/met data (Copernicus CDS).
 - Drift detection, gap-filling, neighbor-consistency, and stubble-burning attribution
   models.
 - Dashboard.
