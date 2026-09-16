@@ -63,6 +63,19 @@ def fetch_all_records(api_key: str, resource_id: str, logger: logging.Logger) ->
     records: list[dict] = []
     offset = 0
     session = requests.Session()
+    # The API hangs (read-timeout, no response at all) on requests without a
+    # browser-like User-Agent -- default python-requests/urllib UA gets silently
+    # stalled server-side. Confirmed by testing: identical request succeeds
+    # instantly once this header is set.
+    session.headers.update(
+        {
+            "User-Agent": (
+                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+                "(KHTML, like Gecko) Chrome/120.0 Safari/537.36"
+            ),
+            "Accept": "application/json",
+        }
+    )
 
     while True:
         params = {
@@ -115,7 +128,10 @@ def filter_and_reshape(records: list[dict], logger: logging.Logger) -> pd.DataFr
 
     df = pd.DataFrame.from_records(records)
 
-    missing_cols = {"city", "station", "pollutant_id", "pollutant_avg"} - set(df.columns)
+    # The API's display names (pollutant_min/max/avg) don't match the actual JSON
+    # keys it returns (min_value/max_value/avg_value) -- confirmed by inspecting a
+    # live response; the "field" metadata block's `name` differs from its `id`.
+    missing_cols = {"city", "station", "pollutant_id", "avg_value"} - set(df.columns)
     if missing_cols:
         logger.error("API response is missing expected columns: %s", missing_cols)
         raise ValueError(f"Unexpected API schema, missing columns: {missing_cols}")
@@ -126,7 +142,7 @@ def filter_and_reshape(records: list[dict], logger: logging.Logger) -> pd.DataFr
         logger.warning("No NCR records matched the target cities/pollutants for this pull.")
         return df
 
-    for col in ("pollutant_min", "pollutant_max", "pollutant_avg"):
+    for col in ("min_value", "max_value", "avg_value"):
         if col in df.columns:
             df[col] = pd.to_numeric(df[col], errors="coerce")
 
@@ -135,7 +151,7 @@ def filter_and_reshape(records: list[dict], logger: logging.Logger) -> pd.DataFr
     wide = df.pivot_table(
         index=index_cols,
         columns="pollutant_id",
-        values="pollutant_avg",
+        values="avg_value",
         aggfunc="first",
     ).reset_index()
     wide.columns.name = None

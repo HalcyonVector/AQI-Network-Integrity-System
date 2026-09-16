@@ -38,11 +38,17 @@ python scripts/fetch_cpcb.py
 
 Appends to `data/raw/cpcb_ncr_YYYY-MM-DD.csv`. Logs go to `logs/fetch_YYYY-MM-DD.log`.
 
-### IMPORTANT: residential IP required
+### IMPORTANT: run from a residential connection, and the User-Agent header matters
 
-This endpoint blocks datacenter/cloud egress ranges outright — confirmed by testing
-from a cloud sandbox, which times out on every request. It must run from a residential
-connection (a home machine, same pattern as the Grid Sentinel project's data pulls).
+This endpoint timed out on every request from a cloud sandbox (consistent with
+datacenter IPs being blocked, same pattern as the Grid Sentinel project's data pulls),
+so keep running this from a home machine.
+
+Separately, we also found that **authenticated requests silently hang** (no response,
+not even an error) unless the request carries a browser-like `User-Agent` header —
+Python's default `requests`/`urllib` UA gets stuck server-side with no response at all,
+while an identical request with a Chrome-style UA returns instantly. `fetch_cpcb.py`
+already sets this header, but if you fork the request logic elsewhere, carry it over.
 
 ### Daily automation (Windows Task Scheduler)
 
