@@ -4,3 +4,7 @@ __pycache__/
 .venv/
 venv/
 logs/*.log
+.pytest_cache/
+keys/
+*-key.json
+*service-account*.json

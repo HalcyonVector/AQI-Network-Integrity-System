@@ -10,9 +10,9 @@ Faridabad) that will eventually:
 4. Attribute PM2.5 spikes to regional stubble-burning transport (NASA FIRMS fire data +
    wind vectors) versus local sources.
 
-CPCB station data and NASA FIRMS fire detections are built so far. Satellite AOD
-(Google Earth Engine), ERA5 wind/met (Copernicus CDS), and the modeling/dashboard
-layers are not started.
+CPCB station data, NASA FIRMS fire detections, and satellite AOD sampling are built
+so far. ERA5 wind/met (Copernicus CDS) and the modeling/dashboard layers are not
+started.
 
 ## Component: CPCB fetch script
 
@@ -152,6 +152,60 @@ One row per fire detection:
 | `frp` | fire radiative power (MW) — rough intensity proxy |
 | `bright_ti4`, `bright_ti5`, `scan`, `track`, `satellite`, `instrument`, `version`, `daynight` | passed through as-is from FIRMS |
 
+## Component: Satellite AOD (Google Earth Engine)
+
+`scripts/fetch_aod.py` samples MODIS MAIAC Aerosol Optical Depth (`MODIS/061/MCD19A2_GRANULES`,
+1km resolution) at each CPCB station's exact coordinates — the independent satellite
+estimate that components 1 (drift detection) and 2 (gap-filling) compare reported
+PM2.5 against. Reads station coordinates from the most recent `data/raw/cpcb_ncr_*.csv`,
+so run `fetch_cpcb.py` at least once first.
+
+### Setup (all through your own Google account — not something this script can do for you)
+
+1. Go to the [Earth Engine registration page](https://console.cloud.google.com/earth-engine),
+   create or pick a Google Cloud project, and register it for Earth Engine (enables
+   the Earth Engine API on that project — free tier is fine for this volume).
+2. In that project's Cloud Console: **IAM & Admin -> Service Accounts -> Create
+   Service Account**. Any name works.
+3. On the new service account: **Keys -> Add Key -> Create new key -> JSON**.
+   Downloads a `.json` key file — save it somewhere under this repo's `keys/`
+   folder (gitignored) or elsewhere outside the repo entirely, never committed.
+4. Add to `.env`:
+   ```
+   GEE_SERVICE_ACCOUNT=your-sa@your-project.iam.gserviceaccount.com
+   GEE_SERVICE_ACCOUNT_KEY_PATH=keys/your-key.json
+   GEE_PROJECT=your-gcp-project-id
+   ```
+
+### Run manually
+
+```bash
+python scripts/fetch_aod.py               # yesterday (UTC) -- MCD19A2 granules
+                                            # for "today" are usually incomplete
+python scripts/fetch_aod.py --date 2026-09-15
+```
+
+Appends to `data/raw/aod_ncr_YYYY-MM-DD.csv`.
+
+### Cloud/quality masking
+
+Only pixels with `AOD_QA` bits 0-2 == 1 (clear, not cloudy/shadow/water) AND bits
+8-11 == 0 (best quality) are kept; everything else comes back as `NaN` rather than a
+misleading raw value. On a cloudy day, expect a lot of NaN rows — that's the
+satellite genuinely being blind, which is exactly the condition component 3
+(wind-conditioned neighbor consistency) exists to cover instead.
+
+### Data schema
+
+One row per station per date:
+
+| column | meaning |
+|---|---|
+| `fetched_at_utc` | when this script pulled the record |
+| `date` | the satellite observation date (not the CPCB reading date) |
+| `station`, `city` | matches the CPCB station naming exactly, for joining |
+| `aod_047`, `aod_055` | AOD at 0.47µm / 0.55µm, scaled; `NaN` if cloud/quality-masked |
+
 ## Reachability check (2026-09-17, from the same machine this pipeline runs on)
 
 | Source | Status |
@@ -166,7 +220,6 @@ rule out an API-layer restriction the way CPCB's User-Agent gate did.
 
 ## Not yet built
 
-- Satellite AOD pull (Google Earth Engine).
 - ERA5 wind/met data (Copernicus CDS).
 - Drift detection, gap-filling, neighbor-consistency, and stubble-burning attribution
   models.
