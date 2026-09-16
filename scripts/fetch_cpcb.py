@@ -138,23 +138,78 @@ def filter_and_reshape(records: list[dict], logger: logging.Logger) -> pd.DataFr
 
     df = df[df["city"].isin(NCR_CITIES)].copy()
     df = df[df["pollutant_id"].isin(TARGET_POLLUTANTS)].copy()
+
+    before = len(df)
+    df = df[df["station"].notna() & (df["station"].str.strip() != "")].copy()
+    if len(df) < before:
+        logger.warning("Dropped %d records with missing/blank station name.", before - len(df))
+
     if df.empty:
         logger.warning("No NCR records matched the target cities/pollutants for this pull.")
         return df
 
-    for col in ("min_value", "max_value", "avg_value"):
+    for col in ("min_value", "max_value", "avg_value", "latitude", "longitude"):
         if col in df.columns:
             df[col] = pd.to_numeric(df[col], errors="coerce")
 
-    index_cols = [c for c in ("country", "state", "city", "station", "latitude", "longitude", "last_update") if c in df.columns]
+    if {"latitude", "longitude"} <= set(df.columns):
+        bad_coords = df["latitude"].isna() | df["longitude"].isna()
+        if bad_coords.any():
+            logger.warning(
+                "%d records have missing/non-numeric coordinates (kept, but unusable for spatial work): %s",
+                int(bad_coords.sum()),
+                sorted(df.loc[bad_coords, "station"].unique().tolist()),
+            )
 
-    wide = df.pivot_table(
+    # Coordinates are a per-station constant, not a per-reading value -- keep them
+    # out of the pivot index. pivot_table (via its internal groupby) silently drops
+    # any row whose index contains NaN, so a station with missing/malformed lat-lon
+    # would vanish from the output entirely if lat/lon were part of the index.
+    index_cols = [c for c in ("country", "state", "city", "station", "last_update") if c in df.columns]
+    coord_cols = [c for c in ("latitude", "longitude") if c in df.columns]
+
+    dupe_mask = df.duplicated(subset=index_cols + ["pollutant_id"], keep=False)
+    if dupe_mask.any():
+        logger.warning(
+            "%d duplicate (station, pollutant, timestamp) records in this pull -- keeping the first "
+            "occurrence of each. Stations affected: %s",
+            int(dupe_mask.sum()),
+            sorted(df.loc[dupe_mask, "station"].unique().tolist()),
+        )
+
+    # NOTE: dropna=False looks like the fix for "a station whose only pollutant
+    # reading is NaN disappears from the output" but it is NOT -- it flips pandas'
+    # internal groupby into observed=False mode, which materializes the full
+    # cartesian product of every distinct value seen in each index column (e.g.
+    # every station crossed with every state/city, most of which never co-occur).
+    # Confirmed by testing: it inflated 61 real stations into 915 bogus rows.
+    # Instead: pivot with the (safe) default dropna=True, which only drops columns
+    # that are entirely NaN, then reindex against the actual observed
+    # (index_cols) combinations so an all-NaN station reading isn't lost.
+    observed_combos = df[index_cols].drop_duplicates()
+    pivoted = df.pivot_table(
         index=index_cols,
         columns="pollutant_id",
         values="avg_value",
         aggfunc="first",
     ).reset_index()
-    wide.columns.name = None
+    pivoted.columns.name = None
+    wide = observed_combos.merge(pivoted, on=index_cols, how="left")
+
+    if coord_cols:
+        coords = df.drop_duplicates(subset="station", keep="first")[["station"] + coord_cols]
+        wide = wide.merge(coords, on="station", how="left")
+        index_cols = index_cols + coord_cols
+
+    # Pin the full pollutant column set every run, even if some pollutants are
+    # absent from this particular pull (e.g. a sensor down) -- otherwise two
+    # runs appended to the same day's CSV can end up with mismatched columns.
+    for pollutant in sorted(TARGET_POLLUTANTS):
+        if pollutant not in wide.columns:
+            wide[pollutant] = pd.NA
+
+    ordered_cols = index_cols + sorted(TARGET_POLLUTANTS)
+    wide = wide[ordered_cols]
 
     wide.insert(0, "fetched_at_utc", datetime.now(timezone.utc).isoformat(timespec="seconds"))
 
@@ -166,6 +221,15 @@ def append_to_csv(df: pd.DataFrame, logger: logging.Logger) -> Path:
     out_path = RAW_DATA_DIR / f"cpcb_ncr_{datetime.now():%Y-%m-%d}.csv"
 
     write_header = not out_path.exists()
+    if not write_header:
+        existing_cols = pd.read_csv(out_path, nrows=0).columns.tolist()
+        if existing_cols != df.columns.tolist():
+            raise ValueError(
+                f"Column mismatch appending to {out_path}: existing file has {existing_cols}, "
+                f"this run produced {df.columns.tolist()}. Refusing to append (would corrupt the "
+                "CSV) -- likely the script changed mid-day; reconcile manually."
+            )
+
     df.to_csv(out_path, mode="a", header=write_header, index=False)
     logger.info("Appended %d rows to %s", len(df), out_path)
     return out_path

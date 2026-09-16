@@ -28,7 +28,8 @@ dated CSV in `data/raw/`.
    [Real time Air Quality Index](https://www.data.gov.in/catalog/real-time-air-quality-index)
    catalog entry -> **API** tab -> **Generate API Key**.
 2. Copy `.env.example` to `.env` and paste your key into `CPCB_API_KEY`.
-3. `python -m pip install -r requirements.txt`
+3. `python -m pip install -r requirements.txt` (or `requirements-dev.txt` to also get
+   pytest for the test suite)
 
 ### Run manually
 
@@ -37,6 +38,20 @@ python scripts/fetch_cpcb.py
 ```
 
 Appends to `data/raw/cpcb_ncr_YYYY-MM-DD.csv`. Logs go to `logs/fetch_YYYY-MM-DD.log`.
+
+### Tests
+
+```bash
+python -m pytest tests/ -v
+```
+
+Covers the reshape/pivot logic against edge cases actually seen in the live feed:
+duplicate (station, pollutant, timestamp) records CPCB occasionally emits, stations
+with a null/blank name, non-numeric pollutant values or coordinates, and the CSV
+append path (schema-mismatch guard, no duplicate headers). One test pins a real bug
+found while hardening this: an earlier pivot implementation using
+`pivot_table(dropna=False)` silently exploded 61 real NCR stations into 915 rows by
+cross-joining every distinct state/city value in the dataset against every station.
 
 ### IMPORTANT: run from a residential connection, and the User-Agent header matters
 
@@ -77,12 +92,22 @@ One row per station per hourly timestamp:
 | `last_update` | CPCB's reported observation timestamp |
 | `PM2.5`, `PM10`, `NO2`, `SO2`, `CO`, `OZONE` | pollutant averages (units per CPCB, typically µg/m³ or mg/m³ for CO) |
 
+## Reachability check (2026-09-17, from the same machine this pipeline runs on)
+
+| Source | Status |
+|---|---|
+| `earthengine.googleapis.com` | Reachable (fast response) |
+| `cds.climate.copernicus.eu` | Reachable (fast response) |
+| `firms.modaps.eosdis.nasa.gov` | Reachable (fast response) |
+
+None of these showed the CPCB endpoint's blocking/hanging behavior. Worth re-checking
+once real auth'd calls are wired up, since a plain TCP/TLS reachability check doesn't
+rule out an API-layer restriction the way CPCB's User-Agent gate did.
+
 ## Not yet built
 
-- Satellite AOD pull (Google Earth Engine) — test reachability from wherever this ends
-  up running; it's not Indian government infra so may not share the residential-IP
-  restriction, but don't assume it.
-- ERA5 wind/met data (Copernicus CDS) — same caveat, test reachability early.
+- Satellite AOD pull (Google Earth Engine).
+- ERA5 wind/met data (Copernicus CDS).
 - NASA FIRMS fire data pull.
 - Drift detection, gap-filling, neighbor-consistency, and stubble-burning attribution
   models.
