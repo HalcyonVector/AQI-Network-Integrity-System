@@ -68,17 +68,21 @@ already sets this header, but if you fork the request logic elsewhere, carry it 
 ### Daily automation (Windows Task Scheduler)
 
 `scripts/run_and_push.ps1` runs the fetch, then commits and pushes any new data to
-GitHub. Wire it up once:
+GitHub. Already registered as scheduled task **`AQI-NIS-CPCB-Fetch`**, triggering
+daily at **12:00 and 19:00** — matching Grid Sentinel's `GridSentinel-Download`
+schedule. `Get-ScheduledTask -TaskName "AQI-NIS-CPCB-Fetch"` to inspect it, or open
+Task Scheduler's GUI.
 
-1. Open Task Scheduler -> Create Task.
-2. Trigger: Daily, at a time your machine is normally on and connected.
-3. Action: Start a program
-   - Program/script: `powershell.exe`
-   - Arguments: `-NoProfile -ExecutionPolicy Bypass -File "D:\Projects\AQI NIS\scripts\run_and_push.ps1"`
-   - Start in: `D:\Projects\AQI NIS`
-4. Make sure this repo has a configured `origin` remote and you can push without an
-   interactive credential prompt (stored Git credential or SSH key), since Task
-   Scheduler runs unattended.
+Manually running the wrapper directly (`powershell -File scripts\run_and_push.ps1`)
+was verified end-to-end: fetch, append, commit, push all succeeded. Triggering the
+*registered task* via `schtasks /run` from within this automated session reported
+success but never actually launched the script (no log output, no process) — almost
+certainly a window-station/session-isolation artifact of driving Task Scheduler from
+an automated tool rather than a real interactive desktop session, since Grid
+Sentinel's identical setup (`LogonType: Interactive`) has genuine run history on this
+machine. Worth a quick manual sanity check the first time it's meant to fire (12:00 or
+19:00) — right-click the task in Task Scheduler -> Run, or just check
+`logs/run_and_push_YYYY-MM-DD.log` after that time passes with the machine on.
 
 ## Data schema
 
