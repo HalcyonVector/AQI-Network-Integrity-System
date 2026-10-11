@@ -164,19 +164,27 @@ so run `fetch_cpcb.py` at least once first.
 ### Setup (all through your own Google account — not something this script can do for you)
 
 1. Go to the [Earth Engine registration page](https://console.cloud.google.com/earth-engine),
-   create or pick a Google Cloud project, and register it for Earth Engine (enables
-   the Earth Engine API on that project — free tier is fine for this volume).
-2. In that project's Cloud Console: **IAM & Admin -> Service Accounts -> Create
-   Service Account**. Any name works.
-3. On the new service account: **Keys -> Add Key -> Create new key -> JSON**.
-   Downloads a `.json` key file — save it somewhere under this repo's `keys/`
-   folder (gitignored) or elsewhere outside the repo entirely, never committed.
-4. Add to `.env`:
+   create or pick a Google Cloud project, and register it for Earth Engine (noncommercial
+   plan is free and fine for this volume).
+2. Add `GEE_PROJECT=your-gcp-project-id` to `.env`.
+3. Authenticate, **either**:
+
+   **a) Your own Google login (what this repo currently uses).** Run once:
+   ```bash
+   python -c "import ee; ee.Authenticate(auth_mode='localhost')"
    ```
-   GEE_SERVICE_ACCOUNT=your-sa@your-project.iam.gserviceaccount.com
-   GEE_SERVICE_ACCOUNT_KEY_PATH=keys/your-key.json
-   GEE_PROJECT=your-gcp-project-id
-   ```
+   Sign in and approve every screen; the token is saved locally and reused by the
+   scheduler with no prompt. Use `localhost` mode, **not** `notebook` mode — notebook
+   tokens expire after a week, which would break the daily run. If the sign-in listener
+   crashes with `KeyError: 'code'` (a stray browser request, e.g. Chrome's side
+   traffic), paste the printed URL into a different browser (Edge) instead.
+
+   **b) A service account key**, if your org allows it: IAM & Admin -> Service
+   Accounts -> create one -> Keys -> Add key -> JSON, save under `keys/`
+   (gitignored), and set `GEE_SERVICE_ACCOUNT` and `GEE_SERVICE_ACCOUNT_KEY_PATH` in
+   `.env`. Newer Google Cloud organizations block this by default
+   (`iam.disableServiceAccountKeyCreation`: "Service account key creation is
+   disabled"), which is why (a) exists.
 
 ### Run manually
 
@@ -192,9 +200,18 @@ Appends to `data/raw/aod_ncr_YYYY-MM-DD.csv`.
 
 Only pixels with `AOD_QA` bits 0-2 == 1 (clear, not cloudy/shadow/water) AND bits
 8-11 == 0 (best quality) are kept; everything else comes back as `NaN` rather than a
-misleading raw value. On a cloudy day, expect a lot of NaN rows — that's the
-satellite genuinely being blind, which is exactly the condition component 3
-(wind-conditioned neighbor consistency) exists to cover instead.
+misleading raw value. The mask is applied to each granule with its own QA band
+*before* granules are averaged (compositing first would let a QA pixel from one
+satellite pass filter an AOD value from another). Every station always gets a row.
+Live check, 62 stations: 51 valid on 2026-09-20, 54 on 09-22, 32 on 09-24 (hazier
+day). On a cloudy day, expect a lot of NaN rows — that's the satellite genuinely
+being blind, which is exactly the condition component 3 (wind-conditioned neighbor
+consistency) exists to cover instead.
+
+Bug caught during the first live run: Earth Engine's `sampleRegions` silently
+**drops** points whose pixel is masked instead of returning nulls, so the first
+version returned 1 row for 62 stations. `complete_with_all_stations()` left-joins
+back onto the full station list; a regression test pins this.
 
 ### Data schema
 

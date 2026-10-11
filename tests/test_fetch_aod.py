@@ -37,15 +37,31 @@ def test_parse_sampled_result_extracts_expected_fields():
     assert out.iloc[0]["aod_047"] == 0.35
 
 
-def test_parse_sampled_result_keeps_masked_pixel_as_nan():
-    # A station under cloud cover / bad QA gets no Optical_Depth_* property back
-    # from Earth Engine at all (masked pixels are dropped from properties, not
-    # zeroed) -- must show up as NaN, not silently vanish or become 0.
+def test_parse_sampled_result_feature_without_bands_is_nan():
     result = {"features": [{"properties": {"station": "Foo", "city": "Delhi"}}]}
     out = fetch_aod.parse_sampled_result(result, "2026-09-16")
     assert len(out) == 1
     assert pd.isna(out.iloc[0]["aod_047"])
     assert pd.isna(out.iloc[0]["aod_055"])
+
+
+def test_complete_with_all_stations_adds_nan_rows_for_dropped_points():
+    # Regression: live run returned 1 row for 62 stations because Earth Engine's
+    # sampleRegions drops points with masked pixels entirely instead of returning
+    # nulls. Every input station must come back, NaN where the sensor was blind.
+    stations = pd.DataFrame(
+        {"station": ["A", "B", "C"], "city": ["Delhi", "Delhi", "Noida"], "latitude": [1, 2, 3], "longitude": [4, 5, 6]}
+    )
+    parsed = fetch_aod.parse_sampled_result(
+        {"features": [{"properties": {"station": "B", "city": "Delhi", "Optical_Depth_047": 0.4, "Optical_Depth_055": 0.35}}]},
+        "2026-09-24",
+    )
+    out = fetch_aod.complete_with_all_stations(parsed, stations, "2026-09-24")
+    assert list(out["station"]) == ["A", "B", "C"]
+    assert (out["date"] == "2026-09-24").all()
+    assert out.set_index("station").loc["B", "aod_047"] == 0.4
+    assert pd.isna(out.set_index("station").loc["A", "aod_047"])
+    assert pd.isna(out.set_index("station").loc["C", "aod_055"])
 
 
 def test_parse_sampled_result_empty_features_returns_empty_df():

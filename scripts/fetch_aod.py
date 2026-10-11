@@ -9,12 +9,13 @@ Usage:
 Defaults to yesterday (UTC) -- MCD19A2 is a daily granule product and "today's"
 granules are typically incomplete/not yet published when this would run.
 
-Requires a Google Earth Engine service account. See README.md "Component: Satellite
-AOD" for the Cloud project / service account / key setup (all done through your own
-Google account -- not something this script can do for you). Then set in .env:
+Requires a registered Earth Engine Cloud project. See README.md "Component: Satellite
+AOD". Set GEE_PROJECT in .env, plus EITHER a service account:
     GEE_SERVICE_ACCOUNT=your-sa@your-project.iam.gserviceaccount.com
     GEE_SERVICE_ACCOUNT_KEY_PATH=path/to/key.json
-    GEE_PROJECT=your-gcp-project-id
+OR (if your org blocks key creation) run once, interactively:
+    python -c "import ee; ee.Authenticate()"
+and leave the two service-account vars unset.
 """
 
 from __future__ import annotations
@@ -65,15 +66,19 @@ def init_earth_engine(logger: logging.Logger):
     key_path = os.environ.get("GEE_SERVICE_ACCOUNT_KEY_PATH")
     project = os.environ.get("GEE_PROJECT")
 
-    if not (service_account and key_path and project):
-        raise RuntimeError(
-            "GEE_SERVICE_ACCOUNT, GEE_SERVICE_ACCOUNT_KEY_PATH, and GEE_PROJECT must all be "
-            "set in .env. See README.md 'Component: Satellite AOD' for setup."
-        )
+    if not project:
+        raise RuntimeError("GEE_PROJECT must be set in .env. See README.md 'Component: Satellite AOD'.")
 
-    credentials = ee.ServiceAccountCredentials(service_account, key_path)
-    ee.Initialize(credentials, project=project)
-    logger.info("Earth Engine initialized (project=%s, service account=%s)", project, service_account)
+    if service_account and key_path:
+        credentials = ee.ServiceAccountCredentials(service_account, key_path)
+        ee.Initialize(credentials, project=project)
+        logger.info("Earth Engine initialized (project=%s, service account=%s)", project, service_account)
+    else:
+        # Fallback for orgs that block service-account key creation (the
+        # iam.disableServiceAccountKeyCreation policy is on by default for newer
+        # orgs): reuse the login saved locally by a one-time ee.Authenticate().
+        ee.Initialize(project=project)
+        logger.info("Earth Engine initialized (project=%s, saved user credentials)", project)
     return ee
 
 
@@ -108,16 +113,16 @@ def sample_aod(ee_module, stations: pd.DataFrame, date: datetime, logger: loggin
         return pd.DataFrame()
     logger.info("Found %d MCD19A2 granule(s) for %s", count, date_str)
 
-    # Multiple granules/orbits can cover the region on a given day -- mosaic takes
-    # the first valid pixel per location across them.
-    image = collection.mosaic()
+    def mask_granule(img):
+        # Mask each granule with ITS OWN QA band before combining. Compositing
+        # first (mosaic()) treats every band independently, so the QA pixel could
+        # come from a different satellite pass than the AOD value it's filtering.
+        qa = img.select("AOD_QA").toInt()
+        cloud_mask = qa.bitwiseAnd(7).eq(1)  # bits 0-2: 1 = clear
+        quality_mask = qa.rightShift(8).bitwiseAnd(15).eq(0)  # bits 8-11: 0 = best quality
+        return img.select(AOD_BANDS).updateMask(cloud_mask.And(quality_mask)).multiply(AOD_SCALE_FACTOR)
 
-    qa = image.select("AOD_QA").toInt()
-    cloud_mask = qa.rightShift(0).bitwiseAnd(7).eq(1)  # bits 0-2: 1 = clear
-    quality_mask = qa.rightShift(8).bitwiseAnd(15).eq(0)  # bits 8-11: 0 = best quality
-    good_pixel = cloud_mask.And(quality_mask)
-
-    aod = image.select(AOD_BANDS).updateMask(good_pixel).multiply(AOD_SCALE_FACTOR)
+    aod = collection.map(mask_granule).mean()
 
     features = [
         ee.Feature(ee.Geometry.Point([row.longitude, row.latitude]), {"station": row.station, "city": row.city})
@@ -128,9 +133,20 @@ def sample_aod(ee_module, stations: pd.DataFrame, date: datetime, logger: loggin
     sampled = aod.sampleRegions(collection=points, scale=PIXEL_SCALE_METERS, geometries=False)
     result = sampled.getInfo()
 
-    out = parse_sampled_result(result, date_str)
-    matched = out["aod_047"].notna().sum() if not out.empty else 0
-    logger.info("Sampled AOD at %d stations for %s (%d with a valid/unmasked pixel)", len(out), date_str, matched)
+    out = complete_with_all_stations(parse_sampled_result(result, date_str), stations, date_str)
+    matched = out["aod_047"].notna().sum()
+    logger.info("AOD for %s: %d/%d stations have a valid (clear, best-quality) pixel", date_str, matched, len(out))
+    return out
+
+
+def complete_with_all_stations(parsed: pd.DataFrame, stations: pd.DataFrame, date_str: str) -> pd.DataFrame:
+    """sampleRegions silently DROPS any point whose pixel is masked (cloud, smog,
+    bad QA) rather than returning it with null values -- so on a hazy day most
+    stations just vanish from the result. Left-join back onto the full station list
+    so every station gets a row, with NaN AOD where the satellite couldn't see."""
+    values = parsed[["station", "aod_047", "aod_055"]]
+    out = stations[["station", "city"]].drop_duplicates(subset="station").merge(values, on="station", how="left")
+    out.insert(0, "date", date_str)
     return out
 
 
