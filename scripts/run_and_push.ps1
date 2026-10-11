@@ -36,6 +36,13 @@ if ($LASTEXITCODE -ne 0) {
     $failures += "cpcb"
 }
 
+Log "Starting OpenAQ fetch"
+& $python scripts\fetch_openaq.py
+if ($LASTEXITCODE -ne 0) {
+    Log "fetch_openaq.py exited with code $LASTEXITCODE"
+    $failures += "openaq"
+}
+
 Log "Starting FIRMS fetch"
 & $python scripts\fetch_firms.py
 if ($LASTEXITCODE -ne 0) {

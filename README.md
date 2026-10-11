@@ -10,8 +10,9 @@ Faridabad) that will eventually:
 4. Attribute PM2.5 spikes to regional stubble-burning transport (NASA FIRMS fire data +
    wind vectors) versus local sources.
 
-All four data pipelines are built: CPCB station data, NASA FIRMS fire detections,
-satellite AOD sampling, and ERA5 wind. The modeling layers (drift detection,
+All data pipelines are built: CPCB station data (data.gov.in feed, currently down, plus
+OpenAQ's archive as a second source), NASA FIRMS fire detections, satellite AOD sampling,
+and ERA5 wind. The modeling layers (drift detection,
 gap-filling, neighbor-consistency, stubble-burning attribution) and dashboard are
 not started.
 
@@ -297,6 +298,74 @@ One row per grid point per 3-hourly timestamp:
 | `expver` | `0005` = preliminary ERA5T (revisable), `0001` = final ERA5 |
 | `wind_speed_ms` | derived magnitude |
 | `wind_from_deg` | derived direction wind is blowing *from*, meteorological convention (0=N, 90=E) |
+
+## Component: OpenAQ archive (CPCB station concentrations)
+
+`scripts/fetch_openaq.py` reads CPCB station data from [OpenAQ](https://openaq.org)'s
+open S3 archive. It exists because the data.gov.in API went down around 26 Sep 2026,
+and because it is a *better* source in its own right: true concentrations (µg/m³)
+rather than the AQI sub-index values the data.gov.in feed appears to carry (see the
+warning under the CPCB data schema), at ~15-minute resolution (aggregated here to
+hourly), plus the stations' own wind and humidity sensors.
+
+### Setup
+1. Get a free API key at [explore.openaq.org](https://explore.openaq.org) (account
+   settings) and add `OPENAQ_API_KEY=` to `.env`. It is only used **once** to build
+   the station mapping (and on `--refresh-map`); the daily files are read from the
+   public S3 archive with no credentials.
+
+### Run
+```bash
+python scripts/fetch_openaq.py                                   # last 3 days (idempotent)
+python scripts/fetch_openaq.py --start 2026-09-26 --end 2026-10-07   # backfill a range
+python scripts/fetch_openaq.py --refresh-map                     # rebuild station mapping
+```
+
+### Output
+`data/raw/openaq_hourly_YYYY-MM-DD.csv` — **one file per observation date**, overwritten
+on re-run (unlike the other pulls, which append per fetch date), so backfills and the
+daily run's overlapping 3-day window never duplicate rows. Long format:
+
+| column | meaning |
+|---|---|
+| `hour_start_ist` | start of the hour, IST (ISO 8601, +05:30) |
+| `station` | our CPCB-feed station name, so it joins to `cpcb_ncr_*.csv` |
+| `openaq_location_id` | OpenAQ's ID for that station |
+| `parameter`, `units`, `value` | hourly mean; wind direction uses a circular mean |
+| `n_obs` | 15-minute samples behind that hour (≤4) — low values mean a patchy hour |
+
+Parameters: `pm25`, `pm10`, `no2`, `so2`, `co`, `o3`, `no`, `nox`, `relativehumidity`,
+`temperature`, `wind_speed`, `wind_direction`. **No QC is applied** — single-station
+hourly PM2.5 spikes of 500–670 µg/m³ appear in the data and were left in.
+
+### Station mapping
+`data/reference/openaq_station_map.csv` (committed) maps our station names to OpenAQ
+location IDs: 60 of our 64 known stations. Matched by coordinates within 300 m, else by
+identical name. **Unmatched on purpose:** `Pusa, Delhi - IITM`, `Pusa_IMD`,
+`Aya Nagar, Delhi - IITM`, `North Campus, DU, Delhi - IITM` — the nearest active OpenAQ
+location for each is a *different* station 2–3 km away, and a wrong match would silently
+corrupt every downstream comparison.
+
+### Things that bit during the first live run
+- **Provider tags:** OpenAQ files most DPCC/UPPCB stations (JNU, Govindpuram, Wave City,
+  …) under provider `N/A`, not `CPCB`. A `CPCB`-only filter silently dropped 10 real
+  stations (50/64 matched; fixed → 60/64). Low-cost sensor networks (AirGradient,
+  Clarity) are excluded so one near a station can't be matched in its place.
+- **Stale duplicates:** OpenAQ keeps dead duplicate locations (e.g. DTU has an ID that
+  last reported in 2018 alongside the live one), so only locations reporting in the last
+  90 days are considered.
+- **Encoding:** the archive's `units` column contains a raw `0xB5` byte ("µ"), so files
+  are decoded as latin-1, not UTF-8.
+- **CO units are mislabelled:** the archive says `ppb`, but the median CO value is 0.8,
+  which is a realistic ppm or mg/m³ figure, not 0.8 ppb. Don't trust the CO `units`
+  column; the other gases check out (NO₂ median 23 ppb, plausible).
+
+### Coverage and freshness
+The archive currently ends at **2026-10-07** (OpenAQ's CPCB ingestion appears to have
+stalled then; this is secondhand, from a developer report and the archive's own file
+dates). Days after that return nothing and the script just logs a warning — it will pick
+them up automatically if/when the archive resumes. Backfilled so far: 2026-09-26 →
+2026-10-07, covering the data.gov.in outage for those dates.
 
 ## Reachability check (2026-09-17, from the same machine this pipeline runs on)
 
