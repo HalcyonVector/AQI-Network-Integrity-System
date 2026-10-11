@@ -201,8 +201,8 @@ so run `fetch_cpcb.py` at least once first.
 ### Run manually
 
 ```bash
-python scripts/fetch_aod.py               # yesterday (UTC) -- MCD19A2 granules
-                                            # for "today" are usually incomplete
+python scripts/fetch_aod.py               # 5 days ago (UTC): MCD19A2 reaches Earth
+                                            # Engine ~4 days late, so "yesterday" has no data
 python scripts/fetch_aod.py --date 2026-09-15
 ```
 

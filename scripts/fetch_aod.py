@@ -6,8 +6,10 @@ for the satellite-based independent PM2.5 estimate used by drift detection
 Usage:
     python scripts/fetch_aod.py [--date YYYY-MM-DD]
 
-Defaults to yesterday (UTC) -- MCD19A2 is a daily granule product and "today's"
-granules are typically incomplete/not yet published when this would run.
+Defaults to 5 days ago (UTC). MCD19A2 reaches Earth Engine with a lag of about 4 days
+(measured 2026-10-12: newest granules were dated 2026-10-08, none for the 3 days after),
+so the original "yesterday" default asked for data that did not exist yet and the daily
+run silently wrote nothing.
 
 Requires a registered Earth Engine Cloud project. See README.md "Component: Satellite
 AOD". Set GEE_PROJECT in .env, plus EITHER a service account:
@@ -38,6 +40,7 @@ AOD_COLLECTION = "MODIS/061/MCD19A2_GRANULES"
 AOD_BANDS = ["Optical_Depth_047", "Optical_Depth_055"]
 AOD_SCALE_FACTOR = 0.001  # raw band values -> AOD units
 PIXEL_SCALE_METERS = 1000
+DEFAULT_LAG_DAYS = 5  # MCD19A2 publication lag in Earth Engine is ~4 days
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 RAW_DATA_DIR = PROJECT_ROOT / "data" / "raw"
@@ -193,7 +196,7 @@ def append_to_csv(df: pd.DataFrame, logger: logging.Logger) -> Path:
 
 def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--date", help="YYYY-MM-DD, defaults to yesterday (UTC)")
+    parser.add_argument("--date", help="YYYY-MM-DD, defaults to 5 days ago (UTC), when MCD19A2 granules reliably exist")
     args = parser.parse_args()
 
     load_dotenv(PROJECT_ROOT / ".env")
@@ -202,7 +205,7 @@ def main() -> int:
     if args.date:
         target_date = datetime.strptime(args.date, "%Y-%m-%d")
     else:
-        target_date = datetime.now(timezone.utc) - timedelta(days=1)
+        target_date = datetime.now(timezone.utc) - timedelta(days=DEFAULT_LAG_DAYS)
 
     try:
         ee = init_earth_engine(logger)
