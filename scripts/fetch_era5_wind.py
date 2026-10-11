@@ -6,12 +6,12 @@ transport attribution (component 4).
 Usage:
     python scripts/fetch_era5_wind.py [--date YYYY-MM-DD]
 
-Defaults to 6 days ago (UTC). ERA5 "final" reanalysis has ~5 day latency; requesting
-anything more recent gets served from ERA5T (the preliminary/near-real-time version)
-instead, which CDS marks with a separate `expver` dimension in the output and can
-still be revised later. 6 days back stays safely in "final" territory. Pass --date
-explicitly (allow-early) if you specifically want the (possibly-preliminary) recent
-data.
+Defaults to 6 days ago (UTC), the point where data reliably exists: ERA5 is published
+with ~5 days latency as ERA5T (preliminary), and is only replaced by the final ERA5
+product months later. So data pulled by this script is normally PRELIMINARY -- the
+`expver` column says which: "0005" = ERA5T (revisable), "0001" = final. (Confirmed on
+the first live run: a 7-day-old date came back expver 0005.) Differences between
+ERA5T and final are usually small, but don't assume they're zero.
 
 Requires a Copernicus CDS account. See README.md "Component: ERA5 wind" for account
 setup and -- important -- you must manually accept the ERA5 dataset's Terms of Use
@@ -46,7 +46,7 @@ VARIABLES = ["10m_u_component_of_wind", "10m_v_component_of_wind"]
 AREA = [32.5, 73.5, 27.5, 81.0]
 
 HOURS = [f"{h:02d}:00" for h in range(0, 24, 3)]  # 3-hourly, 00/03/06/09/12/15/18/21
-FINAL_ERA5_LAG_DAYS = 6
+ERA5_AVAILABILITY_LAG_DAYS = 6
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 RAW_DATA_DIR = PROJECT_ROOT / "data" / "raw"
@@ -125,9 +125,16 @@ def dataset_to_dataframe(ds, logger: logging.Logger) -> pd.DataFrame:
         logger.info("Response included multiple expver values (ERA5T/final overlap); collapsed via skipna mean.")
 
     df = ds.to_dataframe().reset_index()
-    df = df.rename(columns={"u10": "u10_ms", "v10": "v10_ms"})
+    # The CDS NetCDF names its time coordinate `valid_time`, not `time` (found on
+    # the first live run: a `time`-only column filter silently wrote every row
+    # with no timestamp). Fail loudly if neither is present rather than dropping it.
+    df = df.rename(columns={"u10": "u10_ms", "v10": "v10_ms", "valid_time": "time"})
+    if "time" not in df.columns:
+        raise ValueError(f"ERA5 response has no recognizable time coordinate; columns: {df.columns.tolist()}")
 
-    keep_cols = [c for c in ("time", "latitude", "longitude", "u10_ms", "v10_ms") if c in df.columns]
+    # `expver` marks final ERA5 ("0001") vs preliminary ERA5T ("0005", revisable);
+    # in the real file it is a per-timestep coordinate, so keep it as a column.
+    keep_cols = [c for c in ("time", "latitude", "longitude", "u10_ms", "v10_ms", "expver") if c in df.columns]
     df = df[keep_cols].copy()
 
     df["wind_speed_ms"] = (df["u10_ms"] ** 2 + df["v10_ms"] ** 2) ** 0.5
@@ -160,7 +167,7 @@ def append_to_csv(df: pd.DataFrame, logger: logging.Logger) -> Path:
 
 def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--date", help="YYYY-MM-DD, defaults to 6 days ago (UTC), safely inside final ERA5")
+    parser.add_argument("--date", help="YYYY-MM-DD, defaults to 6 days ago (UTC), when ERA5T data reliably exists")
     args = parser.parse_args()
 
     load_dotenv(PROJECT_ROOT / ".env")
@@ -169,7 +176,7 @@ def main() -> int:
     if args.date:
         target_date = datetime.strptime(args.date, "%Y-%m-%d")
     else:
-        target_date = datetime.now(timezone.utc) - timedelta(days=FINAL_ERA5_LAG_DAYS)
+        target_date = datetime.now(timezone.utc) - timedelta(days=ERA5_AVAILABILITY_LAG_DAYS)
 
     try:
         client = build_client()

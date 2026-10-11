@@ -74,6 +74,40 @@ def test_dataset_to_dataframe_collapses_expver_dimension(logger):
     assert (df["v10_ms"] == 4.0).all()
 
 
+def test_dataset_to_dataframe_handles_real_cds_layout(logger):
+    # Mirrors the real CDS NetCDF found on the first live run: time coordinate is
+    # `valid_time` (not `time`), and `expver` is a plain per-timestep coordinate,
+    # not a dimension. Previously every row was written with no timestamp.
+    times = pd.to_datetime(["2026-10-05T00:00", "2026-10-05T03:00"])
+    ds = xr.Dataset(
+        {
+            "u10": (["valid_time", "latitude", "longitude"], np.full((2, 2, 2), 1.0)),
+            "v10": (["valid_time", "latitude", "longitude"], np.full((2, 2, 2), 2.0)),
+        },
+        coords={
+            "valid_time": times,
+            "expver": ("valid_time", ["0001", "0001"]),
+            "latitude": [28.5, 28.75],
+            "longitude": [77.0, 77.25],
+        },
+    )
+    df = fetch_era5_wind.dataset_to_dataframe(ds, logger)
+    assert "time" in df.columns
+    assert df["time"].notna().all()
+    assert df["time"].nunique() == 2
+    assert len(df) == 8
+    assert set(df["expver"]) == {"0001"}
+
+
+def test_dataset_to_dataframe_raises_without_time_coordinate(logger):
+    ds = xr.Dataset(
+        {"u10": (["latitude", "longitude"], np.ones((2, 2))), "v10": (["latitude", "longitude"], np.ones((2, 2)))},
+        coords={"latitude": [28.5, 28.75], "longitude": [77.0, 77.25]},
+    )
+    with pytest.raises(ValueError, match="time coordinate"):
+        fetch_era5_wind.dataset_to_dataframe(ds, logger)
+
+
 def test_dataset_to_dataframe_keeps_only_expected_columns(logger):
     ds = make_dataset(u10=1.0, v10=1.0)
     df = fetch_era5_wind.dataset_to_dataframe(ds, logger)

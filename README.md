@@ -244,10 +244,8 @@ component 4 (stubble-burning transport attribution) both need.
    CDSAPI_URL=https://cds.climate.copernicus.eu/api
    CDSAPI_KEY=your-uid:your-api-key
    ```
-   (Confirmed against the installed `cdsapi` 0.7.7 source: despite the "Personal
-   Access Token" naming on the CDS website, the library still expects and validates
-   a `<UID>:<KEY>` pair via HTTP Basic Auth — paste your token exactly as shown on
-   your profile page.)
+   (Confirmed live with `cdsapi` 0.7.7: the bare personal access token from your
+   profile page — a 36-character UUID, no colon — works as-is; no `UID:` prefix.)
 
 ### Run manually
 
@@ -260,12 +258,14 @@ Appends to `data/raw/era5_wind_YYYY-MM-DD.csv`. **Requests can queue on CDS's
 compute backend** — this is normal, not a bug; the client blocks and polls until
 ready by default. First run may take a while.
 
-### Why 6 days back by default, and NetCDF instead of GRIB
+### Why 6 days back by default (and what that means), and NetCDF instead of GRIB
 
-Final ERA5 reanalysis has ~5 day latency; anything more recent is served from ERA5T
-(preliminary, can still be revised) instead, distinguished by an `expver` dimension
-in the response. Defaulting to 6 days back stays safely inside "final" territory;
-pass `--date` explicitly if you want the more recent (possibly-preliminary) data.
+ERA5 is published about 5 days behind real time as **ERA5T** (preliminary); the final
+product replaces it months later. Defaulting to 6 days back is where data reliably
+exists, but it is *preliminary*: the `expver` column marks each row (`0005` = ERA5T,
+revisable; `0001` = final). Confirmed on the first live run — a 7-day-old date came
+back `0005`. Differences from final are usually small but not zero. When reading the
+CSV, use `dtype={"expver": str}` or pandas will turn `0005` into the integer `5`.
 
 Requested as NetCDF, not GRIB: GRIB parsing needs the `cfgrib` package, which in turn
 needs the native ecCodes C library — confirmed by testing that it has no working
@@ -283,6 +283,7 @@ One row per grid point per 3-hourly timestamp:
 | `time` | ERA5 timestamp (UTC) |
 | `latitude`, `longitude` | ERA5 grid point (not station-aligned — this is a coarser reanalysis grid, ~0.25°) |
 | `u10_ms`, `v10_ms` | raw 10m wind components (m/s) |
+| `expver` | `0005` = preliminary ERA5T (revisable), `0001` = final ERA5 |
 | `wind_speed_ms` | derived magnitude |
 | `wind_from_deg` | derived direction wind is blowing *from*, meteorological convention (0=N, 90=E) |
 
