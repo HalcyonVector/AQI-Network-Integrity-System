@@ -100,7 +100,18 @@ One row per station per hourly timestamp:
 | `country`, `state`, `city`, `station` | station identity/location tag from CPCB |
 | `latitude`, `longitude` | station coordinates |
 | `last_update` | CPCB's reported observation timestamp |
-| `PM2.5`, `PM10`, `NO2`, `SO2`, `CO`, `OZONE` | pollutant averages (units per CPCB, typically µg/m³ or mg/m³ for CO) |
+| `PM2.5`, `PM10`, `NO2`, `SO2`, `CO`, `OZONE` | **Probably CPCB AQI sub-index values (0–500 scale), NOT concentrations — see warning below.** |
+
+> **Warning: these are likely not µg/m³.** An earlier version of this README called
+> them concentrations; that was an assumption, and a cross-check suggests it is wrong.
+> Comparing DTU Delhi on 2026-09-25 against OpenAQ's archive (true concentrations),
+> converting OpenAQ's trailing **24-hour average** PM2.5 into the CPCB sub-index gave
+> 53 at 12:00 (feed: 53) and 37 at 18:00 (feed: 39); PM10 gave 82/70 (feed: 77/67).
+> That is a close match, and the feed's CO values (e.g. 51–95) are far too large to be
+> concentrations. Caveat: one station, two timestamps, particulates only — CO/NO2/SO2/O3
+> are unverified. **Do not compare these columns directly against AOD-derived PM2.5
+> (a µg/m³ concentration) until this is settled**; invert the CPCB breakpoint tables to
+> get back to concentrations, or use a source that reports concentrations (OpenAQ).
 
 ## Component: NASA FIRMS fire detections
 
