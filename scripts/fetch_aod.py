@@ -173,26 +173,22 @@ def parse_sampled_result(result: dict, date_str: str) -> pd.DataFrame:
     return out
 
 
-def append_to_csv(df: pd.DataFrame, logger: logging.Logger) -> Path:
+def write_date_file(df: pd.DataFrame, logger: logging.Logger) -> Path:
+    """One file per OBSERVATION date, overwritten on re-run, so backfills and repeated
+    runs are idempotent. (It used to append to a file named for the fetch date, which
+    duplicated rows whenever a date was fetched twice.)"""
+    obs_dates = df["date"].unique()
+    if len(obs_dates) != 1:
+        raise ValueError(f"expected rows for exactly one observation date, got {sorted(obs_dates)}")
+
     RAW_DATA_DIR.mkdir(parents=True, exist_ok=True)
-    out_path = RAW_DATA_DIR / f"aod_ncr_{datetime.now():%Y-%m-%d}.csv"
+    out_path = RAW_DATA_DIR / f"aod_ncr_{obs_dates[0]}.csv"
 
     df = df.copy()
     df.insert(0, "fetched_at_utc", datetime.now(timezone.utc).isoformat(timespec="seconds"))
-
-    write_header = not out_path.exists()
-    if not write_header:
-        existing_cols = pd.read_csv(out_path, nrows=0).columns.tolist()
-        if existing_cols != df.columns.tolist():
-            raise ValueError(
-                f"Column mismatch appending to {out_path}: existing file has {existing_cols}, "
-                f"this run produced {df.columns.tolist()}. Refusing to append."
-            )
-
-    df.to_csv(out_path, mode="a", header=write_header, index=False)
-    logger.info("Appended %d rows to %s", len(df), out_path)
+    df.to_csv(out_path, index=False)
+    logger.info("Wrote %d rows to %s", len(df), out_path.name)
     return out_path
-
 
 def main() -> int:
     parser = argparse.ArgumentParser()
@@ -233,7 +229,7 @@ def main() -> int:
         logger.info("Nothing to write this run.")
         return 0
 
-    append_to_csv(df, logger)
+    write_date_file(df, logger)
     return 0
 
 

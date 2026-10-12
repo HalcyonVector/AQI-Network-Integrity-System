@@ -115,11 +115,14 @@ def test_dataset_to_dataframe_keeps_only_expected_columns(logger):
     assert set(df.columns) == expected
 
 
-def test_append_to_csv_rejects_schema_mismatch(tmp_path, logger, monkeypatch):
-    monkeypatch.setattr(fetch_era5_wind, "RAW_DATA_DIR", tmp_path)
-    df1 = pd.DataFrame({"latitude": [28.5], "u10_ms": [1.0]})
-    df2 = pd.DataFrame({"latitude": [28.5], "wind_speed_ms": [1.0]})
+def test_write_date_file_is_idempotent_and_named_by_observation_date(tmp_path, logger, monkeypatch):
+    from datetime import datetime
 
-    fetch_era5_wind.append_to_csv(df1, logger)
-    with pytest.raises(ValueError, match="Column mismatch"):
-        fetch_era5_wind.append_to_csv(df2, logger)
+    monkeypatch.setattr(fetch_era5_wind, "RAW_DATA_DIR", tmp_path)
+    df = pd.DataFrame({"latitude": [28.5, 28.75], "u10_ms": [1.0, 2.0]})
+
+    path1 = fetch_era5_wind.write_date_file(df, datetime(2026, 10, 5), logger)
+    path2 = fetch_era5_wind.write_date_file(df, datetime(2026, 10, 5), logger)
+
+    assert path1 == path2 == tmp_path / "era5_wind_2026-10-05.csv"
+    assert len(pd.read_csv(path1)) == 2  # overwritten, not appended

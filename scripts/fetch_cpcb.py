@@ -18,6 +18,7 @@ from __future__ import annotations
 
 import logging
 import os
+import re
 import sys
 import time
 from datetime import datetime, timezone
@@ -46,6 +47,12 @@ REQUEST_TIMEOUT_SECS = 30
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 RAW_DATA_DIR = PROJECT_ROOT / "data" / "raw"
 LOG_DIR = PROJECT_ROOT / "logs"
+
+
+def redact_secrets(text: str) -> str:
+    """requests puts the full URL, including ?api-key=..., into its exception text,
+    and these messages get logged and shown in terminals/screenshots."""
+    return re.sub(r"api-key=[^&\s)'\"]+", "api-key=REDACTED", text)
 
 
 def setup_logging() -> logging.Logger:
@@ -93,7 +100,7 @@ def fetch_all_records(api_key: str, resource_id: str, logger: logging.Logger) ->
                 payload = resp.json()
                 break
             except requests.RequestException as exc:
-                logger.warning("Request failed (attempt %d/%d, offset %d): %s", attempt, MAX_RETRIES, offset, exc)
+                logger.warning("Request failed (attempt %d/%d, offset %d): %s", attempt, MAX_RETRIES, offset, redact_secrets(str(exc)))
                 if attempt == MAX_RETRIES:
                     logger.error(
                         "Giving up after %d attempts at offset %d. If this is a connection "

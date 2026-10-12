@@ -206,7 +206,10 @@ python scripts/fetch_aod.py               # 5 days ago (UTC): MCD19A2 reaches Ea
 python scripts/fetch_aod.py --date 2026-09-15
 ```
 
-Appends to `data/raw/aod_ncr_YYYY-MM-DD.csv`.
+Writes `data/raw/aod_ncr_YYYY-MM-DD.csv`, **one file per observation date, overwritten on
+re-run** (so backfills and repeated runs never duplicate rows). Validated 2026-09-26 →
+2026-10-08: 26–28 Sep were almost fully cloud-masked (0–2 of 62 stations valid), 29 Sep
+had 54, and 30 Sep onward 61–62 of 62.
 
 ### Cloud/quality masking
 
@@ -266,7 +269,8 @@ python scripts/fetch_era5_wind.py                    # 6 days ago (UTC)
 python scripts/fetch_era5_wind.py --date 2026-09-01
 ```
 
-Appends to `data/raw/era5_wind_YYYY-MM-DD.csv`. **Requests can queue on CDS's
+Writes `data/raw/era5_wind_YYYY-MM-DD.csv`, **one file per observation date, overwritten on
+re-run**. **Requests can queue on CDS's
 compute backend** — this is normal, not a bug; the client blocks and polls until
 ready by default. First run may take a while.
 
@@ -367,6 +371,52 @@ dates). Days after that return nothing and the script just logs a warning — it
 them up automatically if/when the archive resumes. Backfilled so far: 2026-09-26 →
 2026-10-07, covering the data.gov.in outage for those dates.
 
+## Analysis: station vs satellite consistency (component 1, first pass)
+
+`scripts/analyze_station_bias.py` joins ground PM2.5 (OpenAQ, averaged over the 10:00–14:00
+IST satellite-overpass window, ≥3 hours required) to AOD at each station and looks for
+stations that disagree with the satellite. Writes to `data/processed/`.
+
+### What the first real data (2026-09-29 → 10-07, 9 usable days) showed
+
+| question | result |
+|---|---|
+| Across stations **within a day**, do PM2.5 and AOD agree? | **No** — median Spearman ρ = **0.03** (daily values −0.07 … 0.46) |
+| Does AOD track the **city's day-to-day** PM2.5? | **Yes** — ρ = **0.68** (n = 9 days) |
+| Does a typical station follow its **own** AOD pixel over days? | **Yes** — median ρ = **0.62** (IQR 0.32–0.75, 51 stations) |
+| Spatial variability within a day | AOD CV 0.27 vs PM2.5 CV 0.48 |
+
+So the satellite carries signal **in time, not across the city**: PM2.5 differences between
+stations are dominated by local sources a 1 km column measurement can't see, but regional
+haze moves everything together from day to day and AOD follows that.
+
+### Two detectors, one of them gated off
+1. **Cross-sectional bias** (per-day robust fit, station residuals): written first, and the
+   built-in gate correctly switched it **off** (needs median ρ ≥ 0.3; got 0.03). Kept
+   because it will start working if/when the spatial signal improves, and because the gate
+   is what stops it from flagging noise. Its residuals are *not* evidence of faults:
+   Cantonment Area and IGNOU Maidan Garhi read ~5σ low every single day, but they are
+   green south-Delhi sites — location, not malfunction, and the satellite can't tell.
+2. **Temporal decoupling** (the one the data supports): each station's day-to-day ρ with
+   its own AOD vs the network median, Fisher-z one-sided test, **Benjamini–Hochberg FDR
+   control** across stations.
+
+### Result: nothing flagged — and that is the honest answer
+No station is significantly decoupled. Lowest raw p-values: Sector-51 Gurugram (ρ −0.32),
+Indirapuram (−0.23), Sanjay Nagar (−0.17), Sector-62 Noida (−0.13), Vasundhara (−0.13),
+IHBAS (−0.19) — but with 8–9 days each, **q = 0.23** for all of them, i.e. entirely
+consistent with chance across 51 comparisons. They are labelled "watch", not flagged. The
+detector needs roughly 3–4 weeks of paired days before it can say anything about one station.
+
+### Caveats worth keeping in mind
+- A flag means "investigate", never "faulty": a station beside a road, kiln or construction
+  site legitimately decouples from a regional satellite signal.
+- Drift proper (a slow ramp) needs weeks of history; `trend_z_per_day` is exploratory.
+- 26–28 Sep were cloud-blind, so the usable window is 29 Sep → 7 Oct (OpenAQ's archive
+  ends 7 Oct; the data.gov.in feed is down). New data cannot accumulate until one resumes.
+- Residuals use ground **concentrations** (OpenAQ). Do not run this on the data.gov.in feed
+  columns — they appear to be AQI sub-indices (see the warning under the CPCB schema).
+
 ## Reachability check (2026-09-17, from the same machine this pipeline runs on)
 
 | Source | Status |
@@ -379,8 +429,13 @@ None of these showed the CPCB endpoint's blocking/hanging behavior. Worth re-che
 once real auth'd calls are wired up, since a plain TCP/TLS reachability check doesn't
 rule out an API-layer restriction the way CPCB's User-Agent gate did.
 
-## Not yet built
+## Status of the four components
 
-- Drift detection, gap-filling, neighbor-consistency, and stubble-burning attribution
-  models.
-- Dashboard.
+| # | component | state |
+|---|---|---|
+| 1 | Flag stations drifting from the satellite estimate | **First pass built** (see Analysis). Nothing flaggable yet — needs ~3–4 weeks of paired days. |
+| 2 | Gap-fill missing station data from satellite | Not started. The city-level day-to-day link (ρ 0.68) suggests it is feasible at *regional* scale only; per-station gap-filling would inherit the weak spatial signal. |
+| 3 | Wind-conditioned neighbour consistency (for when the satellite is blind) | Not started. Inputs exist: ERA5 wind, plus the stations' own wind/humidity sensors in the OpenAQ data. Matters more now: 26–28 Sep were cloud-blind. |
+| 4 | Stubble-burning transport attribution | Not started. FIRMS fires and wind are both flowing. |
+
+Dashboard: not started.

@@ -109,11 +109,19 @@ def test_load_station_points_raises_when_no_cpcb_data(tmp_path, logger, monkeypa
         fetch_aod.load_station_points(logger)
 
 
-def test_append_to_csv_rejects_schema_mismatch(tmp_path, logger, monkeypatch):
+def test_write_date_file_is_idempotent_and_named_by_observation_date(tmp_path, logger, monkeypatch):
     monkeypatch.setattr(fetch_aod, "RAW_DATA_DIR", tmp_path)
-    df1 = pd.DataFrame({"date": ["2026-09-16"], "station": ["A"]})
-    df2 = pd.DataFrame({"date": ["2026-09-16"], "aod_047": [0.3]})
+    df = pd.DataFrame({"date": ["2026-10-06", "2026-10-06"], "station": ["A", "B"], "aod_047": [0.5, 0.6]})
 
-    fetch_aod.append_to_csv(df1, logger)
-    with pytest.raises(ValueError, match="Column mismatch"):
-        fetch_aod.append_to_csv(df2, logger)
+    path1 = fetch_aod.write_date_file(df, logger)
+    path2 = fetch_aod.write_date_file(df, logger)  # re-run the same date
+
+    assert path1 == path2 == tmp_path / "aod_ncr_2026-10-06.csv"
+    assert len(pd.read_csv(path1)) == 2  # overwritten, not appended
+
+
+def test_write_date_file_rejects_mixed_observation_dates(tmp_path, logger, monkeypatch):
+    monkeypatch.setattr(fetch_aod, "RAW_DATA_DIR", tmp_path)
+    df = pd.DataFrame({"date": ["2026-10-05", "2026-10-06"], "station": ["A", "B"]})
+    with pytest.raises(ValueError, match="exactly one observation date"):
+        fetch_aod.write_date_file(df, logger)

@@ -80,7 +80,7 @@ def fetch_one_source(map_key: str, source: str, session: requests.Session, logge
             resp.raise_for_status()
             break
         except requests.RequestException as exc:
-            logger.warning("Request failed for %s (attempt %d/%d): %s", source, attempt, MAX_RETRIES, exc)
+            logger.warning("Request failed for %s (attempt %d/%d): %s", source, attempt, MAX_RETRIES, str(exc).replace(map_key, "REDACTED"))
             if attempt == MAX_RETRIES:
                 logger.error("Giving up on %s after %d attempts.", source, MAX_RETRIES)
                 raise

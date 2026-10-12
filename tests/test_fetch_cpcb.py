@@ -170,3 +170,17 @@ def test_append_to_csv_appends_without_duplicating_header(tmp_path, logger, monk
     lines = out_path.read_text().strip().splitlines()
     assert lines[0] == "a,b"
     assert len(lines) == 3  # header + 2 data rows
+
+
+def test_redact_secrets_hides_api_key_in_exception_text():
+    msg = (
+        "HTTPSConnectionPool(host='api.data.gov.in', port=443): Max retries exceeded with url: "
+        "/resource/abc?api-key=579b464db66ec23bdd0000014b434ddc&format=json&limit=1000 (Caused by ...)"
+    )
+    out = fetch_cpcb.redact_secrets(msg)
+    assert "579b464d" not in out
+    assert "api-key=REDACTED&format=json" in out
+
+
+def test_redact_secrets_leaves_text_without_a_key_unchanged():
+    assert fetch_cpcb.redact_secrets("Read timed out.") == "Read timed out."
