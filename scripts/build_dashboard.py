@@ -325,7 +325,7 @@ main{max-width:1000px;margin:0 auto;padding:22px 16px 56px}
 .hero{position:relative;overflow:hidden;border-radius:26px;padding:34px 30px 26px;color:#fff;
 background:linear-gradient(180deg,rgba(40,38,110,.55) 0%,rgba(14,16,44,.6) 100%);border:1px solid rgba(255,255,255,.18);box-shadow:0 26px 60px -26px rgba(0,0,0,.9),inset 0 1px 0 rgba(255,255,255,.25);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
 .hero h1{margin:0;font-size:clamp(26px,4.6vw,38px);line-height:1.1;letter-spacing:-.025em;font-weight:800;position:relative;z-index:1}
-.hero .sub{margin:8px 0 0;max-width:640px;opacity:.9;font-size:15px;position:relative;z-index:1}
+.hero .sub{margin:8px 0 0;max-width:none;opacity:.9;font-size:15px;position:relative;z-index:1}
 .hero .stamp{margin-top:6px;font-size:12px;opacity:.7;position:relative;z-index:1}
 .tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:22px;position:relative;z-index:1}
 .tile{box-shadow:inset 0 1px 0 rgba(255,255,255,.25);background:var(--tile);border:1px solid var(--tile-line);border-radius:18px;padding:14px 16px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
@@ -497,7 +497,7 @@ def render(today: date, raw_dir: Path = RAW_DIR, proc_dir: Path = PROC_DIR) -> s
     body = f"""
 <header class="hero">
 <h1>NCR air-quality network integrity</h1>
-<p class="sub">Is the monitoring network telling the truth? Data health, station checks, and what the satellite and fires say about Delhi's PM2.5.</p>
+<p class="sub">Is the monitoring network telling the truth? Data health, station checks, satellite and fire evidence.</p>
 <div class="stamp">Generated {today.isoformat()} &middot; static page, no tracking</div>
 <div class="tiles">{tiles}</div>
 </header>
