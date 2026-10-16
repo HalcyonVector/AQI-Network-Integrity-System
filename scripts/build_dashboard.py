@@ -305,19 +305,17 @@ def hero_stats(today: date, raw_dir: Path = RAW_DIR, proc_dir: Path = PROC_DIR, 
     return stats
 
 
-CSS = """:root{--bg1:#05060f;--bg2:#0b0f24;--bg3:#07202a;
+CSS = """:root{--bg1:#101436;--bg2:#070a1c;--bg3:#010103;
 --card:linear-gradient(145deg,rgba(255,255,255,.085),rgba(255,255,255,.025));--fg:#e6eaf7;--muted:#98a3c2;--line:rgba(255,255,255,.12);
 --shadow:0 18px 44px -18px rgba(0,0,0,.75),inset 0 1px 0 rgba(255,255,255,.14),inset 0 0 0 1px rgba(255,255,255,.03);
---tile:rgba(255,255,255,.09);--tile-line:rgba(255,255,255,.2);--cell-pre:rgba(255,255,255,.08);--grid:rgba(255,255,255,.09)}
+--tile:rgba(255,255,255,.05);--tile-line:rgba(255,255,255,.2);--cell-pre:rgba(255,255,255,.08);--grid:rgba(255,255,255,.09)}
 *{box-sizing:border-box}
 html{background:var(--bg1)}
 body{margin:0;color:var(--fg);font:15px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;min-height:100vh;
-background:radial-gradient(900px 600px at 6% 0%,rgba(79,70,229,.38),transparent 62%),radial-gradient(800px 560px at 100% 18%,rgba(13,148,170,.28),transparent 60%),radial-gradient(900px 600px at 20% 100%,rgba(126,34,206,.26),transparent 62%),linear-gradient(160deg,var(--bg1),var(--bg2) 50%,var(--bg3));background-attachment:fixed}
+background:linear-gradient(180deg,var(--bg1) 0%,var(--bg2) 45%,var(--bg3) 100%);background-attachment:fixed}
 main{max-width:1000px;margin:0 auto;padding:22px 16px 56px}
 .hero{position:relative;overflow:hidden;border-radius:26px;padding:34px 30px 26px;color:#fff;
-background:radial-gradient(520px 260px at 90% -10%,rgba(255,255,255,.28),transparent 65%),linear-gradient(125deg,rgba(55,48,163,.85) 0%,rgba(91,33,182,.8) 40%,rgba(14,94,116,.85) 100%);
-border:1px solid rgba(255,255,255,.18);box-shadow:0 26px 60px -26px rgba(79,70,229,.7),inset 0 1px 0 rgba(255,255,255,.25);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
-.hero:after{content:"";position:absolute;inset:auto -60px -90px auto;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(34,211,238,.45),transparent 65%)}
+background:linear-gradient(180deg,rgba(40,38,110,.55) 0%,rgba(14,16,44,.6) 100%);border:1px solid rgba(255,255,255,.18);box-shadow:0 26px 60px -26px rgba(0,0,0,.9),inset 0 1px 0 rgba(255,255,255,.25);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
 .hero h1{margin:0;font-size:clamp(26px,4.6vw,38px);line-height:1.1;letter-spacing:-.025em;font-weight:800;position:relative;z-index:1}
 .hero .sub{margin:8px 0 0;max-width:640px;opacity:.9;font-size:15px;position:relative;z-index:1}
 .hero .stamp{margin-top:6px;font-size:12px;opacity:.7;position:relative;z-index:1}
