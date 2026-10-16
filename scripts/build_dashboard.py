@@ -411,6 +411,37 @@ html{scroll-behavior:smooth}.card{scroll-margin-top:14px}
 details.how{margin-top:14px;border:1px solid var(--line);border-radius:14px;padding:10px 15px;background:rgba(255,255,255,.03);font-size:14px}
 details.how summary{cursor:pointer;font-weight:700}details.how p{margin:.5em 0 0;color:var(--muted)}
 .foot{margin-top:30px;text-align:center;font-size:12.5px;color:var(--muted)}
+
+/* ---- futuristic glass layer (overrides) ---- */
+:root{--mono:ui-monospace,"Cascadia Code","SF Mono",Consolas,monospace;--cyan:#67e8f9;--glass:linear-gradient(160deg,rgba(255,255,255,.115),rgba(255,255,255,.04) 38%,rgba(255,255,255,.02));
+--glass-in:linear-gradient(160deg,rgba(255,255,255,.085),rgba(255,255,255,.025));--edge:rgba(255,255,255,.16);--edge-top:rgba(255,255,255,.34)}
+body{background:linear-gradient(rgba(140,160,255,.045) 1px,transparent 1px) 0 0/46px 46px,linear-gradient(90deg,rgba(140,160,255,.045) 1px,transparent 1px) 0 0/46px 46px,linear-gradient(180deg,#121741 0%,#080b20 45%,#010103 100%);background-attachment:fixed}
+.card{position:relative;overflow:hidden;background:var(--glass);border:1px solid var(--edge);border-top-color:var(--edge-top);
+box-shadow:0 30px 60px -28px #000,0 0 0 1px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.3),inset 0 -1px 0 rgba(255,255,255,.05),inset 0 0 40px rgba(130,150,255,.04)}
+.card:before{content:"";position:absolute;left:0;right:0;top:0;height:110px;background:linear-gradient(180deg,rgba(255,255,255,.075),transparent);pointer-events:none}
+.card:after{content:"";position:absolute;top:0;left:28px;right:28px;height:1px;background:linear-gradient(90deg,transparent,rgba(103,232,249,.85),rgba(167,139,250,.7),transparent);pointer-events:none}
+.card>*{position:relative}
+.card h2{font-size:14px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#dbe4ff;margin-bottom:18px;gap:12px}
+.card h2:before{content:"";width:4px;height:20px;border-radius:3px;background:linear-gradient(180deg,#67e8f9,#8b5cf6);box-shadow:0 0 12px rgba(103,232,249,.5)}
+.src,.mini,.meter,.count-i,.city,.run,.scard,details.how{background:var(--glass-in);border:1px solid var(--edge);border-top-color:rgba(255,255,255,.26);box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 10px 24px -16px #000}
+.city,.scard{border-left-width:4px}
+.note{background:linear-gradient(135deg,rgba(103,232,249,.07),rgba(139,92,246,.06));border:1px solid var(--edge);border-left:3px solid var(--cyan);box-shadow:inset 0 1px 0 rgba(255,255,255,.1)}
+.note.warn{border-left-color:#f59e0b;background:linear-gradient(135deg,rgba(245,158,11,.12),rgba(244,63,94,.05))}
+.hero{border-color:rgba(255,255,255,.2);border-top-color:rgba(255,255,255,.38);box-shadow:0 34px 70px -30px #000,inset 0 1px 0 rgba(255,255,255,.35)}
+.hero h1{background:linear-gradient(90deg,#fff 30%,#a5f3fc 70%,#c4b5fd);-webkit-background-clip:text;background-clip:text;color:transparent;letter-spacing:-.03em}
+.tile{background:var(--glass-in);border:1px solid var(--edge);border-top-color:rgba(255,255,255,.34);box-shadow:inset 0 1px 0 rgba(255,255,255,.22),0 12px 28px -18px #000}
+.tile .v,.stat-v,.city-v,.mini-v,.rank-v,.g-val,.count-n,.meter-top b{font-family:var(--mono);letter-spacing:-.02em}
+.tile .l{text-transform:uppercase;letter-spacing:.1em;font-size:11.5px}
+.chip{font-family:var(--mono);font-size:11px;letter-spacing:.08em}
+.sub-h{font-family:var(--mono);font-size:11.5px;letter-spacing:.18em;color:var(--cyan);opacity:.85}
+.sub-h:before{content:"// ";opacity:.6}
+.nav a{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;background:var(--glass-in);border-top-color:rgba(255,255,255,.3)}
+.nav a:hover{border-color:var(--cyan);color:var(--cyan)}
+.dotc.flagc{border-color:#f43f5e}.dotc.watchc{border-color:#fbbf24}.map-lbl{font-size:11px;fill:#e2e8f0;paint-order:stroke;stroke:#080b20;stroke-width:3px}
+.heat .tick,.map .tick{fill:#cbd5e1}.heat .tick{font-size:12px}
+.map-bg{fill:rgba(103,232,249,.03);stroke:rgba(255,255,255,.14)}
+.cell.ok{box-shadow:0 0 8px rgba(52,211,153,.25)}
+.foot{font-family:var(--mono);letter-spacing:.06em}
 .scroll{overflow-x:auto}
 @media (max-width:760px){.split{grid-template-columns:1fr}.rank-row{grid-template-columns:120px 1fr 34px}.tiles{grid-template-columns:repeat(2,1fr)}.hero{padding:26px 20px 20px}.card{padding:18px 16px 14px}
 .g-row{grid-template-columns:1fr 70px;gap:6px 12px}.g-track{grid-column:1 / -1;order:3}.g-head{display:none}}
@@ -457,20 +488,20 @@ def render(today: date, raw_dir: Path = RAW_DIR, proc_dir: Path = PROC_DIR) -> s
 <nav class="nav">{nav}</nav>
 {banner}
 
-<section class="card" id="flow"><h2><span class="num">1</span>Is the data flowing?</h2>
+<section class="card" id="flow"><h2>Is the data flowing?</h2>
 <div class="scroll">{health_html(health, today)}</div>
 <div class="note"><b>OK</b> = as fresh as that source normally is. <b>GAPS</b> = fresh, but days are missing behind it. <b>STALE / DOWN</b> = nothing new
 for longer than usual. A gap in the CPCB feed cannot be recovered from that feed (it serves only the current snapshot); OpenAQ may cover some of it.</div>
 </section>
 
-<section class="card" id="now"><h2><span class="num">2</span>The network right now</h2>
+<section class="card" id="now"><h2>The network right now</h2>
 <div class="sub-h">By city</div>{ex.city_cards_html(feed)}
 <div class="split" style="margin-top:22px"><div><div class="sub-h">Station map</div>{ex.station_map_svg(feed, health_df)}</div>
 <div><div class="sub-h">Highest and lowest stations</div>{ex.ranking_html(feed)}</div></div>
 <div class="note">Colours are the CPCB AQI category of each station&rsquo;s PM2.5 <i>sub-index</i> in the newest feed snapshot (not a concentration). Rings mark stations the health check flagged or put on watch.</div>
 </section>
 
-<section class="card" id="fires"><h2><span class="num">3</span>Delhi PM2.5, fires and weather</h2>
+<section class="card" id="fires"><h2>Delhi PM2.5, fires and weather</h2>
 <div class="sub-h">Delhi PM2.5 and regional fire exposure</div>
 <div class="scroll">{stubble_html(stubble_daily)}</div>
 <div class="note warn"><b>Read with care.</b> Delhi PM2.5 stepped up the same day regional fire plumes started arriving, but the days before were
@@ -482,30 +513,30 @@ pollution attributable to stubble burning.</div>
 <div class="sub-h">Delhi weather (the controls)</div>{ex.weather_html(stubble_daily)}
 </section>
 
-<section class="card" id="heat"><h2><span class="num">4</span>Every station, every day</h2>
+<section class="card" id="heat"><h2>Every station, every day</h2>
 <div class="scroll">{ex.heatmap_svg(filled)}</div>
 <div class="note">Daily mean PM2.5 from the gap-filled series, stations sorted from highest to lowest overall. A uniform band is a station that matches its neighbours; a block of empty cells is an outage; one odd row is worth a look.</div>
 </section>
 
-<section class="card" id="quality"><h2><span class="num">5</span>Data completeness and daily rhythm</h2>
+<section class="card" id="quality"><h2>Data completeness and daily rhythm</h2>
 <div class="scroll">{ex.completeness_html(filled)}</div>
 <div class="sub-h">Typical day: network-mean PM2.5 by hour (IST)</div><div class="scroll">{diurnal_chart}</div>
 </section>
 
-<section class="card" id="health"><h2><span class="num">6</span>Station health (neighbour consistency)</h2>
+<section class="card" id="health"><h2>Station health (neighbour consistency)</h2>
 <div class="scroll">{stations_html(health_df)}</div>
 <div class="note">A flag means "have someone look", not "faulty". A station beside a road or kiln legitimately differs from its neighbours. Flatlines
 (a sensor repeating one exact value for hours) are the clearest evidence; drift needs weeks of data to confirm.</div>
 </section>
 
-<section class="card" id="sat"><h2><span class="num">7</span>Agreement with the satellite</h2>
+<section class="card" id="sat"><h2>Agreement with the satellite</h2>
 <div class="scroll">{decoupling_html(_read("station_temporal_decoupling.csv", proc_dir))}</div>
 <div class="sub-h">Satellite AOD against Delhi PM2.5, day by day</div><div class="scroll">{sat_scatter}</div>
 <div class="note">The satellite tracks the city's day-to-day PM2.5 but not differences between stations on the same day, so it can only check whether a
 station <i>follows the same day-to-day pattern as its peers</i>. With about two weeks of data, no station is statistically distinguishable yet.</div>
 </section>
 
-<section class="card" id="ops"><h2><span class="num">8</span>Pipeline and what&rsquo;s next</h2>
+<section class="card" id="ops"><h2>Pipeline and what&rsquo;s next</h2>
 <div class="sub-h">Coming up</div>{ex.countdown_html(today)}
 <div class="sub-h">Recent scheduled runs</div>{ex.run_log_html(LOGS_DIR)}
 <details class="how"><summary>How to read this page</summary>

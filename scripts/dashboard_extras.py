@@ -193,6 +193,7 @@ def station_map_svg(feed: pd.DataFrame | None, health: pd.DataFrame | None, widt
     level = {}
     if health is not None and "level" in health:
         level = dict(zip(health["station"], health["level"]))
+    top_names = set(f.nlargest(4, "PM2.5")["station"])
     parts = [f'<svg viewBox="0 0 {width} {height:.0f}" class="map" role="img" aria-label="Station map">',
              f'<rect x="{pad}" y="{pad}" width="{pw}" height="{ph:.1f}" rx="14" class="map-bg"/>']
     for i in range(1, 4):  # faint graticule
@@ -208,6 +209,9 @@ def station_map_svg(feed: pd.DataFrame | None, health: pd.DataFrame | None, widt
         if ring:
             parts.append(f'<circle cx="{cx:.1f}" cy="{cy:.1f}" r="12" fill="none" stroke="{ring}" stroke-width="2.5"/>')
         parts.append(f'<circle cx="{cx:.1f}" cy="{cy:.1f}" r="7" fill="{colour}" fill-opacity=".92" stroke="rgba(255,255,255,.7)" stroke-width="1"><title>{_esc(tip)}</title></circle>')
+        if ring or r["station"] in top_names:
+            left = cx > pad + pw * 0.68  # keep labels inside the frame
+            parts.append(f'<text x="{cx + (-15 if left else 15):.1f}" y="{cy + 4:.1f}" class="tick map-lbl" text-anchor="{"end" if left else "start"}">{_esc(_short(str(r["station"]).split(",")[0], 22))}</text>')
     parts.append(f'<text x="{pad + 10}" y="{height - pad - 8:.0f}" class="tick">N &uarr; &middot; {lat0 + 0.03:.2f}-{lat1 - 0.03:.2f}&deg;N, {lon0 + 0.03:.2f}-{lon1 - 0.03:.2f}&deg;E</text>')
     parts.append("</svg>")
     leg = "".join(f'<span><i class="dotc" style="background:{c}"></i>{n}</span>' for _, c, n in AQI_BANDS)
@@ -268,7 +272,7 @@ def heatmap_svg(filled: pd.DataFrame | None, max_stations: int = 70) -> str:
     piv = f.groupby(["station", "day"])["pm25_final"].mean().unstack("day")
     piv = piv.loc[piv.mean(axis=1).sort_values(ascending=False).index][:max_stations]
     days = list(piv.columns)
-    ml, mt, cw, ch, gap = 190, 26, 30, 13, 2
+    ml, mt, cw, ch, gap = 250, 30, 32, 17, 3
     width = ml + cw * len(days) + 12
     height = mt + ch * len(piv) + 12
     cap = 200.0
@@ -288,7 +292,7 @@ def heatmap_svg(filled: pd.DataFrame | None, max_stations: int = 70) -> str:
             parts.append(f'<text x="{ml + cw * j + cw / 2:.0f}" y="{mt - 9}" class="tick" text-anchor="middle">{_esc(d[5:])}</text>')
     for i, (name, row) in enumerate(piv.iterrows()):
         y = mt + ch * i
-        parts.append(f'<text x="{ml - 8}" y="{y + ch - 3}" class="tick" text-anchor="end">{_esc(_short(name, 30))}</text>')
+        parts.append(f'<text x="{ml - 8}" y="{y + ch - 4}" class="tick" text-anchor="end">{_esc(_short(name, 34))}</text>')
         for j, d in enumerate(days):
             v = row[d]
             if pd.isna(v):
