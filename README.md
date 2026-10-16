@@ -10,7 +10,7 @@ Faridabad) that will eventually:
 4. Attribute PM2.5 spikes to regional stubble-burning transport (NASA FIRMS fire data +
    wind vectors) versus local sources.
 
-All data pipelines are built: CPCB station data (data.gov.in feed, currently down, plus
+All data pipelines are built: CPCB station data (data.gov.in feed, plus
 OpenAQ's archive as a second source), NASA FIRMS fire detections, satellite AOD sampling,
 and ERA5 wind. The modeling layers (drift detection,
 gap-filling, neighbor-consistency, stubble-burning attribution) and dashboard are
@@ -201,9 +201,8 @@ so run `fetch_cpcb.py` at least once first.
 ### Run manually
 
 ```bash
-python scripts/fetch_aod.py               # 5 days ago (UTC): MCD19A2 reaches Earth
-                                            # Engine ~4 days late, so "yesterday" has no data
-python scripts/fetch_aod.py --date 2026-09-15
+python scripts/fetch_aod.py               # re-processes the trailing window (3..14 days ago)
+python scripts/fetch_aod.py --date 2026-09-15      # or one specific date
 ```
 
 Writes `data/raw/aod_ncr_YYYY-MM-DD.csv`, **one file per observation date, overwritten on
@@ -265,7 +264,7 @@ component 4 (stubble-burning transport attribution) both need.
 ### Run manually
 
 ```bash
-python scripts/fetch_era5_wind.py                    # 6 days ago (UTC)
+python scripts/fetch_era5_wind.py                    # re-processes the trailing window (5..12 days ago)
 python scripts/fetch_era5_wind.py --date 2026-09-01
 ```
 
@@ -274,11 +273,11 @@ re-run**. **Requests can queue on CDS's
 compute backend** — this is normal, not a bug; the client blocks and polls until
 ready by default. First run may take a while.
 
-### Why 6 days back by default (and what that means), and NetCDF instead of GRIB
+### Why a trailing window (and what "ERA5T" means), and NetCDF instead of GRIB
 
 ERA5 is published about 5 days behind real time as **ERA5T** (preliminary); the final
-product replaces it months later. Defaulting to 6 days back is where data reliably
-exists, but it is *preliminary*: the `expver` column marks each row (`0005` = ERA5T,
+product replaces it months later. The default window starts 5 days back, where data
+reliably exists, but it is *preliminary*: the `expver` column marks each row (`0005` = ERA5T,
 revisable; `0001` = final). Confirmed on the first live run — a 7-day-old date came
 back `0005`. Differences from final are usually small but not zero. When reading the
 CSV, use `dtype={"expver": str}` or pandas will turn `0005` into the integer `5`.
@@ -320,7 +319,7 @@ hourly), plus the stations' own wind and humidity sensors.
 
 ### Run
 ```bash
-python scripts/fetch_openaq.py                                   # last 3 days (idempotent)
+python scripts/fetch_openaq.py                                   # last 10 days (idempotent)
 python scripts/fetch_openaq.py --start 2026-09-26 --end 2026-10-07   # backfill a range
 python scripts/fetch_openaq.py --refresh-map                     # rebuild station mapping
 ```
@@ -328,7 +327,7 @@ python scripts/fetch_openaq.py --refresh-map                     # rebuild stati
 ### Output
 `data/raw/openaq_hourly_YYYY-MM-DD.csv` — **one file per observation date**, overwritten
 on re-run (unlike the other pulls, which append per fetch date), so backfills and the
-daily run's overlapping 3-day window never duplicate rows. Long format:
+daily run's overlapping 10-day window never duplicate rows. Long format:
 
 | column | meaning |
 |---|---|
@@ -365,11 +364,13 @@ corrupt every downstream comparison.
   column; the other gases check out (NO₂ median 23 ppb, plausible).
 
 ### Coverage and freshness
-The archive currently ends at **2026-10-07** (OpenAQ's CPCB ingestion appears to have
-stalled then; this is secondhand, from a developer report and the archive's own file
-dates). Days after that return nothing and the script just logs a warning — it will pick
-them up automatically if/when the archive resumes. Backfilled so far: 2026-09-26 →
-2026-10-07, covering the data.gov.in outage for those dates.
+The archive **stalled 7–12 Oct 2026 and then back-filled those days about a week later**
+(on 2026-10-16 it held data through 12 Oct, up from 7 Oct on 12 Oct). Upstream publication
+here is late *and* retroactive, so the script re-processes the last 10 days every run
+instead of fetching "yesterday"; days not yet published just log a warning and are picked
+up on a later run. Backfilled: 2026-09-26 → 2026-10-12 (the whole data.gov.in outage up to
+12 Oct). The 13 new Delhi DPCC stations that appeared in the data.gov.in feed after the
+outage are **not in OpenAQ** (unmatched), so for them only the feed exists.
 
 ## Analysis: station vs satellite consistency (component 1, first pass)
 
@@ -408,6 +409,16 @@ IHBAS (−0.19) — but with 8–9 days each, **q = 0.23** for all of them, i.e.
 consistent with chance across 51 comparisons. They are labelled "watch", not flagged. The
 detector needs roughly 3–4 weeks of paired days before it can say anything about one station.
 
+### Update 2026-10-16 (13 dates with data, 556 paired station-days)
+Cross-sectional ρ rose only to 0.13 (still gated off); the temporal network median is 0.60.
+The *same* stations keep ranking lowest, and their q-values fell as days accrued —
+Sector-51 Gurugram ρ −0.34 (11 days, q = 0.10), IHBAS ρ −0.43 (9 days, q = 0.10), Sanjay
+Nagar −0.29 (q = 0.125), Indirapuram −0.24 (q = 0.126) — but none is below the 0.10 line, so
+still **nothing is flagged**. Caution for whoever acts on this later: re-running the test as
+data accumulates and flagging the first time q dips under 0.10 inflates false positives
+(sequential testing). Fix a window (e.g. 4 weeks) and a threshold in advance instead.
+The binding constraint is paired AOD days: Earth Engine's MCD19A2 currently ends 2026-10-09.
+
 ### Caveats worth keeping in mind
 - A flag means "investigate", never "faulty": a station beside a road, kiln or construction
   site legitimately decouples from a regional satellite signal.
@@ -416,6 +427,18 @@ detector needs roughly 3–4 weeks of paired days before it can say anything abo
   ends 7 Oct; the data.gov.in feed is down). New data cannot accumulate until one resumes.
 - Residuals use ground **concentrations** (OpenAQ). Do not run this on the data.gov.in feed
   columns — they appear to be AQI sub-indices (see the warning under the CPCB schema).
+
+## Outage timeline (data.gov.in CPCB API)
+| date | event |
+|---|---|
+| 2026-09-25 | last good pull; 62 stations |
+| 2026-09-26 | first HTTP 500s from the API |
+| by 2026-10-11 | `api.data.gov.in:443` refuses all connections (confirmed from India, Europe, US, Singapore via check-host.net, so not an ISP issue) |
+| 2026-10-13 | back; schema unchanged, but **75–76 stations** instead of 62 (13 new DPCC stations, `Pusa_IMD` gone) |
+
+**The 2026-09-26 → 2026-10-12 window is permanently missing from the data.gov.in feed**
+(it serves only the current snapshot). OpenAQ covers that window for 60 of the original
+stations. After the recovery the scheduler resumed on its own, with no intervention.
 
 ## Reachability check (2026-09-17, from the same machine this pipeline runs on)
 

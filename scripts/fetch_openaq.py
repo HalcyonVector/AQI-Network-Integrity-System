@@ -6,7 +6,7 @@ concentrations -- see README). OpenAQ's archive has true concentrations at ~15-m
 resolution, plus station-level met variables (wind, humidity).
 
 Usage:
-    python scripts/fetch_openaq.py                      # last 3 days (idempotent)
+    python scripts/fetch_openaq.py                      # last 10 days (idempotent)
     python scripts/fetch_openaq.py --start 2026-09-26 --end 2026-10-07   # backfill
     python scripts/fetch_openaq.py --refresh-map        # rebuild station mapping
 
@@ -45,7 +45,9 @@ NCR_BBOX = "76.7,28.2,77.7,28.95"
 ACTIVE_WITHIN_DAYS = 90  # OpenAQ keeps stale duplicate locations (some last reported in 2018)
 GOVERNMENT_PROVIDERS = {"CPCB", "N/A"}
 MATCH_MAX_DIST_M = 300
-DEFAULT_LOOKBACK_DAYS = 3
+# The archive stalled for 5 days (7-12 Oct 2026) and then back-filled them a week later, so a
+# short window misses it. Re-processing is idempotent (one overwritten file per date).
+DEFAULT_LOOKBACK_DAYS = 10
 IST = "Asia/Kolkata"
 
 KEEP_PARAMETERS = {
@@ -285,7 +287,7 @@ def write_date_file(df: pd.DataFrame, day: datetime, logger: logging.Logger) -> 
 
 def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--start", help="YYYY-MM-DD (default: today-3 UTC)")
+    parser.add_argument("--start", help="YYYY-MM-DD (default: today-10 UTC)")
     parser.add_argument("--end", help="YYYY-MM-DD inclusive (default: yesterday UTC)")
     parser.add_argument("--refresh-map", action="store_true", help="rebuild the OpenAQ station mapping")
     args = parser.parse_args()

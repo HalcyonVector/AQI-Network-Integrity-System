@@ -33,6 +33,7 @@ from pathlib import Path
 
 import pandas as pd
 from dotenv import load_dotenv
+from datewin import trailing_window
 
 # Verified against https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels
 # on 2026-09-17 -- re-check that page if requests start failing; CDS has renamed/
@@ -46,7 +47,10 @@ VARIABLES = ["10m_u_component_of_wind", "10m_v_component_of_wind"]
 AREA = [32.5, 73.5, 27.5, 81.0]
 
 HOURS = [f"{h:02d}:00" for h in range(0, 24, 3)]  # 3-hourly, 00/03/06/09/12/15/18/21
-ERA5_AVAILABILITY_LAG_DAYS = 6
+# ERA5T first appears ~5 days after the fact; re-process a trailing window so a late or
+# skipped day is picked up on a later run. CDS caches identical requests, so repeats are cheap.
+WINDOW_NEWEST_DAYS_BACK = 5
+WINDOW_SPAN_DAYS = 8
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 RAW_DATA_DIR = PROJECT_ROOT / "data" / "raw"
@@ -144,6 +148,19 @@ def dataset_to_dataframe(ds, logger: logging.Logger) -> pd.DataFrame:
     return df
 
 
+def warn_if_partial_day(df: pd.DataFrame, date: datetime, logger: logging.Logger) -> bool:
+    """ERA5T publishes a day's hours progressively, so the newest date in the window can
+    come back with only some of its timestamps (seen: 5 of 8 for 2026-10-11 on 2026-10-16).
+    The file is still written -- the next run overwrites it with the full day -- but
+    anything reading it before then should know it is incomplete."""
+    got, expected = df["time"].nunique(), len(HOURS)
+    if got < expected:
+        logger.warning("PARTIAL DAY %s: %d of %d timestamps published so far; will be completed on a later run",
+                       date.strftime("%Y-%m-%d"), got, expected)
+        return True
+    return False
+
+
 def write_date_file(df: pd.DataFrame, date: datetime, logger: logging.Logger) -> Path:
     """One file per OBSERVATION date, overwritten on re-run, so backfills and repeated
     runs are idempotent (it used to append to a file named for the fetch date)."""
@@ -158,16 +175,16 @@ def write_date_file(df: pd.DataFrame, date: datetime, logger: logging.Logger) ->
 
 def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--date", help="YYYY-MM-DD, defaults to 6 days ago (UTC), when ERA5T data reliably exists")
+    parser.add_argument("--date", help="YYYY-MM-DD; default: re-process the trailing window of recent dates")
     args = parser.parse_args()
 
     load_dotenv(PROJECT_ROOT / ".env")
     logger = setup_logging()
 
     if args.date:
-        target_date = datetime.strptime(args.date, "%Y-%m-%d")
+        dates = [datetime.strptime(args.date, "%Y-%m-%d")]
     else:
-        target_date = datetime.now(timezone.utc) - timedelta(days=ERA5_AVAILABILITY_LAG_DAYS)
+        dates = trailing_window(datetime.now(timezone.utc), WINDOW_NEWEST_DAYS_BACK, WINDOW_SPAN_DAYS)
 
     try:
         client = build_client()
@@ -175,23 +192,26 @@ def main() -> int:
         logger.exception("Failed to build CDS client")
         return 1
 
-    nc_path = None
-    try:
-        nc_path = download_wind_nc(client, target_date, logger)
-        df = nc_to_dataframe(nc_path, target_date, logger)
-    except Exception:
-        logger.exception("ERA5 wind fetch/parse failed")
-        return 1
-    finally:
-        if nc_path is not None:
-            nc_path.unlink(missing_ok=True)
+    failures = 0
+    for target_date in dates:
+        nc_path = None
+        try:
+            nc_path = download_wind_nc(client, target_date, logger)
+            df = nc_to_dataframe(nc_path, target_date, logger)
+        except Exception:
+            logger.exception("ERA5 wind fetch/parse failed for %s", target_date.strftime("%Y-%m-%d"))
+            failures += 1
+            continue
+        finally:
+            if nc_path is not None:
+                nc_path.unlink(missing_ok=True)
 
-    if df.empty:
-        logger.warning("No wind data parsed for %s.", target_date.strftime("%Y-%m-%d"))
-        return 0
-
-    write_date_file(df, target_date, logger)
-    return 0
+        if df.empty:
+            logger.warning("No wind data parsed for %s.", target_date.strftime("%Y-%m-%d"))
+            continue
+        warn_if_partial_day(df, target_date, logger)
+        write_date_file(df, target_date, logger)
+    return 1 if failures == len(dates) else 0
 
 
 if __name__ == "__main__":

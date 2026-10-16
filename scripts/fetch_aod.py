@@ -6,10 +6,11 @@ for the satellite-based independent PM2.5 estimate used by drift detection
 Usage:
     python scripts/fetch_aod.py [--date YYYY-MM-DD]
 
-Defaults to 5 days ago (UTC). MCD19A2 reaches Earth Engine with a lag of about 4 days
-(measured 2026-10-12: newest granules were dated 2026-10-08, none for the 3 days after),
-so the original "yesterday" default asked for data that did not exist yet and the daily
-run silently wrote nothing.
+With no --date, re-processes a trailing window (3..14 days ago) and writes a file for each
+date that has granules. MCD19A2 reaches Earth Engine days late by a VARYING amount (newest
+granules were 4 days old on 2026-10-12 but 7 days old on 2026-10-16), so any single fixed
+"N days ago" date silently writes nothing whenever the lag grows. Files are one per
+observation date and overwritten, so re-processing is idempotent.
 
 Requires a registered Earth Engine Cloud project. See README.md "Component: Satellite
 AOD". Set GEE_PROJECT in .env, plus EITHER a service account:
@@ -31,6 +32,7 @@ from pathlib import Path
 
 import pandas as pd
 from dotenv import load_dotenv
+from datewin import trailing_window
 
 # Verified against https://developers.google.com/earth-engine/datasets/catalog/MODIS_061_MCD19A2_GRANULES
 # on 2026-09-17 -- re-check that page if this starts erroring (NASA/Google have
@@ -40,7 +42,10 @@ AOD_COLLECTION = "MODIS/061/MCD19A2_GRANULES"
 AOD_BANDS = ["Optical_Depth_047", "Optical_Depth_055"]
 AOD_SCALE_FACTOR = 0.001  # raw band values -> AOD units
 PIXEL_SCALE_METERS = 1000
-DEFAULT_LAG_DAYS = 5  # MCD19A2 publication lag in Earth Engine is ~4 days
+# Earth Engine publishes MCD19A2 days late, by a varying amount (4 days measured on 2026-10-12,
+# 7 days on 2026-10-16). Each run re-processes a trailing window and keeps whatever exists.
+WINDOW_NEWEST_DAYS_BACK = 3
+WINDOW_SPAN_DAYS = 12
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 RAW_DATA_DIR = PROJECT_ROOT / "data" / "raw"
@@ -192,16 +197,16 @@ def write_date_file(df: pd.DataFrame, logger: logging.Logger) -> Path:
 
 def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--date", help="YYYY-MM-DD, defaults to 5 days ago (UTC), when MCD19A2 granules reliably exist")
+    parser.add_argument("--date", help="YYYY-MM-DD; default: re-process the trailing window of recent dates")
     args = parser.parse_args()
 
     load_dotenv(PROJECT_ROOT / ".env")
     logger = setup_logging()
 
     if args.date:
-        target_date = datetime.strptime(args.date, "%Y-%m-%d")
+        dates = [datetime.strptime(args.date, "%Y-%m-%d")]
     else:
-        target_date = datetime.now(timezone.utc) - timedelta(days=DEFAULT_LAG_DAYS)
+        dates = trailing_window(datetime.now(timezone.utc), WINDOW_NEWEST_DAYS_BACK, WINDOW_SPAN_DAYS)
 
     try:
         ee = init_earth_engine(logger)
@@ -219,18 +224,18 @@ def main() -> int:
         logger.warning("No stations to sample.")
         return 0
 
-    try:
-        df = sample_aod(ee, stations, target_date, logger)
-    except Exception:
-        logger.exception("AOD sampling failed")
-        return 1
-
-    if df.empty:
-        logger.info("Nothing to write this run.")
-        return 0
-
-    write_date_file(df, logger)
-    return 0
+    failures = 0
+    for target_date in dates:
+        try:
+            df = sample_aod(ee, stations, target_date, logger)
+        except Exception:
+            logger.exception("AOD sampling failed for %s", target_date.strftime("%Y-%m-%d"))
+            failures += 1
+            continue
+        if df.empty:
+            continue  # not published yet; sample_aod already logged it
+        write_date_file(df, logger)
+    return 1 if failures else 0
 
 
 if __name__ == "__main__":

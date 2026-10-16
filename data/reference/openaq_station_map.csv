@@ -1,61 +1,62 @@
 station,openaq_location_id,openaq_name,match_method,distance_m
-"Patparganj, Delhi - DPCC",6960,"Patparganj, Delhi - DPCC",coordinates,2
-"Pusa, Delhi - DPCC",5404,"Pusa, Delhi - IMD",coordinates,1
-"Nehru Nagar, Delhi - DPCC",8365,"Nehru Nagar, Delhi - DPCC",coordinates,0
-"Jawaharlal Nehru Stadium, Delhi - DPCC",6957,"Jawaharlal Nehru Stadium, Delhi - DPCC",coordinates,0
-"Najafgarh, Delhi - DPCC",10488,"Najafgarh, Delhi - DPCC",coordinates,0
-"Mundka, Delhi - DPCC",10486,"Mundka, Delhi - DPCC",coordinates,0
-"NSUT Jaffarpur, Delhi - DPCC",6254664,"NSUT Jaffarpur, Delhi - DPCC",coordinates,0
-"Ashok Vihar, Delhi - DPCC",8917,"Ashok Vihar, Delhi - DPCC",coordinates,0
-"Anand Vihar, Delhi - DPCC",235,"Anand Vihar, New Delhi - DPCC",coordinates,90
-"Punjabi Bagh, Delhi - DPCC",50,"Punjabi Bagh, Delhi - DPCC",coordinates,0
-"DTU, Delhi - CPCB",5626,"DTU, New Delhi - CPCB",coordinates,0
-"Dwarka-Sector 8, Delhi - DPCC ",6931,"Dwarka-Sector 8, Delhi - DPCC",coordinates,0
-"Shadipur, Delhi - CPCB",5630,"Shadipur, Delhi - CPCB",coordinates,0
-"Mandir Marg, Delhi - DPCC",6358,"Mandir Marg, New Delhi - DPCC",coordinates,0
-"Sirifort, Delhi - CPCB",5586,"Sirifort, Delhi - CPCB",coordinates,0
-"IIT Delhi, Delhi - IITM",6148686,"IIT Delhi, Delhi - IITM",coordinates,0
-"IGI Airport (T3), Delhi - IITM",5650,"IGI Airport (T3), Delhi - IMD",coordinates,0
-"IGNOU_Maidan Garhi, Delhi - DPCC",6254666,"IGNOU_Maidan Garhi, Delhi - DPCC",coordinates,0
-"Commonwealth Sports Complex, Delhi - DPCC",6254665,"Commonwealth Sports Complex, Delhi - DPCC",coordinates,0
-"Wazirpur, Delhi - DPCC",8915,"Wazirpur, Delhi - DPCC",coordinates,0
 "Narela, Delhi - DPCC",10485,"Narela, Delhi - DPCC",coordinates,0
-"Cantonment Area, Delhi - DPCC",6257818,"Cantonment Area, Delhi - DPCC",coordinates,0
-"Major Dhyan Chand National Stadium, Delhi - DPCC",6929,"Major Dhyan Chand National Stadium, Delhi - DPCC",coordinates,0
-"Sonia Vihar, Delhi - DPCC",8475,"Sonia Vihar, Delhi - DPCC",coordinates,0
-"Bawana, Delhi - DPCC",8472,"Bawana, Delhi - DPCC",coordinates,0
-"Okhla Phase-2, Delhi - DPCC",8239,"Okhla Phase-2, Delhi - DPCC",coordinates,0
+"Mundka, Delhi - DPCC",10486,"Mundka, Delhi - DPCC",coordinates,0
+"DTU, Delhi - CPCB",5626,"DTU, New Delhi - CPCB",coordinates,0
+"Anand Vihar, Delhi - DPCC",235,"Anand Vihar, New Delhi - DPCC",coordinates,90
+"Ashok Vihar, Delhi - DPCC",8917,"Ashok Vihar, Delhi - DPCC",coordinates,0
+"Dwarka-Sector 8, Delhi - DPCC ",6931,"Dwarka-Sector 8, Delhi - DPCC",coordinates,0
+"Patparganj, Delhi - DPCC",6960,"Patparganj, Delhi - DPCC",coordinates,2
+"Jawaharlal Nehru Stadium, Delhi - DPCC",6957,"Jawaharlal Nehru Stadium, Delhi - DPCC",coordinates,0
+"Vivek Vihar, Delhi - DPCC",6938,"Vivek Vihar, Delhi - DPCC",coordinates,0
 "Rohini, Delhi - DPCC",10831,"Rohini, Delhi - DPCC",coordinates,0
-"Alipur, Delhi - DPCC",6932,"Alipur, Delhi - DPCC",coordinates,0
-"Jahangirpuri, Delhi - DPCC",8235,"Jahangirpuri, Delhi - DPCC",coordinates,0
-"IHBAS, Dilshad Garden, Delhi - CPCB",6359,"IHBAS, Dilshad Garden,New Delhi - CPCB",coordinates,0
+"Okhla Phase-2, Delhi - DPCC",8239,"Okhla Phase-2, Delhi - DPCC",coordinates,0
 "Sri Aurobindo Marg, Delhi - DPCC",10484,"Sri Aurobindo Marg, Delhi - DPCC",coordinates,0
-"IMD Lodhi Road, Delhi - IITM",5634,"Lodhi Road, New Delhi - IMD",coordinates,0
+"Sonia Vihar, Delhi - DPCC",8475,"Sonia Vihar, Delhi - DPCC",coordinates,0
+"Major Dhyan Chand National Stadium, Delhi - DPCC",6929,"Major Dhyan Chand National Stadium, Delhi - DPCC",coordinates,0
+"Nangloi,Delhi-DPCC",10486,"Mundka, Delhi - DPCC",coordinates,256
+"Jahangirpuri, Delhi - DPCC",8235,"Jahangirpuri, Delhi - DPCC",coordinates,0
+"Najafgarh, Delhi - DPCC",10488,"Najafgarh, Delhi - DPCC",coordinates,0
 "JNU, Delhi - DPCC",6254663,"JNU, Delhi - DPCC",coordinates,0
-"ITO, Delhi - CPCB",5613,"ITO, New Delhi - CPCB",coordinates,0
-"R K Puram, Delhi - DPCC",17,"R K Puram, Delhi - DPCC",coordinates,0
-"Talkatora Garden, Delhi - DPCC",6254594,"Talkatora Garden, Delhi - DPCC",coordinates,0
+"Burari Crossing, Delhi - IITM",5541,"Burari Crossing, New Delhi - IMD",coordinates,0
+"Commonwealth Sports Complex, Delhi - DPCC",6254665,"Commonwealth Sports Complex, Delhi - DPCC",coordinates,0
+"Chandni Chowk, Delhi - IITM",11603,"Chandni Chowk, Delhi - IITM",coordinates,0
+"IGI Airport (T3), Delhi - IITM",5650,"IGI Airport (T3), Delhi - IMD",coordinates,0
 "NSIT Dwarka, Delhi - CPCB",5622,"NSIT Dwarka, Delhi - CPCB",coordinates,0
-"CRRI Mathura Road, Delhi - IITM",5627,"CRRI Mathura Road, New Delhi - IMD",coordinates,0
-"NISE Gwal Pahari, Gurugram - IITM",10921,"NISE Gwal Pahari, Gurugram - IMD",coordinates,0
-"Sector-51, Gurugram - HSPCB",10825,"Sector-51, Gurugram - HSPCB",coordinates,0
-"Vikas Sadan, Gurugram - HSPCB",301,"Vikas Sadan, Gurugram - HSPCB",coordinates,0
-"Teri Gram, Gurugram - HSPCB",10900,"Teri Gram, Gurugram - HSPCB",coordinates,0
+"IGNOU_Maidan Garhi, Delhi - DPCC",6254666,"IGNOU_Maidan Garhi, Delhi - DPCC",coordinates,0
+"Dr. Karni Singh Shooting Range, Delhi - DPCC",6934,"Dr. Karni Singh Shooting Range, Delhi - DPCC",coordinates,0
+"IIT Delhi, Delhi - IITM",6148686,"IIT Delhi, Delhi - IITM",coordinates,0
+"Mandir Marg, Delhi - DPCC",6358,"Mandir Marg, New Delhi - DPCC",coordinates,0
+"NSUT Jaffarpur, Delhi - DPCC",6254664,"NSUT Jaffarpur, Delhi - DPCC",coordinates,0
+"Talkatora Garden, Delhi - DPCC",6254594,"Talkatora Garden, Delhi - DPCC",coordinates,0
+"R K Puram, Delhi - DPCC",17,"R K Puram, Delhi - DPCC",coordinates,0
+"Punjabi Bagh, Delhi - DPCC",50,"Punjabi Bagh, Delhi - DPCC",coordinates,0
 "New Industrial Town, Faridabad - HSPCB",10920,"New Industrial Town, Faridabad - HSPCB",coordinates,0
+"Sector 11, Faridabad - HSPCB",10908,"Sector 11, Faridabad - HSPCB",coordinates,0
+"Sector 30, Faridabad - HSPCB",10820,"Sector 30, Faridabad - HSPCB",coordinates,0
+"NISE Gwal Pahari, Gurugram - IITM",10921,"NISE Gwal Pahari, Gurugram - IMD",coordinates,0
+"Pusa, Delhi - DPCC",6356,"Pusa, Delhi - DPCC",name,2686
+"Alipur, Delhi - DPCC",6932,"Alipur, Delhi - DPCC",coordinates,0
+"Indirapuram, Ghaziabad - UPPCB",6924,"Indirapuram, Ghaziabad - UPPCB",coordinates,0
 "Govindpuram, Ghaziabad - UPPCB",6311324,"Govindpuram, Ghaziabad - UPPCB",coordinates,0
+"Vasundhara, Ghaziabad - UPPCB",5665,"Vasundhara, Ghaziabad - UPPCB",coordinates,0
 "Ved Vihar-Loni, Ghaziabad - UPPCB",6299678,"Ved Vihar-Loni, Ghaziabad - UPPCB",coordinates,0
 "Wave City, Ghaziabad - UPPCB",6458520,"Wave City, Ghaziabad - UPPCB",coordinates,0
 "Loni, Ghaziabad - UPPCB",7005,"Loni, Ghaziabad - UPPCB",coordinates,0
-"Vasundhara, Ghaziabad - UPPCB",5665,"Vasundhara, Ghaziabad - UPPCB",coordinates,0
 "Sanjay Nagar, Ghaziabad - UPPCB",10919,"Sanjay Nagar, Ghaziabad - UPPCB",coordinates,0
 "Sector - 62, Noida - IITM",5616,"Sector - 62, Noida, UP - IMD",coordinates,0
-"Sector-116, Noida - UPPCB",6988,"Sector-116, Noida - UPPCB",coordinates,0
-"Dr. Karni Singh Shooting Range, Delhi - DPCC",6934,"Dr. Karni Singh Shooting Range, Delhi - DPCC",coordinates,0
-"Chandni Chowk, Delhi - IITM",11603,"Chandni Chowk, Delhi - IITM",coordinates,0
-"Burari Crossing, Delhi - IITM",5541,"Burari Crossing, New Delhi - IMD",coordinates,0
-"Vivek Vihar, Delhi - DPCC",6938,"Vivek Vihar, Delhi - DPCC",coordinates,0
-"Sector 30, Faridabad - HSPCB",10820,"Sector 30, Faridabad - HSPCB",coordinates,0
-"Sector 11, Faridabad - HSPCB",10908,"Sector 11, Faridabad - HSPCB",coordinates,0
-"Indirapuram, Ghaziabad - UPPCB",6924,"Indirapuram, Ghaziabad - UPPCB",coordinates,0
-"Sector - 125, Noida - UPPCB",5598,"Sector - 125, Noida, UP - UPPCB",coordinates,0
+"Cantonment Area, Delhi - DPCC",6257818,"Cantonment Area, Delhi - DPCC",coordinates,0
+"Bawana, Delhi - DPCC",8472,"Bawana, Delhi - DPCC",coordinates,0
+"IHBAS, Dilshad Garden, Delhi - CPCB",6359,"IHBAS, Dilshad Garden,New Delhi - CPCB",coordinates,0
+"Nehru Nagar, Delhi - DPCC",8365,"Nehru Nagar, Delhi - DPCC",coordinates,0
+"ITO, Delhi - CPCB",5613,"ITO, New Delhi - CPCB",coordinates,0
+"CRRI Mathura Road, Delhi - IITM",5627,"CRRI Mathura Road, New Delhi - IMD",coordinates,0
+"Shadipur, Delhi - CPCB",5630,"Shadipur, Delhi - CPCB",coordinates,0
+"Vikas Sadan, Gurugram - HSPCB",301,"Vikas Sadan, Gurugram - HSPCB",coordinates,0
+"Teri Gram, Gurugram - HSPCB",10900,"Teri Gram, Gurugram - HSPCB",coordinates,0
+"Sector-51, Gurugram - HSPCB",10825,"Sector-51, Gurugram - HSPCB",coordinates,0
+"Sirifort, Delhi - CPCB",5586,"Sirifort, Delhi - CPCB",coordinates,0
+"IMD Lodhi Road, Delhi - IITM",5634,"Lodhi Road, New Delhi - IMD",coordinates,0
 "Sector-1, Noida - UPPCB",6980,"Sector-1, Noida - UPPCB",name,1160
+"Sector - 125, Noida - UPPCB",5598,"Sector - 125, Noida, UP - UPPCB",coordinates,0
+"Wazirpur, Delhi - DPCC",8915,"Wazirpur, Delhi - DPCC",coordinates,0
+"Sector-116, Noida - UPPCB",6988,"Sector-116, Noida - UPPCB",coordinates,0

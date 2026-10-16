@@ -126,3 +126,15 @@ def test_write_date_file_is_idempotent_and_named_by_observation_date(tmp_path, l
 
     assert path1 == path2 == tmp_path / "era5_wind_2026-10-05.csv"
     assert len(pd.read_csv(path1)) == 2  # overwritten, not appended
+
+
+def test_warn_if_partial_day_flags_incomplete_days_only(logger, caplog):
+    from datetime import datetime
+
+    full = pd.DataFrame({"time": pd.to_datetime([f"2026-10-05T{h:02d}:00" for h in range(0, 24, 3)])})
+    partial = full.iloc[:5]
+    with caplog.at_level(logging.WARNING, logger="test_fetch_era5_wind"):
+        assert fetch_era5_wind.warn_if_partial_day(full, datetime(2026, 10, 5), logger) is False
+        assert caplog.text == ""
+        assert fetch_era5_wind.warn_if_partial_day(partial, datetime(2026, 10, 5), logger) is True
+    assert "PARTIAL DAY 2026-10-05: 5 of 8" in caplog.text
