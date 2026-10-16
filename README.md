@@ -502,6 +502,94 @@ preliminary; the analysis window is bounded by the wind record (parcels need up 
 after launch, so the first usable day is 72 h after the record begins and the last must end
 inside it — enforced by `valid_exposure_days`).
 
+## Analysis: neighbour consistency, station health, and gap-fill (components 3 and 2)
+
+`scripts/analyze_neighbor_consistency.py` needs **no satellite**, so it works at night and under
+cloud. Each station's hourly PM2.5 is predicted *leave-one-out* (its own reading is never an
+input) from its up-to-6 nearest neighbours within 25 km, in log space, with a persistent per-site
+offset removed. 61 stations, 408 hours (26 Sep → 12 Oct), every station has ≥3 neighbours.
+
+### 1. Does conditioning on wind help? **No — it hurts.**
+Predicting from only *upwind* neighbours (bearing within ±60° of the ERA5 wind-from direction,
+wind ≥ 1.5 m/s; it applied in 42% of station-hours) vs. from all neighbours:
+
+| regime | all neighbours (median) | inverse-distance mean | upwind only |
+|---|---|---|---|
+| all hours | 0.334 | 0.332 | 0.356 |
+| hours the upwind rule applied | 0.308 | 0.307 | **0.358** |
+
+(MAE in log units; lower is better.) Per station, upwind-only was better for only **9 of 60**,
+median change −0.037 log, Wilcoxon p < 0.001 — significantly *worse*. Likely reasons (not tested):
+ERA5 10 m wind at 0.25° is a crude proxy for the transport that matters over a few km, and
+restricting to upwind neighbours leaves 2–3 stations instead of 6, so the median gets noisier.
+**Don't use upwind conditioning here;** the plain neighbour median is as good as any variant. A
+plausible physical idea that the data says no to — kept in the code and tests so it can be
+re-checked when a finer wind source or denser network exists.
+
+### 2. Station health: 6 flagged, 1 on watch (of 61)
+Flatlines are the clearest and need no statistics — a stuck sensor repeating one value:
+
+| station | stuck at | for | neighbours meanwhile |
+|---|---|---|---|
+| Vikas Sadan, Gurugram | 102 µg/m³ | 19 h, 11 h and 21 h (7–9 Oct) | 52–83 |
+| Vikas Sadan, Gurugram | 112 µg/m³ | 8 h (4 Oct) | 30 |
+| Vikas Sadan, Gurugram | 55.8 µg/m³ | 37 h (9–11 Oct) | 53 |
+| JNU, Delhi | **1.00** µg/m³ | 8 h (29 Sep) | 33 |
+| Sector 11, Faridabad | 53.6 µg/m³ | 7 h (12 Oct) | 22 |
+
+Also flagged as unusually noisy relative to their neighbours: Govindpuram (Ghaziabad), NSIT
+Dwarka, Sector-51 (Gurugram). **On watch:** IHBAS Dilshad Garden, whose daily residual vs its
+neighbours falls steadily from +0.91 to −0.59 log (a ~4.5× change) over 17 days — p = 0.009 on its
+own after the autocorrelation correction but q = 0.28 across the network, so *not confirmed*.
+
+**Cross-check with the satellite analysis:** Sector-51 Gurugram and IHBAS were also the two
+stations that sat right at the threshold in the satellite-decoupling test (ρ −0.34 and −0.43,
+q ≈ 0.10). Two reference signals (satellite, neighbours) pointing at the same stations is worth a
+human look — though both use the same ground PM2.5, so it is not independent confirmation of the
+*ground* data, and a station beside a road or kiln would produce exactly this too.
+
+### How the flag rules got to 6 (what the first run taught)
+The first version flagged **14 of 61** — too many to be a fault list. Fixing it was a sequence
+of real problems, each pinned by a test:
+1. Significance ≠ importance: a −0.003 log/day trend (0.3%/day) was "significant". Now needs
+   ≥ 0.02 log/day.
+2. "Unusually noisy" fired on ordinary variation in a uniform network. Now also needs ≥ 1.5× the
+   typical noise.
+3. The trend test assumed independent days, but daily residuals are autocorrelated. Adjusted by
+   effective sample size. Measured honestly: false positives on random-walk-like series fall from
+   ~60% to ~35% — **better, still well above 5%**. So drift alone is a *flag* only if the total
+   change is ≥ 0.5 log (~65%, a judgement call, not tuned); smaller, or merely large-but-not-FDR-
+   significant (≥ ln 2, p < 0.05 alone), is a *watch*.
+4. A smooth drift was being double-counted as "noisy" and as a sustained departure. Noise and
+   episodes are now measured around each station's own robust trend.
+
+### 3. Gap-fill backtest (component 2, single-station gaps)
+Mask a block of hours at one station, fill it, compare with the truth (MAE in µg/m³, scored only
+where all three methods can produce a value; typical level 44–53 µg/m³):
+
+| gap length | neighbours | persistence (last value) | same hour yesterday |
+|---|---|---|---|
+| 3 h | 13.6 | **13.2** | 22.6 |
+| 6 h | **12.4** | 16.7 | 19.5 |
+| 12 h | **11.0** | 18.1 | 19.1 |
+| 24 h | **9.9** | 18.9 | 19.6 |
+
+Neighbours beat persistence by 26–47% for gaps of 6 h or more and beat "yesterday" everywhere;
+at 3 h, simply holding the last value is as good. Typical error is roughly 20–25% of the level.
+(Error appears to fall with block length partly because longer blocks need 24 h of contiguous
+data and so land in calmer, lower-PM periods.)
+
+**What this does *not* cover:** a *network-wide* outage like 26 Sep → 12 Oct on the data.gov.in
+feed, when no neighbours report. There the only independent signal is the satellite, which (see
+the satellite analysis) tracks the *city's* day-to-day PM2.5 (ρ 0.68) but not stations
+individually — so a regional daily estimate is feasible, a per-station fill is not.
+
+### Limits
+- 17 days of data; the real test is a longer record. All thresholds above are judgement calls and
+  are named constants at the top of the script.
+- Flatline hours are *detected* here but not yet *removed* from the other analyses (satellite
+  consistency, stubble). One station's stuck hours slightly contaminate its daily means there.
+
 ## Reachability check (2026-09-17, from the same machine this pipeline runs on)
 
 | Source | Status |
@@ -519,8 +607,8 @@ rule out an API-layer restriction the way CPCB's User-Agent gate did.
 | # | component | state |
 |---|---|---|
 | 1 | Flag stations drifting from the satellite estimate | **First pass built** (see Analysis). Nothing flaggable yet — needs ~3–4 weeks of paired days. |
-| 2 | Gap-fill missing station data from satellite | Not started. The city-level day-to-day link (ρ 0.68) suggests it is feasible at *regional* scale only; per-station gap-filling would inherit the weak spatial signal. |
-| 3 | Wind-conditioned neighbour consistency (for when the satellite is blind) | Not started. Inputs exist: ERA5 wind, plus the stations' own wind/humidity sensors in the OpenAQ data. Matters more now: 26–28 Sep were cloud-blind. |
+| 2 | Gap-fill missing station data | **Backtested.** Neighbour-based fill beats persistence for gaps ≥ 6 h (26–47% lower error). Network-wide outages can only be filled regionally from the satellite (ρ 0.68 city-level). Not wired into the pipeline yet. |
+| 3 | Neighbour consistency (for when the satellite is blind) | **Built.** Found 5 stuck-sensor episodes at 3 stations and 1 watch. Wind conditioning was tested and *rejected* — it makes predictions worse. |
 | 4 | Stubble-burning transport attribution | **First pass built** (see Analysis). Suggestive, not conclusive: one regime change in 13 days, confounded by season-onset meteorology. Needs Oct–Nov data. |
 
 Dashboard: not started.

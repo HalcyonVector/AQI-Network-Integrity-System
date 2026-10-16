@@ -1,0 +1,62 @@
+station,n_hours,site_offset_log,resid_sigma_log,flatline_episodes,flatline_hours,anomaly_episodes,anomaly_hours,trend_log_per_day,trend_days,trend_p_raw,trend_p,reason,trend_q,level,flag,watch
+"Govindpuram, Ghaziabad - UPPCB",384,-0.854,0.903,0.0,0.0,0.0,0.0,-0.0333,17.0,0.4896069682169023,0.6379007136982977,unusually noisy vs neighbours,0.8599319036797863,flag,True,False
+"JNU, Delhi - DPCC",385,-0.039,0.49,1.0,8.0,0.0,0.0,0.014,17.0,0.27056053596407176,0.6601156243110571,flatline x1 (8 h),0.8599319036797863,flag,True,False
+"NSIT Dwarka, Delhi - CPCB",277,0.005,0.607,0.0,0.0,0.0,0.0,-0.0012,15.0,1.0,0.978420603779315,unusually noisy vs neighbours,0.978420603779315,flag,True,False
+"Sector 11, Faridabad - HSPCB",170,0.1,0.42,1.0,7.0,0.0,0.0,,7.0,,,flatline x1 (7 h),,flag,True,False
+"Sector-51, Gurugram - HSPCB",371,-0.022,0.85,0.0,0.0,0.0,0.0,-0.0628,17.0,0.34884640290128766,0.676805540175035,unusually noisy vs neighbours,0.8599319036797863,flag,True,False
+"Vikas Sadan, Gurugram - HSPCB",350,0.267,0.717,5.0,96.0,0.0,0.0,-0.008,17.0,0.7150317752938318,0.7714309999098568,flatline x5 (96 h); unusually noisy vs neighbours,0.8599319036797863,flag,True,False
+"IHBAS, Dilshad Garden, Delhi - CPCB",364,0.18,0.381,0.0,0.0,0.0,0.0,-0.0641,17.0,1.148789053319355e-05,0.009431747863831236,"watch: large apparent drift vs neighbours (-0.064 log/day = -64% over 17 days; p=0.009, q=0.28: not confirmed after multiple-testing correction)",0.27692191372004404,watch,False,True
+"Alipur, Delhi - DPCC",322,-0.105,0.281,0.0,0.0,0.0,0.0,0.0291,15.0,0.008269998948239689,0.20601163179033732,consistent with neighbours,0.5524857398013592,ok,False,False
+"Anand Vihar, Delhi - DPCC",376,-0.256,0.284,0.0,0.0,0.0,0.0,-0.0055,17.0,0.3927276123262421,0.6062983844130294,consistent with neighbours,0.8599319036797863,ok,False,False
+"Ashok Vihar, Delhi - DPCC",292,-0.165,0.261,0.0,0.0,0.0,0.0,-0.0048,13.0,0.6754333995479829,0.7634006688891181,consistent with neighbours,0.8599319036797863,ok,False,False
+"Bawana, Delhi - DPCC",357,0.154,0.23,0.0,0.0,0.0,0.0,-0.0156,16.0,0.013184295856227842,0.15538769657841242,consistent with neighbours,0.5093263387847963,ok,False,False
+"Burari Crossing, Delhi - IITM",377,-0.048,0.31,0.0,0.0,0.0,0.0,-0.0113,17.0,0.013367514323499561,0.016959110709362374,consistent with neighbours,0.27692191372004404,ok,False,False
+"CRRI Mathura Road, Delhi - IITM",373,-0.023,0.269,0.0,0.0,0.0,0.0,-0.0096,17.0,0.30811454449876985,0.595383907416188,consistent with neighbours,0.8599319036797863,ok,False,False
+"Cantonment Area, Delhi - DPCC",383,-1.248,0.383,0.0,0.0,0.0,0.0,-0.0322,17.0,0.0017803239418771048,0.024284306667619097,consistent with neighbours,0.27692191372004404,ok,False,False
+"Chandni Chowk, Delhi - IITM",336,0.018,0.343,0.0,0.0,0.0,0.0,-0.0228,16.0,0.350195287197447,0.7074726797060353,consistent with neighbours,0.8599319036797863,ok,False,False
+"Commonwealth Sports Complex, Delhi - DPCC",382,0.218,0.196,0.0,0.0,0.0,0.0,-0.0039,17.0,0.34884640290128766,0.33041613938472403,consistent with neighbours,0.69623400798924,ok,False,False
+"DTU, Delhi - CPCB",383,-0.014,0.197,0.0,0.0,0.0,0.0,-0.0103,17.0,0.017119110549244844,0.028294008323240596,consistent with neighbours,0.27692191372004404,ok,False,False
+"Dr. Karni Singh Shooting Range, Delhi - DPCC",367,0.03,0.278,0.0,0.0,0.0,0.0,0.02,17.0,0.00600683882392195,0.017698165191120784,consistent with neighbours,0.27692191372004404,ok,False,False
+"Dwarka-Sector 8, Delhi - DPCC ",365,0.301,0.259,0.0,0.0,0.0,0.0,-0.0016,17.0,0.8393415533036079,0.8670630393922086,consistent with neighbours,0.9301221695298239,ok,False,False
+"IGI Airport (T3), Delhi - IITM",332,-0.159,0.284,0.0,0.0,0.0,0.0,-0.015,15.0,0.16857787367749338,0.30408862040447504,consistent with neighbours,0.679064194417109,ok,False,False
+"IGNOU_Maidan Garhi, Delhi - DPCC",385,-1.327,0.478,0.0,0.0,0.0,0.0,-0.0275,17.0,0.013367514323499561,0.13485809053953837,consistent with neighbours,0.48857174454485214,ok,False,False
+"IIT Delhi, Delhi - IITM",382,-0.009,0.239,0.0,0.0,0.0,0.0,-0.0171,17.0,0.0033456623826434947,0.05753473912768118,consistent with neighbours,0.37717217872590997,ok,False,False
+"IMD Lodhi Road, Delhi - IITM",381,-0.33,0.339,0.0,0.0,0.0,0.0,-0.0124,17.0,0.34884640290128766,0.6320085103502591,consistent with neighbours,0.8599319036797863,ok,False,False
+"ITO, Delhi - CPCB",326,0.17,0.205,0.0,0.0,0.0,0.0,-0.0176,15.0,0.07433498084899375,0.08829375264826524,consistent with neighbours,0.43411095052063736,ok,False,False
+"Indirapuram, Ghaziabad - UPPCB",379,0.074,0.179,0.0,0.0,0.0,0.0,0.0043,17.0,0.34884640290128766,0.6276258538914135,consistent with neighbours,0.8599319036797863,ok,False,False
+"Jahangirpuri, Delhi - DPCC",343,0.238,0.201,0.0,0.0,0.0,0.0,-0.0062,16.0,0.505644437997331,0.6060555309097291,consistent with neighbours,0.8599319036797863,ok,False,False
+"Jawaharlal Nehru Stadium, Delhi - DPCC",313,0.225,0.28,0.0,0.0,0.0,0.0,-0.0147,15.0,0.3794503959627968,0.66556137858754,consistent with neighbours,0.8599319036797863,ok,False,False
+"Loni, Ghaziabad - UPPCB",370,0.176,0.279,0.0,0.0,0.0,0.0,0.004,17.0,0.30811454449876985,0.6107355332948381,consistent with neighbours,0.8599319036797863,ok,False,False
+"Major Dhyan Chand National Stadium, Delhi - DPCC",313,-0.367,0.295,0.0,0.0,0.0,0.0,0.0182,14.0,0.07945689917354104,0.3058244345535186,consistent with neighbours,0.679064194417109,ok,False,False
+"Mandir Marg, Delhi - DPCC",336,0.108,0.183,0.0,0.0,0.0,0.0,0.0043,16.0,0.3057265481534429,0.3627036482520928,consistent with neighbours,0.7133171748957825,ok,False,False
+"Mundka, Delhi - DPCC",371,-0.053,0.241,0.0,0.0,0.0,0.0,0.0103,17.0,0.10886459480774507,0.17278453121431503,consistent with neighbours,0.5097143670822294,ok,False,False
+"NISE Gwal Pahari, Gurugram - IITM",375,0.09,0.346,0.0,0.0,0.0,0.0,-0.0085,17.0,0.15133363966308636,0.13809178802232058,consistent with neighbours,0.48857174454485214,ok,False,False
+"NSUT Jaffarpur, Delhi - DPCC",375,0.131,0.227,0.0,0.0,0.0,0.0,-0.0148,17.0,0.04217070212970702,0.24407210170802407,consistent with neighbours,0.626098000033627,ok,False,False
+"Najafgarh, Delhi - DPCC",326,-0.074,0.254,0.0,0.0,0.0,0.0,0.0187,15.0,0.03589723736788882,0.19611071424607263,consistent with neighbours,0.5509777209770612,ok,False,False
+"Narela, Delhi - DPCC",376,0.031,0.221,0.0,0.0,0.0,0.0,-0.0016,17.0,0.7764940676883935,0.741746792899128,consistent with neighbours,0.8599319036797863,ok,False,False
+"Nehru Nagar, Delhi - DPCC",367,-0.282,0.208,0.0,0.0,0.0,0.0,0.012,17.0,0.34884640290128766,0.7819399777463492,consistent with neighbours,0.8599319036797863,ok,False,False
+"New Industrial Town, Faridabad - HSPCB",266,-0.238,0.39,0.0,0.0,0.0,0.0,-0.0253,12.0,0.24957952123750735,0.35238383350680125,consistent with neighbours,0.7133171748957825,ok,False,False
+"Okhla Phase-2, Delhi - DPCC",375,-0.055,0.186,0.0,0.0,0.0,0.0,0.0184,17.0,0.00600683882392195,0.06508150637622813,consistent with neighbours,0.38398088761974597,ok,False,False
+"Patparganj, Delhi - DPCC",340,-0.411,0.243,0.0,0.0,0.0,0.0,0.0034,14.0,0.7471887597172815,0.8988999783487007,consistent with neighbours,0.9454966808455328,ok,False,False
+"Punjabi Bagh, Delhi - DPCC",341,0.254,0.339,0.0,0.0,0.0,0.0,-0.0017,16.0,0.8248012387069669,0.7870563186221773,consistent with neighbours,0.8599319036797863,ok,False,False
+"Pusa, Delhi - DPCC",381,0.174,0.316,0.0,0.0,0.0,0.0,0.0079,17.0,0.30811454449876985,0.5910372152969268,consistent with neighbours,0.8599319036797863,ok,False,False
+"R K Puram, Delhi - DPCC",346,0.157,0.211,0.0,0.0,0.0,0.0,0.0017,16.0,0.7565550254451803,0.7420690208506744,consistent with neighbours,0.8599319036797863,ok,False,False
+"Rohini, Delhi - DPCC",360,0.071,0.213,0.0,0.0,0.0,0.0,0.002,16.0,0.7565550254451803,0.7366125634210314,consistent with neighbours,0.8599319036797863,ok,False,False
+"Sanjay Nagar, Ghaziabad - UPPCB",380,-0.035,0.427,0.0,0.0,0.0,0.0,-0.0193,17.0,0.3927276123262421,0.7152162175843335,consistent with neighbours,0.8599319036797863,ok,False,False
+"Sector - 125, Noida - UPPCB",334,0.008,0.326,0.0,0.0,0.0,0.0,0.0322,16.0,0.025537540843845612,0.10911479725666198,consistent with neighbours,0.4598409312959326,ok,False,False
+"Sector - 62, Noida - IITM",367,0.199,0.329,0.0,0.0,0.0,0.0,-0.0088,17.0,0.7150317752938318,0.7174409253858322,consistent with neighbours,0.8599319036797863,ok,False,False
+"Sector 30, Faridabad - HSPCB",308,-0.229,0.564,0.0,0.0,0.0,0.0,-0.0659,15.0,0.16857787367749338,0.4326143819974504,consistent with neighbours,0.7976327668077992,ok,False,False
+"Sector-1, Noida - UPPCB",373,0.006,0.253,0.0,0.0,0.0,0.0,-0.0019,17.0,0.9031966906069087,0.9150928231022103,consistent with neighbours,0.9454966808455328,ok,False,False
+"Sector-116, Noida - UPPCB",372,0.098,0.211,0.0,0.0,0.0,0.0,0.0172,17.0,0.004507537046975066,0.035159572312316374,consistent with neighbours,0.27692191372004404,ok,False,False
+"Shadipur, Delhi - CPCB",371,-0.398,0.319,0.0,0.0,0.0,0.0,-0.0036,17.0,0.8393415533036079,0.9294713133735746,consistent with neighbours,0.9454966808455328,ok,False,False
+"Sirifort, Delhi - CPCB",344,0.295,0.189,0.0,0.0,0.0,0.0,0.0048,15.0,0.20184282422518202,0.5654752405089816,consistent with neighbours,0.8599319036797863,ok,False,False
+"Sonia Vihar, Delhi - DPCC",318,0.013,0.274,0.0,0.0,0.0,0.0,0.0194,14.0,0.009753043266808148,0.07889925783725962,consistent with neighbours,0.42318692839984706,ok,False,False
+"Sri Aurobindo Marg, Delhi - DPCC",381,-0.17,0.333,0.0,0.0,0.0,0.0,0.0129,17.0,0.07616914862439772,0.14077490944512688,consistent with neighbours,0.48857174454485214,ok,False,False
+"Talkatora Garden, Delhi - DPCC",378,0.019,0.171,0.0,0.0,0.0,0.0,0.003,17.0,0.30811454449876985,0.3107581906654566,consistent with neighbours,0.679064194417109,ok,False,False
+"Teri Gram, Gurugram - HSPCB",360,0.579,0.458,0.0,0.0,0.0,0.0,-0.0543,17.0,0.004507537046975066,0.10103473175493698,consistent with neighbours,0.45854224411856015,ok,False,False
+"Vasundhara, Ghaziabad - UPPCB",349,0.096,0.198,0.0,0.0,0.0,0.0,-0.0169,16.0,0.019780631759408317,0.01922336651695218,consistent with neighbours,0.27692191372004404,ok,False,False
+"Ved Vihar-Loni, Ghaziabad - UPPCB",256,0.07,0.496,0.0,0.0,0.0,0.0,-0.0248,11.0,0.2829668209876543,0.25574474470293596,consistent with neighbours,0.6287058307280509,ok,False,False
+"Vivek Vihar, Delhi - DPCC",371,-0.017,0.248,0.0,0.0,0.0,0.0,0.0201,17.0,0.027329794647271987,0.17210982218350102,consistent with neighbours,0.5097143670822294,ok,False,False
+"Wave City, Ghaziabad - UPPCB",368,0.247,0.433,0.0,0.0,0.0,0.0,-0.0376,16.0,0.1652754685060096,0.398632058753841,consistent with neighbours,0.7586868214992458,ok,False,False
+"Wazirpur, Delhi - DPCC",362,-0.24,0.197,0.0,0.0,0.0,0.0,0.0175,16.0,0.008594667586330635,0.03754873406373479,consistent with neighbours,0.27692191372004404,ok,False,False
+"Nangloi,Delhi-DPCC",24,,,,,,,,,,,insufficient hours (24 < 72),,none,False,False
