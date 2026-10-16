@@ -1,5 +1,7 @@
 # NCR AQI Network Integrity System
 
+**Live dashboard: https://halcyonvector.github.io/AQI-Network-Integrity-System/**  (rebuilt after every scheduled data pull)
+
 Layered system over Delhi NCR's CAAQMS network (Delhi, Noida, Gurugram, Ghaziabad,
 Faridabad) that will eventually:
 
