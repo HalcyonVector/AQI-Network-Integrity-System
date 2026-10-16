@@ -31,6 +31,7 @@ RAW_DIR = PROJECT_ROOT / "data" / "raw"
 PROC_DIR = PROJECT_ROOT / "data" / "processed"
 OUT_PATH = PROJECT_ROOT / "dashboard" / "index.html"
 LOGS_DIR = PROJECT_ROOT / "logs"
+REPO_URL = "https://github.com/HalcyonVector/AQI-Network-Integrity-System"
 
 # name, file pattern, what the date in the filename means, normal publication lag in days
 SOURCES = [
@@ -442,6 +443,21 @@ box-shadow:0 30px 60px -28px #000,0 0 0 1px rgba(0,0,0,.35),inset 0 1px 0 rgba(2
 .map-bg{fill:rgba(103,232,249,.03);stroke:rgba(255,255,255,.14)}
 .cell.ok{box-shadow:0 0 8px rgba(52,211,153,.25)}
 .foot{font-family:var(--mono);letter-spacing:.06em}
+
+/* ---- stronger, clearer glass + title (overrides) ---- */
+:root{--glass:linear-gradient(155deg,rgba(255,255,255,.17),rgba(255,255,255,.05) 34%,rgba(255,255,255,.035));--glass-in:linear-gradient(155deg,rgba(255,255,255,.13),rgba(255,255,255,.03));--edge:rgba(255,255,255,.22);--edge-top:rgba(255,255,255,.55)}
+.card{backdrop-filter:blur(30px) saturate(170%) brightness(1.08);-webkit-backdrop-filter:blur(30px) saturate(170%) brightness(1.08);
+box-shadow:0 34px 64px -30px #000,0 0 0 1px rgba(0,0,0,.4),inset 0 1.5px 0 rgba(255,255,255,.5),inset 1px 0 0 rgba(255,255,255,.12),inset 0 -1px 0 rgba(255,255,255,.07),inset 0 0 60px rgba(150,170,255,.07)}
+.card:before{height:150px;background:linear-gradient(180deg,rgba(255,255,255,.13),rgba(255,255,255,.03) 60%,transparent)}
+.src,.mini,.meter,.count-i,.city,.run,.scard,details.how,.tile{backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top-color:rgba(255,255,255,.42);box-shadow:inset 0 1px 0 rgba(255,255,255,.28),0 12px 26px -16px #000}
+.hero{background:linear-gradient(155deg,rgba(255,255,255,.17),rgba(60,58,150,.34) 40%,rgba(14,16,44,.5));backdrop-filter:blur(30px) saturate(170%);-webkit-backdrop-filter:blur(30px) saturate(170%);border-top-color:rgba(255,255,255,.55);box-shadow:0 40px 80px -34px #000,inset 0 1.5px 0 rgba(255,255,255,.5)}
+.hero h1{font-size:clamp(34px,6.4vw,58px);font-weight:900;line-height:1.18;padding-bottom:.08em;letter-spacing:-.035em;text-transform:none;
+background:linear-gradient(95deg,#ffffff 0%,#e0f2fe 38%,#67e8f9 68%,#c4b5fd 100%);-webkit-background-clip:text;background-clip:text;color:transparent;
+filter:drop-shadow(0 3px 14px rgba(0,0,0,.55))}
+.hero h1:before{content:"AQI NIS";display:block;font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.32em;color:#67e8f9;-webkit-text-fill-color:#67e8f9;margin-bottom:10px;filter:none}
+.hero .sub{font-size:16.5px;opacity:.95}
+.foot a{color:#67e8f9;text-decoration:none;font-weight:700;border-bottom:1px solid rgba(103,232,249,.4);padding-bottom:1px}
+.foot a:hover{border-bottom-color:#67e8f9}
 .scroll{overflow-x:auto}
 @media (max-width:760px){.split{grid-template-columns:1fr}.rank-row{grid-template-columns:120px 1fr 34px}.tiles{grid-template-columns:repeat(2,1fr)}.hero{padding:26px 20px 20px}.card{padding:18px 16px 14px}
 .g-row{grid-template-columns:1fr 70px;gap:6px 12px}.g-track{grid-column:1 / -1;order:3}.g-head{display:none}}
@@ -545,7 +561,7 @@ station <i>follows the same day-to-day pattern as its peers</i>. With about two 
 <p><b>Nothing here is a source attribution.</b> The stubble panels show association with fire exposure, not the share of pollution caused by it.</p></details>
 </section>
 
-<div class="foot">Built from the project's own pipelines &middot; every number has a caveat in the README</div>
+<div class="foot"><a href="{REPO_URL}" target="_blank" rel="noopener">github.com/HalcyonVector/AQI-Network-Integrity-System</a></div>
 """
     return (f'<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
             f"<title>NCR AQI network integrity</title><style>{CSS}</style></head><body><main>{body}</main></body></html>")

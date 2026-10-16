@@ -115,7 +115,10 @@ def test_render_has_all_sections_and_flags_an_unhealthy_source(tmp_path):
     assert "GAPS" in bd.render(date(2026, 10, 16), *_gappy(tmp_path))
     assert "CPCB feed (data.gov.in) is DOWN" in page
     assert "<script" not in page  # a static page: no JavaScript anywhere
-    assert "http://" not in page and "https://" not in page  # and no external requests
+    # no external requests: the only URL allowed is the footer link to the project repo
+    page_wo_link = page.replace(bd.REPO_URL, "")
+    assert "http://" not in page_wo_link and "https://" not in page_wo_link
+    assert 'src="http' not in page and "@import" not in page
 
 
 def test_render_works_with_every_input_missing(tmp_path):
