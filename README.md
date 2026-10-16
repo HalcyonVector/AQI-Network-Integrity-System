@@ -119,7 +119,8 @@ One row per station per hourly timestamp:
 `scripts/fetch_firms.py` pulls active-fire detections over Punjab, Haryana, Delhi NCR,
 and western/central Uttar Pradesh — the stubble-burning source belt, not just the 5
 monitored cities — for the regional-transport side of spike attribution (component 4).
-Appends one row per fire detection to `data/raw/firms_fires_YYYY-MM-DD.csv`.
+Writes one row per fire detection to `data/raw/firms_acq_YYYY-MM-DD.csv` — **one file per
+acquisition date**, merged (union, de-duplicated) on every run.
 
 ### Setup
 
@@ -130,8 +131,19 @@ Appends one row per fire detection to `data/raw/firms_fires_YYYY-MM-DD.csv`.
 ### Run manually
 
 ```bash
-python scripts/fetch_firms.py
+python scripts/fetch_firms.py                                    # latest 5 days (the API maximum)
+python scripts/fetch_firms.py --start 2026-09-16 --end 2026-10-16   # backfill a range
 ```
+
+### Why per-acquisition-date files with a 5-day window
+The first design fetched only the last 24 h and appended to a file named for the *fetch*
+date. Any day the machine was off became a hole: when checked on 2026-10-16, **seven days
+had zero detections** (17 Sep, 22 Sep, 1–2 Oct, 9–10 Oct, 13 Oct), and the backfill then
+recovered 147, 117, 244, 246 and 120 detections on the peak-burning days among them. Even
+"covered" days were short by 10–27 detections, since a 24 h pull misses what falls between
+runs. Any analysis on the old data would have been silently and badly biased. Now each run
+pulls 5 days and merges into per-date files, so gaps self-heal and re-runs only ever *add*
+detections.
 
 ### Sensor choice
 
@@ -440,6 +452,56 @@ The binding constraint is paired AOD days: Earth Engine's MCD19A2 currently ends
 (it serves only the current snapshot). OpenAQ covers that window for 60 of the original
 stations. After the recovery the scheduler resumed on its own, with no intervention.
 
+## Analysis: stubble-burning transport (component 4, first pass)
+
+`scripts/analyze_stubble_transport.py` is a **screening-level** forward-trajectory model: each
+VIIRS fire detection (low-confidence dropped) releases an air parcel advected up to 72 h on
+ERA5 10 m winds; a "hit" is a parcel passing within 60 km of Delhi. The daily stubble-exposure
+index is the FRP-weighted hits arriving per IST day (fires already within 60 km — 254 of
+them — are local burning and excluded). It is compared with Delhi's daily mean PM2.5 from
+OpenAQ concentrations. Because 10 m winds understate transport-layer winds, results are
+shown for wind speed factors 1.0 / 1.5 / 2.0.
+
+**It does not, and cannot, say "X% of Delhi's PM2.5 is from stubble".** That needs a
+calibrated dispersion/chemistry model and boundary-layer data we don't have.
+
+### What the first real period showed (27 Sep → 10 Oct, 13 days with Delhi PM2.5)
+- Delhi PM2.5 **stepped** from 12–31 µg/m³ (27–29 Sep) to 52–69 µg/m³ from 30 Sep onwards. The
+  first regional-fire parcels arrived on exactly that day (11 hits on 30 Sep, zero on the
+  three days before), and arrivals continued every day after.
+- Rank correlation with the exposure index is high (ρ = 0.85 at k=1.0, 0.74 at k=1.5; a plain
+  count of fires within 400 km, ignoring wind, gets 0.63), with iid-permutation p = 0.0006 / 0.006.
+
+### Why that is *not* a result you should lean on
+1. **It is one regime change.** Thirteen days contain essentially one step (clean → dirty). A
+   step in any seasonal driver would correlate this well.
+2. **Season onset is a confounder we cannot remove.** Post-monsoon cooling, shallower boundary
+   layers and inversions arrive over the same days as burning. We control for Delhi's
+   station-measured wind speed, but it sits at 0.7–0.9 m/s nearly every day, so that control
+   absorbs almost nothing. The variable that matters (boundary-layer height) is not in our data.
+3. **Fragile to a free parameter.** At wind factor 2.0 the association is gone (ρ = 0.36,
+   p = 0.21). Picking the best of k = 1.0/1.5/2.0 after the fact would be p-hacking; all three
+   are reported. (18 tests were run across the table with no multiplicity correction.)
+4. **The iid permutation test overstates significance** because both series are autocorrelated
+   and dominated by the step. A circular-shift test (keeps each series' autocorrelation) gives
+   p ≥ 0.077 everywhere — and 0.077 = 1/13 is the *minimum attainable* with 13 days, so the test
+   cannot reach significance at this sample size, whatever the truth.
+5. **Within exposed days only** (removing the clean-vs-dirty step), the *amount* of exposure
+   tracks PM2.5 at k=1.0 (ρ = 0.69, n = 10), weakly at k=1.5 (0.43), and not at all at k=2.0
+   (−0.39). Presence of arriving fires is suggestive; magnitude is not established.
+
+**Fair summary:** consistent with stubble transport contributing to the step, but not
+distinguishable from seasonal meteorology with this data. It becomes testable once Oct–Nov
+(peak burning, when conditions vary day to day) accumulates: then the step stops dominating
+and the circular-shift test has room to reach p < 0.05. Re-run `analyze_stubble_transport.py`
+as data arrives, and fix the lag, wind factor and window *in advance* rather than trying
+several until one works.
+
+Other limits: no vertical mixing, deposition or plume rise; single regional receptor; ERA5T is
+preliminary; the analysis window is bounded by the wind record (parcels need up to 72 h of wind
+after launch, so the first usable day is 72 h after the record begins and the last must end
+inside it — enforced by `valid_exposure_days`).
+
 ## Reachability check (2026-09-17, from the same machine this pipeline runs on)
 
 | Source | Status |
@@ -459,6 +521,6 @@ rule out an API-layer restriction the way CPCB's User-Agent gate did.
 | 1 | Flag stations drifting from the satellite estimate | **First pass built** (see Analysis). Nothing flaggable yet — needs ~3–4 weeks of paired days. |
 | 2 | Gap-fill missing station data from satellite | Not started. The city-level day-to-day link (ρ 0.68) suggests it is feasible at *regional* scale only; per-station gap-filling would inherit the weak spatial signal. |
 | 3 | Wind-conditioned neighbour consistency (for when the satellite is blind) | Not started. Inputs exist: ERA5 wind, plus the stations' own wind/humidity sensors in the OpenAQ data. Matters more now: 26–28 Sep were cloud-blind. |
-| 4 | Stubble-burning transport attribution | Not started. FIRMS fires and wind are both flowing. |
+| 4 | Stubble-burning transport attribution | **First pass built** (see Analysis). Suggestive, not conclusive: one regime change in 13 days, confounded by season-onset meteorology. Needs Oct–Nov data. |
 
 Dashboard: not started.

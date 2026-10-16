@@ -68,32 +68,66 @@ def test_fetch_fires_returns_empty_df_when_no_detections(logger, monkeypatch):
     assert df.empty
 
 
-def test_append_to_csv_adds_fetched_at_column(tmp_path, logger, monkeypatch):
+def _det(source="VIIRS_NOAA20_NRT", lat=30.1, lon=75.2, date="2026-10-05", time="0835", frp=5.0):
+    return {"source": source, "latitude": lat, "longitude": lon, "acq_date": date, "acq_time": time, "confidence": "n", "frp": frp}
+
+
+def test_build_url_with_and_without_start_date():
+    base = fetch_firms.build_url("KEY", "VIIRS_NOAA20_NRT", 5)
+    assert base.endswith("/KEY/VIIRS_NOAA20_NRT/73.5,27.5,81.0,32.5/5")
+    assert fetch_firms.build_url("KEY", "VIIRS_NOAA20_NRT", 5, "2026-10-01").endswith("/5/2026-10-01")
+
+
+def test_backfill_chunks_respect_the_five_day_api_limit():
+    assert fetch_firms.backfill_chunks("2026-09-16", "2026-09-20") == [("2026-09-16", 5)]
+    assert fetch_firms.backfill_chunks("2026-09-16", "2026-09-22") == [("2026-09-16", 5), ("2026-09-21", 2)]
+    assert fetch_firms.backfill_chunks("2026-10-05", "2026-10-05") == [("2026-10-05", 1)]
+    chunks = fetch_firms.backfill_chunks("2026-09-16", "2026-10-15")
+    assert sum(d for _, d in chunks) == 30 and all(d <= 5 for _, d in chunks)
+
+
+def test_backfill_chunks_rejects_reversed_range():
+    with pytest.raises(ValueError):
+        fetch_firms.backfill_chunks("2026-10-05", "2026-10-01")
+
+
+def test_merge_detections_is_a_union_and_idempotent():
+    a = pd.DataFrame([_det(lat=30.1), _det(lat=30.2)])
+    b = pd.DataFrame([_det(lat=30.2), _det(lat=30.3)])  # one overlap, one new
+    merged = fetch_firms.merge_detections(a, b)
+    assert sorted(merged["latitude"]) == [30.1, 30.2, 30.3]
+    again = fetch_firms.merge_detections(merged, b)
+    assert len(again) == 3  # re-merging the same data changes nothing
+
+
+def test_merge_detections_keeps_original_fetch_timestamp():
+    old = pd.DataFrame([{**_det(), "fetched_at_utc": "first"}])
+    new = pd.DataFrame([{**_det(), "fetched_at_utc": "second"}])
+    assert fetch_firms.merge_detections(old, new).iloc[0]["fetched_at_utc"] == "first"
+
+
+def test_merge_detections_distinguishes_satellites_seeing_the_same_spot():
+    a = pd.DataFrame([_det(source="VIIRS_NOAA20_NRT")])
+    b = pd.DataFrame([_det(source="VIIRS_NOAA21_NRT")])
+    assert len(fetch_firms.merge_detections(a, b)) == 2
+
+
+def test_write_acq_date_files_splits_by_date_and_never_loses_detections(tmp_path, logger, monkeypatch):
     monkeypatch.setattr(fetch_firms, "RAW_DATA_DIR", tmp_path)
-    df = pd.DataFrame({"latitude": [30.1], "longitude": [75.2]})
-    out_path = fetch_firms.append_to_csv(df, logger)
-    written = pd.read_csv(out_path)
-    assert "fetched_at_utc" in written.columns
-    assert written.iloc[0]["latitude"] == 30.1
+    first = pd.DataFrame([_det(date="2026-10-04", lat=30.1), _det(date="2026-10-05", lat=30.2)])
+    paths = fetch_firms.write_acq_date_files(first, logger)
+    assert sorted(p.name for p in paths) == ["firms_acq_2026-10-04.csv", "firms_acq_2026-10-05.csv"]
+
+    # a later, overlapping window: one repeat, one new detection on 10-05
+    second = pd.DataFrame([_det(date="2026-10-05", lat=30.2), _det(date="2026-10-05", lat=30.9)])
+    fetch_firms.write_acq_date_files(second, logger)
+    day5 = pd.read_csv(tmp_path / "firms_acq_2026-10-05.csv", dtype={"acq_time": str})
+    assert sorted(day5["latitude"]) == [30.2, 30.9]
+    assert len(pd.read_csv(tmp_path / "firms_acq_2026-10-04.csv")) == 1  # untouched
 
 
-def test_append_to_csv_rejects_schema_mismatch(tmp_path, logger, monkeypatch):
+def test_write_acq_date_files_preserves_leading_zero_in_acq_time(tmp_path, logger, monkeypatch):
     monkeypatch.setattr(fetch_firms, "RAW_DATA_DIR", tmp_path)
-    df1 = pd.DataFrame({"latitude": [30.1], "longitude": [75.2]})
-    df2 = pd.DataFrame({"latitude": [30.1], "frp": [12.0]})
-
-    fetch_firms.append_to_csv(df1, logger)
-    with pytest.raises(ValueError, match="Column mismatch"):
-        fetch_firms.append_to_csv(df2, logger)
-
-
-def test_append_to_csv_appends_without_duplicating_header(tmp_path, logger, monkeypatch):
-    monkeypatch.setattr(fetch_firms, "RAW_DATA_DIR", tmp_path)
-    df = pd.DataFrame({"latitude": [30.1], "longitude": [75.2]})
-
-    out_path = fetch_firms.append_to_csv(df, logger)
-    fetch_firms.append_to_csv(df, logger)
-
-    lines = out_path.read_text().strip().splitlines()
-    assert lines[0] == "fetched_at_utc,latitude,longitude"
-    assert len(lines) == 3
+    fetch_firms.write_acq_date_files(pd.DataFrame([_det(time="835")]), logger)  # pandas drops the 0 from "0835"
+    out = pd.read_csv(tmp_path / "firms_acq_2026-10-05.csv", dtype={"acq_time": str})
+    assert out.iloc[0]["acq_time"] == "0835"

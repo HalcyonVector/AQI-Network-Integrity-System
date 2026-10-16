@@ -5,21 +5,30 @@ regional-transport side of the spike-attribution component (stubble burning vs.
 local sources).
 
 Usage:
-    python scripts/fetch_firms.py
+    python scripts/fetch_firms.py                                  # latest 5 days
+    python scripts/fetch_firms.py --start 2026-09-16 --end 2026-10-15   # backfill
 
 Requires FIRMS_MAP_KEY in the environment or a .env file (see .env.example).
 Get a free key at https://firms.modaps.eosdis.nasa.gov/api/map_key/ (just an email
 address, no approval wait). Rate limit is 5,000 transactions per 10-minute window
-per key -- irrelevant at a once/day cadence.
+per key.
+
+Output: data/raw/firms_acq_YYYY-MM-DD.csv, ONE FILE PER ACQUISITION DATE. Each run
+MERGES what it fetched into those files (union, de-duplicated), so overlapping windows
+and backfills are idempotent and can only ever add detections. The earlier design
+fetched only the last 24 h and appended to a file named for the fetch date; any day
+the machine was off became a hole (seven days had zero detections, including 1-2 Oct
+and 9-10 Oct, the peak of burning), which would have silently biased any analysis.
 """
 
 from __future__ import annotations
 
+import argparse
 import logging
 import os
 import sys
 import time
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from io import StringIO
 from pathlib import Path
 
@@ -47,7 +56,7 @@ AREA_COORDINATES = "73.5,27.5,81.0,32.5"
 # 2026-09-17; re-check that page if this starts erroring, the source list is
 # versioned there, not hardcoded from memory.
 SOURCES = ["VIIRS_NOAA20_NRT", "VIIRS_NOAA21_NRT"]
-DAY_RANGE = 1
+MAX_DAY_RANGE = 5  # API limit: DAY_RANGE is 1..5
 
 MAX_RETRIES = 4
 RETRY_BACKOFF_SECS = 5
@@ -58,6 +67,7 @@ RAW_DATA_DIR = PROJECT_ROOT / "data" / "raw"
 LOG_DIR = PROJECT_ROOT / "logs"
 
 EXPECTED_COLUMNS = {"latitude", "longitude", "acq_date", "acq_time", "confidence", "frp"}
+DETECTION_KEY = ["source", "latitude", "longitude", "acq_date", "acq_time"]
 
 
 def setup_logging() -> logging.Logger:
@@ -71,8 +81,20 @@ def setup_logging() -> logging.Logger:
     return logging.getLogger("fetch_firms")
 
 
-def fetch_one_source(map_key: str, source: str, session: requests.Session, logger: logging.Logger) -> pd.DataFrame:
-    url = f"{API_BASE}/{map_key}/{source}/{AREA_COORDINATES}/{DAY_RANGE}"
+def build_url(map_key: str, source: str, day_range: int, start_date: str | None = None) -> str:
+    url = f"{API_BASE}/{map_key}/{source}/{AREA_COORDINATES}/{day_range}"
+    return f"{url}/{start_date}" if start_date else url
+
+
+def fetch_one_source(
+    map_key: str,
+    source: str,
+    session: requests.Session,
+    logger: logging.Logger,
+    day_range: int = MAX_DAY_RANGE,
+    start_date: str | None = None,
+) -> pd.DataFrame:
+    url = build_url(map_key, source, day_range, start_date)
 
     for attempt in range(1, MAX_RETRIES + 1):
         try:
@@ -94,7 +116,7 @@ def fetch_one_source(map_key: str, source: str, session: requests.Session, logge
     if not body or "," not in body.splitlines()[0]:
         raise ValueError(f"FIRMS API did not return CSV data for {source}. Response: {body[:300]!r}")
 
-    df = pd.read_csv(StringIO(body))
+    df = pd.read_csv(StringIO(body), dtype={"acq_time": str})
 
     missing = EXPECTED_COLUMNS - set(df.columns)
     if missing:
@@ -107,7 +129,9 @@ def fetch_one_source(map_key: str, source: str, session: requests.Session, logge
     return df
 
 
-def fetch_fires(map_key: str, logger: logging.Logger) -> pd.DataFrame:
+def fetch_fires(
+    map_key: str, logger: logging.Logger, day_range: int = MAX_DAY_RANGE, start_date: str | None = None
+) -> pd.DataFrame:
     session = requests.Session()
     session.headers.update(
         {
@@ -118,7 +142,7 @@ def fetch_fires(map_key: str, logger: logging.Logger) -> pd.DataFrame:
         }
     )
 
-    frames = [fetch_one_source(map_key, source, session, logger) for source in SOURCES]
+    frames = [fetch_one_source(map_key, source, session, logger, day_range, start_date) for source in SOURCES]
     non_empty = [f for f in frames if not f.empty]
     if not non_empty:
         return pd.DataFrame()
@@ -128,28 +152,56 @@ def fetch_fires(map_key: str, logger: logging.Logger) -> pd.DataFrame:
     return combined
 
 
-def append_to_csv(df: pd.DataFrame, logger: logging.Logger) -> Path:
+def merge_detections(existing: pd.DataFrame | None, new: pd.DataFrame) -> pd.DataFrame:
+    """Union of two detection frames, de-duplicated on the detection identity. Existing
+    rows win ties, so each detection keeps its original fetched_at_utc."""
+    if existing is None or existing.empty:
+        merged = new.copy()
+    else:
+        merged = pd.concat([existing, new], ignore_index=True)
+    merged = merged.drop_duplicates(subset=DETECTION_KEY, keep="first")
+    return merged.sort_values(["acq_time", "source", "latitude", "longitude"]).reset_index(drop=True)
+
+
+def write_acq_date_files(df: pd.DataFrame, logger: logging.Logger) -> list[Path]:
+    """Merge fetched detections into one file per acquisition date."""
     RAW_DATA_DIR.mkdir(parents=True, exist_ok=True)
-    out_path = RAW_DATA_DIR / f"firms_fires_{datetime.now():%Y-%m-%d}.csv"
-
     df = df.copy()
-    df.insert(0, "fetched_at_utc", datetime.now(timezone.utc).isoformat(timespec="seconds"))
+    df["acq_time"] = df["acq_time"].astype(str).str.zfill(4)
+    if "fetched_at_utc" not in df.columns:  # migrated legacy rows keep their original timestamp
+        df.insert(0, "fetched_at_utc", datetime.now(timezone.utc).isoformat(timespec="seconds"))
 
-    write_header = not out_path.exists()
-    if not write_header:
-        existing_cols = pd.read_csv(out_path, nrows=0).columns.tolist()
-        if existing_cols != df.columns.tolist():
-            raise ValueError(
-                f"Column mismatch appending to {out_path}: existing file has {existing_cols}, "
-                f"this run produced {df.columns.tolist()}. Refusing to append."
-            )
+    written = []
+    for acq_date, group in df.groupby("acq_date"):
+        path = RAW_DATA_DIR / f"firms_acq_{acq_date}.csv"
+        existing = pd.read_csv(path, dtype={"acq_time": str}) if path.exists() else None
+        merged = merge_detections(existing, group)
+        added = len(merged) - (0 if existing is None else len(existing))
+        merged.to_csv(path, index=False)
+        logger.info("%s: %d detections (%+d new)", path.name, len(merged), added)
+        written.append(path)
+    return written
 
-    df.to_csv(out_path, mode="a", header=write_header, index=False)
-    logger.info("Appended %d rows to %s", len(df), out_path)
-    return out_path
+
+def backfill_chunks(start: str, end: str) -> list[tuple[str, int]]:
+    """Split [start, end] into (start_date, day_range) chunks of at most MAX_DAY_RANGE days."""
+    cur, stop = datetime.strptime(start, "%Y-%m-%d"), datetime.strptime(end, "%Y-%m-%d")
+    if stop < cur:
+        raise ValueError("--end must not be before --start")
+    chunks = []
+    while cur <= stop:
+        days = min(MAX_DAY_RANGE, (stop - cur).days + 1)
+        chunks.append((cur.strftime("%Y-%m-%d"), days))
+        cur += timedelta(days=days)
+    return chunks
 
 
 def main() -> int:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--start", help="YYYY-MM-DD, backfill start (requires --end)")
+    parser.add_argument("--end", help="YYYY-MM-DD, backfill end inclusive")
+    args = parser.parse_args()
+
     load_dotenv(PROJECT_ROOT / ".env")
     logger = setup_logging()
 
@@ -158,17 +210,24 @@ def main() -> int:
         logger.error("FIRMS_MAP_KEY not set. Get a free key at https://firms.modaps.eosdis.nasa.gov/api/map_key/ and add it to .env.")
         return 1
 
-    try:
-        df = fetch_fires(map_key, logger)
-    except (requests.RequestException, ValueError):
+    if bool(args.start) != bool(args.end):
+        logger.error("--start and --end must be given together.")
         return 1
 
-    if df.empty:
-        logger.info("No fire detections in the target area for this pull (normal outside burning season).")
-        return 0
+    plan = backfill_chunks(args.start, args.end) if args.start else [(None, MAX_DAY_RANGE)]
 
-    append_to_csv(df, logger)
-    return 0
+    failed = False
+    for start_date, day_range in plan:
+        try:
+            df = fetch_fires(map_key, logger, day_range=day_range, start_date=start_date)
+        except (requests.RequestException, ValueError):
+            failed = True
+            continue
+        if df.empty:
+            logger.info("No fire detections for %s (+%d days).", start_date or "latest window", day_range)
+            continue
+        write_acq_date_files(df, logger)
+    return 1 if failed else 0
 
 
 if __name__ == "__main__":
