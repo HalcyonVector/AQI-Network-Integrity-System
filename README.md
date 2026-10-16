@@ -701,38 +701,8 @@ rule out an API-layer restriction the way CPCB's User-Agent gate did.
 
 Dashboard: **built** (see the Dashboard section); rebuilt by every daily run.
 
-## Roadmap: what is left, and when to proceed
+## Roadmap
 
-Dates are estimates that depend on upstream sources resuming; each item says what it is waiting on.
-
-**Waiting on data to accumulate (nothing to build — just re-run, with the protocol fixed in advance)**
-
-| what | waiting for | proceed when |
-|---|---|---|
-| Stubble attribution, the real test | ~20 rain-free days (10 so far; the primary test is in the section above) | around **25 Oct – 1 Nov**, once ERA5 and a PM source both reach ~19 Oct |
-| Satellite-consistency / station health | ~28 paired AOD+PM days (13 so far); AOD lags ~7 days | around **mid-November** |
-| Drift detection proper (a slow ramp) | 6–8 weeks of history | around **December** |
-
-**Buildable once a dependency clears**
-
-| what | depends on | decision rule |
-|---|---|---|
-| Use feed-derived concentrations (`convert_feed.py`) for Delhi daily PM when OpenAQ lacks the days | OpenAQ archive still ends 12 Oct | if still stalled by ~26 Oct, validate that the feed's 24 h value equals OpenAQ's calendar-day mean at Delhi scale on the pre-outage overlap, then use it for dates OpenAQ lacks |
-| Re-check the feed's unit definition after the outage | OpenAQ reaching ≥ 1 week past 13 Oct | the feed returned with 13 new stations; run `validate_feed_units.py` again to confirm it still means "sub-index of the 24 h / 8 h average" |
-| Health checks for the 13 feed-only stations | the item above | daily-scale checks only (no hourly neighbours); a weaker detector, label it so |
-| Regional satellite-based fill for network-wide outages | ≥ 30 clear-sky paired days | validate leave-one-day-out before trusting any number |
-
-**Decisions for you**
-- Whether to **publish the dashboard** (it is a local file; nothing is shared). Options: leave local, GitHub Pages, or a
-  claude.ai artifact.
-- The **CPCB support follow-up** (about 19 Oct if no reply): try a second channel. The feed is back, so this is now just
-  about getting an explanation.
-- **CDS Terms of Use change on 28 Oct 2026**: the CDS logs say continued use after that date counts as accepting the
-  updated terms, and to contact ECMWF before 27 Oct if you do not accept. ERA5 is the weather input for the stubble and neighbour analyses.
-- Optionally regenerate your data.gov.in API key (it appeared in an earlier log screenshot; logs now redact it).
-
-**Maintenance to expect**
-- ERA5T (preliminary, `expver 0005`) is replaced by final ERA5 months later: re-pull old dates occasionally.
-- Earth Engine runs on your saved login: if the dashboard shows AOD **STALE**, re-run `ee.Authenticate(auth_mode='localhost')`.
-- FIRMS: Suomi NPP stops 1 Nov (already excluded); re-check the sensor list after that.
-- Four stations (Pusa ×2, Aya Nagar, North Campus) and the 13 new ones have no OpenAQ match; revisit if OpenAQ adds them.
+What is left and when is in **`ROADMAP.md`**: the plan is to do all of it together in **December**, with a short list
+of things that cannot wait (the CDS terms decision before 27 Oct, and keeping the machine on so the feed's
+live-only snapshots are not lost).
