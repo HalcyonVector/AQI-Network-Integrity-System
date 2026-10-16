@@ -56,7 +56,9 @@ def test_precip_parsing_rejects_an_unexpected_response(logger):
         fw.precip_dataset_to_hourly(bad, logger)
 
 
-def test_a_failed_precip_fetch_never_raises_so_it_cannot_block_the_wind_data(logger):
+def test_a_failed_precip_fetch_never_raises_so_it_cannot_block_the_wind_data(logger, tmp_path, monkeypatch):
+    monkeypatch.setattr(fw, "RAW_DATA_DIR", tmp_path)  # an empty folder, never the real data on disk
+
     class Boom:
         def retrieve(self, *a, **k):
             raise RuntimeError("CDS down")
@@ -158,3 +160,29 @@ def test_dry_days_association_says_so_when_there_are_too_few_dry_days():
 
 def test_dry_days_association_is_none_without_rain_data():
     assert ast_.dry_days_association(_daily_frame().drop(columns="washout"), "e") is None
+
+
+def test_a_complete_precip_file_is_not_requested_again(tmp_path, monkeypatch, logger):
+    from datetime import datetime
+
+    monkeypatch.setattr(fw, "RAW_DATA_DIR", tmp_path)
+    day = datetime(2026, 9, 27)
+    pd.DataFrame({"time": pd.date_range("2026-09-27", periods=24, freq="h"), "precip_mm_delhi_mean": 0.0, "precip_mm_delhi_max": 0.0}).to_csv(
+        tmp_path / "era5_precip_2026-09-27.csv", index=False)
+    assert fw.precip_file_complete(day)
+
+    class MustNotBeCalled:
+        def retrieve(self, *a, **k):
+            raise AssertionError("asked CDS for data we already have")
+
+    assert fw.fetch_and_write_precip(MustNotBeCalled(), day, logger) == tmp_path / "era5_precip_2026-09-27.csv"
+
+
+def test_a_partial_or_missing_precip_file_is_requested(tmp_path, monkeypatch, logger):
+    from datetime import datetime
+
+    monkeypatch.setattr(fw, "RAW_DATA_DIR", tmp_path)
+    assert not fw.precip_file_complete(datetime(2026, 9, 27))  # nothing there
+    pd.DataFrame({"time": pd.date_range("2026-09-27", periods=10, freq="h"), "precip_mm_delhi_mean": 0.0, "precip_mm_delhi_max": 0.0}).to_csv(
+        tmp_path / "era5_precip_2026-09-27.csv", index=False)
+    assert not fw.precip_file_complete(datetime(2026, 9, 27))  # only 10 of 24 hours

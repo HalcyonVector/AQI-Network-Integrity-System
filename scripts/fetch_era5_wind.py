@@ -237,8 +237,17 @@ def precip_dataset_to_hourly(ds, logger: logging.Logger) -> pd.DataFrame:
     return out.round({"precip_mm_delhi_mean": 4, "precip_mm_delhi_max": 4})
 
 
+def precip_file_complete(date: datetime) -> bool:
+    """True if a full 24-hour precipitation file already exists for the date, so the daily window does
+    not ask CDS for it again on every run."""
+    path = RAW_DATA_DIR / f"era5_precip_{date:%Y-%m-%d}.csv"
+    return path.exists() and sum(1 for _ in open(path, encoding="utf-8")) - 1 >= len(PRECIP_HOURS)
+
+
 def fetch_and_write_precip(client, date: datetime, logger: logging.Logger) -> Path | None:
     """Best-effort: rain is a control variable, so failing to get it must never block the wind data."""
+    if precip_file_complete(date):
+        return RAW_DATA_DIR / f"era5_precip_{date:%Y-%m-%d}.csv"
     path = None
     try:
         import xarray as xr

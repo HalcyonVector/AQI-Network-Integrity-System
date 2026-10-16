@@ -237,9 +237,10 @@ OpenAQ may cover some of it.</p>
 
 <h2>2. Delhi PM2.5 and regional fire exposure</h2>
 <div class="scroll">{stubble_html(stubble_daily)}</div>
-<div class="caveat"><b>Read with care.</b> Delhi PM2.5 stepped up the same day regional fire plumes started arriving, but that is one
-regime change in about two weeks, and season-onset weather (cooling, shallower mixing) changes at the same time. The association
-is suggestive, not established; it is <b>not</b> a share of Delhi's pollution attributable to stubble burning.</div>
+<div class="caveat"><b>Read with care.</b> Delhi PM2.5 stepped up the same day regional fire plumes started arriving, but
+the days before were <i>rainy</i> (about 9 mm on 26 Sep, 4 mm on 27 Sep) and 30 Sep was the first fully dry day, so rain stopping
+explains the step without stubble. On rain-free days the association is moderate and not yet significant (about 10 days).
+Suggestive, not established, and <b>not</b> a share of Delhi's pollution attributable to stubble burning.</div>
 
 <h2>3. Station health (neighbour consistency)</h2>
 <div class="scroll">{stations_html(_read("neighbor_station_health.csv", proc_dir))}</div>
