@@ -55,6 +55,14 @@ PRESSURE_LEVEL = "925"
 # spatially with the fire detections for transport attribution.
 AREA = [32.5, 73.5, 27.5, 81.0]
 
+# Rain, the leading unexplained alternative to stubble for Delhi's late-September clean-to-dirty step
+# (wet scavenging ends as the monsoon withdraws). Precipitation must be summed over ALL hours of a
+# day, so it is requested hourly and only for a box around Delhi (a small, fast download), and kept
+# in its own file rather than bloating the 3-hourly regional grid.
+PRECIP_VARIABLE = "total_precipitation"
+PRECIP_AREA = [29.2, 76.6, 28.0, 77.8]  # North, West, South, East around Delhi
+PRECIP_HOURS = [f"{h:02d}:00" for h in range(24)]
+
 HOURS = [f"{h:02d}:00" for h in range(0, 24, 3)]  # 3-hourly, 00/03/06/09/12/15/18/21
 # ERA5T first appears ~5 days after the fact; re-process a trailing window so a late or
 # skipped day is picked up on a later run. CDS caches identical requests, so repeats are cheap.
@@ -195,6 +203,61 @@ def dataset_to_dataframe(ds, logger: logging.Logger) -> pd.DataFrame:
     return df
 
 
+def download_precip_nc(client, date: datetime, logger: logging.Logger) -> Path:
+    request = {
+        "product_type": ["reanalysis"],
+        "variable": [PRECIP_VARIABLE],
+        "year": [str(date.year)],
+        "month": [f"{date.month:02d}"],
+        "day": [f"{date.day:02d}"],
+        "time": PRECIP_HOURS,
+        "area": PRECIP_AREA,
+        "data_format": "netcdf",
+        "download_format": "unarchived",
+    }
+    tmp_path = Path(tempfile.gettempdir()) / f"era5_precip_{date:%Y%m%d}.nc"
+    logger.info("Requesting ERA5 hourly precipitation around Delhi for %s", date.strftime("%Y-%m-%d"))
+    client.retrieve(DATASET, request).download(str(tmp_path))
+    return tmp_path
+
+
+def precip_dataset_to_hourly(ds, logger: logging.Logger) -> pd.DataFrame:
+    """Hourly precipitation over the Delhi box from an open ERA5 Dataset: area mean and area max, in mm.
+
+    ERA5's `tp` is metres of water accumulated over the hour ENDING at each timestamp, so the value
+    labelled 06:00 UTC is the rain that fell 05:00-06:00. Summing 24 consecutive hourly values gives a day.
+    """
+    if "expver" in ds.dims:
+        ds = ds.mean("expver", skipna=True)
+    df = ds.to_dataframe().reset_index().rename(columns={"valid_time": "time"})
+    if "time" not in df.columns or "tp" not in df.columns:
+        raise ValueError(f"unexpected precipitation response; columns: {df.columns.tolist()}")
+    df["precip_mm"] = (df["tp"] * 1000.0).clip(lower=0.0)  # tiny negative values are float noise in ERA5
+    out = df.groupby("time").agg(precip_mm_delhi_mean=("precip_mm", "mean"), precip_mm_delhi_max=("precip_mm", "max")).reset_index()
+    return out.round({"precip_mm_delhi_mean": 4, "precip_mm_delhi_max": 4})
+
+
+def fetch_and_write_precip(client, date: datetime, logger: logging.Logger) -> Path | None:
+    """Best-effort: rain is a control variable, so failing to get it must never block the wind data."""
+    path = None
+    try:
+        import xarray as xr
+
+        path = download_precip_nc(client, date, logger)
+        hourly = precip_dataset_to_hourly(xr.open_dataset(path, engine="netcdf4"), logger)
+        RAW_DATA_DIR.mkdir(parents=True, exist_ok=True)
+        out_path = RAW_DATA_DIR / f"era5_precip_{date:%Y-%m-%d}.csv"
+        hourly.to_csv(out_path, index=False)
+        logger.info("Wrote %d hourly precipitation rows to %s", len(hourly), out_path.name)
+        return out_path
+    except Exception:
+        logger.exception("Precipitation fetch failed for %s (non-fatal)", date.strftime("%Y-%m-%d"))
+        return None
+    finally:
+        if path is not None:
+            path.unlink(missing_ok=True)
+
+
 def warn_if_partial_day(df: pd.DataFrame, date: datetime, logger: logging.Logger) -> bool:
     """ERA5T publishes a day's hours progressively, so the newest date in the window can
     come back with only some of its timestamps (seen: 5 of 8 for 2026-10-11 on 2026-10-16).
@@ -260,6 +323,7 @@ def main() -> int:
             continue
         warn_if_partial_day(df, target_date, logger)
         write_date_file(df, target_date, logger)
+        fetch_and_write_precip(client, target_date, logger)
     return 1 if failures == len(dates) else 0
 
 

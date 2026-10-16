@@ -101,18 +101,33 @@ One row per station per hourly timestamp:
 | `country`, `state`, `city`, `station` | station identity/location tag from CPCB |
 | `latitude`, `longitude` | station coordinates |
 | `last_update` | CPCB's reported observation timestamp |
-| `PM2.5`, `PM10`, `NO2`, `SO2`, `CO`, `OZONE` | **Probably CPCB AQI sub-index values (0–500 scale), NOT concentrations — see warning below.** |
+| `PM2.5`, `PM10`, `NO2`, `SO2`, `CO`, `OZONE` | **CPCB AQI sub-index values (0–500), NOT concentrations** — validated, see below |
 
-> **Warning: these are likely not µg/m³.** An earlier version of this README called
-> them concentrations; that was an assumption, and a cross-check suggests it is wrong.
-> Comparing DTU Delhi on 2026-09-25 against OpenAQ's archive (true concentrations),
-> converting OpenAQ's trailing **24-hour average** PM2.5 into the CPCB sub-index gave
-> 53 at 12:00 (feed: 53) and 37 at 18:00 (feed: 39); PM10 gave 82/70 (feed: 77/67).
-> That is a close match, and the feed's CO values (e.g. 51–95) are far too large to be
-> concentrations. Caveat: one station, two timestamps, particulates only — CO/NO2/SO2/O3
-> are unverified. **Do not compare these columns directly against AOD-derived PM2.5
-> (a µg/m³ concentration) until this is settled**; invert the CPCB breakpoint tables to
-> get back to concentrations, or use a source that reports concentrations (OpenAQ).
+> **These are not µg/m³ — validated.** An earlier README called them concentrations (an assumption); a
+> one-station check suggested otherwise, and `scripts/validate_feed_units.py` now tests it properly: ~800
+> feed readings per pollutant across ~60 stations (17–25 Sep, before the outage) against OpenAQ's true
+> concentrations. Each column is the **CPCB AQI sub-index of the standard averaging window**:
+>
+> | column | what it is | match to the sub-index of OpenAQ's concentration (mean error; within ±5 points) |
+> |---|---|---|
+> | NO2 | 24 h mean | 0.6 pts; 99.5% |
+> | SO2 | 24 h mean | 0.4 pts; 100% |
+> | CO | **current** 8 h mean (not the 24 h max) | 1.9 pts; 94% |
+> | PM10 | 24 h mean | 2.9 pts; 85% |
+> | OZONE | current 8 h mean | 4.8 pts; 72% |
+> | PM2.5 | 24 h mean | 6.7 pts; 65% |
+>
+> As raw concentrations they miss badly (PM2.5: 50 µg/m³ mean error; feed median 93 vs true 52). Spearman
+> correlations with the sub-index are 0.97–0.998. PM2.5's larger point error is expected: its table is
+> steepest (1.67 points per µg/m³), so small differences in how CPCB and OpenAQ average the same data show up.
+>
+> **Converting back:** the tables are monotone, so `scripts/convert_feed.py` inverts them
+> (`data/processed/feed_concentrations.csv`). Recovered concentrations match OpenAQ to a **median relative
+> error of 1.4–3.2%** for PM2.5, PM10, NO2, SO2 and CO; **ozone is worse (median 9.6%, 90th percentile
+> 30%) — treat it with care.** What comes back is a **daily-scale average, never an hourly value**
+> (24 h mean, or current 8 h mean for ozone/CO). Readings at the ceiling (index 500) are censored: only a
+> lower bound. This is what makes the 13 Delhi stations that exist *only* in the feed, and any dates OpenAQ
+> has not published, usable for daily-scale analysis.
 
 ## Component: NASA FIRMS fire detections
 
@@ -374,9 +389,12 @@ corrupt every downstream comparison.
   90 days are considered.
 - **Encoding:** the archive's `units` column contains a raw `0xB5` byte ("µ"), so files
   are decoded as latin-1, not UTF-8.
-- **CO units are mislabelled:** the archive says `ppb`, but the median CO value is 0.8,
-  which is a realistic ppm or mg/m³ figure, not 0.8 ppb. Don't trust the CO `units`
-  column; the other gases check out (NO₂ median 23 ppb, plausible).
+- **The gas units in the `units` column are wrong.** OpenAQ labels NO₂, SO₂ and CO "ppb", but the numbers
+  are CPCB's native units: **NO₂ and SO₂ in µg/m³, CO in mg/m³.** Found by the feed validation: the feed's
+  NO₂/SO₂ sub-indices match OpenAQ's values only with *no* unit conversion (24.5 → 30.6 and 9.75 → 12.2 vs
+  feed medians 31 and 12; applying ×1.88 / ×2.62 gives 58 and 32). Earlier text here that NO₂ at "23 ppb
+  is plausible" was wrong for that reason. PM and ozone are labelled correctly (µg/m³). Do not trust the
+  `units` string for NO₂, SO₂ or CO.
 
 ### Coverage and freshness
 The archive **stalled 7–12 Oct 2026 and then back-filled those days about a week later**

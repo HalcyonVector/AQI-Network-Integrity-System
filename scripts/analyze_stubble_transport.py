@@ -261,6 +261,34 @@ def delhi_daily_met(era5: pd.DataFrame, min_steps: int = 7) -> pd.DataFrame:
     return out[out["steps"] >= min_steps].drop(columns="steps")
 
 
+RAIN_DAY_MM = 1.0  # a day with at least this much area-mean rain is a "wet" day
+WASHOUT_DAYS = 2  # ...and PM2.5 is treated as still suppressed on the day itself and this many days after
+
+
+def delhi_daily_precip(hourly: pd.DataFrame) -> pd.DataFrame:
+    """Daily (IST) rain over Delhi from ERA5 hourly files: area-mean total in mm, and `washout`, True on a
+    wet day (>= RAIN_DAY_MM) and the WASHOUT_DAYS days after it, since rain scrubs particulates and the
+    effect lingers. ERA5 labels each hour with its END, so the value at 06:00 UTC is 05:00-06:00 UTC; an
+    IST day D therefore owns the hours ending in (D 00:00 IST, D+1 00:00 IST], and a day needs all 24."""
+    if hourly.empty or "precip_mm_delhi_mean" not in hourly:
+        return pd.DataFrame(columns=["date", "precip_delhi_mm", "washout"])
+    h = hourly.copy()
+    h["time"] = pd.to_datetime(h["time"])
+    ist = h["time"] + IST_OFFSET
+    h["date"] = (ist - pd.Timedelta(minutes=1)).dt.strftime("%Y-%m-%d")  # an hour ending exactly at 00:00 IST belongs to the day it closes
+    d = h.groupby("date").agg(precip_delhi_mm=("precip_mm_delhi_mean", "sum"), hours=("precip_mm_delhi_mean", "size")).reset_index()
+    d = d[d["hours"] >= 24].drop(columns="hours").sort_values("date").reset_index(drop=True)
+    wet = d["precip_delhi_mm"] >= RAIN_DAY_MM
+    # only dates actually present; a gap in the record must not silently extend a washout window
+    dates = pd.to_datetime(d["date"])
+    washout = pd.Series(False, index=d.index)
+    for i in np.flatnonzero(wet.to_numpy()):
+        washout |= (dates >= dates[i]) & (dates <= dates[i] + pd.Timedelta(days=WASHOUT_DAYS))
+    d["washout"] = washout
+    d["precip_delhi_mm"] = d["precip_delhi_mm"].round(3)
+    return d
+
+
 def baseline_fire_counts(fires: pd.DataFrame) -> pd.DataFrame:
     near = haversine_km(fires["latitude"].to_numpy(), fires["longitude"].to_numpy(), DELHI[0], DELHI[1]) <= NEAR_RADIUS_KM
     f = fires.copy()
@@ -285,6 +313,20 @@ def valid_exposure_days(wind: WindField, max_hours: int = MAX_TRAVEL_HOURS) -> t
 
 
 MET_CONTROLS = ["blh_delhi_max", "t2m_delhi"]
+
+
+def dry_days_association(daily: pd.DataFrame, exposure_col: str) -> dict | None:
+    """The association restricted to days NOT affected by recent rain (washout == False). If rain were
+    what made the early days clean, restricting to dry days should weaken the association; if it holds,
+    rain is not the explanation. Returns None when there are too few dry days to say anything."""
+    if "washout" not in daily.columns:
+        return None
+    d = daily.dropna(subset=[exposure_col, "pm25_delhi", "washout"])
+    dry = d[~d["washout"].astype(bool)]
+    if len(dry) < MIN_DAYS_FOR_ASSOCIATION:
+        return {"n_dry_days": len(dry), "n_wet_days": int(len(d) - len(dry)), "spearman": None, "perm_p": None, "note": "too few dry days"}
+    rho, p = permutation_spearman(dry[exposure_col].to_numpy(), dry["pm25_delhi"].to_numpy())
+    return {"n_dry_days": len(dry), "n_wet_days": int(len(d) - len(dry)), "spearman": round(rho, 3), "perm_p": round(p, 4), "note": ""}
 
 
 def association_table(daily: pd.DataFrame, exposure_cols: list[str]) -> pd.DataFrame:
@@ -346,6 +388,8 @@ def main() -> int:
 
     daily = baseline_fire_counts(fires).merge(delhi_daily_pm_and_wind(openaq, station_city), on="date", how="outer")
     daily = daily.merge(delhi_daily_met(wind_raw), on="date", how="left")
+    precip = _read_many("era5_precip_*.csv")
+    daily = daily.merge(delhi_daily_precip(precip), on="date", how="left")
 
     # PRE-REGISTERED, before looking at any result with these variables: the primary exposure uses 925 hPa
     # winds with no tuning factor, and the primary confound control is boundary-layer height + temperature.
@@ -385,6 +429,13 @@ def main() -> int:
     print(analysis[[c for c in show if c in analysis.columns]].dropna(subset=["pm25_delhi"]).round(1).to_string(index=False))
     print(f"\nAssociation with Delhi daily PM2.5. PRIMARY = {primary}, lag 0, controlling boundary-layer height + temperature:")
     print(assoc.to_string(index=False))
+    if "precip_delhi_mm" in analysis.columns and analysis["precip_delhi_mm"].notna().any():
+        wet = analysis[analysis["washout"].astype(bool)]
+        print(f"\nRain check: {len(wet)} of {int(analysis['precip_delhi_mm'].notna().sum())} analysed days fall in a rain-washout window "
+              f"(>= {RAIN_DAY_MM:.0f} mm area-mean rain that day or in the previous {WASHOUT_DAYS} days): "
+              f"{', '.join(wet['date']) or 'none'}")
+        dry = dry_days_association(analysis, primary)
+        print(f"Primary association on rain-free days only: {dry}")
     return 0
 
 

@@ -67,6 +67,7 @@ if ($LASTEXITCODE -ne 0) {
 # Derived products and the dashboard run AFTER all fetches, each isolated so one failing does not stop
 # the rest. Order matters: the filled series and the dashboard read what the analyses wrote.
 foreach ($step in @(
+    @("convert_feed", "feed-conversion"),
     @("analyze_neighbor_consistency", "neighbours"),
     @("build_filled_series", "filled"),
     @("analyze_station_bias", "satellite-consistency"),
