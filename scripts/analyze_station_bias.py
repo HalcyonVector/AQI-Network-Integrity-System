@@ -39,6 +39,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 from scipy import stats
+from qc import drop_flatlined_hours
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 RAW_DIR = PROJECT_ROOT / "data" / "raw"
@@ -204,6 +205,10 @@ def main() -> int:
         print("Need both data/raw/openaq_hourly_*.csv and aod_ncr_*.csv -- run the fetchers/backfills first.")
         return 1
 
+    openaq, stuck = drop_flatlined_hours(openaq)
+    if len(stuck):
+        print(f"QC: removed {int(stuck['hours_removed'].sum())} stuck-sensor station-hours "
+              f"({stuck['station'].nunique()} stations) before analysis")
     joined = join_satellite(ground_window_daily(openaq), aod)
     resid_df, day_stats = daily_residuals(joined)
     ok, median_rho = signal_gate(day_stats)

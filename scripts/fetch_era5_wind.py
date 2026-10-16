@@ -39,7 +39,16 @@ from datewin import trailing_window
 # on 2026-09-17 -- re-check that page if requests start failing; CDS has renamed/
 # restructured datasets before (the whole CDS-Beta migration in 2024).
 DATASET = "reanalysis-era5-single-levels"
-VARIABLES = ["10m_u_component_of_wind", "10m_v_component_of_wind"]
+# 10 m wind (the original pull) plus the two variables the stubble analysis lacked: boundary-layer
+# height (the confounder it could not control for) and 2 m temperature.
+VARIABLES = ["10m_u_component_of_wind", "10m_v_component_of_wind", "boundary_layer_height", "2m_temperature"]
+
+# Transport-layer wind. 10 m wind badly understates how fast air actually moves regional smoke, which
+# forced an arbitrary "speed factor" in the attribution. 925 hPa (~750 m, inside the daytime boundary
+# layer over the Indo-Gangetic Plain) is a standard choice for regional transport. Chosen a priori.
+PRESSURE_DATASET = "reanalysis-era5-pressure-levels"
+PRESSURE_VARIABLES = ["u_component_of_wind", "v_component_of_wind"]
+PRESSURE_LEVEL = "925"
 
 # North, West, South, East -- generous box covering the same stubble-burning source
 # belt as the FIRMS pull (Punjab/Haryana/NCR/western UP), so wind vectors line up
@@ -100,6 +109,38 @@ def download_wind_nc(client, date: datetime, logger: logging.Logger) -> Path:
     return tmp_path
 
 
+def download_pressure_nc(client, date: datetime, logger: logging.Logger) -> Path:
+    request = {
+        "product_type": ["reanalysis"],
+        "variable": PRESSURE_VARIABLES,
+        "pressure_level": [PRESSURE_LEVEL],
+        "year": [str(date.year)],
+        "month": [f"{date.month:02d}"],
+        "day": [f"{date.day:02d}"],
+        "time": HOURS,
+        "area": AREA,
+        "data_format": "netcdf",
+        "download_format": "unarchived",
+    }
+    tmp_path = Path(tempfile.gettempdir()) / f"era5_{PRESSURE_LEVEL}hpa_{date:%Y%m%d}.nc"
+    logger.info("Requesting ERA5 %s hPa wind for %s", PRESSURE_LEVEL, date.strftime("%Y-%m-%d"))
+    client.retrieve(PRESSURE_DATASET, request).download(str(tmp_path))
+    logger.info("Downloaded %s", tmp_path)
+    return tmp_path
+
+
+def merge_levels(single: pd.DataFrame, pressure: pd.DataFrame, logger: logging.Logger) -> pd.DataFrame:
+    """Join the pressure-level columns onto the single-level frame by (time, lat, lon). Fails if the
+    two grids disagree rather than silently writing holes into the transport-layer wind."""
+    pressure = pressure.drop(columns=[c for c in ("expver",) if c in pressure.columns])
+    merged = single.merge(pressure, on=["time", "latitude", "longitude"], how="left")
+    missing = int(merged[[c for c in pressure.columns if c.endswith("925_ms")]].isna().any(axis=1).sum())
+    if missing:
+        raise ValueError(f"{missing} of {len(merged)} grid points have no {PRESSURE_LEVEL} hPa wind after merging")
+    logger.info("Merged %s hPa wind onto %d single-level rows", PRESSURE_LEVEL, len(merged))
+    return merged
+
+
 def nc_to_dataframe(nc_path: Path, date: datetime, logger: logging.Logger) -> pd.DataFrame:
     # NetCDF, not GRIB: GRIB requires the cfgrib package, which needs the native
     # ecCodes C library -- no pip-installable wheel on Windows (confirmed by
@@ -132,18 +173,24 @@ def dataset_to_dataframe(ds, logger: logging.Logger) -> pd.DataFrame:
     # The CDS NetCDF names its time coordinate `valid_time`, not `time` (found on
     # the first live run: a `time`-only column filter silently wrote every row
     # with no timestamp). Fail loudly if neither is present rather than dropping it.
-    df = df.rename(columns={"u10": "u10_ms", "v10": "v10_ms", "valid_time": "time"})
+    renames = {"u10": "u10_ms", "v10": "v10_ms", "blh": "blh_m", "t2m": "t2m_k", "valid_time": "time"}
+    if "pressure_level" in df.columns:  # a pressure-level file: its u/v are the transport-layer wind
+        level = int(df["pressure_level"].iloc[0])
+        renames.update({"u": f"u{level}_ms", "v": f"v{level}_ms"})
+        df = df.drop(columns="pressure_level")
+    df = df.rename(columns=renames)
     if "time" not in df.columns:
         raise ValueError(f"ERA5 response has no recognizable time coordinate; columns: {df.columns.tolist()}")
 
     # `expver` marks final ERA5 ("0001") vs preliminary ERA5T ("0005", revisable);
     # in the real file it is a per-timestep coordinate, so keep it as a column.
-    keep_cols = [c for c in ("time", "latitude", "longitude", "u10_ms", "v10_ms", "expver") if c in df.columns]
-    df = df[keep_cols].copy()
+    wanted = ("time", "latitude", "longitude", "u10_ms", "v10_ms", "blh_m", "t2m_k", "u925_ms", "v925_ms", "expver")
+    df = df[[c for c in wanted if c in df.columns]].copy()
 
-    df["wind_speed_ms"] = (df["u10_ms"] ** 2 + df["v10_ms"] ** 2) ** 0.5
-    # Meteorological convention: direction wind is blowing FROM, 0=N, 90=E.
-    df["wind_from_deg"] = (np.degrees(np.arctan2(-df["u10_ms"], -df["v10_ms"]))) % 360
+    if "u10_ms" in df.columns:
+        df["wind_speed_ms"] = (df["u10_ms"] ** 2 + df["v10_ms"] ** 2) ** 0.5
+        # Meteorological convention: direction wind is blowing FROM, 0=N, 90=E.
+        df["wind_from_deg"] = (np.degrees(np.arctan2(-df["u10_ms"], -df["v10_ms"]))) % 360
 
     return df
 
@@ -194,17 +241,19 @@ def main() -> int:
 
     failures = 0
     for target_date in dates:
-        nc_path = None
+        paths = []
         try:
-            nc_path = download_wind_nc(client, target_date, logger)
-            df = nc_to_dataframe(nc_path, target_date, logger)
+            paths.append(download_wind_nc(client, target_date, logger))
+            single = nc_to_dataframe(paths[-1], target_date, logger)
+            paths.append(download_pressure_nc(client, target_date, logger))
+            df = merge_levels(single, nc_to_dataframe(paths[-1], target_date, logger), logger)
         except Exception:
-            logger.exception("ERA5 wind fetch/parse failed for %s", target_date.strftime("%Y-%m-%d"))
+            logger.exception("ERA5 fetch/parse failed for %s", target_date.strftime("%Y-%m-%d"))
             failures += 1
             continue
         finally:
-            if nc_path is not None:
-                nc_path.unlink(missing_ok=True)
+            for path in paths:
+                path.unlink(missing_ok=True)
 
         if df.empty:
             logger.warning("No wind data parsed for %s.", target_date.strftime("%Y-%m-%d"))

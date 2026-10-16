@@ -74,22 +74,22 @@ already sets this header, but if you fork the request logic elsewhere, carry it 
 
 ### Daily automation (Windows Task Scheduler)
 
-`scripts/run_and_push.ps1` runs the fetch, then commits and pushes any new data to
-GitHub. Already registered as scheduled task **`AQI-NIS-CPCB-Fetch`**, triggering
-daily at **12:00 and 19:00** — matching Grid Sentinel's `GridSentinel-Download`
-schedule. `Get-ScheduledTask -TaskName "AQI-NIS-CPCB-Fetch"` to inspect it, or open
-Task Scheduler's GUI.
+`scripts/run_and_push.ps1` is the daily driver. Registered as scheduled task
+**`AQI-NIS-CPCB-Fetch`**, triggering at **12:00 and 19:00** (matching Grid Sentinel's schedule), plus
+`StartWhenAvailable` so a missed slot runs when the machine is next on. In order, each step isolated
+so one failing never stops the others:
 
-Manually running the wrapper directly (`powershell -File scripts\run_and_push.ps1`)
-was verified end-to-end: fetch, append, commit, push all succeeded. Triggering the
-*registered task* via `schtasks /run` from within this automated session reported
-success but never actually launched the script (no log output, no process) — almost
-certainly a window-station/session-isolation artifact of driving Task Scheduler from
-an automated tool rather than a real interactive desktop session, since Grid
-Sentinel's identical setup (`LogonType: Interactive`) has genuine run history on this
-machine. Worth a quick manual sanity check the first time it's meant to fire (12:00 or
-19:00) — right-click the task in Task Scheduler -> Run, or just check
-`logs/run_and_push_YYYY-MM-DD.log` after that time passes with the machine on.
+1. Fetches: CPCB feed, OpenAQ, FIRMS, AOD, ERA5 (each re-processes a trailing window and self-heals).
+2. Derived: neighbour consistency, gap-filled series, satellite consistency, stubble transport, dashboard.
+3. Commits `data/raw`, `data/processed`, `data/reference` and `dashboard/` and pushes.
+
+It exits non-zero if any step failed, and names which ones in `logs/run_and_push_YYYY-MM-DD.log`.
+
+**Verified:** the scheduler fires on its own (runs observed at the 12:00 and 19:00 marks on this
+machine from 17 Sep onward, including through the CPCB outage, when it kept committing the other
+sources). Triggering the task with `schtasks /run` *from an automated session* reported success but
+launched nothing — a session-isolation artefact of that tool, not a problem with the real trigger.
+Runs on days the machine was off are simply missing, which is why every fetcher re-processes a window.
 
 ### Data schema
 
@@ -313,6 +313,9 @@ One row per grid point per 3-hourly timestamp:
 | `expver` | `0005` = preliminary ERA5T (revisable), `0001` = final ERA5 |
 | `wind_speed_ms` | derived magnitude |
 | `wind_from_deg` | derived direction wind is blowing *from*, meteorological convention (0=N, 90=E) |
+| `blh_m` | boundary-layer height (m): how deep the mixed layer is. The confounder the first stubble pass could not control for |
+| `t2m_k` | 2 m temperature (K): a proxy for post-monsoon cooling that arrives with the burning season |
+| `u925_ms`, `v925_ms` | wind at 925 hPa (~750 m): the transport-layer wind used for fire trajectories |
 
 ## Component: OpenAQ archive (CPCB station concentrations)
 
@@ -383,6 +386,44 @@ instead of fetching "yesterday"; days not yet published just log a warning and a
 up on a later run. Backfilled: 2026-09-26 → 2026-10-12 (the whole data.gov.in outage up to
 12 Oct). The 13 new Delhi DPCC stations that appeared in the data.gov.in feed after the
 outage are **not in OpenAQ** (unmatched), so for them only the feed exists.
+
+## Data-quality layer (`scripts/qc.py`)
+
+Detects **stuck sensors** — hourly PM values that repeat *exactly* for ≥ 6 hours (hourly values average
+four 15-minute readings, so that is not a plausible measurement) — and removes those hours before the
+satellite-consistency and stubble analyses; neighbour-based analyses blank them for any station used as a
+reference but still inspect them on the station itself. Real examples: JNU read exactly 1.00 µg/m³ for
+8 h while its neighbours read 33; Vikas Sadan sat at 102 for 19 h while they read 52–83.
+
+**Measured impact is small, and the README used to oversell it:** 111 of 21,303 station-hours (0.5%) are
+stuck, and removing them barely changes neighbour predictions (MAE 0.3296 → 0.3299), because a *median*
+over neighbours shrugs off one bad station. It matters for non-robust consumers (a mean over neighbours is
+badly corrupted — tested) and so a stuck value does not sit inside a station's own daily means.
+
+## Gap-filled hourly PM2.5 (`scripts/build_filled_series.py`)
+
+`data/processed/pm25_hourly_filled.csv`: a cleaned hourly PM2.5 series per station where **every value
+says what it is** (`source`): `observed`, `neighbour_fill` (an estimate), `stuck_replaced`,
+`stuck_removed`, or `unfilled`. Observed values are never modified. Only what the backtest validated is
+filled: **interior gaps of at most 24 hours**, from the neighbour median, each carrying
+`expected_abs_error_pct` (~24%, from the backtest). Leading/trailing blanks (a station not yet reporting,
+or offline) are not gaps and stay blank. Stuck hours longer than 24 h (Vikas Sadan's 37-hour run) are
+removed rather than replaced.
+
+First real run: 21,192 measured hours → 22,388 usable (+5.6%); 1,173 estimated; 111 stuck hours handled.
+**Not covered:** a network-wide outage (nobody to estimate from). The satellite tracks the city's day-to-day
+PM2.5 but not stations, so only a regional daily estimate is conceivable there, and it is not validated.
+
+## Dashboard (`scripts/build_dashboard.py` → `dashboard/index.html`)
+
+A self-contained static page (no server, no JavaScript, no external requests; inline SVG charts), rebuilt
+by the daily run. It opens with **pipeline health** because this project's worst problems were silent
+holes. Each source shows **OK** (fresh), **GAPS** (fresh but days missing behind it — an earlier version
+showed the CPCB feed green beside 18 missing days, which is exactly the lie this state exists to prevent),
+**STALE**, or **DOWN**, each judged against that source's own normal publication lag. Below that: Delhi
+PM2.5 against fire exposure, station health, and agreement with the satellite — each next to its caveat.
+Station names and reasons are HTML-escaped. Chart geometry is checked in tests (axis direction, bounds,
+bar proportions) rather than by eye.
 
 ## Analysis: station vs satellite consistency (component 1, first pass)
 
@@ -526,7 +567,7 @@ restricting to upwind neighbours leaves 2–3 stations instead of 6, so the medi
 plausible physical idea that the data says no to — kept in the code and tests so it can be
 re-checked when a finer wind source or denser network exists.
 
-### 2. Station health: 6 flagged, 1 on watch (of 61)
+### 2. Station health: 3 flagged (all stuck sensors), 1 on watch (of 61)
 Flatlines are the clearest and need no statistics — a stuck sensor repeating one value:
 
 | station | stuck at | for | neighbours meanwhile |
@@ -537,19 +578,28 @@ Flatlines are the clearest and need no statistics — a stuck sensor repeating o
 | JNU, Delhi | **1.00** µg/m³ | 8 h (29 Sep) | 33 |
 | Sector 11, Faridabad | 53.6 µg/m³ | 7 h (12 Oct) | 22 |
 
-Also flagged as unusually noisy relative to their neighbours: Govindpuram (Ghaziabad), NSIT
-Dwarka, Sector-51 (Gurugram). **On watch:** IHBAS Dilshad Garden, whose daily residual vs its
-neighbours falls steadily from +0.91 to −0.59 log (a ~4.5× change) over 17 days — p = 0.009 on its
-own after the autocorrelation correction but q = 0.28 across the network, so *not confirmed*.
+**On watch:** IHBAS Dilshad Garden, whose daily residual vs its neighbours falls steadily from
++0.91 to −0.59 log (a ~4.5× change) over 17 days — p = 0.009 on its own after the autocorrelation
+correction but q = 0.28 across the network, so *not confirmed*.
 
-**Cross-check with the satellite analysis:** Sector-51 Gurugram and IHBAS were also the two
-stations that sat right at the threshold in the satellite-decoupling test (ρ −0.34 and −0.43,
-q ≈ 0.10). Two reference signals (satellite, neighbours) pointing at the same stations is worth a
-human look — though both use the same ground PM2.5, so it is not independent confirmation of the
-*ground* data, and a station beside a road or kiln would produce exactly this too.
+**An earlier version also flagged five stations as "unusually noisy" (Govindpuram, NSIT Dwarka,
+Sector 30, Sector-51, Vikas Sadan). That was an artefact and is retracted.** Residual noise
+correlates with how far a station's neighbours are (Spearman +0.44, p = 0.0004), and all five were
+isolated stations — neighbours 9–12.5 km away on average vs a 5.4 km network median — which are
+predicted worse *by construction*. Noise is now judged against what the station's isolation
+predicts (robust log-log fit across stations); once adjusted, none of the five is noisy.
 
-### How the flag rules got to 6 (what the first run taught)
-The first version flagged **14 of 61** — too many to be a fault list. Fixing it was a sequence
+**Cross-check with the satellite analysis:** IHBAS is also one of the two stations right at the
+threshold in the satellite-decoupling test (ρ −0.43, q ≈ 0.10). Two reference signals (satellite,
+neighbours) pointing at the same station is worth a human look — though both use the same ground
+PM2.5, so it is not independent confirmation of the *ground* data, and a station beside a road or
+kiln would produce exactly this too. (An earlier draft of this README also claimed Sector-51
+Gurugram was picked out by both methods; that rested on the retracted noise flag and no longer
+holds.)
+
+### How the flag rules got to 3 (what the first runs taught)
+The first version flagged **14 of 61** — too many to be a fault list — and even after the first
+round of fixes, 5 of the 8 remaining flags were still artefacts (item 5). Fixing it was a sequence
 of real problems, each pinned by a test:
 1. Significance ≠ importance: a −0.003 log/day trend (0.3%/day) was "significant". Now needs
    ≥ 0.02 log/day.
@@ -562,6 +612,9 @@ of real problems, each pinned by a test:
    significant (≥ ln 2, p < 0.05 alone), is a *watch*.
 4. A smooth drift was being double-counted as "noisy" and as a sustained departure. Noise and
    episodes are now measured around each station's own robust trend.
+5. **"Noisy" was measuring isolation, not behaviour** (see above). Found only by asking why the five
+   flagged stations had anything in common. Lesson: when several flags share a trait, test whether the
+   trait is the cause before believing the flags.
 
 ### 3. Gap-fill backtest (component 2, single-station gaps)
 Mask a block of hours at one station, fill it, compare with the truth (MAE in µg/m³, scored only
@@ -608,7 +661,7 @@ rule out an API-layer restriction the way CPCB's User-Agent gate did.
 |---|---|---|
 | 1 | Flag stations drifting from the satellite estimate | **First pass built** (see Analysis). Nothing flaggable yet — needs ~3–4 weeks of paired days. |
 | 2 | Gap-fill missing station data | **Backtested.** Neighbour-based fill beats persistence for gaps ≥ 6 h (26–47% lower error). Network-wide outages can only be filled regionally from the satellite (ρ 0.68 city-level). Not wired into the pipeline yet. |
-| 3 | Neighbour consistency (for when the satellite is blind) | **Built.** Found 5 stuck-sensor episodes at 3 stations and 1 watch. Wind conditioning was tested and *rejected* — it makes predictions worse. |
+| 3 | Neighbour consistency (for when the satellite is blind) | **Built.** Found 5 stuck-sensor episodes at 3 stations, plus 1 watch (an earlier "noisy" flag was an isolation artefact and was retracted). Wind conditioning was tested and *rejected* — it makes predictions worse. |
 | 4 | Stubble-burning transport attribution | **First pass built** (see Analysis). Suggestive, not conclusive: one regime change in 13 days, confounded by season-onset meteorology. Needs Oct–Nov data. |
 
 Dashboard: not started.

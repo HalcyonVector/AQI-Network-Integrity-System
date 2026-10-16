@@ -12,8 +12,8 @@ station,n_days,rho,network_median_rho,z,p_low,q_value,flag,reason
 "NSUT Jaffarpur, Delhi - DPCC",13,0.225,0.6,-1.384,0.083,0.381,False,tracks satellite like the network
 "Anand Vihar, Delhi - DPCC",9,0.117,0.6,-1.331,0.092,0.381,False,tracks satellite like the network
 "NSIT Dwarka, Delhi - CPCB",9,0.117,0.6,-1.331,0.092,0.381,False,tracks satellite like the network
-"Commonwealth Sports Complex, Delhi - DPCC",10,0.297,0.6,-0.966,0.167,0.612,False,tracks satellite like the network
-"Vikas Sadan, Gurugram - HSPCB",11,0.323,0.6,-0.954,0.17,0.612,False,tracks satellite like the network
+"Vikas Sadan, Gurugram - HSPCB",8,0.214,0.6,-1.003,0.158,0.601,False,tracks satellite like the network
+"Commonwealth Sports Complex, Delhi - DPCC",10,0.297,0.6,-0.966,0.167,0.601,False,tracks satellite like the network
 "Wave City, Ghaziabad - UPPCB",8,0.333,0.6,-0.731,0.232,0.784,False,tracks satellite like the network
 "Vivek Vihar, Delhi - DPCC",9,0.45,0.6,-0.482,0.315,0.908,False,tracks satellite like the network
 "IGNOU_Maidan Garhi, Delhi - DPCC",10,0.479,0.6,-0.429,0.334,0.908,False,tracks satellite like the network

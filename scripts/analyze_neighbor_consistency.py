@@ -33,6 +33,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 from scipy import stats
+from qc import FLATLINE_MIN_HOURS, PM_MAX, flatline_runs, mask_flatlines, pm_matrix, run_lengths  # noqa: F401
 from windfield import build_wind_field, haversine_km, wind_at
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
@@ -45,10 +46,8 @@ MIN_NEIGHBORS = 3
 UPWIND_HALF_ANGLE_DEG = 60.0
 UPWIND_MIN_SPEED_MS = 1.5
 MIN_UPWIND = 2
-PM_MAX = 1500.0  # above this a reading is treated as a glitch
 IST_OFFSET = pd.Timedelta(hours=5, minutes=30)
 
-FLATLINE_MIN_HOURS = 6
 ANOMALY_Z = 3.0
 ANOMALY_ROLL_HOURS = 6
 ANOMALY_MIN_HOURS = 12
@@ -70,16 +69,6 @@ MIN_WATCH_DRIFT_LOG = float(np.log(2))  # a doubling/halving vs neighbours earns
 
 
 # ---------------------------------------------------------------- data
-
-
-def pm_matrix(openaq_long: pd.DataFrame) -> pd.DataFrame:
-    """Hourly PM2.5 as a (hours x stations) frame, IST hour start, on a complete hourly grid.
-    Non-positive or implausibly large readings become NaN."""
-    pm = openaq_long[openaq_long["parameter"] == "pm25"].copy()
-    pm["ts"] = pd.to_datetime(pm["hour_start_ist"].str[:19])
-    m = pm.pivot_table(index="ts", columns="station", values="value", aggfunc="mean")
-    m = m.reindex(pd.date_range(m.index.min(), m.index.max(), freq="h"))
-    return m.where((m > 0) & (m <= PM_MAX))
 
 
 def bearing_deg(lat1, lon1, lat2, lon2):
@@ -222,32 +211,6 @@ def compare_predictors(logp: np.ndarray, preds: dict, speed: np.ndarray, station
 # ---------------------------------------------------------------- station health
 
 
-def run_lengths(mask: np.ndarray) -> list[tuple[int, int]]:
-    """(start, length) of each run of True in a 1-D boolean array."""
-    out, start = [], None
-    for i, v in enumerate(mask):
-        if v and start is None:
-            start = i
-        elif not v and start is not None:
-            out.append((start, i - start))
-            start = None
-    if start is not None:
-        out.append((start, len(mask) - start))
-    return out
-
-
-def flatline_runs(values: np.ndarray, min_hours: int = FLATLINE_MIN_HOURS) -> list[tuple[int, int]]:
-    """Runs where the hourly value repeats EXACTLY (a stuck sensor), as (start, n_hours)
-    counting the first hour of the run, with at least min_hours identical consecutive hours."""
-    same = np.zeros(len(values), dtype=bool)
-    same[1:] = np.isfinite(values[1:]) & np.isfinite(values[:-1]) & (np.abs(values[1:] - values[:-1]) < 1e-9)
-    runs = []
-    for start, length in run_lengths(same):
-        if length + 1 >= min_hours:
-            runs.append((start - 1, length + 1))
-    return runs
-
-
 def benjamini_hochberg(p: np.ndarray) -> np.ndarray:
     p = np.asarray(p, float)
     m = len(p)
@@ -282,6 +245,42 @@ def trend_test(y: np.ndarray) -> dict:
             "p_adj": float(2 * stats.norm.sf(abs(z_adj))), "r1": r1}
 
 
+def isolation_adjusted_noise_ratio(sigma: pd.Series, mean_neighbor_km: pd.Series) -> pd.Series:
+    """Observed residual noise divided by the noise EXPECTED for that station's isolation.
+
+    A station whose neighbours are far away is predicted worse by construction: on real data the
+    residual noise correlated with mean neighbour distance (Spearman +0.44, p = 0.0004), and all
+    five stations first flagged "noisy" were isolated ones (9-12 km to neighbours vs a 5 km median).
+    The expectation is a robust log-log (Theil-Sen) fit of noise against distance across stations.
+    Needs >= 8 stations with both values; otherwise falls back to noise relative to the median.
+    """
+    sigma = pd.Series(sigma, dtype=float)
+    dist = pd.Series(mean_neighbor_km, dtype=float).reindex(sigma.index)
+    ok = np.isfinite(sigma) & np.isfinite(dist) & (sigma > 0) & (dist > 0)
+    if ok.sum() < 8:
+        return sigma / sigma.median()
+    slope, intercept, _, _ = stats.theilslopes(np.log(sigma[ok]), np.log(dist[ok]))
+    expected = pd.Series(np.nan, index=sigma.index)
+    expected[ok] = np.exp(intercept + slope * np.log(dist[ok]))
+    ratio = sigma / expected
+    # stations with no usable distance are judged against the median noise instead
+    return ratio.fillna(sigma / sigma.median())
+
+
+def flag_noisy(ratio: pd.Series) -> pd.Series:
+    """True where the (isolation-adjusted) noise ratio is both statistically extreme among stations
+    (median + 3 robust sigma in log space) and practically large (>= NOISY_MIN_RATIO x typical)."""
+    r = pd.Series(ratio, dtype=float)
+    valid = r.dropna()
+    if len(valid) < 8:
+        return pd.Series(False, index=r.index)
+    logr = np.log(r.where(r > 0))
+    center = float(np.nanmedian(logr))
+    mad = float(np.nanmedian(np.abs(logr - center)))
+    cut = max(center + 3 * 1.4826 * mad, center + np.log(NOISY_MIN_RATIO))
+    return (logr > cut).fillna(False)
+
+
 def classify_station(r: pd.Series, noisy_cut: float) -> tuple[str, str]:
     """Turn one station's statistics into (reason text, level) where level is
     flag | watch | ok | none.
@@ -308,8 +307,9 @@ def classify_station(r: pd.Series, noisy_cut: float) -> tuple[str, str]:
         elif r["trend_p"] < 0.05 and abs(total) >= MIN_WATCH_DRIFT_LOG:
             soft.append(f"large apparent drift vs neighbours ({label}; p={r['trend_p']:.3f}, q={r['trend_q']:.2f}: "
                         "not confirmed after multiple-testing correction)")
-    if r["resid_sigma_log"] > noisy_cut:
-        hard.append("unusually noisy vs neighbours")
+    noisy = bool(r["noisy"]) if "noisy" in r.index else r["resid_sigma_log"] > noisy_cut
+    if noisy:
+        hard.append("unusually noisy vs neighbours" + (f" (x{r['noise_ratio']:.1f} what is expected for its isolation)" if "noise_ratio" in r.index and pd.notna(r["noise_ratio"]) else ""))
     if hard:
         return "; ".join(hard + [f"watch: {x}" for x in soft]), "flag"
     if soft:
@@ -317,7 +317,7 @@ def classify_station(r: pd.Series, noisy_cut: float) -> tuple[str, str]:
     return "consistent with neighbours", "ok"
 
 
-def station_health(pm: pd.DataFrame, pred_knn: np.ndarray) -> pd.DataFrame:
+def station_health(pm: pd.DataFrame, pred_knn: np.ndarray, neighbors: dict | None = None) -> pd.DataFrame:
     logp = np.log(pm.to_numpy(float))
     corrected, offsets = offset_corrected(logp, pred_knn)
     resid = logp - corrected
@@ -360,6 +360,12 @@ def station_health(pm: pd.DataFrame, pred_knn: np.ndarray) -> pd.DataFrame:
     sig = df["resid_sigma_log"].dropna()
     noisy_cut = float(max(sig.median() + 3 * 1.4826 * np.median(np.abs(sig - sig.median())), NOISY_MIN_RATIO * sig.median())) if len(sig) >= 8 else np.inf
 
+    if neighbors is not None:
+        by_name = {station: float(np.mean(neighbors[j]["dist"])) if len(neighbors[j]["dist"]) else np.nan
+                   for j, station in enumerate(pm.columns)}
+        df["mean_neighbor_km"] = df["station"].map(by_name)
+        df["noise_ratio"] = isolation_adjusted_noise_ratio(df.set_index("station")["resid_sigma_log"], df.set_index("station")["mean_neighbor_km"]).to_numpy()
+        df["noisy"] = flag_noisy(df["noise_ratio"]).to_numpy()
     evaluated = df.apply(classify_station, axis=1, noisy_cut=noisy_cut, result_type="expand")
     df["reason"], df["level"] = evaluated[0], evaluated[1]
     df["flag"] = df["level"] == "flag"
@@ -427,7 +433,11 @@ def main() -> int:
     if openaq.empty or wind_raw.empty or cpcb.empty:
         print("Need data/raw openaq_hourly_*, era5_wind_* and cpcb_ncr_* files.")
         return 1
-    pm = pm_matrix(openaq)
+    pm_raw = pm_matrix(openaq)
+    # Stuck-sensor hours are blanked for everything that USES a station as a reference (neighbour
+    # predictions, the predictor comparison, the gap-fill backtest). Station health still looks at the
+    # raw values so the flatlines themselves are detected.
+    pm = mask_flatlines(pm_raw)
     stations = list(pm.columns)
     coords = cpcb.dropna(subset=["latitude", "longitude"]).drop_duplicates("station", keep="last")[["station", "latitude", "longitude"]]
     wind = build_wind_field(wind_raw)
@@ -449,7 +459,7 @@ def main() -> int:
           f"median improvement over all-neighbours = {paired['median_improvement_log']:+.4f} log; "
           f"{paired['stations_improved']}/{paired['n_stations']} stations improved; Wilcoxon p = {paired['wilcoxon_p']:.3f}")
 
-    health = station_health(pm, preds["knn_median"])
+    health = station_health(pm_raw, preds["knn_median"], neighbors)
     print(f"\n== 2. Station health (flagged {int(health['flag'].sum())}, watch {int(health['watch'].sum())}, of {len(health)}) ==")
     cols = ["station", "n_hours", "flatline_hours", "anomaly_hours", "trend_log_per_day", "trend_q", "reason"]
     print(health[health["flag"]][cols].head(15).to_string(index=False))

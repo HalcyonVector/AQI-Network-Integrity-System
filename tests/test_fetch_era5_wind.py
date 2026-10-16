@@ -138,3 +138,62 @@ def test_warn_if_partial_day_flags_incomplete_days_only(logger, caplog):
         assert caplog.text == ""
         assert fetch_era5_wind.warn_if_partial_day(partial, datetime(2026, 10, 5), logger) is True
     assert "PARTIAL DAY 2026-10-05: 5 of 8" in caplog.text
+
+
+# ---------------------------------------------------------------- boundary layer, temperature, 925 hPa
+
+
+def _single_level_ds():
+    times = pd.to_datetime(["2026-10-05T00:00", "2026-10-05T03:00"])
+    shape = (2, 2, 2)
+    return xr.Dataset(
+        {
+            "u10": (["valid_time", "latitude", "longitude"], np.full(shape, 1.0)),
+            "v10": (["valid_time", "latitude", "longitude"], np.full(shape, 2.0)),
+            "blh": (["valid_time", "latitude", "longitude"], np.full(shape, 850.0)),
+            "t2m": (["valid_time", "latitude", "longitude"], np.full(shape, 300.0)),
+        },
+        coords={"valid_time": times, "expver": ("valid_time", ["0005", "0005"]), "latitude": [28.5, 28.75], "longitude": [77.0, 77.25]},
+    )
+
+
+def _pressure_ds(value_u=8.0, drop_point=False):
+    times = pd.to_datetime(["2026-10-05T00:00", "2026-10-05T03:00"])
+    shape = (2, 1, 2, 2)
+    ds = xr.Dataset(
+        {
+            "u": (["valid_time", "pressure_level", "latitude", "longitude"], np.full(shape, value_u)),
+            "v": (["valid_time", "pressure_level", "latitude", "longitude"], np.full(shape, 6.0)),
+        },
+        coords={"valid_time": times, "pressure_level": [925], "latitude": [28.5, 28.75], "longitude": [77.0, 77.25]},
+    )
+    return ds.isel(longitude=[0]) if drop_point else ds
+
+
+def test_single_level_parsing_keeps_boundary_layer_height_and_temperature(logger):
+    df = fetch_era5_wind.dataset_to_dataframe(_single_level_ds(), logger)
+    assert {"blh_m", "t2m_k", "u10_ms", "v10_ms", "wind_speed_ms", "wind_from_deg", "expver"} <= set(df.columns)
+    assert (df["blh_m"] == 850.0).all() and (df["t2m_k"] == 300.0).all()
+    assert df["time"].nunique() == 2
+
+
+def test_pressure_level_parsing_names_the_level_and_drops_the_dimension(logger):
+    df = fetch_era5_wind.dataset_to_dataframe(_pressure_ds(), logger)
+    assert {"u925_ms", "v925_ms"} <= set(df.columns)
+    assert "pressure_level" not in df.columns and "wind_speed_ms" not in df.columns
+    assert (df["u925_ms"] == 8.0).all() and len(df) == 8
+
+
+def test_merge_levels_attaches_925hpa_wind_to_every_single_level_row(logger):
+    single = fetch_era5_wind.dataset_to_dataframe(_single_level_ds(), logger)
+    pressure = fetch_era5_wind.dataset_to_dataframe(_pressure_ds(), logger)
+    merged = fetch_era5_wind.merge_levels(single, pressure, logger)
+    assert len(merged) == len(single) == 8
+    assert merged[["u925_ms", "v925_ms", "blh_m", "u10_ms"]].notna().all().all()
+
+
+def test_merge_levels_refuses_to_write_holes_into_the_transport_wind(logger):
+    single = fetch_era5_wind.dataset_to_dataframe(_single_level_ds(), logger)
+    pressure = fetch_era5_wind.dataset_to_dataframe(_pressure_ds(drop_point=True), logger)  # grids disagree
+    with pytest.raises(ValueError, match="925 hPa wind"):
+        fetch_era5_wind.merge_levels(single, pressure, logger)

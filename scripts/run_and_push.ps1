@@ -64,7 +64,24 @@ if ($LASTEXITCODE -ne 0) {
     $failures += "era5"
 }
 
-git add data/raw logs
+# Derived products and the dashboard run AFTER all fetches, each isolated so one failing does not stop
+# the rest. Order matters: the filled series and the dashboard read what the analyses wrote.
+foreach ($step in @(
+    @("analyze_neighbor_consistency", "neighbours"),
+    @("build_filled_series", "filled"),
+    @("analyze_station_bias", "satellite-consistency"),
+    @("analyze_stubble_transport", "stubble"),
+    @("build_dashboard", "dashboard")
+)) {
+    Log "Starting $($step[0])"
+    & $python "scripts\$($step[0]).py"
+    if ($LASTEXITCODE -ne 0) {
+        Log "$($step[0]).py exited with code $LASTEXITCODE"
+        $failures += $step[1]
+    }
+}
+
+git add data/raw data/processed data/reference dashboard logs
 $status = git status --porcelain
 if ([string]::IsNullOrWhiteSpace($status)) {
     Log "No changes to commit"

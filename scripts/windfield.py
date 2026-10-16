@@ -22,7 +22,7 @@ class WindField:
     v: np.ndarray
 
 
-def build_wind_field(df: pd.DataFrame) -> WindField:
+def build_wind_field(df: pd.DataFrame, u_col: str = "u10_ms", v_col: str = "v10_ms") -> WindField:
     df = df.drop_duplicates(["time", "latitude", "longitude"]).copy()
     df["time"] = pd.to_datetime(df["time"])
     times = np.sort(df["time"].unique())
@@ -36,8 +36,8 @@ def build_wind_field(df: pd.DataFrame) -> WindField:
     oi = np.searchsorted(lons, df["longitude"].to_numpy())
     u = np.full((len(times), len(lats), len(lons)), np.nan)
     v = np.full_like(u, np.nan)
-    u[ti, ai, oi] = df["u10_ms"].to_numpy()
-    v[ti, ai, oi] = df["v10_ms"].to_numpy()
+    u[ti, ai, oi] = df[u_col].to_numpy()
+    v[ti, ai, oi] = df[v_col].to_numpy()
     return WindField(times, lats, lons, u, v)
 
 
