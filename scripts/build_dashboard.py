@@ -24,10 +24,13 @@ from pathlib import Path
 
 import pandas as pd
 
+import dashboard_extras as ex
+
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 RAW_DIR = PROJECT_ROOT / "data" / "raw"
 PROC_DIR = PROJECT_ROOT / "data" / "processed"
 OUT_PATH = PROJECT_ROOT / "dashboard" / "index.html"
+LOGS_DIR = PROJECT_ROOT / "logs"
 
 # name, file pattern, what the date in the filename means, normal publication lag in days
 SOURCES = [
@@ -113,9 +116,10 @@ def _scale(v, lo, hi, a, b):
     return a if hi == lo else a + (v - lo) / (hi - lo) * (b - a)
 
 
-def line_bar_svg(dates: list[str], line: list[float | None], bars: list[float | None],
+def line_bar_svg(dates: list[str], line: list[float | None], bars: list[float | None] | None,
                  line_label: str, bar_label: str, width: int = 760, height: int = 280,
-                 rain: list[float | None] | None = None, threshold: float | None = None) -> str:
+                 rain: list[float | None] | None = None, threshold: float | None = None,
+                 tick_fmt=lambda s: s[5:]) -> str:
     """Line (left axis) over bars (right axis), as an SVG string. None values leave gaps.
 
     Optional: `rain` draws cyan bars hanging from the top (own scale, at most a third of the height);
@@ -125,6 +129,8 @@ def line_bar_svg(dates: list[str], line: list[float | None], bars: list[float | 
     n = len(dates)
     if n == 0:
         return '<p class="muted">No data to chart.</p>'
+    has_bars = bars is not None and any(b is not None for b in bars)
+    bars = bars if bars is not None else [None] * n
     lvals = [v for v in line if v is not None]
     bvals = [v for v in bars if v is not None]
     lmax = max(lvals + ([threshold] if threshold else [])) * 1.12 if lvals else 1
@@ -143,7 +149,8 @@ def line_bar_svg(dates: list[str], line: list[float | None], bars: list[float | 
         y = mt + ph * (1 - frac)
         parts.append(f'<line x1="{ml}" x2="{ml + pw}" y1="{y:.1f}" y2="{y:.1f}" class="grid"/>')
         parts.append(f'<text x="{ml - 8}" y="{y + 4:.1f}" class="tick" text-anchor="end">{lmax * frac:.0f}</text>')
-        parts.append(f'<text x="{ml + pw + 8}" y="{y + 4:.1f}" class="tick tick-r">{bmax * frac:.0f}</text>')
+        if has_bars:
+            parts.append(f'<text x="{ml + pw + 8}" y="{y + 4:.1f}" class="tick tick-r">{bmax * frac:.0f}</text>')
     if threshold:
         ty = base - _scale(threshold, 0, lmax, 0, ph)
         parts.append(f'<line x1="{ml}" x2="{ml + pw}" y1="{ty:.1f}" y2="{ty:.1f}" class="std"/>')
@@ -181,7 +188,7 @@ def line_bar_svg(dates: list[str], line: list[float | None], bars: list[float | 
             parts.append(f'<circle cx="{px:.1f}" cy="{py:.1f}" r="3.4" class="dot"><title>{html.escape(d)}: {v:.1f}</title></circle>')
     every = max(1, n // 8)
     for i in range(0, n, every):
-        parts.append(f'<text x="{x(i):.1f}" y="{base + 18}" class="tick" text-anchor="middle">{html.escape(dates[i][5:])}</text>')
+        parts.append(f'<text x="{x(i):.1f}" y="{base + 18}" class="tick" text-anchor="middle">{html.escape(tick_fmt(dates[i]))}</text>')
     parts.append("</svg>")
     return "".join(parts)
 
@@ -368,9 +375,44 @@ background:linear-gradient(180deg,rgba(40,38,110,.55) 0%,rgba(14,16,44,.6) 100%)
 .g-track{position:relative;height:12px;border-radius:999px;background:linear-gradient(90deg,#e11d48,#f59e0b 40%,#34d399 100%);box-shadow:inset 0 1px 3px rgba(0,0,0,.25)}
 .g-dot{position:absolute;top:50%;width:20px;height:20px;border-radius:50%;background:#fff;border:3px solid #1e1b4b;transform:translate(-50%,-50%);box-shadow:0 3px 8px rgba(0,0,0,.4)}
 .g-med{position:absolute;top:-5px;bottom:-5px;width:3px;border-radius:2px;background:var(--fg);opacity:.85;transform:translateX(-50%)}
+
+.nav{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 0}
+.nav a{color:var(--fg);text-decoration:none;font-size:13px;font-weight:600;padding:6px 13px;border-radius:999px;background:linear-gradient(145deg,rgba(255,255,255,.09),rgba(255,255,255,.03));border:1px solid var(--line);box-shadow:inset 0 1px 0 rgba(255,255,255,.12)}
+.nav a:hover{border-color:rgba(255,255,255,.35)}
+html{scroll-behavior:smooth}.card{scroll-margin-top:14px}
+.split{display:grid;grid-template-columns:1.15fr 1fr;gap:22px;align-items:start}
+.sub-h{margin:20px 0 8px;font-size:14px;font-weight:700;color:var(--muted);letter-spacing:.04em;text-transform:uppercase}
+.sub-h:first-child{margin-top:0}
+.map{width:100%;height:auto;display:block}.map-bg{fill:rgba(255,255,255,.035);stroke:var(--line)}
+.dotc{display:inline-block;width:11px;height:11px;border-radius:50%}.dotc.ring{background:transparent;border:2.5px solid}.flagc{border-color:#f43f5e}.watchc{border-color:#fbbf24}
+.cities{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.city{border:1px solid var(--line);border-left:4px solid var(--c);border-radius:14px;padding:10px 13px;background:linear-gradient(145deg,rgba(255,255,255,.07),rgba(255,255,255,.015))}
+.city-n{font-weight:700}.city-v{font-size:30px;font-weight:800;line-height:1.15;color:var(--c)}
+.rank{display:grid;gap:5px}.rank-row{display:grid;grid-template-columns:170px 1fr 38px;gap:10px;align-items:center;font-size:13px}
+.rank-n{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.rank-v{text-align:right;font-weight:700}
+.rank-t{position:relative;height:11px;border-radius:6px;background:rgba(255,255,255,.07)}.rank-b{display:block;height:100%;border-radius:6px}
+.rank-lim{position:absolute;top:-3px;bottom:-3px;width:2px;background:#fff;opacity:.85}.rank-gap{text-align:center;font-size:12px}
+.heat{width:100%;height:auto;display:block}.heat .hole{fill:rgba(255,255,255,.05)}.heat .tick{font-size:10.5px}
+.ramp{display:flex;align-items:center;gap:10px;margin-top:10px;font-size:12px;color:var(--muted)}.ramp i{flex:0 0 220px;height:10px;border-radius:6px}
+.minis{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+.mini{border:1px solid var(--line);border-radius:16px;padding:12px 14px;background:linear-gradient(145deg,rgba(255,255,255,.07),rgba(255,255,255,.015))}
+.mini-h{display:flex;justify-content:space-between;align-items:baseline;gap:8px}.mini-t{font-size:12.5px;font-weight:600;color:var(--muted)}
+.mini-v{font-weight:800;font-size:18px}.mini-v small{font-size:11px;font-weight:600;color:var(--muted)}
+.spark{width:100%;height:auto;display:block;margin-top:4px}.mini-r{display:flex;justify-content:space-between;font-size:11px}
+.meter{padding:14px 16px;border:1px solid var(--line);border-radius:16px;background:linear-gradient(145deg,rgba(255,255,255,.07),rgba(255,255,255,.015))}
+.meter-top{margin-bottom:9px;font-size:15px}.meter-track{height:14px;border-radius:999px;background:rgba(255,255,255,.08);overflow:hidden;box-shadow:inset 0 1px 3px rgba(0,0,0,.5)}
+.meter-fill{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,#6366f1,#22d3ee)}.meter .muted{margin-top:8px}
+.count{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
+.count-i{display:flex;gap:14px;align-items:center;border:1px solid var(--line);border-radius:16px;padding:12px 16px;background:linear-gradient(145deg,rgba(255,255,255,.07),rgba(255,255,255,.015))}
+.count-n{font-size:30px;font-weight:800;min-width:78px;background:linear-gradient(135deg,#a5b4fc,#67e8f9);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stats{display:flex;flex-wrap:wrap;gap:10px 28px;margin:12px 0 4px}.stat{display:flex;flex-direction:column}.stat-v{font-size:26px;font-weight:800;line-height:1.1}
+.sc{fill:#a5b4fc;fill-opacity:.8;stroke:#fff;stroke-width:1.2}
+.runs{display:grid;gap:7px}.run{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;border:1px solid var(--line);border-radius:12px;padding:8px 14px;background:rgba(255,255,255,.03);font-size:14px}
+details.how{margin-top:14px;border:1px solid var(--line);border-radius:14px;padding:10px 15px;background:rgba(255,255,255,.03);font-size:14px}
+details.how summary{cursor:pointer;font-weight:700}details.how p{margin:.5em 0 0;color:var(--muted)}
 .foot{margin-top:30px;text-align:center;font-size:12.5px;color:var(--muted)}
 .scroll{overflow-x:auto}
-@media (max-width:760px){.tiles{grid-template-columns:repeat(2,1fr)}.hero{padding:26px 20px 20px}.card{padding:18px 16px 14px}
+@media (max-width:760px){.split{grid-template-columns:1fr}.rank-row{grid-template-columns:120px 1fr 34px}.tiles{grid-template-columns:repeat(2,1fr)}.hero{padding:26px 20px 20px}.card{padding:18px 16px 14px}
 .g-row{grid-template-columns:1fr 70px;gap:6px 12px}.g-track{grid-column:1 / -1;order:3}.g-head{display:none}}
 """
 
@@ -382,6 +424,29 @@ def render(today: date, raw_dir: Path = RAW_DIR, proc_dir: Path = PROC_DIR) -> s
     tiles = "".join(f'<div class="tile"><div class="v">{html.escape(v)}</div><div class="l">{html.escape(label)}</div><div class="s">{sub}</div></div>'
                     for v, label, sub in hero_stats(today, raw_dir, proc_dir, health))
     stubble_daily = _read("stubble_transport_daily.csv", proc_dir)
+    feed = ex.latest_feed(raw_dir)
+    filled = _read("pm25_hourly_filled.csv", proc_dir)
+    health_df = _read("neighbor_station_health.csv", proc_dir)
+
+    fires = ex.fire_daily(raw_dir)
+    if fires.empty:
+        fire_chart = '<p class="muted">Fire data not available.</p>'
+    else:
+        fire_chart = ('<div class="legend chart-legend"><span><i class="sw line-sw"></i>Total fire radiative power, all regional detections (left axis, MW)</span>'
+                      '<span><i class="sw bar-sw"></i>Detections per day (right axis)</span></div>'
+                      + line_bar_svg(list(fires["acq_date"]), [float(v) for v in fires["frp"]], [float(v) for v in fires["fires"]], "Fire radiative power", "Detections"))
+
+    diurnal = ex.diurnal_values(filled)
+    diurnal_chart = ("" if diurnal is None else line_bar_svg([f"-----{h:02d}:00" for h in range(24)], diurnal, None, "PM2.5 by hour", "", tick_fmt=lambda t: t[5:7]))
+
+    sat_scatter = '<p class="muted">Satellite or PM data not available.</p>'
+    aod = ex.aod_daily(raw_dir)
+    if stubble_daily is not None and not aod.empty and "pm25_delhi" in stubble_daily:
+        j2 = aod[aod["n"] >= 10].merge(stubble_daily[["date", "pm25_delhi"]].dropna(), on="date")
+        sat_scatter = ex.scatter_svg(list(j2["aod"]), list(j2["pm25_delhi"]), list(j2["date"]), "Network-mean satellite AOD (550 nm)", "Delhi PM2.5 (ug/m3)")
+
+    nav = "".join(f'<a href="#{a}">{t}</a>' for a, t in [("flow", "Data flow"), ("now", "Right now"), ("fires", "Fires and weather"), ("heat", "Heatmap"),
+                  ("quality", "Completeness"), ("health", "Station health"), ("sat", "Satellite"), ("ops", "Pipeline")])
     body = f"""
 <header class="hero">
 <h1>NCR air-quality network integrity</h1>
@@ -389,32 +454,64 @@ def render(today: date, raw_dir: Path = RAW_DIR, proc_dir: Path = PROC_DIR) -> s
 <div class="stamp">Generated {today.isoformat()} &middot; static page, no tracking</div>
 <div class="tiles">{tiles}</div>
 </header>
+<nav class="nav">{nav}</nav>
 {banner}
 
-<section class="card"><h2><span class="num">1</span>Is the data flowing?</h2>
+<section class="card" id="flow"><h2><span class="num">1</span>Is the data flowing?</h2>
 <div class="scroll">{health_html(health, today)}</div>
 <div class="note"><b>OK</b> = as fresh as that source normally is. <b>GAPS</b> = fresh, but days are missing behind it. <b>STALE / DOWN</b> = nothing new
 for longer than usual. A gap in the CPCB feed cannot be recovered from that feed (it serves only the current snapshot); OpenAQ may cover some of it.</div>
 </section>
 
-<section class="card"><h2><span class="num">2</span>Delhi PM2.5 and regional fire exposure</h2>
+<section class="card" id="now"><h2><span class="num">2</span>The network right now</h2>
+<div class="sub-h">By city</div>{ex.city_cards_html(feed)}
+<div class="split" style="margin-top:22px"><div><div class="sub-h">Station map</div>{ex.station_map_svg(feed, health_df)}</div>
+<div><div class="sub-h">Highest and lowest stations</div>{ex.ranking_html(feed)}</div></div>
+<div class="note">Colours are the CPCB AQI category of each station&rsquo;s PM2.5 <i>sub-index</i> in the newest feed snapshot (not a concentration). Rings mark stations the health check flagged or put on watch.</div>
+</section>
+
+<section class="card" id="fires"><h2><span class="num">3</span>Delhi PM2.5, fires and weather</h2>
+<div class="sub-h">Delhi PM2.5 and regional fire exposure</div>
 <div class="scroll">{stubble_html(stubble_daily)}</div>
 <div class="note warn"><b>Read with care.</b> Delhi PM2.5 stepped up the same day regional fire plumes started arriving, but the days before were
 <i>rainy</i> (about 9 mm on 26 Sep, 4 mm on 27 Sep) and 30 Sep was the first fully dry day, so rain stopping explains the step without stubble.
 On rain-free days the association is moderate and not yet significant (about 10 days). Suggestive, not established, and <b>not</b> a share of Delhi's
 pollution attributable to stubble burning.</div>
+<div class="sub-h">How close is the real test?</div>{ex.dry_day_counter(stubble_daily)}
+<div class="sub-h">Regional fire activity</div><div class="scroll">{fire_chart}</div>
+<div class="sub-h">Delhi weather (the controls)</div>{ex.weather_html(stubble_daily)}
 </section>
 
-<section class="card"><h2><span class="num">3</span>Station health (neighbour consistency)</h2>
-<div class="scroll">{stations_html(_read("neighbor_station_health.csv", proc_dir))}</div>
+<section class="card" id="heat"><h2><span class="num">4</span>Every station, every day</h2>
+<div class="scroll">{ex.heatmap_svg(filled)}</div>
+<div class="note">Daily mean PM2.5 from the gap-filled series, stations sorted from highest to lowest overall. A uniform band is a station that matches its neighbours; a block of empty cells is an outage; one odd row is worth a look.</div>
+</section>
+
+<section class="card" id="quality"><h2><span class="num">5</span>Data completeness and daily rhythm</h2>
+<div class="scroll">{ex.completeness_html(filled)}</div>
+<div class="sub-h">Typical day: network-mean PM2.5 by hour (IST)</div><div class="scroll">{diurnal_chart}</div>
+</section>
+
+<section class="card" id="health"><h2><span class="num">6</span>Station health (neighbour consistency)</h2>
+<div class="scroll">{stations_html(health_df)}</div>
 <div class="note">A flag means "have someone look", not "faulty". A station beside a road or kiln legitimately differs from its neighbours. Flatlines
 (a sensor repeating one exact value for hours) are the clearest evidence; drift needs weeks of data to confirm.</div>
 </section>
 
-<section class="card"><h2><span class="num">4</span>Agreement with the satellite</h2>
+<section class="card" id="sat"><h2><span class="num">7</span>Agreement with the satellite</h2>
 <div class="scroll">{decoupling_html(_read("station_temporal_decoupling.csv", proc_dir))}</div>
+<div class="sub-h">Satellite AOD against Delhi PM2.5, day by day</div><div class="scroll">{sat_scatter}</div>
 <div class="note">The satellite tracks the city's day-to-day PM2.5 but not differences between stations on the same day, so it can only check whether a
 station <i>follows the same day-to-day pattern as its peers</i>. With about two weeks of data, no station is statistically distinguishable yet.</div>
+</section>
+
+<section class="card" id="ops"><h2><span class="num">8</span>Pipeline and what&rsquo;s next</h2>
+<div class="sub-h">Coming up</div>{ex.countdown_html(today)}
+<div class="sub-h">Recent scheduled runs</div>{ex.run_log_html(LOGS_DIR)}
+<details class="how"><summary>How to read this page</summary>
+<p><b>Sub-index vs concentration.</b> The CPCB feed reports AQI sub-indices; 100 for PM2.5 equals 60 &micro;g/m&sup3;. Charts in &micro;g/m&sup3; come from OpenAQ.</p>
+<p><b>Flags are leads, not verdicts.</b> Every statistical result here is exploratory with a few weeks of data; the README lists each limit and every retraction.</p>
+<p><b>Nothing here is a source attribution.</b> The stubble panels show association with fire exposure, not the share of pollution caused by it.</p></details>
 </section>
 
 <div class="foot">Built from the project's own pipelines &middot; every number has a caveat in the README</div>

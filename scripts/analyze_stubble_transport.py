@@ -413,6 +413,7 @@ def main() -> int:
     first_day, last_day = valid_exposure_days(wind10)
     analysis = daily[(daily["date"] >= first_day) & (daily["date"] <= last_day)].copy()
     analysis["fires_near400_f"] = analysis["fires_near400"].astype(float)
+    daily["in_analysis_window"] = (daily["date"] >= first_day) & (daily["date"] <= last_day)  # for the dashboard counter
     assoc = association_table(analysis, ["fires_near400_f"] + exposure_cols)
 
     OUT_DIR.mkdir(parents=True, exist_ok=True)
