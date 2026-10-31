@@ -186,3 +186,18 @@ def test_a_partial_or_missing_precip_file_is_requested(tmp_path, monkeypatch, lo
     pd.DataFrame({"time": pd.date_range("2026-09-27", periods=10, freq="h"), "precip_mm_delhi_mean": 0.0, "precip_mm_delhi_max": 0.0}).to_csv(
         tmp_path / "era5_precip_2026-09-27.csv", index=False)
     assert not fw.precip_file_complete(datetime(2026, 9, 27))  # only 10 of 24 hours
+
+
+def test_wind_file_complete_only_when_every_timestamp_is_present(tmp_path, monkeypatch):
+    from datetime import datetime
+
+    monkeypatch.setattr(fw, "RAW_DATA_DIR", tmp_path)
+    day = datetime(2026, 10, 20)
+    assert not fw.wind_file_complete(day)  # nothing there
+    path = tmp_path / "era5_wind_2026-10-20.csv"
+    pd.DataFrame({"time": pd.date_range("2026-10-20", periods=5, freq="3h").repeat(2)}).to_csv(path, index=False)
+    assert not fw.wind_file_complete(day)  # partial day: 5 of 8 timestamps, must be re-requested
+    pd.DataFrame({"time": pd.date_range("2026-10-20", periods=8, freq="3h").repeat(2)}).to_csv(path, index=False)
+    assert fw.wind_file_complete(day)
+    path.write_text("garbage without the expected column", encoding="utf-8")
+    assert not fw.wind_file_complete(day)  # unreadable file is re-requested, not trusted

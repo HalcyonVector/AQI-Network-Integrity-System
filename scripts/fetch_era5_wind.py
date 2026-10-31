@@ -244,6 +244,20 @@ def precip_file_complete(date: datetime) -> bool:
     return path.exists() and sum(1 for _ in open(path, encoding="utf-8")) - 1 >= len(PRECIP_HOURS)
 
 
+def wind_file_complete(date: datetime) -> bool:
+    """True if the date's wind file already holds every expected timestamp. Without this the trailing
+    window re-requested all 8 days (2 CDS jobs each) on every run, so one run could queue for hours and
+    outlast the scheduled task's time limit. Use --force to re-pull (e.g. when ERA5T is replaced by the
+    final product)."""
+    path = RAW_DATA_DIR / f"era5_wind_{date:%Y-%m-%d}.csv"
+    if not path.exists():
+        return False
+    try:
+        return pd.read_csv(path, usecols=["time"])["time"].nunique() >= len(HOURS)
+    except Exception:
+        return False
+
+
 def fetch_and_write_precip(client, date: datetime, logger: logging.Logger) -> Path | None:
     """Best-effort: rain is a control variable, so failing to get it must never block the wind data."""
     if precip_file_complete(date):
@@ -295,6 +309,7 @@ def write_date_file(df: pd.DataFrame, date: datetime, logger: logging.Logger) ->
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--date", help="YYYY-MM-DD; default: re-process the trailing window of recent dates")
+    parser.add_argument("--force", action="store_true", help="re-request dates whose wind file is already complete")
     args = parser.parse_args()
 
     load_dotenv(PROJECT_ROOT / ".env")
@@ -313,6 +328,10 @@ def main() -> int:
 
     failures = 0
     for target_date in dates:
+        if not args.force and wind_file_complete(target_date):
+            logger.info("%s: wind file already complete, skipping", target_date.strftime("%Y-%m-%d"))
+            fetch_and_write_precip(client, target_date, logger)  # no-op if the precipitation file is complete too
+            continue
         paths = []
         try:
             paths.append(download_wind_nc(client, target_date, logger))
