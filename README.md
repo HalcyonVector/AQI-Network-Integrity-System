@@ -1,6 +1,10 @@
 # NCR AQI Network Integrity System
 
-**Live dashboard: https://halcyonvector.github.io/AQI-Network-Integrity-System/**  (rebuilt after every scheduled data pull)
+> **What it's for:** check whether Delhi NCR's air-quality monitoring network is telling the truth, using data health, station checks, satellite and fire evidence.
+
+**Live dashboard:** [halcyonvector.github.io/AQI-Network-Integrity-System](https://halcyonvector.github.io/AQI-Network-Integrity-System/) (rebuilt after every scheduled data pull)
+
+![Dashboard: source health, stations flagged and the data-flow tracker](docs/screenshots/overview.png)
 
 Layered system over Delhi NCR's CAAQMS network (Delhi, Noida, Gurugram, Ghaziabad,
 Faridabad) that will eventually:
@@ -69,7 +73,7 @@ datacenter IPs being blocked, same pattern as the Grid Sentinel project's data p
 so keep running this from a home machine.
 
 Separately, we also found that **authenticated requests silently hang** (no response,
-not even an error) unless the request carries a browser-like `User-Agent` header —
+not even an error) unless the request carries a browser-like `User-Agent` header:
 Python's default `requests`/`urllib` UA gets stuck server-side with no response at all,
 while an identical request with a Chrome-style UA returns instantly. `fetch_cpcb.py`
 already sets this header, but if you fork the request logic elsewhere, carry it over.
@@ -90,7 +94,7 @@ It exits non-zero if any step failed, and names which ones in `logs/run_and_push
 **Verified:** the scheduler fires on its own (runs observed at the 12:00 and 19:00 marks on this
 machine from 17 Sep onward, including through the CPCB outage, when it kept committing the other
 sources). Triggering the task with `schtasks /run` *from an automated session* reported success but
-launched nothing — a session-isolation artefact of that tool, not a problem with the real trigger.
+launched nothing, a session-isolation artefact of that tool, not a problem with the real trigger.
 Runs on days the machine was off are simply missing, which is why every fetcher re-processes a window.
 
 ### Data schema
@@ -103,9 +107,9 @@ One row per station per hourly timestamp:
 | `country`, `state`, `city`, `station` | station identity/location tag from CPCB |
 | `latitude`, `longitude` | station coordinates |
 | `last_update` | CPCB's reported observation timestamp |
-| `PM2.5`, `PM10`, `NO2`, `SO2`, `CO`, `OZONE` | **CPCB AQI sub-index values (0–500), NOT concentrations** — validated, see below |
+| `PM2.5`, `PM10`, `NO2`, `SO2`, `CO`, `OZONE` | **CPCB AQI sub-index values (0–500), NOT concentrations** (validated, see below) |
 
-> **These are not µg/m³ — validated.** An earlier README called them concentrations (an assumption); a
+> **These are not µg/m³ (validated).** An earlier README called them concentrations (an assumption); a
 > one-station check suggested otherwise, and `scripts/validate_feed_units.py` now tests it properly: ~800
 > feed readings per pollutant across ~60 stations (17–25 Sep, before the outage) against OpenAQ's true
 > concentrations. Each column is the **CPCB AQI sub-index of the standard averaging window**:
@@ -126,7 +130,7 @@ One row per station per hourly timestamp:
 > **Converting back:** the tables are monotone, so `scripts/convert_feed.py` inverts them
 > (`data/processed/feed_concentrations.csv`). Recovered concentrations match OpenAQ to a **median relative
 > error of 1.4–3.2%** for PM2.5, PM10, NO2, SO2 and CO; **ozone is worse (median 9.6%, 90th percentile
-> 30%) — treat it with care.** What comes back is a **daily-scale average, never an hourly value**
+> 30%); treat it with care.** What comes back is a **daily-scale average, never an hourly value**
 > (24 h mean, or current 8 h mean for ozone/CO). Readings at the ceiling (index 500) are censored: only a
 > lower bound. This is what makes the 13 Delhi stations that exist *only* in the feed, and any dates OpenAQ
 > has not published, usable for daily-scale analysis.
@@ -134,15 +138,15 @@ One row per station per hourly timestamp:
 ## Component: NASA FIRMS fire detections
 
 `scripts/fetch_firms.py` pulls active-fire detections over Punjab, Haryana, Delhi NCR,
-and western/central Uttar Pradesh — the stubble-burning source belt, not just the 5
-monitored cities — for the regional-transport side of spike attribution (component 4).
-Writes one row per fire detection to `data/raw/firms_acq_YYYY-MM-DD.csv` — **one file per
+and western/central Uttar Pradesh, the stubble-burning source belt, not just the 5
+monitored cities, for the regional-transport side of spike attribution (component 4).
+Writes one row per fire detection to `data/raw/firms_acq_YYYY-MM-DD.csv`, **one file per
 acquisition date**, merged (union, de-duplicated) on every run.
 
 ### Setup
 
-1. Get a free key at [FIRMS Map Key](https://firms.modaps.eosdis.nasa.gov/api/map_key/)
-   — just an email address, arrives immediately, no approval wait.
+1. Get a free key at [FIRMS Map Key](https://firms.modaps.eosdis.nasa.gov/api/map_key/),
+   just an email address, arrives immediately, no approval wait.
 2. Add it to `.env` as `FIRMS_MAP_KEY`.
 
 ### Run manually
@@ -164,10 +168,10 @@ detections.
 
 ### Sensor choice
 
-Pulls both `VIIRS_NOAA20_NRT` and `VIIRS_NOAA21_NRT` (375m resolution — fine enough to
+Pulls both `VIIRS_NOAA20_NRT` and `VIIRS_NOAA21_NRT` (375m resolution, fine enough to
 catch individual agricultural fires, unlike MODIS's 1km) for full daily coverage across
 their differing overpass times. Deliberately **not** using `VIIRS_SNPP_NRT`: FIRMS
-announced on 2026-09-17 that Suomi NPP product delivery ceases **2026-11-01** — squarely
+announced on 2026-09-17 that Suomi NPP product delivery ceases **2026-11-01**, squarely
 inside this year's stubble-burning season (peaks Oct–Nov), so a pipeline built on it
 would have broken exactly when it mattered. If you see NOAA-20/21 get deprecated later,
 re-check the source list at the [Area API docs](https://firms.modaps.eosdis.nasa.gov/api/area/)
@@ -176,7 +180,7 @@ before swapping sensors.
 ### A real gotcha this API has
 
 FIRMS returns **HTTP 200 with a plain-text error message** (not CSV) for a bad key,
-an exceeded quota, or a malformed request — `raise_for_status()` doesn't catch this.
+an exceeded quota, or a malformed request, `raise_for_status()` doesn't catch this.
 `fetch_firms.py` detects it by checking whether the response body actually parses as
 CSV before handing it to pandas.
 
@@ -191,18 +195,18 @@ One row per fire detection:
 | `latitude`, `longitude` | detection location |
 | `acq_date`, `acq_time` | satellite acquisition date/time (UTC) |
 | `confidence` | FIRMS confidence flag (nominal/low/high) |
-| `frp` | fire radiative power (MW) — rough intensity proxy |
+| `frp` | fire radiative power (MW), rough intensity proxy |
 | `bright_ti4`, `bright_ti5`, `scan`, `track`, `satellite`, `instrument`, `version`, `daynight` | passed through as-is from FIRMS |
 
 ## Component: Satellite AOD (Google Earth Engine)
 
 `scripts/fetch_aod.py` samples MODIS MAIAC Aerosol Optical Depth (`MODIS/061/MCD19A2_GRANULES`,
-1km resolution) at each CPCB station's exact coordinates — the independent satellite
+1km resolution) at each CPCB station's exact coordinates, the independent satellite
 estimate that components 1 (drift detection) and 2 (gap-filling) compare reported
 PM2.5 against. Reads station coordinates from the most recent `data/raw/cpcb_ncr_*.csv`,
 so run `fetch_cpcb.py` at least once first.
 
-### Setup (all through your own Google account — not something this script can do for you)
+### Setup (all through your own Google account, not something this script can do for you)
 
 1. Go to the [Earth Engine registration page](https://console.cloud.google.com/earth-engine),
    create or pick a Google Cloud project, and register it for Earth Engine (noncommercial
@@ -215,7 +219,7 @@ so run `fetch_cpcb.py` at least once first.
    python -c "import ee; ee.Authenticate(auth_mode='localhost')"
    ```
    Sign in and approve every screen; the token is saved locally and reused by the
-   scheduler with no prompt. Use `localhost` mode, **not** `notebook` mode — notebook
+   scheduler with no prompt. Use `localhost` mode, **not** `notebook` mode, notebook
    tokens expire after a week, which would break the daily run. If the sign-in listener
    crashes with `KeyError: 'code'` (a stray browser request, e.g. Chrome's side
    traffic), paste the printed URL into a different browser (Edge) instead.
@@ -247,7 +251,7 @@ misleading raw value. The mask is applied to each granule with its own QA band
 *before* granules are averaged (compositing first would let a QA pixel from one
 satellite pass filter an AOD value from another). Every station always gets a row.
 Live check, 62 stations: 51 valid on 2026-09-20, 54 on 09-22, 32 on 09-24 (hazier
-day). On a cloudy day, expect a lot of NaN rows — that's the satellite genuinely
+day). On a cloudy day, expect a lot of NaN rows, that's the satellite genuinely
 being blind, which is exactly the condition component 3 (wind-conditioned neighbor
 consistency) exists to cover instead.
 
@@ -271,24 +275,24 @@ One row per station per date:
 
 `scripts/fetch_era5_wind.py` pulls 3-hourly ERA5 10m wind vectors (u/v components,
 derived speed and "blowing-from" direction) over the same Punjab/Haryana/NCR/western-UP
-belt as the FIRMS pull — the wind data component 3 (neighbor consistency) and
+belt as the FIRMS pull, the wind data component 3 (neighbor consistency) and
 component 4 (stubble-burning transport attribution) both need.
 
-### Setup (all through your own account — not something this script can do for you)
+### Setup (all through your own account, not something this script can do for you)
 
 1. Register at [cds.climate.copernicus.eu](https://cds.climate.copernicus.eu), then
    get your Personal Access Token from your [profile page](https://cds.climate.copernicus.eu/profile).
 2. **Manually accept the Terms of Use** on the
    [ERA5 hourly single levels dataset page](https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels)
    (bottom of the download form). The API silently rejects requests until you do
-   this — it can't be done through the API itself.
+   this, it can't be done through the API itself.
 3. Add to `.env`:
    ```
    CDSAPI_URL=https://cds.climate.copernicus.eu/api
    CDSAPI_KEY=your-uid:your-api-key
    ```
    (Confirmed live with `cdsapi` 0.7.7: the bare personal access token from your
-   profile page — a 36-character UUID, no colon — works as-is; no `UID:` prefix.)
+   profile page, a 36-character UUID, no colon, works as-is; no `UID:` prefix.)
 
 ### Run manually
 
@@ -299,7 +303,7 @@ python scripts/fetch_era5_wind.py --date 2026-09-01
 
 Writes `data/raw/era5_wind_YYYY-MM-DD.csv`, **one file per observation date, overwritten on
 re-run**. **Requests can queue on CDS's
-compute backend** — this is normal, not a bug; the client blocks and polls until
+compute backend**, this is normal, not a bug; the client blocks and polls until
 ready by default. First run may take a while.
 
 ### Why a trailing window (and what "ERA5T" means), and NetCDF instead of GRIB
@@ -307,12 +311,12 @@ ready by default. First run may take a while.
 ERA5 is published about 5 days behind real time as **ERA5T** (preliminary); the final
 product replaces it months later. The default window starts 5 days back, where data
 reliably exists, but it is *preliminary*: the `expver` column marks each row (`0005` = ERA5T,
-revisable; `0001` = final). Confirmed on the first live run — a 7-day-old date came
+revisable; `0001` = final). Confirmed on the first live run, a 7-day-old date came
 back `0005`. Differences from final are usually small but not zero. When reading the
 CSV, use `dtype={"expver": str}` or pandas will turn `0005` into the integer `5`.
 
 Requested as NetCDF, not GRIB: GRIB parsing needs the `cfgrib` package, which in turn
-needs the native ecCodes C library — confirmed by testing that it has no working
+needs the native ecCodes C library, confirmed by testing that it has no working
 pip-installable path on Windows (`cfgrib` imports fine, then fails at runtime with
 `Cannot find the ecCodes library`). NetCDF sidesteps this entirely since `netCDF4`
 ships its own binaries.
@@ -325,7 +329,7 @@ One row per grid point per 3-hourly timestamp:
 |---|---|
 | `fetched_at_utc` | when this script pulled the record |
 | `time` | ERA5 timestamp (UTC) |
-| `latitude`, `longitude` | ERA5 grid point (not station-aligned — this is a coarser reanalysis grid, ~0.25°) |
+| `latitude`, `longitude` | ERA5 grid point (not station-aligned, this is a coarser reanalysis grid, ~0.25°) |
 | `u10_ms`, `v10_ms` | raw 10m wind components (m/s) |
 | `expver` | `0005` = preliminary ERA5T (revisable), `0001` = final ERA5 |
 | `wind_speed_ms` | derived magnitude |
@@ -360,7 +364,7 @@ python scripts/fetch_openaq.py --refresh-map                     # rebuild stati
 ```
 
 ### Output
-`data/raw/openaq_hourly_YYYY-MM-DD.csv` — **one file per observation date**, overwritten
+`data/raw/openaq_hourly_YYYY-MM-DD.csv`, **one file per observation date**, overwritten
 on re-run (unlike the other pulls, which append per fetch date), so backfills and the
 daily run's overlapping 10-day window never duplicate rows. Long format:
 
@@ -370,17 +374,17 @@ daily run's overlapping 10-day window never duplicate rows. Long format:
 | `station` | our CPCB-feed station name, so it joins to `cpcb_ncr_*.csv` |
 | `openaq_location_id` | OpenAQ's ID for that station |
 | `parameter`, `units`, `value` | hourly mean; wind direction uses a circular mean |
-| `n_obs` | 15-minute samples behind that hour (≤4) — low values mean a patchy hour |
+| `n_obs` | 15-minute samples behind that hour (≤4), low values mean a patchy hour |
 
 Parameters: `pm25`, `pm10`, `no2`, `so2`, `co`, `o3`, `no`, `nox`, `relativehumidity`,
-`temperature`, `wind_speed`, `wind_direction`. **No QC is applied** — single-station
+`temperature`, `wind_speed`, `wind_direction`. **No QC is applied**, single-station
 hourly PM2.5 spikes of 500–670 µg/m³ appear in the data and were left in.
 
 ### Station mapping
 `data/reference/openaq_station_map.csv` (committed) maps our station names to OpenAQ
 location IDs: 60 of our 64 known stations. Matched by coordinates within 300 m, else by
 identical name. **Unmatched on purpose:** `Pusa, Delhi - IITM`, `Pusa_IMD`,
-`Aya Nagar, Delhi - IITM`, `North Campus, DU, Delhi - IITM` — the nearest active OpenAQ
+`Aya Nagar, Delhi - IITM`, `North Campus, DU, Delhi - IITM`, the nearest active OpenAQ
 location for each is a *different* station 2–3 km away, and a wrong match would silently
 corrupt every downstream comparison.
 
@@ -412,8 +416,8 @@ outage are **not in OpenAQ** (unmatched), so for them only the feed exists.
 
 ## Data-quality layer (`scripts/qc.py`)
 
-Detects **stuck sensors** — hourly PM values that repeat *exactly* for ≥ 6 hours (hourly values average
-four 15-minute readings, so that is not a plausible measurement) — and removes those hours before the
+Detects **stuck sensors**, hourly PM values that repeat *exactly* for ≥ 6 hours (hourly values average
+four 15-minute readings, so that is not a plausible measurement), and removes those hours before the
 satellite-consistency and stubble analyses; neighbour-based analyses blank them for any station used as a
 reference but still inspect them on the station itself. Real examples: JNU read exactly 1.00 µg/m³ for
 8 h while its neighbours read 33; Vikas Sadan sat at 102 for 19 h while they read 52–83.
@@ -421,7 +425,7 @@ reference but still inspect them on the station itself. Real examples: JNU read 
 **Measured impact is small, and the README used to oversell it:** 111 of 21,303 station-hours (0.5%) are
 stuck, and removing them barely changes neighbour predictions (MAE 0.3296 → 0.3299), because a *median*
 over neighbours shrugs off one bad station. It matters for non-robust consumers (a mean over neighbours is
-badly corrupted — tested) and so a stuck value does not sit inside a station's own daily means.
+badly corrupted, tested) and so a stuck value does not sit inside a station's own daily means.
 
 ## Gap-filled hourly PM2.5 (`scripts/build_filled_series.py`)
 
@@ -441,10 +445,10 @@ PM2.5 but not stations, so only a regional daily estimate is conceivable there, 
 
 A self-contained static page (no server, no JavaScript, no external requests; inline SVG charts), rebuilt
 by the daily run. It opens with **pipeline health** because this project's worst problems were silent
-holes. Each source shows **OK** (fresh), **GAPS** (fresh but days missing behind it — an earlier version
+holes. Each source shows **OK** (fresh), **GAPS** (fresh but days missing behind it, an earlier version
 showed the CPCB feed green beside 18 missing days, which is exactly the lie this state exists to prevent),
 **STALE**, or **DOWN**, each judged against that source's own normal publication lag. Below that: Delhi
-PM2.5 against fire exposure, station health, and agreement with the satellite — each next to its caveat.
+PM2.5 against fire exposure, station health, and agreement with the satellite, each next to its caveat.
 Station names and reasons are HTML-escaped. Chart geometry is checked in tests (axis direction, bounds,
 bar proportions) rather than by eye.
 
@@ -458,9 +462,9 @@ stations that disagree with the satellite. Writes to `data/processed/`.
 
 | question | result |
 |---|---|
-| Across stations **within a day**, do PM2.5 and AOD agree? | **No** — median Spearman ρ = **0.03** (daily values −0.07 … 0.46) |
-| Does AOD track the **city's day-to-day** PM2.5? | **Yes** — ρ = **0.68** (n = 9 days) |
-| Does a typical station follow its **own** AOD pixel over days? | **Yes** — median ρ = **0.62** (IQR 0.32–0.75, 51 stations) |
+| Across stations **within a day**, do PM2.5 and AOD agree? | **No**, median Spearman ρ = **0.03** (daily values −0.07 … 0.46) |
+| Does AOD track the **city's day-to-day** PM2.5? | **Yes**, ρ = **0.68** (n = 9 days) |
+| Does a typical station follow its **own** AOD pixel over days? | **Yes**, median ρ = **0.62** (IQR 0.32–0.75, 51 stations) |
 | Spatial variability within a day | AOD CV 0.27 vs PM2.5 CV 0.48 |
 
 So the satellite carries signal **in time, not across the city**: PM2.5 differences between
@@ -473,23 +477,23 @@ haze moves everything together from day to day and AOD follows that.
    because it will start working if/when the spatial signal improves, and because the gate
    is what stops it from flagging noise. Its residuals are *not* evidence of faults:
    Cantonment Area and IGNOU Maidan Garhi read ~5σ low every single day, but they are
-   green south-Delhi sites — location, not malfunction, and the satellite can't tell.
+   green south-Delhi sites, location, not malfunction, and the satellite can't tell.
 2. **Temporal decoupling** (the one the data supports): each station's day-to-day ρ with
    its own AOD vs the network median, Fisher-z one-sided test, **Benjamini–Hochberg FDR
    control** across stations.
 
-### Result: nothing flagged — and that is the honest answer
+### Result: nothing flagged, and that is the honest answer
 No station is significantly decoupled. Lowest raw p-values: Sector-51 Gurugram (ρ −0.32),
 Indirapuram (−0.23), Sanjay Nagar (−0.17), Sector-62 Noida (−0.13), Vasundhara (−0.13),
-IHBAS (−0.19) — but with 8–9 days each, **q = 0.23** for all of them, i.e. entirely
+IHBAS (−0.19), but with 8–9 days each, **q = 0.23** for all of them, i.e. entirely
 consistent with chance across 51 comparisons. They are labelled "watch", not flagged. The
 detector needs roughly 3–4 weeks of paired days before it can say anything about one station.
 
 ### Update 2026-10-16 (13 dates with data, 556 paired station-days)
 Cross-sectional ρ rose only to 0.13 (still gated off); the temporal network median is 0.60.
-The *same* stations keep ranking lowest, and their q-values fell as days accrued —
+The *same* stations keep ranking lowest, and their q-values fell as days accrued:
 Sector-51 Gurugram ρ −0.34 (11 days, q = 0.10), IHBAS ρ −0.43 (9 days, q = 0.10), Sanjay
-Nagar −0.29 (q = 0.125), Indirapuram −0.24 (q = 0.126) — but none is below the 0.10 line, so
+Nagar −0.29 (q = 0.125), Indirapuram −0.24 (q = 0.126), but none is below the 0.10 line, so
 still **nothing is flagged**. Caution for whoever acts on this later: re-running the test as
 data accumulates and flagging the first time q dips under 0.10 inflates false positives
 (sequential testing). Fix a window (e.g. 4 weeks) and a threshold in advance instead.
@@ -502,7 +506,7 @@ The binding constraint is paired AOD days: Earth Engine's MCD19A2 currently ends
 - 26–28 Sep were cloud-blind, so the usable window is 29 Sep → 7 Oct (OpenAQ's archive
   ends 7 Oct; the data.gov.in feed is down). New data cannot accumulate until one resumes.
 - Residuals use ground **concentrations** (OpenAQ). Do not run this on the data.gov.in feed
-  columns — they appear to be AQI sub-indices (see the warning under the CPCB schema).
+  columns, they appear to be AQI sub-indices (see the warning under the CPCB schema).
 
 ## Outage timeline (data.gov.in CPCB API)
 | date | event |
@@ -529,7 +533,7 @@ dispersion/chemistry model we do not have.
 
 ### The headline: the apparent stubble signal is largely a rain effect
 
-Three passes, each informed by the last (so they are **not independent tests** — a forking-paths caveat that
+Three passes, each informed by the last (so they are **not independent tests**, a forking-paths caveat that
 applies to everything below):
 
 **Pass 1 (10 m winds).** Delhi PM2.5 stepped from 12–31 µg/m³ (27–29 Sep) to 52–69 µg/m³ from 30 Sep, the
@@ -545,7 +549,7 @@ the circular-shift p reaches its floor (1/13 = 0.077), i.e. as strong as 13 days
 explanation also failed on its own terms: on the dirty days the boundary layer got *deeper* (1,341 → 1,622 m)
 and temperature *rose* (297.6 → 302 K), the opposite of cooling and stagnation.
 
-**Pass 3 (rain) — this changes the conclusion.** Hourly ERA5 precipitation around Delhi:
+**Pass 3 (rain), this changes the conclusion.** Hourly ERA5 precipitation around Delhi:
 
 | IST day | 26 Sep | 27 Sep | 28 Sep | 29 Sep | 30 Sep → 5 Oct | 6–10 Oct |
 |---|---|---|---|---|---|---|
@@ -587,7 +591,7 @@ cloud. Each station's hourly PM2.5 is predicted *leave-one-out* (its own reading
 input) from its up-to-6 nearest neighbours within 25 km, in log space, with a persistent per-site
 offset removed. 61 stations, 408 hours (26 Sep → 12 Oct), every station has ≥3 neighbours.
 
-### 1. Does conditioning on wind help? **No — it hurts.**
+### 1. Does conditioning on wind help? **No, it hurts.**
 Predicting from only *upwind* neighbours (bearing within ±60° of the ERA5 wind-from direction,
 wind ≥ 1.5 m/s; it applied in 42% of station-hours) vs. from all neighbours:
 
@@ -597,15 +601,15 @@ wind ≥ 1.5 m/s; it applied in 42% of station-hours) vs. from all neighbours:
 | hours the upwind rule applied | 0.308 | 0.307 | **0.358** |
 
 (MAE in log units; lower is better.) Per station, upwind-only was better for only **9 of 60**,
-median change −0.037 log, Wilcoxon p < 0.001 — significantly *worse*. Likely reasons (not tested):
+median change −0.037 log, Wilcoxon p < 0.001, significantly *worse*. Likely reasons (not tested):
 ERA5 10 m wind at 0.25° is a crude proxy for the transport that matters over a few km, and
 restricting to upwind neighbours leaves 2–3 stations instead of 6, so the median gets noisier.
 **Don't use upwind conditioning here;** the plain neighbour median is as good as any variant. A
-plausible physical idea that the data says no to — kept in the code and tests so it can be
+plausible physical idea that the data says no to, kept in the code and tests so it can be
 re-checked when a finer wind source or denser network exists.
 
 ### 2. Station health: 3 flagged (all stuck sensors), 1 on watch (of 61)
-Flatlines are the clearest and need no statistics — a stuck sensor repeating one value:
+Flatlines are the clearest and need no statistics, a stuck sensor repeating one value:
 
 | station | stuck at | for | neighbours meanwhile |
 |---|---|---|---|
@@ -616,26 +620,26 @@ Flatlines are the clearest and need no statistics — a stuck sensor repeating o
 | Sector 11, Faridabad | 53.6 µg/m³ | 7 h (12 Oct) | 22 |
 
 **On watch:** IHBAS Dilshad Garden, whose daily residual vs its neighbours falls steadily from
-+0.91 to −0.59 log (a ~4.5× change) over 17 days — p = 0.009 on its own after the autocorrelation
++0.91 to −0.59 log (a ~4.5× change) over 17 days, p = 0.009 on its own after the autocorrelation
 correction but q = 0.28 across the network, so *not confirmed*.
 
 **An earlier version also flagged five stations as "unusually noisy" (Govindpuram, NSIT Dwarka,
 Sector 30, Sector-51, Vikas Sadan). That was an artefact and is retracted.** Residual noise
 correlates with how far a station's neighbours are (Spearman +0.44, p = 0.0004), and all five were
-isolated stations — neighbours 9–12.5 km away on average vs a 5.4 km network median — which are
+isolated stations, neighbours 9–12.5 km away on average vs a 5.4 km network median, which are
 predicted worse *by construction*. Noise is now judged against what the station's isolation
 predicts (robust log-log fit across stations); once adjusted, none of the five is noisy.
 
 **Cross-check with the satellite analysis:** IHBAS is also one of the two stations right at the
 threshold in the satellite-decoupling test (ρ −0.43, q ≈ 0.10). Two reference signals (satellite,
-neighbours) pointing at the same station is worth a human look — though both use the same ground
+neighbours) pointing at the same station is worth a human look, though both use the same ground
 PM2.5, so it is not independent confirmation of the *ground* data, and a station beside a road or
 kiln would produce exactly this too. (An earlier draft of this README also claimed Sector-51
 Gurugram was picked out by both methods; that rested on the retracted noise flag and no longer
 holds.)
 
 ### How the flag rules got to 3 (what the first runs taught)
-The first version flagged **14 of 61** — too many to be a fault list — and even after the first
+The first version flagged **14 of 61**, too many to be a fault list, and even after the first
 round of fixes, 5 of the 8 remaining flags were still artefacts (item 5). Fixing it was a sequence
 of real problems, each pinned by a test:
 1. Significance ≠ importance: a −0.003 log/day trend (0.3%/day) was "significant". Now needs
@@ -644,7 +648,7 @@ of real problems, each pinned by a test:
    typical noise.
 3. The trend test assumed independent days, but daily residuals are autocorrelated. Adjusted by
    effective sample size. Measured honestly: false positives on random-walk-like series fall from
-   ~60% to ~35% — **better, still well above 5%**. So drift alone is a *flag* only if the total
+   ~60% to ~35%, **better, still well above 5%**. So drift alone is a *flag* only if the total
    change is ≥ 0.5 log (~65%, a judgement call, not tuned); smaller, or merely large-but-not-FDR-
    significant (≥ ln 2, p < 0.05 alone), is a *watch*.
 4. A smooth drift was being double-counted as "noisy" and as a sustained departure. Noise and
@@ -672,7 +676,7 @@ data and so land in calmer, lower-PM periods.)
 **What this does *not* cover:** a *network-wide* outage like 26 Sep → 12 Oct on the data.gov.in
 feed, when no neighbours report. There the only independent signal is the satellite, which (see
 the satellite analysis) tracks the *city's* day-to-day PM2.5 (ρ 0.68) but not stations
-individually — so a regional daily estimate is feasible, a per-station fill is not.
+individually, so a regional daily estimate is feasible, a per-station fill is not.
 
 ### Limits
 - 17 days of data; the real test is a longer record. All thresholds above are judgement calls and
@@ -696,9 +700,9 @@ rule out an API-layer restriction the way CPCB's User-Agent gate did.
 
 | # | component | state |
 |---|---|---|
-| 1 | Flag stations drifting from the satellite estimate | **First pass built** (see Analysis). Nothing flaggable yet — needs ~3–4 weeks of paired days. |
+| 1 | Flag stations drifting from the satellite estimate | **First pass built** (see Analysis). Nothing flaggable yet, needs ~3–4 weeks of paired days. |
 | 2 | Gap-fill missing station data | **Built.** Neighbour-based fill beats persistence for gaps ≥ 6 h (26–47% lower error); `pm25_hourly_filled.csv` labels every value's provenance. Network-wide outages are not covered (satellite only gives a regional daily estimate, unvalidated). |
-| 3 | Neighbour consistency (for when the satellite is blind) | **Built.** Found 5 stuck-sensor episodes at 3 stations, plus 1 watch (an earlier "noisy" flag was an isolation artefact and was retracted). Wind conditioning was tested and *rejected* — it makes predictions worse. |
+| 3 | Neighbour consistency (for when the satellite is blind) | **Built.** Found 5 stuck-sensor episodes at 3 stations, plus 1 watch (an earlier "noisy" flag was an isolation artefact and was retracted). Wind conditioning was tested and *rejected*, it makes predictions worse. |
 | 4 | Stubble-burning transport attribution | **Built, and humbled by a rain check.** The apparent step was largely rain stopping; on rain-free days ρ = 0.61 (p = 0.066, n = 10). Needs ~20+ dry days (Oct–Nov). |
 
 Dashboard: **built** (see the Dashboard section); rebuilt by every daily run.
