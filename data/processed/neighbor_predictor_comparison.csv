@@ -1,13 +1,13 @@
 regime,predictor,n_station_hours,mae_log,typical_pct_error
 all hours,knn_median,63038,0.314,36.9
 all hours,idw_mean,63038,0.3097,36.3
-all hours,upwind_median,63038,0.3316,39.3
-calm (<1.5 m/s),knn_median,26152,0.306,35.8
-calm (<1.5 m/s),idw_mean,26152,0.3017,35.2
-calm (<1.5 m/s),upwind_median,26152,0.307,35.9
-windy (>=1.5 m/s),knn_median,36886,0.3197,37.7
-windy (>=1.5 m/s),idw_mean,36886,0.3154,37.1
-windy (>=1.5 m/s),upwind_median,36886,0.3491,41.8
-hours the upwind rule applied,knn_median,21378,0.3174,37.4
-hours the upwind rule applied,idw_mean,21378,0.3097,36.3
-hours the upwind rule applied,upwind_median,21378,0.3683,44.5
+all hours,upwind_median,63038,0.3319,39.4
+calm (<1.5 m/s),knn_median,25014,0.3092,36.2
+calm (<1.5 m/s),idw_mean,25014,0.3056,35.7
+calm (<1.5 m/s),upwind_median,25014,0.3101,36.4
+windy (>=1.5 m/s),knn_median,38024,0.3172,37.3
+windy (>=1.5 m/s),idw_mean,38024,0.3125,36.7
+windy (>=1.5 m/s),upwind_median,38024,0.3461,41.4
+hours the upwind rule applied,knn_median,22101,0.3149,37.0
+hours the upwind rule applied,idw_mean,22101,0.307,35.9
+hours the upwind rule applied,upwind_median,22101,0.3648,44.0
