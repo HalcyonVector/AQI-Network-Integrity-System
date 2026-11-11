@@ -1,62 +1,62 @@
 station,n_days,median_resid_z,frac_same_sign,trend_z_per_day,flag,reason
-"IGNOU_Maidan Garhi, Delhi - DPCC",23,-5.38,0.96,0.023,False,no flag: satellite signal too weak this period
-"Cantonment Area, Delhi - DPCC",25,-4.74,0.96,0.028,False,no flag: satellite signal too weak this period
-"Govindpuram, Ghaziabad - UPPCB",24,-2.67,0.88,-0.029,False,no flag: satellite signal too weak this period
-"Sector 11, Faridabad - HSPCB",17,-2.65,1.0,-0.028,False,no flag: satellite signal too weak this period
-"New Industrial Town, Faridabad - HSPCB",17,-2.58,0.82,-0.033,False,no flag: satellite signal too weak this period
-"Sector 30, Faridabad - HSPCB",22,-2.33,0.95,-0.052,False,no flag: satellite signal too weak this period
-"Sector-51, Gurugram - HSPCB",24,-1.74,0.88,-0.01,False,no flag: satellite signal too weak this period
+"IGNOU_Maidan Garhi, Delhi - DPCC",25,-5.38,0.96,0.032,False,no flag: satellite signal too weak this period
+"Cantonment Area, Delhi - DPCC",26,-4.52,0.96,0.046,False,no flag: satellite signal too weak this period
+"Govindpuram, Ghaziabad - UPPCB",26,-2.52,0.88,-0.026,False,no flag: satellite signal too weak this period
+"New Industrial Town, Faridabad - HSPCB",19,-2.39,0.84,0.006,False,no flag: satellite signal too weak this period
+"Sector 11, Faridabad - HSPCB",19,-2.32,1.0,0.03,False,no flag: satellite signal too weak this period
+"Sector 30, Faridabad - HSPCB",23,-2.26,0.96,-0.038,False,no flag: satellite signal too weak this period
+"Sector-51, Gurugram - HSPCB",25,-1.39,0.88,-0.004,False,no flag: satellite signal too weak this period
 "Sector - 62, Noida - IITM",17,1.36,1.0,-0.011,False,no flag: satellite signal too weak this period
 "Sector - 125, Noida - UPPCB",18,-1.33,1.0,-0.067,False,no flag: satellite signal too weak this period
-"Anand Vihar, Delhi - DPCC",26,-1.15,0.92,-0.025,False,no flag: satellite signal too weak this period
-"NSIT Dwarka, Delhi - CPCB",23,-1.13,0.78,-0.023,False,no flag: satellite signal too weak this period
-"Shadipur, Delhi - CPCB",24,-1.03,0.88,0.024,False,no flag: satellite signal too weak this period
-"IGI Airport (T3), Delhi - IITM",25,-1.01,0.76,-0.04,False,no flag: satellite signal too weak this period
-"Nehru Nagar, Delhi - DPCC",26,-1.01,1.0,0.019,False,no flag: satellite signal too weak this period
-"IMD Lodhi Road, Delhi - IITM",25,-1.01,0.8,-0.041,False,no flag: satellite signal too weak this period
-"Mandir Marg, Delhi - DPCC",23,0.88,1.0,-0.018,False,no flag: satellite signal too weak this period
-"Ved Vihar-Loni, Ghaziabad - UPPCB",18,-0.86,0.61,-0.102,False,no flag: satellite signal too weak this period
-"Pusa, Delhi - DPCC",21,0.86,0.95,-0.011,False,no flag: satellite signal too weak this period
-"Jahangirpuri, Delhi - DPCC",25,0.8,0.92,0.01,False,no flag: satellite signal too weak this period
-"Sirifort, Delhi - CPCB",24,0.76,1.0,-0.002,False,no flag: satellite signal too weak this period
-"R K Puram, Delhi - DPCC",26,0.76,0.96,-0.001,False,no flag: satellite signal too weak this period
-"Wazirpur, Delhi - DPCC",27,-0.7,0.93,0.016,False,no flag: satellite signal too weak this period
-"Loni, Ghaziabad - UPPCB",24,0.63,0.75,-0.044,False,no flag: satellite signal too weak this period
-"Vivek Vihar, Delhi - DPCC",25,0.54,0.72,0.033,False,no flag: satellite signal too weak this period
-"Sonia Vihar, Delhi - DPCC",23,0.53,0.87,0.013,False,no flag: satellite signal too weak this period
-"Talkatora Garden, Delhi - DPCC",24,0.53,1.0,-0.003,False,no flag: satellite signal too weak this period
-"Sector-1, Noida - UPPCB",24,-0.46,0.83,-0.018,False,no flag: satellite signal too weak this period
-"Sector-116, Noida - UPPCB",24,-0.45,0.67,-0.049,False,no flag: satellite signal too weak this period
-"Jawaharlal Nehru Stadium, Delhi - DPCC",25,0.45,0.92,0.008,False,no flag: satellite signal too weak this period
-"NSUT Jaffarpur, Delhi - DPCC",26,0.43,0.85,0.003,False,no flag: satellite signal too weak this period
-"Dwarka-Sector 8, Delhi - DPCC ",27,0.43,0.89,0.015,False,no flag: satellite signal too weak this period
-"ITO, Delhi - CPCB",17,0.41,0.94,0.009,False,no flag: satellite signal too weak this period
-"Rohini, Delhi - DPCC",26,0.4,0.77,0.032,False,no flag: satellite signal too weak this period
-"Patparganj, Delhi - DPCC",23,0.39,0.7,0.068,False,no flag: satellite signal too weak this period
-"JNU, Delhi - DPCC",24,-0.35,0.75,0.039,False,no flag: satellite signal too weak this period
-"Narela, Delhi - DPCC",25,0.34,0.76,0.007,False,no flag: satellite signal too weak this period
-"Burari Crossing, Delhi - IITM",26,-0.33,0.77,0.019,False,no flag: satellite signal too weak this period
-"DTU, Delhi - CPCB",27,0.31,0.7,0.009,False,no flag: satellite signal too weak this period
-"Major Dhyan Chand National Stadium, Delhi - DPCC",25,-0.3,0.6,0.049,False,no flag: satellite signal too weak this period
-"Teri Gram, Gurugram - HSPCB",26,0.3,0.62,-0.068,False,no flag: satellite signal too weak this period
-"Chandni Chowk, Delhi - IITM",24,0.29,0.58,-0.002,False,no flag: satellite signal too weak this period
-"Vikas Sadan, Gurugram - HSPCB",18,0.27,0.56,-0.143,False,no flag: satellite signal too weak this period
-"Sanjay Nagar, Ghaziabad - UPPCB",24,0.27,0.67,-0.089,False,no flag: satellite signal too weak this period
-"Commonwealth Sports Complex, Delhi - DPCC",27,0.26,0.74,0.001,False,no flag: satellite signal too weak this period
-"NISE Gwal Pahari, Gurugram - IITM",25,-0.26,0.6,0.014,False,no flag: satellite signal too weak this period
-"Ashok Vihar, Delhi - DPCC",24,-0.24,0.67,-0.028,False,no flag: satellite signal too weak this period
-"Dr. Karni Singh Shooting Range, Delhi - DPCC",23,0.24,0.57,0.026,False,no flag: satellite signal too weak this period
+"Anand Vihar, Delhi - DPCC",27,-1.32,0.93,-0.021,False,no flag: satellite signal too weak this period
+"Ved Vihar-Loni, Ghaziabad - UPPCB",20,-1.12,0.65,-0.085,False,no flag: satellite signal too weak this period
+"Shadipur, Delhi - CPCB",26,-1.01,0.88,0.02,False,no flag: satellite signal too weak this period
+"Nehru Nagar, Delhi - DPCC",27,-1.0,1.0,0.02,False,no flag: satellite signal too weak this period
+"NSIT Dwarka, Delhi - CPCB",24,-0.96,0.79,-0.001,False,no flag: satellite signal too weak this period
+"IGI Airport (T3), Delhi - IITM",26,-0.96,0.77,-0.027,False,no flag: satellite signal too weak this period
+"IMD Lodhi Road, Delhi - IITM",27,-0.94,0.81,-0.034,False,no flag: satellite signal too weak this period
+"Pusa, Delhi - DPCC",23,0.88,0.96,-0.011,False,no flag: satellite signal too weak this period
+"R K Puram, Delhi - DPCC",28,0.83,0.96,0.001,False,no flag: satellite signal too weak this period
+"Wazirpur, Delhi - DPCC",29,-0.78,0.93,0.013,False,no flag: satellite signal too weak this period
+"Mandir Marg, Delhi - DPCC",25,0.77,1.0,-0.022,False,no flag: satellite signal too weak this period
+"Sirifort, Delhi - CPCB",26,0.73,1.0,-0.003,False,no flag: satellite signal too weak this period
+"Jahangirpuri, Delhi - DPCC",27,0.73,0.93,0.005,False,no flag: satellite signal too weak this period
+"Loni, Ghaziabad - UPPCB",25,0.62,0.72,-0.045,False,no flag: satellite signal too weak this period
+"Vivek Vihar, Delhi - DPCC",26,0.54,0.73,0.029,False,no flag: satellite signal too weak this period
+"Sonia Vihar, Delhi - DPCC",25,0.53,0.88,0.009,False,no flag: satellite signal too weak this period
+"Talkatora Garden, Delhi - DPCC",25,0.53,0.96,-0.005,False,no flag: satellite signal too weak this period
+"Sector-116, Noida - UPPCB",26,-0.51,0.69,-0.048,False,no flag: satellite signal too weak this period
+"Sector-1, Noida - UPPCB",25,-0.5,0.8,-0.021,False,no flag: satellite signal too weak this period
+"Dwarka-Sector 8, Delhi - DPCC ",28,0.45,0.89,0.017,False,no flag: satellite signal too weak this period
+"NSUT Jaffarpur, Delhi - DPCC",27,0.45,0.85,0.009,False,no flag: satellite signal too weak this period
+"Jawaharlal Nehru Stadium, Delhi - DPCC",27,0.42,0.93,0.006,False,no flag: satellite signal too weak this period
+"ITO, Delhi - CPCB",18,0.41,0.94,0.007,False,no flag: satellite signal too weak this period
+"Rohini, Delhi - DPCC",27,0.4,0.78,0.03,False,no flag: satellite signal too weak this period
+"Patparganj, Delhi - DPCC",25,0.38,0.72,0.049,False,no flag: satellite signal too weak this period
+"IHBAS, Dilshad Garden, Delhi - CPCB",26,-0.35,0.58,-0.087,False,no flag: satellite signal too weak this period
+"JNU, Delhi - DPCC",25,-0.34,0.72,0.043,False,no flag: satellite signal too weak this period
+"Burari Crossing, Delhi - IITM",28,-0.33,0.79,0.017,False,no flag: satellite signal too weak this period
+"Ashok Vihar, Delhi - DPCC",25,-0.28,0.64,-0.025,False,no flag: satellite signal too weak this period
+"Narela, Delhi - DPCC",27,0.27,0.78,0.004,False,no flag: satellite signal too weak this period
+"Dr. Karni Singh Shooting Range, Delhi - DPCC",24,0.26,0.58,0.027,False,no flag: satellite signal too weak this period
+"Commonwealth Sports Complex, Delhi - DPCC",29,0.26,0.76,0.0,False,no flag: satellite signal too weak this period
+"Major Dhyan Chand National Stadium, Delhi - DPCC",26,-0.26,0.58,0.048,False,no flag: satellite signal too weak this period
+"DTU, Delhi - CPCB",29,0.26,0.72,0.006,False,no flag: satellite signal too weak this period
+"Sanjay Nagar, Ghaziabad - UPPCB",26,0.26,0.62,-0.083,False,no flag: satellite signal too weak this period
+"NISE Gwal Pahari, Gurugram - IITM",26,-0.24,0.58,0.017,False,no flag: satellite signal too weak this period
+"Teri Gram, Gurugram - HSPCB",27,0.23,0.59,-0.061,False,no flag: satellite signal too weak this period
 "Nangloi,Delhi-DPCC",13,-0.23,0.77,-0.01,False,no flag: satellite signal too weak this period
-"IHBAS, Dilshad Garden, Delhi - CPCB",24,-0.2,0.54,-0.104,False,no flag: satellite signal too weak this period
-"Bawana, Delhi - DPCC",25,0.18,0.64,0.002,False,no flag: satellite signal too weak this period
-"Vasundhara, Ghaziabad - UPPCB",22,0.16,0.59,-0.054,False,no flag: satellite signal too weak this period
-"Mundka, Delhi - DPCC",27,-0.13,0.59,0.038,False,no flag: satellite signal too weak this period
-"Indirapuram, Ghaziabad - UPPCB",25,0.11,0.56,-0.038,False,no flag: satellite signal too weak this period
-"IIT Delhi, Delhi - IITM",25,0.09,0.6,-0.015,False,no flag: satellite signal too weak this period
-"Sri Aurobindo Marg, Delhi - DPCC",22,0.09,0.55,-0.021,False,no flag: satellite signal too weak this period
-"Wave City, Ghaziabad - UPPCB",24,0.07,0.5,-0.116,False,no flag: satellite signal too weak this period
-"Punjabi Bagh, Delhi - DPCC",26,-0.05,0.58,0.038,False,no flag: satellite signal too weak this period
-"Okhla Phase-2, Delhi - DPCC",24,-0.02,0.5,0.023,False,no flag: satellite signal too weak this period
-"CRRI Mathura Road, Delhi - IITM",24,-0.02,0.5,-0.003,False,no flag: satellite signal too weak this period
-"Alipur, Delhi - DPCC",27,0.0,0.0,0.029,False,no flag: satellite signal too weak this period
-"Najafgarh, Delhi - DPCC",27,-0.0,0.52,0.017,False,no flag: satellite signal too weak this period
+"Chandni Chowk, Delhi - IITM",26,0.23,0.54,-0.004,False,no flag: satellite signal too weak this period
+"Bawana, Delhi - DPCC",27,0.19,0.67,0.005,False,no flag: satellite signal too weak this period
+"Mundka, Delhi - DPCC",28,-0.13,0.57,0.037,False,no flag: satellite signal too weak this period
+"Sri Aurobindo Marg, Delhi - DPCC",24,0.1,0.58,-0.01,False,no flag: satellite signal too weak this period
+"Indirapuram, Ghaziabad - UPPCB",27,0.1,0.52,-0.043,False,no flag: satellite signal too weak this period
+"IIT Delhi, Delhi - IITM",27,0.09,0.67,-0.008,False,no flag: satellite signal too weak this period
+"Vasundhara, Ghaziabad - UPPCB",23,0.09,0.57,-0.054,False,no flag: satellite signal too weak this period
+"Najafgarh, Delhi - DPCC",20,-0.08,0.6,0.013,False,no flag: satellite signal too weak this period
+"Punjabi Bagh, Delhi - DPCC",27,-0.04,0.56,0.037,False,no flag: satellite signal too weak this period
+"Okhla Phase-2, Delhi - DPCC",25,0.04,0.52,0.025,False,no flag: satellite signal too weak this period
+"Alipur, Delhi - DPCC",29,0.01,0.52,0.024,False,no flag: satellite signal too weak this period
+"CRRI Mathura Road, Delhi - IITM",25,0.0,0.0,-0.0,False,no flag: satellite signal too weak this period
+"Vikas Sadan, Gurugram - HSPCB",19,0.0,0.53,-0.137,False,no flag: satellite signal too weak this period
+"Wave City, Ghaziabad - UPPCB",26,-0.0,0.54,-0.11,False,no flag: satellite signal too weak this period
