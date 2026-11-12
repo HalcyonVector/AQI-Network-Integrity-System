@@ -1,62 +1,62 @@
 station,n_days,rho,network_median_rho,z,p_low,q_value,flag,reason
-"Sanjay Nagar, Ghaziabad - UPPCB",27,0.178,0.69,-3.087,0.001,0.043,True,PM2.5 decoupled from satellite vs peers
-"Sector 30, Faridabad - HSPCB",24,0.157,0.69,-2.985,0.001,0.043,True,PM2.5 decoupled from satellite vs peers
-"Govindpuram, Ghaziabad - UPPCB",26,0.236,0.69,-2.748,0.003,0.046,True,PM2.5 decoupled from satellite vs peers
-"Ved Vihar-Loni, Ghaziabad - UPPCB",20,0.132,0.69,-2.782,0.003,0.046,True,PM2.5 decoupled from satellite vs peers
-"Vikas Sadan, Gurugram - HSPCB",21,0.229,0.69,-2.464,0.007,0.084,True,PM2.5 decoupled from satellite vs peers
-"Wave City, Ghaziabad - UPPCB",27,0.319,0.69,-2.391,0.008,0.085,True,PM2.5 decoupled from satellite vs peers
-"Sector-51, Gurugram - HSPCB",27,0.389,0.69,-2.023,0.022,0.188,False,"watch: looks decoupled, not significant after multiple-comparison correction (needs more days)"
-"Cantonment Area, Delhi - DPCC",26,0.399,0.69,-1.927,0.027,0.206,False,"watch: looks decoupled, not significant after multiple-comparison correction (needs more days)"
-"Sector 11, Faridabad - HSPCB",21,0.412,0.69,-1.64,0.051,0.339,False,tracks satellite like the network
-"NSIT Dwarka, Delhi - CPCB",26,0.459,0.69,-1.593,0.056,0.339,False,tracks satellite like the network
-"Nangloi,Delhi-DPCC",13,0.341,0.69,-1.472,0.071,0.347,False,tracks satellite like the network
-"IHBAS, Dilshad Garden, Delhi - CPCB",27,0.49,0.69,-1.441,0.075,0.347,False,tracks satellite like the network
-"Sector - 125, Noida - UPPCB",18,0.432,0.69,-1.408,0.08,0.347,False,tracks satellite like the network
-"Sector-116, Noida - UPPCB",18,0.432,0.69,-1.408,0.08,0.347,False,tracks satellite like the network
-"Vasundhara, Ghaziabad - UPPCB",24,0.499,0.69,-1.297,0.097,0.396,False,tracks satellite like the network
-"New Industrial Town, Faridabad - HSPCB",21,0.501,0.69,-1.19,0.117,0.436,False,tracks satellite like the network
-"NSUT Jaffarpur, Delhi - DPCC",31,0.547,0.69,-1.168,0.121,0.436,False,tracks satellite like the network
-"Indirapuram, Ghaziabad - UPPCB",28,0.566,0.69,-0.976,0.165,0.558,False,tracks satellite like the network
-"Sri Aurobindo Marg, Delhi - DPCC",25,0.582,0.69,-0.808,0.209,0.663,False,tracks satellite like the network
-"Sector - 62, Noida - IITM",17,0.559,0.69,-0.766,0.222,0.663,False,tracks satellite like the network
-"JNU, Delhi - DPCC",26,0.594,0.69,-0.745,0.228,0.663,False,tracks satellite like the network
-"Teri Gram, Gurugram - HSPCB",29,0.609,0.69,-0.675,0.25,0.693,False,tracks satellite like the network
-"IIT Delhi, Delhi - IITM",28,0.625,0.69,-0.546,0.292,0.775,False,tracks satellite like the network
-"NISE Gwal Pahari, Gurugram - IITM",27,0.631,0.69,-0.489,0.313,0.79,False,tracks satellite like the network
-"IMD Lodhi Road, Delhi - IITM",28,0.637,0.69,-0.448,0.327,0.79,False,tracks satellite like the network
-"Dwarka-Sector 8, Delhi - DPCC ",29,0.641,0.69,-0.422,0.337,0.79,False,tracks satellite like the network
-"IGNOU_Maidan Garhi, Delhi - DPCC",27,0.665,0.69,-0.216,0.414,0.904,False,tracks satellite like the network
-"Loni, Ghaziabad - UPPCB",25,0.664,0.69,-0.215,0.415,0.904,False,tracks satellite like the network
-"Talkatora Garden, Delhi - DPCC",26,0.679,0.69,-0.098,0.461,0.929,False,tracks satellite like the network
-"IGI Airport (T3), Delhi - IITM",27,0.689,0.69,-0.007,0.497,0.929,False,tracks satellite like the network
-"Rohini, Delhi - DPCC",29,0.69,0.69,0.0,0.5,0.929,False,tracks satellite like the network
-"Pusa, Delhi - DPCC",24,0.703,0.69,0.105,0.542,0.929,False,tracks satellite like the network
-"R K Puram, Delhi - DPCC",29,0.704,0.69,0.134,0.553,0.929,False,tracks satellite like the network
-"Shadipur, Delhi - CPCB",27,0.711,0.69,0.186,0.574,0.929,False,tracks satellite like the network
-"Alipur, Delhi - DPCC",30,0.723,0.69,0.321,0.626,0.929,False,tracks satellite like the network
-"DTU, Delhi - CPCB",31,0.723,0.69,0.323,0.627,0.929,False,tracks satellite like the network
-"Najafgarh, Delhi - DPCC",30,0.729,0.69,0.38,0.648,0.929,False,tracks satellite like the network
-"Mundka, Delhi - DPCC",29,0.73,0.69,0.383,0.649,0.929,False,tracks satellite like the network
-"Ashok Vihar, Delhi - DPCC",26,0.732,0.69,0.383,0.649,0.929,False,tracks satellite like the network
-"Narela, Delhi - DPCC",28,0.731,0.69,0.387,0.651,0.929,False,tracks satellite like the network
-"Anand Vihar, Delhi - DPCC",28,0.736,0.69,0.437,0.669,0.929,False,tracks satellite like the network
-"Nehru Nagar, Delhi - DPCC",28,0.74,0.69,0.478,0.684,0.929,False,tracks satellite like the network
-"ITO, Delhi - CPCB",19,0.751,0.69,0.478,0.684,0.929,False,tracks satellite like the network
-"CRRI Mathura Road, Delhi - IITM",26,0.742,0.69,0.485,0.686,0.929,False,tracks satellite like the network
-"Bawana, Delhi - DPCC",28,0.748,0.69,0.569,0.715,0.929,False,tracks satellite like the network
-"Jawaharlal Nehru Stadium, Delhi - DPCC",28,0.758,0.69,0.678,0.751,0.929,False,tracks satellite like the network
-"Sirifort, Delhi - CPCB",27,0.763,0.69,0.712,0.762,0.929,False,tracks satellite like the network
-"Wazirpur, Delhi - DPCC",30,0.762,0.69,0.743,0.771,0.929,False,tracks satellite like the network
-"Commonwealth Sports Complex, Delhi - DPCC",30,0.765,0.69,0.78,0.782,0.929,False,tracks satellite like the network
-"Punjabi Bagh, Delhi - DPCC",28,0.77,0.69,0.811,0.791,0.929,False,tracks satellite like the network
-"Burari Crossing, Delhi - IITM",29,0.777,0.69,0.91,0.819,0.929,False,tracks satellite like the network
-"Jahangirpuri, Delhi - DPCC",28,0.784,0.69,0.976,0.835,0.929,False,tracks satellite like the network
-"Major Dhyan Chand National Stadium, Delhi - DPCC",27,0.789,0.69,1.025,0.847,0.929,False,tracks satellite like the network
-"Dr. Karni Singh Shooting Range, Delhi - DPCC",25,0.797,0.69,1.068,0.857,0.929,False,tracks satellite like the network
-"Sector-1, Noida - UPPCB",26,0.796,0.69,1.077,0.859,0.929,False,tracks satellite like the network
-"Sonia Vihar, Delhi - DPCC",26,0.798,0.69,1.111,0.867,0.929,False,tracks satellite like the network
-"Chandni Chowk, Delhi - IITM",27,0.802,0.69,1.186,0.882,0.929,False,tracks satellite like the network
-"Vivek Vihar, Delhi - DPCC",27,0.809,0.69,1.28,0.9,0.929,False,tracks satellite like the network
-"Okhla Phase-2, Delhi - DPCC",26,0.812,0.69,1.287,0.901,0.929,False,tracks satellite like the network
-"Mandir Marg, Delhi - DPCC",26,0.819,0.69,1.38,0.916,0.929,False,tracks satellite like the network
-"Patparganj, Delhi - DPCC",26,0.825,0.69,1.467,0.929,0.929,False,tracks satellite like the network
+"Sanjay Nagar, Ghaziabad - UPPCB",27,0.178,0.703,-3.199,0.001,0.031,True,PM2.5 decoupled from satellite vs peers
+"Sector 30, Faridabad - HSPCB",24,0.157,0.703,-3.089,0.001,0.031,True,PM2.5 decoupled from satellite vs peers
+"Govindpuram, Ghaziabad - UPPCB",26,0.236,0.703,-2.858,0.002,0.033,True,PM2.5 decoupled from satellite vs peers
+"Ved Vihar-Loni, Ghaziabad - UPPCB",20,0.132,0.703,-2.876,0.002,0.033,True,PM2.5 decoupled from satellite vs peers
+"Vikas Sadan, Gurugram - HSPCB",21,0.229,0.703,-2.561,0.005,0.063,True,PM2.5 decoupled from satellite vs peers
+"Wave City, Ghaziabad - UPPCB",27,0.319,0.703,-2.503,0.006,0.063,True,PM2.5 decoupled from satellite vs peers
+"Sector-51, Gurugram - HSPCB",27,0.389,0.703,-2.135,0.016,0.143,False,"watch: looks decoupled, not significant after multiple-comparison correction (needs more days)"
+"Cantonment Area, Delhi - DPCC",26,0.399,0.703,-2.036,0.021,0.159,False,"watch: looks decoupled, not significant after multiple-comparison correction (needs more days)"
+"Sector 11, Faridabad - HSPCB",21,0.412,0.703,-1.736,0.041,0.271,False,"watch: looks decoupled, not significant after multiple-comparison correction (needs more days)"
+"NSIT Dwarka, Delhi - CPCB",26,0.459,0.703,-1.702,0.044,0.271,False,"watch: looks decoupled, not significant after multiple-comparison correction (needs more days)"
+"IHBAS, Dilshad Garden, Delhi - CPCB",27,0.49,0.703,-1.553,0.06,0.311,False,tracks satellite like the network
+"Nangloi,Delhi-DPCC",13,0.341,0.703,-1.544,0.061,0.311,False,tracks satellite like the network
+"Sector - 125, Noida - UPPCB",18,0.432,0.703,-1.497,0.067,0.316,False,tracks satellite like the network
+"Vasundhara, Ghaziabad - UPPCB",24,0.499,0.703,-1.402,0.08,0.351,False,tracks satellite like the network
+"New Industrial Town, Faridabad - HSPCB",21,0.501,0.703,-1.286,0.099,0.378,False,tracks satellite like the network
+"NSUT Jaffarpur, Delhi - DPCC",31,0.547,0.703,-1.288,0.099,0.378,False,tracks satellite like the network
+"Indirapuram, Ghaziabad - UPPCB",28,0.566,0.703,-1.09,0.138,0.495,False,tracks satellite like the network
+"Sri Aurobindo Marg, Delhi - DPCC",25,0.582,0.703,-0.916,0.18,0.601,False,tracks satellite like the network
+"JNU, Delhi - DPCC",26,0.594,0.703,-0.854,0.196,0.601,False,tracks satellite like the network
+"Sector - 62, Noida - IITM",17,0.559,0.703,-0.852,0.197,0.601,False,tracks satellite like the network
+"Teri Gram, Gurugram - HSPCB",29,0.609,0.703,-0.791,0.214,0.623,False,tracks satellite like the network
+"IIT Delhi, Delhi - IITM",28,0.625,0.703,-0.661,0.254,0.705,False,tracks satellite like the network
+"NISE Gwal Pahari, Gurugram - IITM",27,0.631,0.703,-0.601,0.274,0.72,False,tracks satellite like the network
+"IMD Lodhi Road, Delhi - IITM",28,0.637,0.703,-0.562,0.287,0.72,False,tracks satellite like the network
+"Dwarka-Sector 8, Delhi - DPCC ",29,0.641,0.703,-0.538,0.295,0.72,False,tracks satellite like the network
+"IGNOU_Maidan Garhi, Delhi - DPCC",27,0.665,0.703,-0.328,0.371,0.844,False,tracks satellite like the network
+"Loni, Ghaziabad - UPPCB",25,0.664,0.703,-0.322,0.374,0.844,False,tracks satellite like the network
+"Talkatora Garden, Delhi - DPCC",26,0.679,0.703,-0.207,0.418,0.902,False,tracks satellite like the network
+"IGI Airport (T3), Delhi - IITM",27,0.689,0.703,-0.119,0.453,0.902,False,tracks satellite like the network
+"Rohini, Delhi - DPCC",29,0.69,0.703,-0.116,0.454,0.902,False,tracks satellite like the network
+"Pusa, Delhi - DPCC",24,0.703,0.703,0.0,0.5,0.902,False,tracks satellite like the network
+"R K Puram, Delhi - DPCC",29,0.704,0.703,0.017,0.507,0.902,False,tracks satellite like the network
+"Shadipur, Delhi - CPCB",27,0.711,0.703,0.074,0.529,0.902,False,tracks satellite like the network
+"Sector-116, Noida - UPPCB",27,0.723,0.703,0.19,0.575,0.902,False,tracks satellite like the network
+"DTU, Delhi - CPCB",31,0.723,0.703,0.203,0.58,0.902,False,tracks satellite like the network
+"Alipur, Delhi - DPCC",30,0.723,0.703,0.202,0.58,0.902,False,tracks satellite like the network
+"Najafgarh, Delhi - DPCC",30,0.729,0.703,0.261,0.603,0.902,False,tracks satellite like the network
+"Mundka, Delhi - DPCC",29,0.73,0.703,0.266,0.605,0.902,False,tracks satellite like the network
+"Narela, Delhi - DPCC",28,0.731,0.703,0.273,0.607,0.902,False,tracks satellite like the network
+"Ashok Vihar, Delhi - DPCC",26,0.732,0.703,0.274,0.608,0.902,False,tracks satellite like the network
+"Anand Vihar, Delhi - DPCC",28,0.736,0.703,0.323,0.627,0.902,False,tracks satellite like the network
+"Nehru Nagar, Delhi - DPCC",28,0.74,0.703,0.364,0.642,0.902,False,tracks satellite like the network
+"CRRI Mathura Road, Delhi - IITM",26,0.742,0.703,0.375,0.646,0.902,False,tracks satellite like the network
+"ITO, Delhi - CPCB",19,0.751,0.703,0.387,0.651,0.902,False,tracks satellite like the network
+"Bawana, Delhi - DPCC",28,0.748,0.703,0.455,0.675,0.91,False,tracks satellite like the network
+"Jawaharlal Nehru Stadium, Delhi - DPCC",28,0.758,0.703,0.564,0.713,0.91,False,tracks satellite like the network
+"Sirifort, Delhi - CPCB",27,0.763,0.703,0.6,0.726,0.91,False,tracks satellite like the network
+"Wazirpur, Delhi - DPCC",30,0.762,0.703,0.624,0.734,0.91,False,tracks satellite like the network
+"Commonwealth Sports Complex, Delhi - DPCC",30,0.765,0.703,0.661,0.746,0.91,False,tracks satellite like the network
+"Punjabi Bagh, Delhi - DPCC",28,0.77,0.703,0.697,0.757,0.91,False,tracks satellite like the network
+"Burari Crossing, Delhi - IITM",29,0.777,0.703,0.793,0.786,0.91,False,tracks satellite like the network
+"Jahangirpuri, Delhi - DPCC",28,0.784,0.703,0.862,0.806,0.91,False,tracks satellite like the network
+"Major Dhyan Chand National Stadium, Delhi - DPCC",27,0.789,0.703,0.914,0.82,0.91,False,tracks satellite like the network
+"Dr. Karni Singh Shooting Range, Delhi - DPCC",25,0.797,0.703,0.96,0.832,0.91,False,tracks satellite like the network
+"Sector-1, Noida - UPPCB",26,0.796,0.703,0.968,0.833,0.91,False,tracks satellite like the network
+"Sonia Vihar, Delhi - DPCC",26,0.798,0.703,1.002,0.842,0.91,False,tracks satellite like the network
+"Chandni Chowk, Delhi - IITM",27,0.802,0.703,1.074,0.859,0.91,False,tracks satellite like the network
+"Vivek Vihar, Delhi - DPCC",27,0.809,0.703,1.168,0.879,0.91,False,tracks satellite like the network
+"Okhla Phase-2, Delhi - DPCC",26,0.812,0.703,1.178,0.881,0.91,False,tracks satellite like the network
+"Mandir Marg, Delhi - DPCC",26,0.819,0.703,1.27,0.898,0.913,False,tracks satellite like the network
+"Patparganj, Delhi - DPCC",26,0.825,0.703,1.358,0.913,0.913,False,tracks satellite like the network
