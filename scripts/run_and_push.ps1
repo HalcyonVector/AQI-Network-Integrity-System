@@ -75,6 +75,7 @@ foreach ($step in @(
     @("fetch_openaq", "openaq"),
     @("fetch_firms", "firms"),
     @("fetch_aod", "aod"),
+    @("backfill_missing", "backfill"),
     @("convert_feed", "feed-conversion"),
     @("analyze_neighbor_consistency", "neighbours"),
     @("build_filled_series", "filled"),

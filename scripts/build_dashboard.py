@@ -33,6 +33,19 @@ OUT_PATH = PROJECT_ROOT / "dashboard" / "index.html"
 LOGS_DIR = PROJECT_ROOT / "logs"
 REPO_URL = "https://github.com/HalcyonVector/AQI-Network-Integrity-System"
 GITHUB_URL = "https://github.com/HalcyonVector"
+# Logo: a monitoring ring, a drifting air-quality wave, and three linked station nodes. Inline so the
+# page stays a single file; the favicon is the same mark (xmlns is percent-encoded to keep the page
+# free of any http:// address).
+LOGO_SVG = ('<svg class="logo" viewBox="0 0 48 48" role="img" aria-label="AQI NIS logo">'
+            '<defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#a3d2b8"/><stop offset="1" stop-color="#5fb3d6"/></linearGradient></defs>'
+            '<rect x="2" y="2" width="44" height="44" rx="13" fill="rgba(111,191,178,.10)" stroke="url(#lg)" stroke-width="1.6"/>'
+            '<path d="M8 29 C13 21 17 21 22 28 S31 35 40 22" fill="none" stroke="url(#lg)" stroke-width="2.4" stroke-linecap="round"/>'
+            '<path d="M14 15 L24 11 L34 16" fill="none" stroke="#a3d2b8" stroke-opacity=".55" stroke-width="1.3"/>'
+            '<circle cx="14" cy="15" r="2.6" fill="#a3d2b8"/><circle cx="24" cy="11" r="2.6" fill="#dfb277"/><circle cx="34" cy="16" r="2.6" fill="#a3d2b8"/></svg>')
+FAVICON = ("data:image/svg+xml,%3Csvg xmlns='http%3A//www.w3.org/2000/svg' viewBox='0 0 48 48'%3E"
+           "%3Crect x='2' y='2' width='44' height='44' rx='13' fill='%230c171b' stroke='%236fbfb2' stroke-width='2'/%3E"
+           "%3Cpath d='M8 29 C13 21 17 21 22 28 S31 35 40 22' fill='none' stroke='%23a3d2b8' stroke-width='3' stroke-linecap='round'/%3E"
+           "%3Ccircle cx='14' cy='15' r='3' fill='%23a3d2b8'/%3E%3Ccircle cx='24' cy='11' r='3' fill='%23dfb277'/%3E%3Ccircle cx='34' cy='16' r='3' fill='%23a3d2b8'/%3E%3C/svg%3E")
 # (label, url) for the footer: the only other external addresses the page may carry
 FOOTER_SOURCES = [
     ("CPCB feed via data.gov.in", "https://data.gov.in"),
@@ -439,7 +452,12 @@ main{max-width:1040px}
 .card h2:before{width:6px;height:6px;border-radius:50%;background:var(--teal);box-shadow:none}
 .hero{padding:44px 38px 30px;background:linear-gradient(180deg,rgba(111,191,178,.075),rgba(255,255,255,.02))}
 .hero h1{font:400 clamp(34px,5.6vw,54px)/1.14 var(--serif);letter-spacing:-.012em;padding-bottom:.06em;background:none;-webkit-text-fill-color:currentColor;color:#f1f6f4;filter:none}
-.hero h1:before{content:"AQI NIS";display:block;font:600 11.5px/1 var(--sans);letter-spacing:.3em;color:var(--teal);-webkit-text-fill-color:var(--teal);margin-bottom:16px}
+.hero h1:before{content:none}
+.brand{display:flex;align-items:center;gap:14px;margin-bottom:26px}
+.logo{width:46px;height:46px;flex:0 0 auto;display:block}
+.brand-t{display:flex;flex-direction:column;gap:3px}
+.brand-t b{font:700 15px/1 var(--sans);letter-spacing:.26em;color:var(--sage)}
+.brand-t span{font:500 11.5px/1 var(--sans);letter-spacing:.08em;color:var(--muted)}
 .hero .sub{font-size:16px;line-height:1.6;color:#b9c9c9;opacity:1;max-width:56ch}
 .hero .stamp{color:var(--muted);opacity:1;letter-spacing:.02em}
 .tiles{gap:14px;margin-top:30px}
@@ -532,6 +550,7 @@ def render(today: date, raw_dir: Path = RAW_DIR, proc_dir: Path = PROC_DIR) -> s
                   ("quality", "Completeness"), ("health", "Station health"), ("sat", "Satellite"), ("ops", "Pipeline")])
     body = f"""
 <header class="hero">
+<div class="brand">{LOGO_SVG}<div class="brand-t"><b>AQI NIS</b><span>Network Integrity System</span></div></div>
 <h1>NCR air-quality network integrity</h1>
 <p class="sub">Is the monitoring network telling the truth? Data health, station checks, satellite and fire evidence.</p>
 <div class="stamp">Generated {today.isoformat()} &middot; static page, no tracking</div>
@@ -603,6 +622,7 @@ station <i>follows the same day-to-day pattern as its peers</i>. With about two 
 </footer>
 """
     return (f'<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
+            f'<link rel="icon" href="{FAVICON}">'
             f"<title>NCR AQI network integrity</title><style>{CSS}</style></head><body><main>{body}</main></body></html>")
 
 
