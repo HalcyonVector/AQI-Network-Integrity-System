@@ -117,6 +117,9 @@ def test_render_has_all_sections_and_flags_an_unhealthy_source(tmp_path):
     assert "<script" not in page  # a static page: no JavaScript anywhere
     # no external requests: the only URL allowed is the footer link to the project repo
     page_wo_link = page.replace(bd.REPO_URL, "")
+    page_wo_link = page_wo_link.replace(bd.GITHUB_URL, "")
+    for _, url in bd.FOOTER_SOURCES:
+        page_wo_link = page_wo_link.replace(url, "")
     assert "http://" not in page_wo_link and "https://" not in page_wo_link
     assert 'src="http' not in page and "@import" not in page
 

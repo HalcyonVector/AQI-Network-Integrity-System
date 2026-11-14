@@ -85,8 +85,10 @@ def test_dry_day_counter_uses_analysis_window_when_present():
 
 
 def test_countdown_states():
-    assert "passed" in ex.countdown_html(date(2027, 1, 1))
+    assert "No upcoming" in ex.countdown_html(date(2027, 1, 1))
     assert "10 d" in ex.countdown_html(date(2026, 10, 16))
+    after_cds = ex.countdown_html(date(2026, 11, 15))
+    assert "26 Oct" not in after_cds and "16 d" in after_cds  # a passed deadline is dropped
 
 
 def test_parse_run_log_and_html(tmp_path):
@@ -100,6 +102,13 @@ def test_parse_run_log_and_html(tmp_path):
     out = ex.run_log_html(tmp_path)
     assert "FAILED STEPS" in out and "INCOMPLETE" in out and "fetch_aod" in out
     assert "No run logs" in ex.run_log_html(tmp_path / "missing")
+
+
+def test_parse_run_log_new_wording_and_push_failure():
+    log = ("2026-11-04 12:46:14 Starting fetch_cpcb\n2026-11-04 12:52:07 Committed and pushed (fetches and analyses)\n"
+           "2026-11-04 22:57:08 Starting fetch_cpcb\n2026-11-04 23:02:01 PUSH FAILED (fetches and analyses): commit left local\n")
+    runs = ex.parse_run_log(log)
+    assert len(runs) == 2 and runs[0]["committed"] and runs[1]["failed"] == ["push"]
 
 
 def test_sparkline_needs_two_points():

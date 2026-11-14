@@ -162,9 +162,13 @@ def countdown_html(today: date) -> str:
     out = ['<div class="count">']
     for d, what in MILESTONES:
         days = (d - today).days
-        big = "today" if days == 0 else (f"{days} d" if days > 0 else "passed")
+        if days < 0:
+            continue  # a milestone that has passed is history, not something coming up
+        big = "today" if days == 0 else f"{days} d"
         out.append(f'<div class="count-i"><div class="count-n">{big}</div><div><b>{d:%d %b %Y}</b>'
                    f'<div class="muted">{_esc(what)}</div></div></div>')
+    if len(out) == 1:
+        out.append('<div class="muted">No upcoming milestones.</div>')
     out.append("</div>")
     return "".join(out)
 
@@ -193,6 +197,7 @@ def station_map_svg(feed: pd.DataFrame | None, health: pd.DataFrame | None, widt
     if health is not None and "level" in health:
         level = dict(zip(health["station"], health["level"]))
     top_names = set(f.nlargest(4, "PM2.5")["station"])
+    placed: list[tuple[float, float, float, float]] = []
     parts = [f'<svg viewBox="0 0 {width} {height:.0f}" class="map" role="img" aria-label="Station map">',
              f'<rect x="{pad}" y="{pad}" width="{pw}" height="{ph:.1f}" rx="14" class="map-bg"/>']
     for i in range(1, 4):  # faint graticule
@@ -209,8 +214,14 @@ def station_map_svg(feed: pd.DataFrame | None, health: pd.DataFrame | None, widt
             parts.append(f'<circle cx="{cx:.1f}" cy="{cy:.1f}" r="12" fill="none" stroke="{ring}" stroke-width="2.5"/>')
         parts.append(f'<circle cx="{cx:.1f}" cy="{cy:.1f}" r="7" fill="{colour}" fill-opacity=".92" stroke="rgba(255,255,255,.7)" stroke-width="1"><title>{_esc(tip)}</title></circle>')
         if ring or r["station"] in top_names:
+            label = _short(str(r["station"]).split(",")[0], 18)
             left = cx > pad + pw * 0.68  # keep labels inside the frame
-            parts.append(f'<text x="{cx + (-15 if left else 15):.1f}" y="{cy + 4:.1f}" class="tick map-lbl" text-anchor="{"end" if left else "start"}">{_esc(_short(str(r["station"]).split(",")[0], 22))}</text>')
+            bw = len(label) * 6.2 + 8  # rough text box; skip a label that would sit on one already drawn
+            x0 = cx - 15 - bw if left else cx + 15
+            box = (x0, cy - 8, x0 + bw, cy + 8)
+            if all(box[2] < b[0] or box[0] > b[2] or box[3] < b[1] or box[1] > b[3] for b in placed):
+                placed.append(box)
+                parts.append(f'<text x="{cx + (-15 if left else 15):.1f}" y="{cy + 4:.1f}" class="tick map-lbl" text-anchor="{"end" if left else "start"}">{_esc(label)}</text>')
     parts.append(f'<text x="{pad + 10}" y="{height - pad - 8:.0f}" class="tick">N &uarr; &middot; {lat0 + 0.03:.2f}-{lat1 - 0.03:.2f}&deg;N, {lon0 + 0.03:.2f}-{lon1 - 0.03:.2f}&deg;E</text>')
     parts.append("</svg>")
     leg = "".join(f'<span><i class="dotc" style="background:{c}"></i>{n}</span>' for _, c, n in AQI_BANDS)
@@ -271,7 +282,7 @@ def heatmap_svg(filled: pd.DataFrame | None, max_stations: int = 70) -> str:
     piv = f.groupby(["station", "day"])["pm25_final"].mean().unstack("day")
     piv = piv.loc[piv.mean(axis=1).sort_values(ascending=False).index][:max_stations]
     days = list(piv.columns)
-    ml, mt, cw, ch, gap = 250, 30, 32, 17, 3
+    ml, mt, cw, ch, gap = 215, 30, 15, 17, 2  # ~1150 wide, so labels render near their nominal size
     width = ml + cw * len(days) + 12
     height = mt + ch * len(piv) + 12
     cap = 200.0
@@ -287,7 +298,7 @@ def heatmap_svg(filled: pd.DataFrame | None, max_stations: int = 70) -> str:
 
     parts = [f'<svg viewBox="0 0 {width} {height}" class="heat" role="img" aria-label="PM2.5 by station and day">']
     for j, d in enumerate(days):
-        if j % 2 == 0:
+        if j % 4 == 0:
             parts.append(f'<text x="{ml + cw * j + cw / 2:.0f}" y="{mt - 9}" class="tick" text-anchor="middle">{_esc(d[5:])}</text>')
     for i, (name, row) in enumerate(piv.iterrows()):
         y = mt + ch * i
@@ -401,7 +412,7 @@ def parse_run_log(text: str) -> list[dict]:
         if not m:
             continue
         ts, msg = m.groups()
-        if msg.startswith("Starting CPCB fetch"):
+        if msg.startswith(("Starting CPCB fetch", "Starting fetch_cpcb")):  # the wording changed on 31 Oct 2026
             cur = {"start": ts, "failed": [], "committed": False, "end": ts}
             runs.append(cur)
         elif cur is not None:
@@ -409,6 +420,8 @@ def parse_run_log(text: str) -> list[dict]:
             fm = re.match(r"(\w+)\.py exited with code", msg)
             if fm:
                 cur["failed"].append(fm.group(1))
+            if msg.startswith("PUSH FAILED"):
+                cur["failed"].append("push")
             if msg.startswith("Committed and pushed"):
                 cur["committed"] = True
             if msg.startswith("No changes"):

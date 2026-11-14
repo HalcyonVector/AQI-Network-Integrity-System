@@ -32,6 +32,15 @@ PROC_DIR = PROJECT_ROOT / "data" / "processed"
 OUT_PATH = PROJECT_ROOT / "dashboard" / "index.html"
 LOGS_DIR = PROJECT_ROOT / "logs"
 REPO_URL = "https://github.com/HalcyonVector/AQI-Network-Integrity-System"
+GITHUB_URL = "https://github.com/HalcyonVector"
+# (label, url) for the footer: the only other external addresses the page may carry
+FOOTER_SOURCES = [
+    ("CPCB feed via data.gov.in", "https://data.gov.in"),
+    ("OpenAQ", "https://openaq.org"),
+    ("NASA FIRMS", "https://firms.modaps.eosdis.nasa.gov"),
+    ("MODIS MAIAC AOD via Earth Engine", "https://developers.google.com/earth-engine/datasets/catalog/MODIS_061_MCD19A2_GRANULES"),
+    ("ERA5 via Copernicus CDS", "https://cds.climate.copernicus.eu"),
+]
 
 # name, file pattern, what the date in the filename means, normal publication lag in days
 SOURCES = [
@@ -472,6 +481,18 @@ main{max-width:1040px}
 .heat .tick,.map .tick{fill:#b3c3c3}.heat .hole{fill:rgba(255,255,255,.04)}
 .foot{font:500 12px/1.6 var(--sans);letter-spacing:.04em;color:var(--muted)}
 .foot a{color:var(--sage);border-bottom:1px solid rgba(163,210,184,.4);font-weight:600}.foot a:hover{border-bottom-color:var(--sage)}
+.map .map-lbl{fill:#e8f0ee;paint-order:stroke fill;stroke:#0b1519;stroke-width:3.5px;stroke-linejoin:round;font-size:11px;font-weight:500}
+.cities{grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
+.city{display:flex;flex-direction:column;gap:2px;padding:14px 16px;border-radius:16px}
+.city-n{font:600 11px/1.3 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.city-v{font-size:38px;line-height:1.1;margin:4px 0 2px}
+.city .muted{font-size:12.5px;line-height:1.45}
+.count{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.count-i{gap:20px;align-items:center}
+.count-n{flex:0 0 auto;min-width:0;font-size:30px;line-height:1.1;white-space:nowrap}
+.foot{margin-top:34px;padding-top:22px;border-top:1px solid var(--edge);display:grid;gap:10px;justify-items:center;text-align:center}
+.foot-row{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 18px;align-items:baseline}
+.foot-k{font:600 10.5px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--muted);opacity:.8;margin-right:4px}
 @media (max-width:760px){.hero{padding:30px 22px 22px}.card{padding:20px 16px 14px}}
 .scroll{overflow-x:auto}
 @media (max-width:760px){.split{grid-template-columns:1fr}.rank-row{grid-template-columns:120px 1fr 34px}.tiles{grid-template-columns:repeat(2,1fr)}.hero{padding:26px 20px 20px}.card{padding:18px 16px 14px}
@@ -576,7 +597,10 @@ station <i>follows the same day-to-day pattern as its peers</i>. With about two 
 <p><b>Nothing here is a source attribution.</b> The stubble panels show association with fire exposure, not the share of pollution caused by it.</p></details>
 </section>
 
-<div class="foot"><a href="{REPO_URL}" target="_blank" rel="noopener">github.com/HalcyonVector/AQI-Network-Integrity-System</a></div>
+<footer class="foot">
+<div class="foot-row"><span class="foot-k">Data</span>{" ".join(f'<a href="{u}" target="_blank" rel="noopener">{html.escape(n)}</a>' for n, u in FOOTER_SOURCES)}</div>
+<div class="foot-row"><span class="foot-k">Project</span><a href="{REPO_URL}" target="_blank" rel="noopener">Source code</a><a href="{GITHUB_URL}" target="_blank" rel="noopener">@HalcyonVector on GitHub</a></div>
+</footer>
 """
     return (f'<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
             f"<title>NCR AQI network integrity</title><style>{CSS}</style></head><body><main>{body}</main></body></html>")
