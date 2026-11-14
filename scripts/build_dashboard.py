@@ -455,9 +455,7 @@ main{max-width:1040px}
 .hero h1:before{content:none}
 .brand{display:flex;align-items:center;gap:14px;margin-bottom:26px}
 .logo{width:46px;height:46px;flex:0 0 auto;display:block}
-.brand-t{display:flex;flex-direction:column;gap:3px}
-.brand-t b{font:700 15px/1 var(--sans);letter-spacing:.26em;color:var(--sage)}
-.brand-t span{font:500 11.5px/1 var(--sans);letter-spacing:.08em;color:var(--muted)}
+.brand-n{font:700 15px/1 var(--sans);letter-spacing:.3em;color:var(--sage)}
 .hero .sub{font-size:16px;line-height:1.6;color:#b9c9c9;opacity:1;max-width:56ch}
 .hero .stamp{color:var(--muted);opacity:1;letter-spacing:.02em}
 .tiles{gap:14px;margin-top:30px}
@@ -550,7 +548,7 @@ def render(today: date, raw_dir: Path = RAW_DIR, proc_dir: Path = PROC_DIR) -> s
                   ("quality", "Completeness"), ("health", "Station health"), ("sat", "Satellite"), ("ops", "Pipeline")])
     body = f"""
 <header class="hero">
-<div class="brand">{LOGO_SVG}<div class="brand-t"><b>AQI NIS</b><span>Network Integrity System</span></div></div>
+<div class="brand">{LOGO_SVG}<b class="brand-n">AQI NIS</b></div>
 <h1>NCR air-quality network integrity</h1>
 <p class="sub">Is the monitoring network telling the truth? Data health, station checks, satellite and fire evidence.</p>
 <div class="stamp">Generated {today.isoformat()} &middot; static page, no tracking</div>
