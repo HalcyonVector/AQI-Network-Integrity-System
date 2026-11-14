@@ -8,3 +8,4 @@ logs/*.log
 keys/
 *-key.json
 *service-account*.json
+ROADMAP.md

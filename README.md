@@ -707,12 +707,6 @@ rule out an API-layer restriction the way CPCB's User-Agent gate did.
 
 Dashboard: **built** (see the Dashboard section); rebuilt by every daily run.
 
-## Roadmap
-
-What is left and when is in **`ROADMAP.md`**: the plan is to do all of it together in **December**, with a short list
-of things that cannot wait (the CDS terms decision before 27 Oct, and keeping the machine on so the feed's
-live-only snapshots are not lost).
-
 ---
 
 ## Author

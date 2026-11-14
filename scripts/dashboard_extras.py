@@ -29,8 +29,7 @@ AQI_BANDS = [
     (10_000, "#c026d3", "Severe"),
 ]
 PM25_LIMIT_SUBINDEX = 100  # sub-index 100 == 60 ug/m3, India's 24 h PM2.5 limit
-DRY_DAYS_TARGET = 20  # the circular-shift test needs ~this many rain-free days (see ROADMAP)
-
+DRY_DAYS_TARGET = 20  # the circular-shift test needs ~this many rain-free days
 # (date, what) for the countdown tiles; the CDS date is a hard external deadline
 MILESTONES = [
     (date(2026, 10, 26), "Decide on the Copernicus CDS terms (change takes effect 28 Oct)"),
