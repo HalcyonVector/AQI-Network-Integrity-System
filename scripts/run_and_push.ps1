@@ -47,8 +47,25 @@ function Commit-And-Push($what) {
         Log "No changes to commit ($what)"
     } else {
         git commit -m "Daily data pull: $(Get-Date -Format 'yyyy-MM-dd') ($what)"
-        git push
-        Log "Committed and pushed ($what)"
+        git push 2>$null
+        if ($LASTEXITCODE -ne 0) {
+            # Remote moved on (e.g. a README edit pushed from elsewhere): rebase on top of it and retry.
+            # Without this, every push after the first divergence was rejected silently (9-15 Nov 2026).
+            git pull --rebase 2>$null
+            if ($LASTEXITCODE -ne 0) {
+                git rebase --abort 2>$null
+                Log "PUSH FAILED ($what): rebase onto origin hit a conflict, commit left local"
+                $script:failures += "push"
+                return
+            }
+            git push 2>$null
+        }
+        if ($LASTEXITCODE -ne 0) {
+            Log "PUSH FAILED ($what): commit left local"
+            $script:failures += "push"
+        } else {
+            Log "Committed and pushed ($what)"
+        }
     }
 }
 
