@@ -1,82 +1,82 @@
 fetched_at_utc,date,station,city,aod_047,aod_055
-2026-11-16T06:46:53+00:00,2026-11-13,"NSIT Dwarka, Delhi - CPCB",Delhi,0.769,0.601
-2026-11-16T06:46:53+00:00,2026-11-13,"Ghoga, Delhi-DPCC",Delhi,1.481,1.205
-2026-11-16T06:46:53+00:00,2026-11-13,"Burari Crossing, Delhi - IITM",Delhi,,
-2026-11-16T06:46:53+00:00,2026-11-13,"IHBAS, Dilshad Garden, Delhi - CPCB",Delhi,,
-2026-11-16T06:46:53+00:00,2026-11-13,"JNU, Delhi - DPCC",Delhi,,
-2026-11-16T06:46:53+00:00,2026-11-13,"IMD Lodhi Road, Delhi - IITM",Delhi,,
-2026-11-16T06:46:53+00:00,2026-11-13,"Nehru Nagar, Delhi - DPCC",Delhi,,
-2026-11-16T06:46:53+00:00,2026-11-13,"IIT Delhi, Delhi - IITM",Delhi,,
-2026-11-16T06:46:53+00:00,2026-11-13,"IGI Airport (T3), Delhi - IITM",Delhi,,
-2026-11-16T06:46:53+00:00,2026-11-13,"DTU, Delhi - CPCB",Delhi,,
-2026-11-16T06:46:53+00:00,2026-11-13,"Lodhi Road, Delhi - IITM",Delhi,,
-2026-11-16T06:46:53+00:00,2026-11-13,"Jharoda Kalan, Delhi-DPCC",Delhi,,
-2026-11-16T06:46:53+00:00,2026-11-13,"Vasundhara Enclave, Delhi - DPCC",Delhi,1.23,0.976
-2026-11-16T06:46:53+00:00,2026-11-13,"Tikri Kalan, Delhi-DPCC",Delhi,,
-2026-11-16T06:46:53+00:00,2026-11-13,"Chhawla, Delhi-DPCC",Delhi,0.71,0.548
-2026-11-16T06:46:53+00:00,2026-11-13,"Mandir Marg, Delhi - DPCC",Delhi,,
-2026-11-16T06:46:53+00:00,2026-11-13,"Karala, Delhi-DPCC",Delhi,,
-2026-11-16T06:46:53+00:00,2026-11-13,"Anand Vihar, Delhi - DPCC",Delhi,,
-2026-11-16T06:46:53+00:00,2026-11-13,"Chandni Chowk, Delhi - IITM",Delhi,,
-2026-11-16T06:46:53+00:00,2026-11-13,"Commonwealth Sports Complex, Delhi - DPCC",Delhi,,
-2026-11-16T06:46:53+00:00,2026-11-13,"IGNOU_Maidan Garhi, Delhi - DPCC",Delhi,0.714,0.552
-2026-11-16T06:46:53+00:00,2026-11-13,"Bawana, Delhi - DPCC",Delhi,1.98,1.596
-2026-11-16T06:46:53+00:00,2026-11-13,"Major Dhyan Chand National Stadium, Delhi - DPCC",Delhi,,
-2026-11-16T06:46:53+00:00,2026-11-13,"Mundka, Delhi - DPCC",Delhi,,
-2026-11-16T06:46:53+00:00,2026-11-13,"Maidan Garhi, Delhi-DPCC",Delhi,,
-2026-11-16T06:46:53+00:00,2026-11-13,"Alipur, Delhi - DPCC",Delhi,1.609,1.309
-2026-11-16T06:46:53+00:00,2026-11-13,"R K Puram, Delhi - DPCC",Delhi,,
-2026-11-16T06:46:53+00:00,2026-11-13,"Ashok Vihar, Delhi - DPCC",Delhi,,
-2026-11-16T06:46:53+00:00,2026-11-13,"Pusa, Delhi - IITM",Delhi,,
-2026-11-16T06:46:53+00:00,2026-11-13,"Wazirpur, Delhi - DPCC",Delhi,,
-2026-11-16T06:46:53+00:00,2026-11-13,"Sonia Vihar, Delhi - DPCC",Delhi,,
-2026-11-16T06:46:53+00:00,2026-11-13,"NIH Narela, Delhi - DPCC",Delhi,1.674,1.362
-2026-11-16T06:46:53+00:00,2026-11-13,"Uttam Nagar, Delhi-DPCC",Delhi,,
-2026-11-16T06:46:53+00:00,2026-11-13,"North Campus, DU, Delhi - IITM",Delhi,,
-2026-11-16T06:46:53+00:00,2026-11-13,"CRRI Mathura Road, Delhi - IITM",Delhi,0.9480000000000001,0.741
-2026-11-16T06:46:53+00:00,2026-11-13,"Shadipur, Delhi - CPCB",Delhi,0.766,0.599
-2026-11-16T06:46:53+00:00,2026-11-13,"Pusa, Delhi - DPCC",Delhi,,
-2026-11-16T06:46:53+00:00,2026-11-13,"Okhla Phase-2, Delhi - DPCC",Delhi,0.899,0.7030000000000001
-2026-11-16T06:46:53+00:00,2026-11-13,"Aya Nagar, Delhi - IITM",Delhi,,
-2026-11-16T06:46:53+00:00,2026-11-13,"Burari, Delhi-DPCC",Delhi,1.603,1.304
-2026-11-16T06:46:53+00:00,2026-11-13,"NSUT Jaffarpur, Delhi - DPCC",Delhi,0.748,0.578
-2026-11-16T06:46:53+00:00,2026-11-13,"Dr. Karni Singh Shooting Range, Delhi - DPCC",Delhi,,
-2026-11-16T06:46:53+00:00,2026-11-13,"Sirifort, Delhi - CPCB",Delhi,,
-2026-11-16T06:46:53+00:00,2026-11-13,"Sri Aurobindo Marg, Delhi - DPCC",Delhi,,
-2026-11-16T06:46:53+00:00,2026-11-13,"Dwarka-Sector 8, Delhi - DPCC ",Delhi,,
-2026-11-16T06:46:53+00:00,2026-11-13,"Najafgarh, Delhi - DPCC",Delhi,0.6950000000000001,0.537
-2026-11-16T06:46:53+00:00,2026-11-13,"Sector 11, Faridabad - HSPCB",Faridabad,0.667,0.515
-2026-11-16T06:46:53+00:00,2026-11-13,"Sector 30, Faridabad - HSPCB",Faridabad,0.781,0.61
-2026-11-16T06:46:53+00:00,2026-11-13,"Vikas Sadan, Gurugram - HSPCB",Gurugram,0.6910000000000001,0.534
-2026-11-16T06:46:53+00:00,2026-11-13,"Sector-51, Gurugram - HSPCB",Gurugram,0.637,0.492
-2026-11-16T06:46:53+00:00,2026-11-13,"New Industrial Town, Faridabad - HSPCB",Faridabad,0.656,0.507
-2026-11-16T06:46:53+00:00,2026-11-13,"Sector-116, Noida - UPPCB",Noida,1.276,1.0130000000000001
-2026-11-16T06:46:53+00:00,2026-11-13,"Sector-1, Noida - UPPCB",Noida,,
-2026-11-16T06:46:53+00:00,2026-11-13,"Sanjay Nagar, Ghaziabad - UPPCB",Ghaziabad,,
-2026-11-16T06:46:53+00:00,2026-11-13,"Loni, Ghaziabad - UPPCB",Ghaziabad,3.024,2.449
-2026-11-16T06:46:53+00:00,2026-11-13,"Indirapuram, Ghaziabad - UPPCB",Ghaziabad,,
-2026-11-16T06:46:53+00:00,2026-11-13,"Wave City, Ghaziabad - UPPCB",Ghaziabad,1.786,1.453
-2026-11-16T06:46:53+00:00,2026-11-13,"Vasundhara, Ghaziabad - UPPCB",Ghaziabad,,
-2026-11-16T06:46:53+00:00,2026-11-13,"Sector-39, Noida-UPPCB",Noida,,
-2026-11-16T06:46:53+00:00,2026-11-13,"Sector-110, Noida-UPPCB",Noida,1.012,0.803
-2026-11-16T06:46:53+00:00,2026-11-13,"Sector-125, Noida - UPPCB",Noida,,
-2026-11-16T06:46:53+00:00,2026-11-13,"Narela, Delhi - DPCC",Delhi,,
-2026-11-16T06:46:53+00:00,2026-11-13,"Jahangirpuri, Delhi - DPCC",Delhi,,
-2026-11-16T06:46:53+00:00,2026-11-13,"Patparganj, Delhi - DPCC",Delhi,1.187,0.9410000000000001
-2026-11-16T06:46:53+00:00,2026-11-13,"Ghummanhera, Delhi-DPCC",Delhi,0.683,0.527
-2026-11-16T06:46:53+00:00,2026-11-13,"Cantonment Area, Delhi - DPCC",Delhi,,
-2026-11-16T06:46:53+00:00,2026-11-13,"Talkatora Garden, Delhi - DPCC",Delhi,,
-2026-11-16T06:46:53+00:00,2026-11-13,"Nangloi, Delhi-DPCC",Delhi,,
-2026-11-16T06:46:53+00:00,2026-11-13,"Jawaharlal Nehru Stadium, Delhi - DPCC",Delhi,,
-2026-11-16T06:46:53+00:00,2026-11-13,"Vivek Vihar, Delhi - DPCC",Delhi,,
-2026-11-16T06:46:53+00:00,2026-11-13,"NISE Gwal Pahari, Gurugram - IITM",Gurugram,,
-2026-11-16T06:46:53+00:00,2026-11-13,"Teri Gram, Gurugram - HSPCB",Gurugram,0.659,0.509
-2026-11-16T06:46:53+00:00,2026-11-13,"Punjabi Bagh, Delhi - DPCC",Delhi,,
-2026-11-16T06:46:53+00:00,2026-11-13,"Rohini, Delhi - DPCC",Delhi,,
-2026-11-16T06:46:53+00:00,2026-11-13,"New Tehsil-Loni, Ghaziabad-UPPCB",Ghaziabad,,
-2026-11-16T06:46:53+00:00,2026-11-13,"Govindpuram, Ghaziabad - UPPCB",Ghaziabad,,
-2026-11-16T06:46:53+00:00,2026-11-13,"Sector-62, Noida - IITM",Noida,,
-2026-11-16T06:46:53+00:00,2026-11-13,"Sector-150, Noida-UPPCB",Noida,0.9590000000000001,0.75
-2026-11-16T06:46:53+00:00,2026-11-13,"ITO, Delhi - CPCB",Delhi,1.163,0.923
-2026-11-16T06:46:53+00:00,2026-11-13,"Badarpur, Delhi-DPCC",Delhi,0.9500000000000001,0.743
-2026-11-16T06:46:53+00:00,2026-11-13,"Ved Vihar-Loni, Ghaziabad - UPPCB",Ghaziabad,,
+2026-11-17T06:51:17+00:00,2026-11-13,"Bawana, Delhi - DPCC",Delhi,1.98,1.596
+2026-11-17T06:51:17+00:00,2026-11-13,"Major Dhyan Chand National Stadium, Delhi - DPCC",Delhi,,
+2026-11-17T06:51:17+00:00,2026-11-13,"IGI Airport (T3), Delhi - IITM",Delhi,,
+2026-11-17T06:51:17+00:00,2026-11-13,"DTU, Delhi - CPCB",Delhi,,
+2026-11-17T06:51:17+00:00,2026-11-13,"Lodhi Road, Delhi - IITM",Delhi,,
+2026-11-17T06:51:17+00:00,2026-11-13,"Jharoda Kalan, Delhi-DPCC",Delhi,,
+2026-11-17T06:51:17+00:00,2026-11-13,"Vasundhara Enclave, Delhi - DPCC",Delhi,1.23,0.976
+2026-11-17T06:51:17+00:00,2026-11-13,"Tikri Kalan, Delhi-DPCC",Delhi,,
+2026-11-17T06:51:17+00:00,2026-11-13,"Ghummanhera, Delhi-DPCC",Delhi,0.683,0.527
+2026-11-17T06:51:17+00:00,2026-11-13,"Chhawla, Delhi-DPCC",Delhi,0.71,0.548
+2026-11-17T06:51:17+00:00,2026-11-13,"Mandir Marg, Delhi - DPCC",Delhi,,
+2026-11-17T06:51:17+00:00,2026-11-13,"Narela, Delhi - DPCC",Delhi,,
+2026-11-17T06:51:17+00:00,2026-11-13,"Cantonment Area, Delhi - DPCC",Delhi,,
+2026-11-17T06:51:17+00:00,2026-11-13,"Maidan Garhi, Delhi-DPCC",Delhi,,
+2026-11-17T06:51:17+00:00,2026-11-13,"Talkatora Garden, Delhi - DPCC",Delhi,,
+2026-11-17T06:51:17+00:00,2026-11-13,"NIH Narela, Delhi - DPCC",Delhi,1.674,1.362
+2026-11-17T06:51:17+00:00,2026-11-13,"Uttam Nagar, Delhi-DPCC",Delhi,,
+2026-11-17T06:51:17+00:00,2026-11-13,"NSUT Jaffarpur, Delhi - DPCC",Delhi,0.748,0.578
+2026-11-17T06:51:17+00:00,2026-11-13,"North Campus, DU, Delhi - IITM",Delhi,,
+2026-11-17T06:51:17+00:00,2026-11-13,"CRRI Mathura Road, Delhi - IITM",Delhi,0.9480000000000001,0.741
+2026-11-17T06:51:17+00:00,2026-11-13,"Punjabi Bagh, Delhi - DPCC",Delhi,,
+2026-11-17T06:51:17+00:00,2026-11-13,"Shadipur, Delhi - CPCB",Delhi,0.766,0.599
+2026-11-17T06:51:17+00:00,2026-11-13,"Pusa, Delhi - DPCC",Delhi,,
+2026-11-17T06:51:17+00:00,2026-11-13,"IGNOU_Maidan Garhi, Delhi - DPCC",Delhi,0.714,0.552
+2026-11-17T06:51:17+00:00,2026-11-13,"IHBAS, Dilshad Garden, Delhi - CPCB",Delhi,,
+2026-11-17T06:51:17+00:00,2026-11-13,"JNU, Delhi - DPCC",Delhi,,
+2026-11-17T06:51:17+00:00,2026-11-13,"Nehru Nagar, Delhi - DPCC",Delhi,,
+2026-11-17T06:51:17+00:00,2026-11-13,"Patparganj, Delhi - DPCC",Delhi,1.187,0.9410000000000001
+2026-11-17T06:51:17+00:00,2026-11-13,"Nangloi, Delhi-DPCC",Delhi,,
+2026-11-17T06:51:17+00:00,2026-11-13,"Jawaharlal Nehru Stadium, Delhi - DPCC",Delhi,,
+2026-11-17T06:51:17+00:00,2026-11-13,"Alipur, Delhi - DPCC",Delhi,1.609,1.309
+2026-11-17T06:51:17+00:00,2026-11-13,"Karala, Delhi-DPCC",Delhi,,
+2026-11-17T06:51:17+00:00,2026-11-13,"Anand Vihar, Delhi - DPCC",Delhi,,
+2026-11-17T06:51:17+00:00,2026-11-13,"Chandni Chowk, Delhi - IITM",Delhi,,
+2026-11-17T06:51:17+00:00,2026-11-13,"Okhla Phase-2, Delhi - DPCC",Delhi,0.899,0.7030000000000001
+2026-11-17T06:51:17+00:00,2026-11-13,"Aya Nagar, Delhi - IITM",Delhi,,
+2026-11-17T06:51:17+00:00,2026-11-13,"Burari, Delhi-DPCC",Delhi,1.603,1.304
+2026-11-17T06:51:17+00:00,2026-11-13,"Badarpur, Delhi-DPCC",Delhi,0.9500000000000001,0.743
+2026-11-17T06:51:17+00:00,2026-11-13,"Dr. Karni Singh Shooting Range, Delhi - DPCC",Delhi,,
+2026-11-17T06:51:17+00:00,2026-11-13,"Sirifort, Delhi - CPCB",Delhi,,
+2026-11-17T06:51:17+00:00,2026-11-13,"Sri Aurobindo Marg, Delhi - DPCC",Delhi,,
+2026-11-17T06:51:17+00:00,2026-11-13,"Dwarka-Sector 8, Delhi - DPCC ",Delhi,,
+2026-11-17T06:51:17+00:00,2026-11-13,"Najafgarh, Delhi - DPCC",Delhi,0.6950000000000001,0.537
+2026-11-17T06:51:17+00:00,2026-11-13,"Pusa, Delhi - IITM",Delhi,,
+2026-11-17T06:51:17+00:00,2026-11-13,"R K Puram, Delhi - DPCC",Delhi,,
+2026-11-17T06:51:17+00:00,2026-11-13,"New Industrial Town, Faridabad - HSPCB",Faridabad,0.656,0.507
+2026-11-17T06:51:17+00:00,2026-11-13,"Vikas Sadan, Gurugram - HSPCB",Gurugram,0.6910000000000001,0.534
+2026-11-17T06:51:17+00:00,2026-11-13,"NISE Gwal Pahari, Gurugram - IITM",Gurugram,,
+2026-11-17T06:51:17+00:00,2026-11-13,"Sector-51, Gurugram - HSPCB",Gurugram,0.637,0.492
+2026-11-17T06:51:17+00:00,2026-11-13,"Loni, Ghaziabad - UPPCB",Ghaziabad,3.024,2.449
+2026-11-17T06:51:17+00:00,2026-11-13,"Ved Vihar-Loni, Ghaziabad - UPPCB",Ghaziabad,,
+2026-11-17T06:51:17+00:00,2026-11-13,"Indirapuram, Ghaziabad - UPPCB",Ghaziabad,,
+2026-11-17T06:51:17+00:00,2026-11-13,"Dasna Dehat, Ghaziabad-UPPCB",Ghaziabad,1.794,1.459
+2026-11-17T06:51:17+00:00,2026-11-13,"Wave City, Ghaziabad - UPPCB",Ghaziabad,1.786,1.453
+2026-11-17T06:51:17+00:00,2026-11-13,"New Tehsil-Loni, Ghaziabad-UPPCB",Ghaziabad,,
+2026-11-17T06:51:17+00:00,2026-11-13,"Vasundhara, Ghaziabad - UPPCB",Ghaziabad,,
+2026-11-17T06:51:17+00:00,2026-11-13,"Sanjay Nagar, Ghaziabad - UPPCB",Ghaziabad,,
+2026-11-17T06:51:17+00:00,2026-11-13,"Govindpuram, Ghaziabad - UPPCB",Ghaziabad,,
+2026-11-17T06:51:17+00:00,2026-11-13,"Sector-39, Noida-UPPCB",Noida,,
+2026-11-17T06:51:17+00:00,2026-11-13,"Sector-150, Noida-UPPCB",Noida,0.9590000000000001,0.75
+2026-11-17T06:51:17+00:00,2026-11-13,"Sector-125, Noida - UPPCB",Noida,,
+2026-11-17T06:51:17+00:00,2026-11-13,"Sector-116, Noida - UPPCB",Noida,1.276,1.0130000000000001
+2026-11-17T06:51:17+00:00,2026-11-13,"Sector-1, Noida - UPPCB",Noida,,
+2026-11-17T06:51:17+00:00,2026-11-13,"Vivek Vihar, Delhi - DPCC",Delhi,,
+2026-11-17T06:51:17+00:00,2026-11-13,"Mundka, Delhi - DPCC",Delhi,,
+2026-11-17T06:51:17+00:00,2026-11-13,"Rohini, Delhi - DPCC",Delhi,,
+2026-11-17T06:51:17+00:00,2026-11-13,"Ghoga, Delhi-DPCC",Delhi,1.481,1.205
+2026-11-17T06:51:17+00:00,2026-11-13,"Burari Crossing, Delhi - IITM",Delhi,,
+2026-11-17T06:51:17+00:00,2026-11-13,"IMD Lodhi Road, Delhi - IITM",Delhi,,
+2026-11-17T06:51:17+00:00,2026-11-13,"Commonwealth Sports Complex, Delhi - DPCC",Delhi,,
+2026-11-17T06:51:17+00:00,2026-11-13,"IIT Delhi, Delhi - IITM",Delhi,,
+2026-11-17T06:51:17+00:00,2026-11-13,"Jahangirpuri, Delhi - DPCC",Delhi,,
+2026-11-17T06:51:17+00:00,2026-11-13,"Wazirpur, Delhi - DPCC",Delhi,,
+2026-11-17T06:51:17+00:00,2026-11-13,"Sonia Vihar, Delhi - DPCC",Delhi,,
+2026-11-17T06:51:17+00:00,2026-11-13,"ITO, Delhi - CPCB",Delhi,1.163,0.923
+2026-11-17T06:51:17+00:00,2026-11-13,"Ashok Vihar, Delhi - DPCC",Delhi,,
+2026-11-17T06:51:17+00:00,2026-11-13,"Teri Gram, Gurugram - HSPCB",Gurugram,0.659,0.509
+2026-11-17T06:51:17+00:00,2026-11-13,"Sector-62, Noida - IITM",Noida,,
+2026-11-17T06:51:17+00:00,2026-11-13,"Sector-110, Noida-UPPCB",Noida,1.012,0.803
+2026-11-17T06:51:17+00:00,2026-11-13,"Sector 11, Faridabad - HSPCB",Faridabad,0.667,0.515
+2026-11-17T06:51:17+00:00,2026-11-13,"Sector 30, Faridabad - HSPCB",Faridabad,0.781,0.61
