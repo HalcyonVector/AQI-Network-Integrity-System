@@ -420,6 +420,12 @@ station,hour_ist,pollutant,subindex,concentration,unit,statistic,censored
 "Alipur, Delhi - DPCC",2026-11-18 11:00:00,PM10,184.0,226.0,ug/m3,mean24,False
 "Alipur, Delhi - DPCC",2026-11-18 11:00:00,PM2.5,240.0,102.0,ug/m3,mean24,False
 "Alipur, Delhi - DPCC",2026-11-18 11:00:00,SO2,19.0,15.2,ug/m3,mean24,False
+"Alipur, Delhi - DPCC",2026-11-18 20:00:00,CO,50.0,1.0,mg/m3,mean8,False
+"Alipur, Delhi - DPCC",2026-11-18 20:00:00,NO2,60.0,48.0,ug/m3,mean24,False
+"Alipur, Delhi - DPCC",2026-11-18 20:00:00,OZONE,36.0,36.0,ug/m3,mean8,False
+"Alipur, Delhi - DPCC",2026-11-18 20:00:00,PM10,197.0,245.5,ug/m3,mean24,False
+"Alipur, Delhi - DPCC",2026-11-18 20:00:00,PM2.5,260.0,108.0,ug/m3,mean24,False
+"Alipur, Delhi - DPCC",2026-11-18 20:00:00,SO2,19.0,15.2,ug/m3,mean24,False
 "Anand Vihar, Delhi - DPCC",2026-09-17 01:00:00,CO,95.0,1.9,mg/m3,mean8,False
 "Anand Vihar, Delhi - DPCC",2026-09-17 01:00:00,NO2,34.0,27.2,ug/m3,mean24,False
 "Anand Vihar, Delhi - DPCC",2026-09-17 01:00:00,OZONE,26.0,26.0,ug/m3,mean8,False
@@ -824,6 +830,12 @@ station,hour_ist,pollutant,subindex,concentration,unit,statistic,censored
 "Anand Vihar, Delhi - DPCC",2026-11-18 11:00:00,PM10,205.0,255.0,ug/m3,mean24,False
 "Anand Vihar, Delhi - DPCC",2026-11-18 11:00:00,PM2.5,217.0,95.1,ug/m3,mean24,False
 "Anand Vihar, Delhi - DPCC",2026-11-18 11:00:00,SO2,35.0,28.0,ug/m3,mean24,False
+"Anand Vihar, Delhi - DPCC",2026-11-18 20:00:00,CO,121.0,3.68,mg/m3,mean8,False
+"Anand Vihar, Delhi - DPCC",2026-11-18 20:00:00,NO2,49.0,39.2,ug/m3,mean24,False
+"Anand Vihar, Delhi - DPCC",2026-11-18 20:00:00,OZONE,27.0,27.0,ug/m3,mean8,False
+"Anand Vihar, Delhi - DPCC",2026-11-18 20:00:00,PM10,209.0,259.0,ug/m3,mean24,False
+"Anand Vihar, Delhi - DPCC",2026-11-18 20:00:00,PM2.5,233.0,99.9,ug/m3,mean24,False
+"Anand Vihar, Delhi - DPCC",2026-11-18 20:00:00,SO2,41.0,32.8,ug/m3,mean24,False
 "Ashok Vihar, Delhi - DPCC",2026-09-17 01:00:00,CO,85.0,1.7,mg/m3,mean8,False
 "Ashok Vihar, Delhi - DPCC",2026-09-17 01:00:00,NO2,31.0,24.8,ug/m3,mean24,False
 "Ashok Vihar, Delhi - DPCC",2026-09-17 01:00:00,OZONE,8.0,8.0,ug/m3,mean8,False
@@ -1239,6 +1251,12 @@ station,hour_ist,pollutant,subindex,concentration,unit,statistic,censored
 "Ashok Vihar, Delhi - DPCC",2026-11-18 11:00:00,PM10,166.0,199.0,ug/m3,mean24,False
 "Ashok Vihar, Delhi - DPCC",2026-11-18 11:00:00,PM2.5,227.0,98.1,ug/m3,mean24,False
 "Ashok Vihar, Delhi - DPCC",2026-11-18 11:00:00,SO2,33.0,26.4,ug/m3,mean24,False
+"Ashok Vihar, Delhi - DPCC",2026-11-18 20:00:00,CO,93.0,1.86,mg/m3,mean8,False
+"Ashok Vihar, Delhi - DPCC",2026-11-18 20:00:00,NO2,85.0,68.0,ug/m3,mean24,False
+"Ashok Vihar, Delhi - DPCC",2026-11-18 20:00:00,OZONE,35.0,35.0,ug/m3,mean8,False
+"Ashok Vihar, Delhi - DPCC",2026-11-18 20:00:00,PM10,179.0,218.5,ug/m3,mean24,False
+"Ashok Vihar, Delhi - DPCC",2026-11-18 20:00:00,PM2.5,247.0,104.1,ug/m3,mean24,False
+"Ashok Vihar, Delhi - DPCC",2026-11-18 20:00:00,SO2,31.0,24.8,ug/m3,mean24,False
 "Aya Nagar, Delhi - IITM",2026-09-17 01:00:00,CO,43.0,0.86,mg/m3,mean8,False
 "Aya Nagar, Delhi - IITM",2026-09-17 01:00:00,NO2,14.0,11.2,ug/m3,mean24,False
 "Aya Nagar, Delhi - IITM",2026-09-17 01:00:00,OZONE,15.0,15.0,ug/m3,mean8,False
@@ -1591,6 +1609,11 @@ station,hour_ist,pollutant,subindex,concentration,unit,statistic,censored
 "Aya Nagar, Delhi - IITM",2026-11-18 11:00:00,NO2,54.0,43.2,ug/m3,mean24,False
 "Aya Nagar, Delhi - IITM",2026-11-18 11:00:00,OZONE,26.0,26.0,ug/m3,mean8,False
 "Aya Nagar, Delhi - IITM",2026-11-18 11:00:00,PM2.5,237.0,101.1,ug/m3,mean24,False
+"Aya Nagar, Delhi - IITM",2026-11-18 20:00:00,CO,27.0,0.54,mg/m3,mean8,False
+"Aya Nagar, Delhi - IITM",2026-11-18 20:00:00,NO2,58.0,46.4,ug/m3,mean24,False
+"Aya Nagar, Delhi - IITM",2026-11-18 20:00:00,OZONE,101.0,100.68,ug/m3,mean8,False
+"Aya Nagar, Delhi - IITM",2026-11-18 20:00:00,PM10,176.0,214.0,ug/m3,mean24,False
+"Aya Nagar, Delhi - IITM",2026-11-18 20:00:00,PM2.5,260.0,108.0,ug/m3,mean24,False
 "Badarpur, Delhi-DPCC",2026-11-07 12:00:00,CO,88.0,1.76,mg/m3,mean8,False
 "Badarpur, Delhi-DPCC",2026-11-07 12:00:00,NO2,34.0,27.2,ug/m3,mean24,False
 "Badarpur, Delhi-DPCC",2026-11-07 12:00:00,OZONE,34.0,34.0,ug/m3,mean8,False
@@ -1691,6 +1714,12 @@ station,hour_ist,pollutant,subindex,concentration,unit,statistic,censored
 "Badarpur, Delhi-DPCC",2026-11-18 11:00:00,OZONE,17.0,17.0,ug/m3,mean8,False
 "Badarpur, Delhi-DPCC",2026-11-18 11:00:00,PM2.5,157.0,77.1,ug/m3,mean24,False
 "Badarpur, Delhi-DPCC",2026-11-18 11:00:00,SO2,11.0,8.8,ug/m3,mean24,False
+"Badarpur, Delhi-DPCC",2026-11-18 20:00:00,CO,86.0,1.72,mg/m3,mean8,False
+"Badarpur, Delhi-DPCC",2026-11-18 20:00:00,NO2,65.0,52.0,ug/m3,mean24,False
+"Badarpur, Delhi-DPCC",2026-11-18 20:00:00,OZONE,71.0,71.0,ug/m3,mean8,False
+"Badarpur, Delhi-DPCC",2026-11-18 20:00:00,PM10,134.0,151.0,ug/m3,mean24,False
+"Badarpur, Delhi-DPCC",2026-11-18 20:00:00,PM2.5,162.0,78.6,ug/m3,mean24,False
+"Badarpur, Delhi-DPCC",2026-11-18 20:00:00,SO2,11.0,8.8,ug/m3,mean24,False
 "Badarpur,Delhi-DPCC",2026-10-13 16:00:00,CO,36.0,0.72,mg/m3,mean8,False
 "Badarpur,Delhi-DPCC",2026-10-13 16:00:00,NO2,47.0,37.6,ug/m3,mean24,False
 "Badarpur,Delhi-DPCC",2026-10-13 16:00:00,OZONE,67.0,67.0,ug/m3,mean8,False
@@ -2340,6 +2369,12 @@ station,hour_ist,pollutant,subindex,concentration,unit,statistic,censored
 "Bawana, Delhi - DPCC",2026-11-18 11:00:00,PM10,161.0,191.5,ug/m3,mean24,False
 "Bawana, Delhi - DPCC",2026-11-18 11:00:00,PM2.5,260.0,108.0,ug/m3,mean24,False
 "Bawana, Delhi - DPCC",2026-11-18 11:00:00,SO2,22.0,17.6,ug/m3,mean24,False
+"Bawana, Delhi - DPCC",2026-11-18 20:00:00,CO,71.0,1.42,mg/m3,mean8,False
+"Bawana, Delhi - DPCC",2026-11-18 20:00:00,NO2,43.0,34.4,ug/m3,mean24,False
+"Bawana, Delhi - DPCC",2026-11-18 20:00:00,OZONE,34.0,34.0,ug/m3,mean8,False
+"Bawana, Delhi - DPCC",2026-11-18 20:00:00,PM10,173.0,209.5,ug/m3,mean24,False
+"Bawana, Delhi - DPCC",2026-11-18 20:00:00,PM2.5,292.0,117.6,ug/m3,mean24,False
+"Bawana, Delhi - DPCC",2026-11-18 20:00:00,SO2,23.0,18.4,ug/m3,mean24,False
 "Burari Crossing, Delhi - IITM",2026-09-17 01:00:00,CO,50.0,1.0,mg/m3,mean8,False
 "Burari Crossing, Delhi - IITM",2026-09-17 01:00:00,NO2,66.0,52.8,ug/m3,mean24,False
 "Burari Crossing, Delhi - IITM",2026-09-17 01:00:00,OZONE,54.0,54.0,ug/m3,mean8,False
@@ -2670,6 +2705,11 @@ station,hour_ist,pollutant,subindex,concentration,unit,statistic,censored
 "Burari Crossing, Delhi - IITM",2026-11-18 11:00:00,CO,80.0,1.6,mg/m3,mean8,False
 "Burari Crossing, Delhi - IITM",2026-11-18 11:00:00,NO2,36.0,28.8,ug/m3,mean24,False
 "Burari Crossing, Delhi - IITM",2026-11-18 11:00:00,OZONE,10.0,10.0,ug/m3,mean8,False
+"Burari Crossing, Delhi - IITM",2026-11-18 20:00:00,CO,48.0,0.96,mg/m3,mean8,False
+"Burari Crossing, Delhi - IITM",2026-11-18 20:00:00,NO2,38.0,30.4,ug/m3,mean24,False
+"Burari Crossing, Delhi - IITM",2026-11-18 20:00:00,OZONE,42.0,42.0,ug/m3,mean8,False
+"Burari Crossing, Delhi - IITM",2026-11-18 20:00:00,PM10,250.0,300.0,ug/m3,mean24,False
+"Burari Crossing, Delhi - IITM",2026-11-18 20:00:00,PM2.5,322.0,148.6,ug/m3,mean24,False
 "Burari, Delhi-DPCC",2026-11-07 12:00:00,CO,59.0,1.18,mg/m3,mean8,False
 "Burari, Delhi-DPCC",2026-11-07 12:00:00,NO2,46.0,36.8,ug/m3,mean24,False
 "Burari, Delhi-DPCC",2026-11-07 12:00:00,PM10,267.0,317.0,ug/m3,mean24,False
@@ -2772,6 +2812,12 @@ station,hour_ist,pollutant,subindex,concentration,unit,statistic,censored
 "Burari, Delhi-DPCC",2026-11-18 11:00:00,OZONE,22.0,22.0,ug/m3,mean8,False
 "Burari, Delhi-DPCC",2026-11-18 11:00:00,PM10,215.0,265.0,ug/m3,mean24,False
 "Burari, Delhi-DPCC",2026-11-18 11:00:00,PM2.5,251.0,105.3,ug/m3,mean24,False
+"Burari, Delhi-DPCC",2026-11-18 20:00:00,CO,21.0,0.42,mg/m3,mean8,False
+"Burari, Delhi-DPCC",2026-11-18 20:00:00,NO2,66.0,52.8,ug/m3,mean24,False
+"Burari, Delhi-DPCC",2026-11-18 20:00:00,OZONE,47.0,47.0,ug/m3,mean8,False
+"Burari, Delhi-DPCC",2026-11-18 20:00:00,PM10,233.0,283.0,ug/m3,mean24,False
+"Burari, Delhi-DPCC",2026-11-18 20:00:00,PM2.5,283.0,114.9,ug/m3,mean24,False
+"Burari, Delhi-DPCC",2026-11-18 20:00:00,SO2,15.0,12.0,ug/m3,mean24,False
 "Burari,Delhi-DPCC",2026-10-13 16:00:00,CO,41.0,0.82,mg/m3,mean8,False
 "Burari,Delhi-DPCC",2026-10-13 16:00:00,NO2,45.0,36.0,ug/m3,mean24,False
 "Burari,Delhi-DPCC",2026-10-13 16:00:00,OZONE,76.0,76.0,ug/m3,mean8,False
@@ -3339,6 +3385,11 @@ station,hour_ist,pollutant,subindex,concentration,unit,statistic,censored
 "CRRI Mathura Road, Delhi - IITM",2026-11-18 11:00:00,OZONE,12.0,12.0,ug/m3,mean8,False
 "CRRI Mathura Road, Delhi - IITM",2026-11-18 11:00:00,PM10,236.0,286.0,ug/m3,mean24,False
 "CRRI Mathura Road, Delhi - IITM",2026-11-18 11:00:00,PM2.5,279.0,113.7,ug/m3,mean24,False
+"CRRI Mathura Road, Delhi - IITM",2026-11-18 20:00:00,CO,59.0,1.18,mg/m3,mean8,False
+"CRRI Mathura Road, Delhi - IITM",2026-11-18 20:00:00,NO2,37.0,29.6,ug/m3,mean24,False
+"CRRI Mathura Road, Delhi - IITM",2026-11-18 20:00:00,OZONE,57.0,57.0,ug/m3,mean8,False
+"CRRI Mathura Road, Delhi - IITM",2026-11-18 20:00:00,PM10,247.0,297.0,ug/m3,mean24,False
+"CRRI Mathura Road, Delhi - IITM",2026-11-18 20:00:00,PM2.5,314.0,138.2,ug/m3,mean24,False
 "Cantonment Area, Delhi - DPCC",2026-09-17 01:00:00,CO,55.0,1.1,mg/m3,mean8,False
 "Cantonment Area, Delhi - DPCC",2026-09-17 01:00:00,NO2,8.0,6.4,ug/m3,mean24,False
 "Cantonment Area, Delhi - DPCC",2026-09-17 01:00:00,OZONE,7.0,7.0,ug/m3,mean8,False
@@ -3748,6 +3799,12 @@ station,hour_ist,pollutant,subindex,concentration,unit,statistic,censored
 "Cantonment Area, Delhi - DPCC",2026-11-18 11:00:00,PM10,131.0,146.5,ug/m3,mean24,False
 "Cantonment Area, Delhi - DPCC",2026-11-18 11:00:00,PM2.5,96.0,57.6,ug/m3,mean24,False
 "Cantonment Area, Delhi - DPCC",2026-11-18 11:00:00,SO2,3.0,2.4,ug/m3,mean24,False
+"Cantonment Area, Delhi - DPCC",2026-11-18 20:00:00,CO,59.0,1.18,mg/m3,mean8,False
+"Cantonment Area, Delhi - DPCC",2026-11-18 20:00:00,NO2,58.0,46.4,ug/m3,mean24,False
+"Cantonment Area, Delhi - DPCC",2026-11-18 20:00:00,OZONE,51.0,51.0,ug/m3,mean8,False
+"Cantonment Area, Delhi - DPCC",2026-11-18 20:00:00,PM10,137.0,155.5,ug/m3,mean24,False
+"Cantonment Area, Delhi - DPCC",2026-11-18 20:00:00,PM2.5,72.0,43.2,ug/m3,mean24,False
+"Cantonment Area, Delhi - DPCC",2026-11-18 20:00:00,SO2,5.0,4.0,ug/m3,mean24,False
 "Chandni Chowk, Delhi - IITM",2026-09-17 01:00:00,CO,70.0,1.4,mg/m3,mean8,False
 "Chandni Chowk, Delhi - IITM",2026-09-17 01:00:00,NO2,34.0,27.2,ug/m3,mean24,False
 "Chandni Chowk, Delhi - IITM",2026-09-17 01:00:00,OZONE,15.0,15.0,ug/m3,mean8,False
@@ -4159,6 +4216,12 @@ station,hour_ist,pollutant,subindex,concentration,unit,statistic,censored
 "Chandni Chowk, Delhi - IITM",2026-11-18 11:00:00,PM10,231.0,281.0,ug/m3,mean24,False
 "Chandni Chowk, Delhi - IITM",2026-11-18 11:00:00,PM2.5,294.0,118.2,ug/m3,mean24,False
 "Chandni Chowk, Delhi - IITM",2026-11-18 11:00:00,SO2,19.0,15.2,ug/m3,mean24,False
+"Chandni Chowk, Delhi - IITM",2026-11-18 20:00:00,CO,101.0,2.08,mg/m3,mean8,False
+"Chandni Chowk, Delhi - IITM",2026-11-18 20:00:00,NO2,39.0,31.2,ug/m3,mean24,False
+"Chandni Chowk, Delhi - IITM",2026-11-18 20:00:00,OZONE,14.0,14.0,ug/m3,mean8,False
+"Chandni Chowk, Delhi - IITM",2026-11-18 20:00:00,PM10,247.0,297.0,ug/m3,mean24,False
+"Chandni Chowk, Delhi - IITM",2026-11-18 20:00:00,PM2.5,316.0,140.8,ug/m3,mean24,False
+"Chandni Chowk, Delhi - IITM",2026-11-18 20:00:00,SO2,19.0,15.2,ug/m3,mean24,False
 "Chhawla, Delhi-DPCC",2026-11-07 12:00:00,CO,89.0,1.78,mg/m3,mean8,False
 "Chhawla, Delhi-DPCC",2026-11-07 12:00:00,NO2,9.0,7.2,ug/m3,mean24,False
 "Chhawla, Delhi-DPCC",2026-11-07 12:00:00,OZONE,16.0,16.0,ug/m3,mean8,False
@@ -4270,6 +4333,12 @@ station,hour_ist,pollutant,subindex,concentration,unit,statistic,censored
 "Chhawla, Delhi-DPCC",2026-11-18 11:00:00,PM10,225.0,275.0,ug/m3,mean24,False
 "Chhawla, Delhi-DPCC",2026-11-18 11:00:00,PM2.5,251.0,105.3,ug/m3,mean24,False
 "Chhawla, Delhi-DPCC",2026-11-18 11:00:00,SO2,5.0,4.0,ug/m3,mean24,False
+"Chhawla, Delhi-DPCC",2026-11-18 20:00:00,CO,48.0,0.96,mg/m3,mean8,False
+"Chhawla, Delhi-DPCC",2026-11-18 20:00:00,NO2,15.0,12.0,ug/m3,mean24,False
+"Chhawla, Delhi-DPCC",2026-11-18 20:00:00,OZONE,84.0,84.0,ug/m3,mean8,False
+"Chhawla, Delhi-DPCC",2026-11-18 20:00:00,PM10,230.0,280.0,ug/m3,mean24,False
+"Chhawla, Delhi-DPCC",2026-11-18 20:00:00,PM2.5,282.0,114.6,ug/m3,mean24,False
+"Chhawla, Delhi-DPCC",2026-11-18 20:00:00,SO2,5.0,4.0,ug/m3,mean24,False
 "Chhawla,Delhi-DPCC",2026-10-13 16:00:00,CO,54.0,1.08,mg/m3,mean8,False
 "Chhawla,Delhi-DPCC",2026-10-13 16:00:00,NO2,10.0,8.0,ug/m3,mean24,False
 "Chhawla,Delhi-DPCC",2026-10-13 16:00:00,OZONE,65.0,65.0,ug/m3,mean8,False
@@ -4873,6 +4942,12 @@ station,hour_ist,pollutant,subindex,concentration,unit,statistic,censored
 "Commonwealth Sports Complex, Delhi - DPCC",2026-11-18 11:00:00,PM10,186.0,229.0,ug/m3,mean24,False
 "Commonwealth Sports Complex, Delhi - DPCC",2026-11-18 11:00:00,PM2.5,265.0,109.5,ug/m3,mean24,False
 "Commonwealth Sports Complex, Delhi - DPCC",2026-11-18 11:00:00,SO2,12.0,9.6,ug/m3,mean24,False
+"Commonwealth Sports Complex, Delhi - DPCC",2026-11-18 20:00:00,CO,36.0,0.72,mg/m3,mean8,False
+"Commonwealth Sports Complex, Delhi - DPCC",2026-11-18 20:00:00,NO2,90.0,72.0,ug/m3,mean24,False
+"Commonwealth Sports Complex, Delhi - DPCC",2026-11-18 20:00:00,OZONE,129.0,119.72,ug/m3,mean8,False
+"Commonwealth Sports Complex, Delhi - DPCC",2026-11-18 20:00:00,PM10,241.0,291.0,ug/m3,mean24,False
+"Commonwealth Sports Complex, Delhi - DPCC",2026-11-18 20:00:00,PM2.5,302.0,122.6,ug/m3,mean24,False
+"Commonwealth Sports Complex, Delhi - DPCC",2026-11-18 20:00:00,SO2,14.0,11.2,ug/m3,mean24,False
 "DTU, Delhi - CPCB",2026-09-17 01:00:00,CO,21.0,0.42,mg/m3,mean8,False
 "DTU, Delhi - CPCB",2026-09-17 01:00:00,NO2,18.0,14.4,ug/m3,mean24,False
 "DTU, Delhi - CPCB",2026-09-17 01:00:00,OZONE,27.0,27.0,ug/m3,mean8,False
@@ -5294,6 +5369,12 @@ station,hour_ist,pollutant,subindex,concentration,unit,statistic,censored
 "DTU, Delhi - CPCB",2026-11-18 11:00:00,PM10,195.0,242.5,ug/m3,mean24,False
 "DTU, Delhi - CPCB",2026-11-18 11:00:00,PM2.5,282.0,114.6,ug/m3,mean24,False
 "DTU, Delhi - CPCB",2026-11-18 11:00:00,SO2,32.0,25.6,ug/m3,mean24,False
+"DTU, Delhi - CPCB",2026-11-18 20:00:00,CO,37.0,0.74,mg/m3,mean8,False
+"DTU, Delhi - CPCB",2026-11-18 20:00:00,NO2,35.0,28.0,ug/m3,mean24,False
+"DTU, Delhi - CPCB",2026-11-18 20:00:00,OZONE,26.0,26.0,ug/m3,mean8,False
+"DTU, Delhi - CPCB",2026-11-18 20:00:00,PM10,220.0,270.0,ug/m3,mean24,False
+"DTU, Delhi - CPCB",2026-11-18 20:00:00,PM2.5,316.0,140.8,ug/m3,mean24,False
+"DTU, Delhi - CPCB",2026-11-18 20:00:00,SO2,32.0,25.6,ug/m3,mean24,False
 "Dasna Dehat, Ghaziabad-UPPCB",2026-11-12 19:00:00,CO,79.0,1.58,mg/m3,mean8,False
 "Dasna Dehat, Ghaziabad-UPPCB",2026-11-12 19:00:00,OZONE,7.0,7.0,ug/m3,mean8,False
 "Dasna Dehat, Ghaziabad-UPPCB",2026-11-13 22:00:00,CO,112.0,2.96,mg/m3,mean8,False
@@ -5338,6 +5419,11 @@ station,hour_ist,pollutant,subindex,concentration,unit,statistic,censored
 "Dasna Dehat, Ghaziabad-UPPCB",2026-11-18 11:00:00,PM10,214.0,264.0,ug/m3,mean24,False
 "Dasna Dehat, Ghaziabad-UPPCB",2026-11-18 11:00:00,PM2.5,267.0,110.1,ug/m3,mean24,False
 "Dasna Dehat, Ghaziabad-UPPCB",2026-11-18 11:00:00,SO2,16.0,12.8,ug/m3,mean24,False
+"Dasna Dehat, Ghaziabad-UPPCB",2026-11-18 20:00:00,CO,108.0,2.64,mg/m3,mean8,False
+"Dasna Dehat, Ghaziabad-UPPCB",2026-11-18 20:00:00,NO2,86.0,68.8,ug/m3,mean24,False
+"Dasna Dehat, Ghaziabad-UPPCB",2026-11-18 20:00:00,OZONE,31.0,31.0,ug/m3,mean8,False
+"Dasna Dehat, Ghaziabad-UPPCB",2026-11-18 20:00:00,PM10,210.0,260.0,ug/m3,mean24,False
+"Dasna Dehat, Ghaziabad-UPPCB",2026-11-18 20:00:00,PM2.5,272.0,111.6,ug/m3,mean24,False
 "Dr. Karni Singh Shooting Range, Delhi - DPCC",2026-09-17 01:00:00,CO,56.0,1.12,mg/m3,mean8,False
 "Dr. Karni Singh Shooting Range, Delhi - DPCC",2026-09-17 01:00:00,NO2,30.0,24.0,ug/m3,mean24,False
 "Dr. Karni Singh Shooting Range, Delhi - DPCC",2026-09-17 01:00:00,OZONE,13.0,13.0,ug/m3,mean8,False
@@ -5758,6 +5844,12 @@ station,hour_ist,pollutant,subindex,concentration,unit,statistic,censored
 "Dr. Karni Singh Shooting Range, Delhi - DPCC",2026-11-18 11:00:00,PM10,112.0,118.0,ug/m3,mean24,False
 "Dr. Karni Singh Shooting Range, Delhi - DPCC",2026-11-18 11:00:00,PM2.5,157.0,77.1,ug/m3,mean24,False
 "Dr. Karni Singh Shooting Range, Delhi - DPCC",2026-11-18 11:00:00,SO2,14.0,11.2,ug/m3,mean24,False
+"Dr. Karni Singh Shooting Range, Delhi - DPCC",2026-11-18 20:00:00,CO,55.0,1.1,mg/m3,mean8,False
+"Dr. Karni Singh Shooting Range, Delhi - DPCC",2026-11-18 20:00:00,NO2,68.0,54.4,ug/m3,mean24,False
+"Dr. Karni Singh Shooting Range, Delhi - DPCC",2026-11-18 20:00:00,OZONE,63.0,63.0,ug/m3,mean8,False
+"Dr. Karni Singh Shooting Range, Delhi - DPCC",2026-11-18 20:00:00,PM10,117.0,125.5,ug/m3,mean24,False
+"Dr. Karni Singh Shooting Range, Delhi - DPCC",2026-11-18 20:00:00,PM2.5,164.0,79.2,ug/m3,mean24,False
+"Dr. Karni Singh Shooting Range, Delhi - DPCC",2026-11-18 20:00:00,SO2,17.0,13.6,ug/m3,mean24,False
 "Dwarka-Sector 8, Delhi - DPCC",2026-09-17 01:00:00,CO,28.0,0.56,mg/m3,mean8,False
 "Dwarka-Sector 8, Delhi - DPCC",2026-09-17 01:00:00,NO2,32.0,25.6,ug/m3,mean24,False
 "Dwarka-Sector 8, Delhi - DPCC",2026-09-17 01:00:00,OZONE,20.0,20.0,ug/m3,mean8,False
@@ -6179,6 +6271,12 @@ station,hour_ist,pollutant,subindex,concentration,unit,statistic,censored
 "Dwarka-Sector 8, Delhi - DPCC",2026-11-18 11:00:00,OZONE,5.0,5.0,ug/m3,mean8,False
 "Dwarka-Sector 8, Delhi - DPCC",2026-11-18 11:00:00,PM10,148.0,172.0,ug/m3,mean24,False
 "Dwarka-Sector 8, Delhi - DPCC",2026-11-18 11:00:00,SO2,21.0,16.8,ug/m3,mean24,False
+"Dwarka-Sector 8, Delhi - DPCC",2026-11-18 20:00:00,CO,85.0,1.7,mg/m3,mean8,False
+"Dwarka-Sector 8, Delhi - DPCC",2026-11-18 20:00:00,NO2,91.0,72.8,ug/m3,mean24,False
+"Dwarka-Sector 8, Delhi - DPCC",2026-11-18 20:00:00,OZONE,33.0,33.0,ug/m3,mean8,False
+"Dwarka-Sector 8, Delhi - DPCC",2026-11-18 20:00:00,PM10,156.0,184.0,ug/m3,mean24,False
+"Dwarka-Sector 8, Delhi - DPCC",2026-11-18 20:00:00,PM2.5,218.0,95.4,ug/m3,mean24,False
+"Dwarka-Sector 8, Delhi - DPCC",2026-11-18 20:00:00,SO2,18.0,14.4,ug/m3,mean24,False
 "Ghoga ,Delhi-DPCC",2026-10-13 16:00:00,CO,24.0,0.48,mg/m3,mean8,False
 "Ghoga ,Delhi-DPCC",2026-10-13 16:00:00,NO2,18.0,14.4,ug/m3,mean24,False
 "Ghoga ,Delhi-DPCC",2026-10-13 16:00:00,OZONE,103.0,102.04,ug/m3,mean8,False
@@ -6521,6 +6619,12 @@ station,hour_ist,pollutant,subindex,concentration,unit,statistic,censored
 "Ghoga, Delhi-DPCC",2026-11-18 11:00:00,PM10,170.0,205.0,ug/m3,mean24,False
 "Ghoga, Delhi-DPCC",2026-11-18 11:00:00,PM2.5,211.0,93.3,ug/m3,mean24,False
 "Ghoga, Delhi-DPCC",2026-11-18 11:00:00,SO2,15.0,12.0,ug/m3,mean24,False
+"Ghoga, Delhi-DPCC",2026-11-18 20:00:00,CO,17.0,0.34,mg/m3,mean8,False
+"Ghoga, Delhi-DPCC",2026-11-18 20:00:00,NO2,48.0,38.4,ug/m3,mean24,False
+"Ghoga, Delhi-DPCC",2026-11-18 20:00:00,OZONE,64.0,64.0,ug/m3,mean8,False
+"Ghoga, Delhi-DPCC",2026-11-18 20:00:00,PM10,176.0,214.0,ug/m3,mean24,False
+"Ghoga, Delhi-DPCC",2026-11-18 20:00:00,PM2.5,231.0,99.3,ug/m3,mean24,False
+"Ghoga, Delhi-DPCC",2026-11-18 20:00:00,SO2,16.0,12.8,ug/m3,mean24,False
 "Ghummanhera ,Delhi-DPCC",2026-10-13 16:00:00,CO,85.0,1.7,mg/m3,mean8,False
 "Ghummanhera ,Delhi-DPCC",2026-10-13 16:00:00,NO2,49.0,39.2,ug/m3,mean24,False
 "Ghummanhera ,Delhi-DPCC",2026-10-13 16:00:00,OZONE,99.0,99.0,ug/m3,mean8,False
@@ -6801,6 +6905,12 @@ station,hour_ist,pollutant,subindex,concentration,unit,statistic,censored
 "Ghummanhera, Delhi-DPCC",2026-11-18 11:00:00,PM10,206.0,256.0,ug/m3,mean24,False
 "Ghummanhera, Delhi-DPCC",2026-11-18 11:00:00,PM2.5,219.0,95.7,ug/m3,mean24,False
 "Ghummanhera, Delhi-DPCC",2026-11-18 11:00:00,SO2,18.0,14.4,ug/m3,mean24,False
+"Ghummanhera, Delhi-DPCC",2026-11-18 20:00:00,CO,73.0,1.46,mg/m3,mean8,False
+"Ghummanhera, Delhi-DPCC",2026-11-18 20:00:00,NO2,75.0,60.0,ug/m3,mean24,False
+"Ghummanhera, Delhi-DPCC",2026-11-18 20:00:00,OZONE,62.0,62.0,ug/m3,mean8,False
+"Ghummanhera, Delhi-DPCC",2026-11-18 20:00:00,PM10,223.0,273.0,ug/m3,mean24,False
+"Ghummanhera, Delhi-DPCC",2026-11-18 20:00:00,PM2.5,239.0,101.7,ug/m3,mean24,False
+"Ghummanhera, Delhi-DPCC",2026-11-18 20:00:00,SO2,11.0,8.8,ug/m3,mean24,False
 "Govindpuram, Ghaziabad - UPPCB",2026-09-17 01:00:00,CO,45.0,0.9,mg/m3,mean8,False
 "Govindpuram, Ghaziabad - UPPCB",2026-09-17 01:00:00,NO2,58.0,46.4,ug/m3,mean24,False
 "Govindpuram, Ghaziabad - UPPCB",2026-09-17 01:00:00,OZONE,30.0,30.0,ug/m3,mean8,False
@@ -7208,6 +7318,12 @@ station,hour_ist,pollutant,subindex,concentration,unit,statistic,censored
 "Govindpuram, Ghaziabad - UPPCB",2026-11-18 11:00:00,PM10,35.0,35.0,ug/m3,mean24,False
 "Govindpuram, Ghaziabad - UPPCB",2026-11-18 11:00:00,PM2.5,36.0,21.6,ug/m3,mean24,False
 "Govindpuram, Ghaziabad - UPPCB",2026-11-18 11:00:00,SO2,18.0,14.4,ug/m3,mean24,False
+"Govindpuram, Ghaziabad - UPPCB",2026-11-18 20:00:00,CO,36.0,0.72,mg/m3,mean8,False
+"Govindpuram, Ghaziabad - UPPCB",2026-11-18 20:00:00,NO2,93.0,74.4,ug/m3,mean24,False
+"Govindpuram, Ghaziabad - UPPCB",2026-11-18 20:00:00,OZONE,109.0,106.12,ug/m3,mean8,False
+"Govindpuram, Ghaziabad - UPPCB",2026-11-18 20:00:00,PM10,31.0,31.0,ug/m3,mean24,False
+"Govindpuram, Ghaziabad - UPPCB",2026-11-18 20:00:00,PM2.5,33.0,19.8,ug/m3,mean24,False
+"Govindpuram, Ghaziabad - UPPCB",2026-11-18 20:00:00,SO2,18.0,14.4,ug/m3,mean24,False
 "IGI Airport (T3), Delhi - IITM",2026-09-19 00:00:00,CO,29.0,0.58,mg/m3,mean8,False
 "IGI Airport (T3), Delhi - IITM",2026-09-19 00:00:00,OZONE,104.0,102.72,ug/m3,mean8,False
 "IGI Airport (T3), Delhi - IITM",2026-09-19 11:00:00,CO,40.0,0.8,mg/m3,mean8,False
@@ -7533,6 +7649,11 @@ station,hour_ist,pollutant,subindex,concentration,unit,statistic,censored
 "IGI Airport (T3), Delhi - IITM",2026-11-18 11:00:00,OZONE,14.0,14.0,ug/m3,mean8,False
 "IGI Airport (T3), Delhi - IITM",2026-11-18 11:00:00,PM10,212.0,262.0,ug/m3,mean24,False
 "IGI Airport (T3), Delhi - IITM",2026-11-18 11:00:00,PM2.5,164.0,79.2,ug/m3,mean24,False
+"IGI Airport (T3), Delhi - IITM",2026-11-18 20:00:00,CO,58.0,1.16,mg/m3,mean8,False
+"IGI Airport (T3), Delhi - IITM",2026-11-18 20:00:00,NO2,117.0,97.0,ug/m3,mean24,False
+"IGI Airport (T3), Delhi - IITM",2026-11-18 20:00:00,OZONE,66.0,66.0,ug/m3,mean8,False
+"IGI Airport (T3), Delhi - IITM",2026-11-18 20:00:00,PM10,222.0,272.0,ug/m3,mean24,False
+"IGI Airport (T3), Delhi - IITM",2026-11-18 20:00:00,PM2.5,174.0,82.2,ug/m3,mean24,False
 "IGNOU_Maidan Garhi, Delhi - DPCC",2026-09-17 01:00:00,CO,62.0,1.24,mg/m3,mean8,False
 "IGNOU_Maidan Garhi, Delhi - DPCC",2026-09-17 01:00:00,NO2,19.0,15.2,ug/m3,mean24,False
 "IGNOU_Maidan Garhi, Delhi - DPCC",2026-09-17 01:00:00,OZONE,7.0,7.0,ug/m3,mean8,False
@@ -7937,6 +8058,12 @@ station,hour_ist,pollutant,subindex,concentration,unit,statistic,censored
 "IGNOU_Maidan Garhi, Delhi - DPCC",2026-11-18 11:00:00,PM10,174.0,211.0,ug/m3,mean24,False
 "IGNOU_Maidan Garhi, Delhi - DPCC",2026-11-18 11:00:00,PM2.5,57.0,34.2,ug/m3,mean24,False
 "IGNOU_Maidan Garhi, Delhi - DPCC",2026-11-18 11:00:00,SO2,8.0,6.4,ug/m3,mean24,False
+"IGNOU_Maidan Garhi, Delhi - DPCC",2026-11-18 20:00:00,CO,54.0,1.08,mg/m3,mean8,False
+"IGNOU_Maidan Garhi, Delhi - DPCC",2026-11-18 20:00:00,NO2,55.0,44.0,ug/m3,mean24,False
+"IGNOU_Maidan Garhi, Delhi - DPCC",2026-11-18 20:00:00,OZONE,81.0,81.0,ug/m3,mean8,False
+"IGNOU_Maidan Garhi, Delhi - DPCC",2026-11-18 20:00:00,PM10,171.0,206.5,ug/m3,mean24,False
+"IGNOU_Maidan Garhi, Delhi - DPCC",2026-11-18 20:00:00,PM2.5,58.0,34.8,ug/m3,mean24,False
+"IGNOU_Maidan Garhi, Delhi - DPCC",2026-11-18 20:00:00,SO2,7.0,5.6,ug/m3,mean24,False
 "IHBAS, Dilshad Garden, Delhi - CPCB",2026-09-17 01:00:00,CO,43.0,0.86,mg/m3,mean8,False
 "IHBAS, Dilshad Garden, Delhi - CPCB",2026-09-17 01:00:00,NO2,50.0,40.0,ug/m3,mean24,False
 "IHBAS, Dilshad Garden, Delhi - CPCB",2026-09-17 01:00:00,OZONE,11.0,11.0,ug/m3,mean8,False
@@ -8348,6 +8475,12 @@ station,hour_ist,pollutant,subindex,concentration,unit,statistic,censored
 "IHBAS, Dilshad Garden, Delhi - CPCB",2026-11-18 11:00:00,PM10,176.0,214.0,ug/m3,mean24,False
 "IHBAS, Dilshad Garden, Delhi - CPCB",2026-11-18 11:00:00,PM2.5,271.0,111.3,ug/m3,mean24,False
 "IHBAS, Dilshad Garden, Delhi - CPCB",2026-11-18 11:00:00,SO2,19.0,15.2,ug/m3,mean24,False
+"IHBAS, Dilshad Garden, Delhi - CPCB",2026-11-18 20:00:00,CO,38.0,0.76,mg/m3,mean8,False
+"IHBAS, Dilshad Garden, Delhi - CPCB",2026-11-18 20:00:00,NO2,25.0,20.0,ug/m3,mean24,False
+"IHBAS, Dilshad Garden, Delhi - CPCB",2026-11-18 20:00:00,OZONE,21.0,21.0,ug/m3,mean8,False
+"IHBAS, Dilshad Garden, Delhi - CPCB",2026-11-18 20:00:00,PM10,182.0,223.0,ug/m3,mean24,False
+"IHBAS, Dilshad Garden, Delhi - CPCB",2026-11-18 20:00:00,PM2.5,285.0,115.5,ug/m3,mean24,False
+"IHBAS, Dilshad Garden, Delhi - CPCB",2026-11-18 20:00:00,SO2,20.0,16.0,ug/m3,mean24,False
 "IIT Delhi, Delhi - IITM",2026-09-17 01:00:00,CO,61.0,1.22,mg/m3,mean8,False
 "IIT Delhi, Delhi - IITM",2026-09-17 01:00:00,NO2,20.0,16.0,ug/m3,mean24,False
 "IIT Delhi, Delhi - IITM",2026-09-17 01:00:00,OZONE,29.0,29.0,ug/m3,mean8,False
@@ -8688,6 +8821,11 @@ station,hour_ist,pollutant,subindex,concentration,unit,statistic,censored
 "IIT Delhi, Delhi - IITM",2026-11-18 11:00:00,OZONE,23.0,23.0,ug/m3,mean8,False
 "IIT Delhi, Delhi - IITM",2026-11-18 11:00:00,PM10,253.0,303.0,ug/m3,mean24,False
 "IIT Delhi, Delhi - IITM",2026-11-18 11:00:00,PM2.5,209.0,92.7,ug/m3,mean24,False
+"IIT Delhi, Delhi - IITM",2026-11-18 20:00:00,CO,51.0,1.02,mg/m3,mean8,False
+"IIT Delhi, Delhi - IITM",2026-11-18 20:00:00,NO2,54.0,43.2,ug/m3,mean24,False
+"IIT Delhi, Delhi - IITM",2026-11-18 20:00:00,OZONE,42.0,42.0,ug/m3,mean8,False
+"IIT Delhi, Delhi - IITM",2026-11-18 20:00:00,PM10,278.0,328.0,ug/m3,mean24,False
+"IIT Delhi, Delhi - IITM",2026-11-18 20:00:00,PM2.5,243.0,102.9,ug/m3,mean24,False
 "IMD Lodhi Road, Delhi - IITM",2026-09-17 01:00:00,CO,36.0,0.72,mg/m3,mean8,False
 "IMD Lodhi Road, Delhi - IITM",2026-09-17 01:00:00,NO2,20.0,16.0,ug/m3,mean24,False
 "IMD Lodhi Road, Delhi - IITM",2026-09-17 01:00:00,OZONE,23.0,23.0,ug/m3,mean8,False
@@ -9034,6 +9172,11 @@ station,hour_ist,pollutant,subindex,concentration,unit,statistic,censored
 "IMD Lodhi Road, Delhi - IITM",2026-11-18 11:00:00,OZONE,27.0,27.0,ug/m3,mean8,False
 "IMD Lodhi Road, Delhi - IITM",2026-11-18 11:00:00,PM10,138.0,157.0,ug/m3,mean24,False
 "IMD Lodhi Road, Delhi - IITM",2026-11-18 11:00:00,PM2.5,121.0,66.3,ug/m3,mean24,False
+"IMD Lodhi Road, Delhi - IITM",2026-11-18 20:00:00,CO,51.0,1.02,mg/m3,mean8,False
+"IMD Lodhi Road, Delhi - IITM",2026-11-18 20:00:00,NO2,39.0,31.2,ug/m3,mean24,False
+"IMD Lodhi Road, Delhi - IITM",2026-11-18 20:00:00,OZONE,159.0,140.12,ug/m3,mean8,False
+"IMD Lodhi Road, Delhi - IITM",2026-11-18 20:00:00,PM10,162.0,193.0,ug/m3,mean24,False
+"IMD Lodhi Road, Delhi - IITM",2026-11-18 20:00:00,PM2.5,136.0,70.8,ug/m3,mean24,False
 "ITO, Delhi - CPCB",2026-09-17 01:00:00,CO,78.0,1.56,mg/m3,mean8,False
 "ITO, Delhi - CPCB",2026-09-17 01:00:00,NO2,59.0,47.2,ug/m3,mean24,False
 "ITO, Delhi - CPCB",2026-09-17 01:00:00,OZONE,14.0,14.0,ug/m3,mean8,False
@@ -9366,6 +9509,12 @@ station,hour_ist,pollutant,subindex,concentration,unit,statistic,censored
 "ITO, Delhi - CPCB",2026-11-18 11:00:00,PM10,175.0,212.5,ug/m3,mean24,False
 "ITO, Delhi - CPCB",2026-11-18 11:00:00,PM2.5,274.0,112.2,ug/m3,mean24,False
 "ITO, Delhi - CPCB",2026-11-18 11:00:00,SO2,28.0,22.4,ug/m3,mean24,False
+"ITO, Delhi - CPCB",2026-11-18 20:00:00,CO,86.0,1.72,mg/m3,mean8,False
+"ITO, Delhi - CPCB",2026-11-18 20:00:00,NO2,57.0,45.6,ug/m3,mean24,False
+"ITO, Delhi - CPCB",2026-11-18 20:00:00,OZONE,98.0,98.0,ug/m3,mean8,False
+"ITO, Delhi - CPCB",2026-11-18 20:00:00,PM10,187.0,230.5,ug/m3,mean24,False
+"ITO, Delhi - CPCB",2026-11-18 20:00:00,PM2.5,311.0,134.3,ug/m3,mean24,False
+"ITO, Delhi - CPCB",2026-11-18 20:00:00,SO2,28.0,22.4,ug/m3,mean24,False
 "Indirapuram, Ghaziabad - UPPCB",2026-09-17 01:00:00,CO,9.0,0.18,mg/m3,mean8,False
 "Indirapuram, Ghaziabad - UPPCB",2026-09-17 01:00:00,NO2,32.0,25.6,ug/m3,mean24,False
 "Indirapuram, Ghaziabad - UPPCB",2026-09-17 01:00:00,OZONE,26.0,26.0,ug/m3,mean8,False
@@ -9760,6 +9909,12 @@ station,hour_ist,pollutant,subindex,concentration,unit,statistic,censored
 "Indirapuram, Ghaziabad - UPPCB",2026-11-18 11:00:00,PM10,212.0,262.0,ug/m3,mean24,False
 "Indirapuram, Ghaziabad - UPPCB",2026-11-18 11:00:00,PM2.5,178.0,83.4,ug/m3,mean24,False
 "Indirapuram, Ghaziabad - UPPCB",2026-11-18 11:00:00,SO2,50.0,40.0,ug/m3,mean24,False
+"Indirapuram, Ghaziabad - UPPCB",2026-11-18 20:00:00,CO,67.0,1.34,mg/m3,mean8,False
+"Indirapuram, Ghaziabad - UPPCB",2026-11-18 20:00:00,NO2,88.0,70.4,ug/m3,mean24,False
+"Indirapuram, Ghaziabad - UPPCB",2026-11-18 20:00:00,OZONE,11.0,11.0,ug/m3,mean8,False
+"Indirapuram, Ghaziabad - UPPCB",2026-11-18 20:00:00,PM10,159.0,188.5,ug/m3,mean24,False
+"Indirapuram, Ghaziabad - UPPCB",2026-11-18 20:00:00,PM2.5,170.0,81.0,ug/m3,mean24,False
+"Indirapuram, Ghaziabad - UPPCB",2026-11-18 20:00:00,SO2,49.0,39.2,ug/m3,mean24,False
 "JNU, Delhi - DPCC",2026-09-17 01:00:00,CO,88.0,1.76,mg/m3,mean8,False
 "JNU, Delhi - DPCC",2026-09-17 01:00:00,NO2,29.0,23.2,ug/m3,mean24,False
 "JNU, Delhi - DPCC",2026-09-17 01:00:00,OZONE,15.0,15.0,ug/m3,mean8,False
@@ -10175,6 +10330,12 @@ station,hour_ist,pollutant,subindex,concentration,unit,statistic,censored
 "JNU, Delhi - DPCC",2026-11-18 11:00:00,PM10,133.0,149.5,ug/m3,mean24,False
 "JNU, Delhi - DPCC",2026-11-18 11:00:00,PM2.5,238.0,101.4,ug/m3,mean24,False
 "JNU, Delhi - DPCC",2026-11-18 11:00:00,SO2,2.0,1.6,ug/m3,mean24,False
+"JNU, Delhi - DPCC",2026-11-18 20:00:00,CO,66.0,1.32,mg/m3,mean8,False
+"JNU, Delhi - DPCC",2026-11-18 20:00:00,NO2,50.0,40.0,ug/m3,mean24,False
+"JNU, Delhi - DPCC",2026-11-18 20:00:00,OZONE,24.0,24.0,ug/m3,mean8,False
+"JNU, Delhi - DPCC",2026-11-18 20:00:00,PM10,143.0,164.5,ug/m3,mean24,False
+"JNU, Delhi - DPCC",2026-11-18 20:00:00,PM2.5,278.0,113.4,ug/m3,mean24,False
+"JNU, Delhi - DPCC",2026-11-18 20:00:00,SO2,2.0,1.6,ug/m3,mean24,False
 "Jahangirpuri, Delhi - DPCC",2026-09-17 01:00:00,CO,39.0,0.78,mg/m3,mean8,False
 "Jahangirpuri, Delhi - DPCC",2026-09-17 01:00:00,NO2,27.0,21.6,ug/m3,mean24,False
 "Jahangirpuri, Delhi - DPCC",2026-09-17 01:00:00,OZONE,7.0,7.0,ug/m3,mean8,False
@@ -10572,6 +10733,12 @@ station,hour_ist,pollutant,subindex,concentration,unit,statistic,censored
 "Jahangirpuri, Delhi - DPCC",2026-11-18 11:00:00,PM10,203.0,253.0,ug/m3,mean24,False
 "Jahangirpuri, Delhi - DPCC",2026-11-18 11:00:00,PM2.5,263.0,108.9,ug/m3,mean24,False
 "Jahangirpuri, Delhi - DPCC",2026-11-18 11:00:00,SO2,20.0,16.0,ug/m3,mean24,False
+"Jahangirpuri, Delhi - DPCC",2026-11-18 20:00:00,CO,71.0,1.42,mg/m3,mean8,False
+"Jahangirpuri, Delhi - DPCC",2026-11-18 20:00:00,NO2,91.0,72.8,ug/m3,mean24,False
+"Jahangirpuri, Delhi - DPCC",2026-11-18 20:00:00,OZONE,42.0,42.0,ug/m3,mean8,False
+"Jahangirpuri, Delhi - DPCC",2026-11-18 20:00:00,PM10,213.0,263.0,ug/m3,mean24,False
+"Jahangirpuri, Delhi - DPCC",2026-11-18 20:00:00,PM2.5,294.0,118.2,ug/m3,mean24,False
+"Jahangirpuri, Delhi - DPCC",2026-11-18 20:00:00,SO2,21.0,16.8,ug/m3,mean24,False
 "Jawaharlal Nehru Stadium, Delhi - DPCC",2026-09-17 01:00:00,CO,123.0,3.84,mg/m3,mean8,False
 "Jawaharlal Nehru Stadium, Delhi - DPCC",2026-09-17 01:00:00,NO2,16.0,12.8,ug/m3,mean24,False
 "Jawaharlal Nehru Stadium, Delhi - DPCC",2026-09-17 01:00:00,OZONE,33.0,33.0,ug/m3,mean8,False
@@ -10960,6 +11127,12 @@ station,hour_ist,pollutant,subindex,concentration,unit,statistic,censored
 "Jawaharlal Nehru Stadium, Delhi - DPCC",2026-11-18 11:00:00,PM10,125.0,137.5,ug/m3,mean24,False
 "Jawaharlal Nehru Stadium, Delhi - DPCC",2026-11-18 11:00:00,PM2.5,159.0,77.7,ug/m3,mean24,False
 "Jawaharlal Nehru Stadium, Delhi - DPCC",2026-11-18 11:00:00,SO2,36.0,28.8,ug/m3,mean24,False
+"Jawaharlal Nehru Stadium, Delhi - DPCC",2026-11-18 20:00:00,CO,40.0,0.8,mg/m3,mean8,False
+"Jawaharlal Nehru Stadium, Delhi - DPCC",2026-11-18 20:00:00,NO2,40.0,32.0,ug/m3,mean24,False
+"Jawaharlal Nehru Stadium, Delhi - DPCC",2026-11-18 20:00:00,OZONE,45.0,45.0,ug/m3,mean8,False
+"Jawaharlal Nehru Stadium, Delhi - DPCC",2026-11-18 20:00:00,PM10,135.0,152.5,ug/m3,mean24,False
+"Jawaharlal Nehru Stadium, Delhi - DPCC",2026-11-18 20:00:00,PM2.5,185.0,85.5,ug/m3,mean24,False
+"Jawaharlal Nehru Stadium, Delhi - DPCC",2026-11-18 20:00:00,SO2,37.0,29.6,ug/m3,mean24,False
 "Jharoda Kalan, Delhi-DPCC",2026-10-13 16:00:00,CO,48.0,0.96,mg/m3,mean8,False
 "Jharoda Kalan, Delhi-DPCC",2026-10-13 16:00:00,NO2,44.0,35.2,ug/m3,mean24,False
 "Jharoda Kalan, Delhi-DPCC",2026-10-13 16:00:00,PM10,132.0,148.0,ug/m3,mean24,False
@@ -11246,6 +11419,12 @@ station,hour_ist,pollutant,subindex,concentration,unit,statistic,censored
 "Jharoda Kalan, Delhi-DPCC",2026-11-18 11:00:00,PM10,149.0,173.5,ug/m3,mean24,False
 "Jharoda Kalan, Delhi-DPCC",2026-11-18 11:00:00,PM2.5,179.0,83.7,ug/m3,mean24,False
 "Jharoda Kalan, Delhi-DPCC",2026-11-18 11:00:00,SO2,6.0,4.8,ug/m3,mean24,False
+"Jharoda Kalan, Delhi-DPCC",2026-11-18 20:00:00,CO,42.0,0.84,mg/m3,mean8,False
+"Jharoda Kalan, Delhi-DPCC",2026-11-18 20:00:00,NO2,42.0,33.6,ug/m3,mean24,False
+"Jharoda Kalan, Delhi-DPCC",2026-11-18 20:00:00,OZONE,46.0,46.0,ug/m3,mean8,False
+"Jharoda Kalan, Delhi-DPCC",2026-11-18 20:00:00,PM10,167.0,200.5,ug/m3,mean24,False
+"Jharoda Kalan, Delhi-DPCC",2026-11-18 20:00:00,PM2.5,220.0,96.0,ug/m3,mean24,False
+"Jharoda Kalan, Delhi-DPCC",2026-11-18 20:00:00,SO2,5.0,4.0,ug/m3,mean24,False
 "Karala, Delhi-DPCC",2026-11-07 12:00:00,CO,18.0,0.36,mg/m3,mean8,False
 "Karala, Delhi-DPCC",2026-11-07 12:00:00,NO2,68.0,54.4,ug/m3,mean24,False
 "Karala, Delhi-DPCC",2026-11-07 12:00:00,OZONE,13.0,13.0,ug/m3,mean8,False
@@ -11359,6 +11538,12 @@ station,hour_ist,pollutant,subindex,concentration,unit,statistic,censored
 "Karala, Delhi-DPCC",2026-11-18 11:00:00,PM10,141.0,161.5,ug/m3,mean24,False
 "Karala, Delhi-DPCC",2026-11-18 11:00:00,PM2.5,225.0,97.5,ug/m3,mean24,False
 "Karala, Delhi-DPCC",2026-11-18 11:00:00,SO2,11.0,8.8,ug/m3,mean24,False
+"Karala, Delhi-DPCC",2026-11-18 20:00:00,CO,15.0,0.3,mg/m3,mean8,False
+"Karala, Delhi-DPCC",2026-11-18 20:00:00,NO2,115.0,95.0,ug/m3,mean24,False
+"Karala, Delhi-DPCC",2026-11-18 20:00:00,OZONE,28.0,28.0,ug/m3,mean8,False
+"Karala, Delhi-DPCC",2026-11-18 20:00:00,PM10,157.0,185.5,ug/m3,mean24,False
+"Karala, Delhi-DPCC",2026-11-18 20:00:00,PM2.5,260.0,108.0,ug/m3,mean24,False
+"Karala, Delhi-DPCC",2026-11-18 20:00:00,SO2,12.0,9.6,ug/m3,mean24,False
 "Karala,Delhi-DPCC",2026-10-13 16:00:00,CO,67.0,1.34,mg/m3,mean8,False
 "Karala,Delhi-DPCC",2026-10-13 16:00:00,NO2,69.0,55.2,ug/m3,mean24,False
 "Karala,Delhi-DPCC",2026-10-13 16:00:00,OZONE,70.0,70.0,ug/m3,mean8,False
@@ -11726,6 +11911,10 @@ station,hour_ist,pollutant,subindex,concentration,unit,statistic,censored
 "Lodhi Road, Delhi - IITM",2026-11-18 11:00:00,PM10,141.0,161.5,ug/m3,mean24,False
 "Lodhi Road, Delhi - IITM",2026-11-18 11:00:00,PM2.5,91.0,54.6,ug/m3,mean24,False
 "Lodhi Road, Delhi - IITM",2026-11-18 11:00:00,SO2,11.0,8.8,ug/m3,mean24,False
+"Lodhi Road, Delhi - IITM",2026-11-18 20:00:00,NO2,70.0,56.0,ug/m3,mean24,False
+"Lodhi Road, Delhi - IITM",2026-11-18 20:00:00,PM10,151.0,176.5,ug/m3,mean24,False
+"Lodhi Road, Delhi - IITM",2026-11-18 20:00:00,PM2.5,113.0,63.9,ug/m3,mean24,False
+"Lodhi Road, Delhi - IITM",2026-11-18 20:00:00,SO2,9.0,7.2,ug/m3,mean24,False
 "Loni, Ghaziabad - UPPCB",2026-09-17 01:00:00,CO,58.0,1.16,mg/m3,mean8,False
 "Loni, Ghaziabad - UPPCB",2026-09-17 01:00:00,OZONE,23.0,23.0,ug/m3,mean8,False
 "Loni, Ghaziabad - UPPCB",2026-09-17 18:00:00,CO,45.0,0.9,mg/m3,mean8,False
@@ -12135,6 +12324,12 @@ station,hour_ist,pollutant,subindex,concentration,unit,statistic,censored
 "Loni, Ghaziabad - UPPCB",2026-11-18 11:00:00,PM10,126.0,139.0,ug/m3,mean24,False
 "Loni, Ghaziabad - UPPCB",2026-11-18 11:00:00,PM2.5,211.0,93.3,ug/m3,mean24,False
 "Loni, Ghaziabad - UPPCB",2026-11-18 11:00:00,SO2,16.0,12.8,ug/m3,mean24,False
+"Loni, Ghaziabad - UPPCB",2026-11-18 20:00:00,CO,50.0,1.0,mg/m3,mean8,False
+"Loni, Ghaziabad - UPPCB",2026-11-18 20:00:00,NO2,87.0,69.6,ug/m3,mean24,False
+"Loni, Ghaziabad - UPPCB",2026-11-18 20:00:00,OZONE,89.0,89.0,ug/m3,mean8,False
+"Loni, Ghaziabad - UPPCB",2026-11-18 20:00:00,PM10,133.0,149.5,ug/m3,mean24,False
+"Loni, Ghaziabad - UPPCB",2026-11-18 20:00:00,PM2.5,222.0,96.6,ug/m3,mean24,False
+"Loni, Ghaziabad - UPPCB",2026-11-18 20:00:00,SO2,16.0,12.8,ug/m3,mean24,False
 "Maidan Garhi ,Delhi-DPCC",2026-10-13 16:00:00,CO,30.0,0.6,mg/m3,mean8,False
 "Maidan Garhi ,Delhi-DPCC",2026-10-13 16:00:00,OZONE,173.0,149.64,ug/m3,mean8,False
 "Maidan Garhi ,Delhi-DPCC",2026-10-13 18:00:00,CO,25.0,0.5,mg/m3,mean8,False
@@ -12446,6 +12641,12 @@ station,hour_ist,pollutant,subindex,concentration,unit,statistic,censored
 "Maidan Garhi, Delhi-DPCC",2026-11-18 11:00:00,PM10,112.0,118.0,ug/m3,mean24,False
 "Maidan Garhi, Delhi-DPCC",2026-11-18 11:00:00,PM2.5,166.0,79.8,ug/m3,mean24,False
 "Maidan Garhi, Delhi-DPCC",2026-11-18 11:00:00,SO2,9.0,7.2,ug/m3,mean24,False
+"Maidan Garhi, Delhi-DPCC",2026-11-18 20:00:00,CO,44.0,0.88,mg/m3,mean8,False
+"Maidan Garhi, Delhi-DPCC",2026-11-18 20:00:00,NO2,30.0,24.0,ug/m3,mean24,False
+"Maidan Garhi, Delhi-DPCC",2026-11-18 20:00:00,OZONE,139.0,126.52,ug/m3,mean8,False
+"Maidan Garhi, Delhi-DPCC",2026-11-18 20:00:00,PM10,124.0,136.0,ug/m3,mean24,False
+"Maidan Garhi, Delhi-DPCC",2026-11-18 20:00:00,PM2.5,179.0,83.7,ug/m3,mean24,False
+"Maidan Garhi, Delhi-DPCC",2026-11-18 20:00:00,SO2,8.0,6.4,ug/m3,mean24,False
 "Major Dhyan Chand National Stadium, Delhi - DPCC",2026-09-17 01:00:00,CO,80.0,1.6,mg/m3,mean8,False
 "Major Dhyan Chand National Stadium, Delhi - DPCC",2026-09-17 01:00:00,NO2,46.0,36.8,ug/m3,mean24,False
 "Major Dhyan Chand National Stadium, Delhi - DPCC",2026-09-17 01:00:00,OZONE,11.0,11.0,ug/m3,mean8,False
@@ -12865,6 +13066,12 @@ station,hour_ist,pollutant,subindex,concentration,unit,statistic,censored
 "Major Dhyan Chand National Stadium, Delhi - DPCC",2026-11-18 11:00:00,PM10,121.0,131.5,ug/m3,mean24,False
 "Major Dhyan Chand National Stadium, Delhi - DPCC",2026-11-18 11:00:00,PM2.5,129.0,68.7,ug/m3,mean24,False
 "Major Dhyan Chand National Stadium, Delhi - DPCC",2026-11-18 11:00:00,SO2,12.0,9.6,ug/m3,mean24,False
+"Major Dhyan Chand National Stadium, Delhi - DPCC",2026-11-18 20:00:00,CO,62.0,1.24,mg/m3,mean8,False
+"Major Dhyan Chand National Stadium, Delhi - DPCC",2026-11-18 20:00:00,NO2,94.0,75.2,ug/m3,mean24,False
+"Major Dhyan Chand National Stadium, Delhi - DPCC",2026-11-18 20:00:00,OZONE,27.0,27.0,ug/m3,mean8,False
+"Major Dhyan Chand National Stadium, Delhi - DPCC",2026-11-18 20:00:00,PM10,134.0,151.0,ug/m3,mean24,False
+"Major Dhyan Chand National Stadium, Delhi - DPCC",2026-11-18 20:00:00,PM2.5,154.0,76.2,ug/m3,mean24,False
+"Major Dhyan Chand National Stadium, Delhi - DPCC",2026-11-18 20:00:00,SO2,9.0,7.2,ug/m3,mean24,False
 "Mandir Marg, Delhi - DPCC",2026-09-17 01:00:00,CO,93.0,1.86,mg/m3,mean8,False
 "Mandir Marg, Delhi - DPCC",2026-09-17 01:00:00,NO2,21.0,16.8,ug/m3,mean24,False
 "Mandir Marg, Delhi - DPCC",2026-09-17 01:00:00,OZONE,14.0,14.0,ug/m3,mean8,False
@@ -13274,6 +13481,12 @@ station,hour_ist,pollutant,subindex,concentration,unit,statistic,censored
 "Mandir Marg, Delhi - DPCC",2026-11-18 11:00:00,PM10,114.0,121.0,ug/m3,mean24,False
 "Mandir Marg, Delhi - DPCC",2026-11-18 11:00:00,PM2.5,165.0,79.5,ug/m3,mean24,False
 "Mandir Marg, Delhi - DPCC",2026-11-18 11:00:00,SO2,60.0,48.0,ug/m3,mean24,False
+"Mandir Marg, Delhi - DPCC",2026-11-18 20:00:00,CO,66.0,1.32,mg/m3,mean8,False
+"Mandir Marg, Delhi - DPCC",2026-11-18 20:00:00,NO2,38.0,30.4,ug/m3,mean24,False
+"Mandir Marg, Delhi - DPCC",2026-11-18 20:00:00,OZONE,62.0,62.0,ug/m3,mean8,False
+"Mandir Marg, Delhi - DPCC",2026-11-18 20:00:00,PM10,126.0,139.0,ug/m3,mean24,False
+"Mandir Marg, Delhi - DPCC",2026-11-18 20:00:00,PM2.5,186.0,85.8,ug/m3,mean24,False
+"Mandir Marg, Delhi - DPCC",2026-11-18 20:00:00,SO2,57.0,45.6,ug/m3,mean24,False
 "Mundka, Delhi - DPCC",2026-09-17 01:00:00,CO,56.0,1.12,mg/m3,mean8,False
 "Mundka, Delhi - DPCC",2026-09-17 01:00:00,NO2,86.0,68.8,ug/m3,mean24,False
 "Mundka, Delhi - DPCC",2026-09-17 01:00:00,OZONE,7.0,7.0,ug/m3,mean8,False
@@ -13693,6 +13906,12 @@ station,hour_ist,pollutant,subindex,concentration,unit,statistic,censored
 "Mundka, Delhi - DPCC",2026-11-18 11:00:00,PM10,202.0,252.0,ug/m3,mean24,False
 "Mundka, Delhi - DPCC",2026-11-18 11:00:00,PM2.5,253.0,105.9,ug/m3,mean24,False
 "Mundka, Delhi - DPCC",2026-11-18 11:00:00,SO2,24.0,19.2,ug/m3,mean24,False
+"Mundka, Delhi - DPCC",2026-11-18 20:00:00,CO,60.0,1.2,mg/m3,mean8,False
+"Mundka, Delhi - DPCC",2026-11-18 20:00:00,NO2,71.0,56.8,ug/m3,mean24,False
+"Mundka, Delhi - DPCC",2026-11-18 20:00:00,OZONE,21.0,21.0,ug/m3,mean8,False
+"Mundka, Delhi - DPCC",2026-11-18 20:00:00,PM10,216.0,266.0,ug/m3,mean24,False
+"Mundka, Delhi - DPCC",2026-11-18 20:00:00,PM2.5,283.0,114.9,ug/m3,mean24,False
+"Mundka, Delhi - DPCC",2026-11-18 20:00:00,SO2,26.0,20.8,ug/m3,mean24,False
 "NIH Narela , Delhi - DPCC",2026-10-13 16:00:00,CO,13.0,0.26,mg/m3,mean8,False
 "NIH Narela , Delhi - DPCC",2026-10-13 16:00:00,NO2,36.0,28.8,ug/m3,mean24,False
 "NIH Narela , Delhi - DPCC",2026-10-13 16:00:00,OZONE,120.0,113.6,ug/m3,mean8,False
@@ -14034,6 +14253,12 @@ station,hour_ist,pollutant,subindex,concentration,unit,statistic,censored
 "NIH Narela, Delhi - DPCC",2026-11-18 11:00:00,PM10,201.0,251.0,ug/m3,mean24,False
 "NIH Narela, Delhi - DPCC",2026-11-18 11:00:00,PM2.5,286.0,115.8,ug/m3,mean24,False
 "NIH Narela, Delhi - DPCC",2026-11-18 11:00:00,SO2,13.0,10.4,ug/m3,mean24,False
+"NIH Narela, Delhi - DPCC",2026-11-18 20:00:00,CO,106.0,2.48,mg/m3,mean8,False
+"NIH Narela, Delhi - DPCC",2026-11-18 20:00:00,NO2,74.0,59.2,ug/m3,mean24,False
+"NIH Narela, Delhi - DPCC",2026-11-18 20:00:00,OZONE,41.0,41.0,ug/m3,mean8,False
+"NIH Narela, Delhi - DPCC",2026-11-18 20:00:00,PM10,210.0,260.0,ug/m3,mean24,False
+"NIH Narela, Delhi - DPCC",2026-11-18 20:00:00,PM2.5,305.0,126.5,ug/m3,mean24,False
+"NIH Narela, Delhi - DPCC",2026-11-18 20:00:00,SO2,13.0,10.4,ug/m3,mean24,False
 "NISE Gwal Pahari, Gurugram - IITM",2026-09-17 01:00:00,CO,40.0,0.8,mg/m3,mean8,False
 "NISE Gwal Pahari, Gurugram - IITM",2026-09-17 01:00:00,NO2,23.0,18.4,ug/m3,mean24,False
 "NISE Gwal Pahari, Gurugram - IITM",2026-09-17 01:00:00,OZONE,17.0,17.0,ug/m3,mean8,False
@@ -14381,6 +14606,11 @@ station,hour_ist,pollutant,subindex,concentration,unit,statistic,censored
 "NISE Gwal Pahari, Gurugram - IITM",2026-11-18 11:00:00,OZONE,13.0,13.0,ug/m3,mean8,False
 "NISE Gwal Pahari, Gurugram - IITM",2026-11-18 11:00:00,PM10,159.0,188.5,ug/m3,mean24,False
 "NISE Gwal Pahari, Gurugram - IITM",2026-11-18 11:00:00,PM2.5,228.0,98.4,ug/m3,mean24,False
+"NISE Gwal Pahari, Gurugram - IITM",2026-11-18 20:00:00,CO,35.0,0.7,mg/m3,mean8,False
+"NISE Gwal Pahari, Gurugram - IITM",2026-11-18 20:00:00,NO2,32.0,25.6,ug/m3,mean24,False
+"NISE Gwal Pahari, Gurugram - IITM",2026-11-18 20:00:00,OZONE,60.0,60.0,ug/m3,mean8,False
+"NISE Gwal Pahari, Gurugram - IITM",2026-11-18 20:00:00,PM10,155.0,182.5,ug/m3,mean24,False
+"NISE Gwal Pahari, Gurugram - IITM",2026-11-18 20:00:00,PM2.5,222.0,96.6,ug/m3,mean24,False
 "NSIT Dwarka, Delhi - CPCB",2026-09-17 01:00:00,CO,33.0,0.66,mg/m3,mean8,False
 "NSIT Dwarka, Delhi - CPCB",2026-09-17 01:00:00,NO2,35.0,28.0,ug/m3,mean24,False
 "NSIT Dwarka, Delhi - CPCB",2026-09-17 01:00:00,OZONE,16.0,16.0,ug/m3,mean8,False
@@ -14768,6 +14998,10 @@ station,hour_ist,pollutant,subindex,concentration,unit,statistic,censored
 "NSIT Dwarka, Delhi - CPCB",2026-11-18 11:00:00,PM10,143.0,164.5,ug/m3,mean24,False
 "NSIT Dwarka, Delhi - CPCB",2026-11-18 11:00:00,PM2.5,180.0,84.0,ug/m3,mean24,False
 "NSIT Dwarka, Delhi - CPCB",2026-11-18 11:00:00,SO2,13.0,10.4,ug/m3,mean24,False
+"NSIT Dwarka, Delhi - CPCB",2026-11-18 20:00:00,CO,49.0,0.98,mg/m3,mean8,False
+"NSIT Dwarka, Delhi - CPCB",2026-11-18 20:00:00,NO2,79.0,63.2,ug/m3,mean24,False
+"NSIT Dwarka, Delhi - CPCB",2026-11-18 20:00:00,OZONE,68.0,68.0,ug/m3,mean8,False
+"NSIT Dwarka, Delhi - CPCB",2026-11-18 20:00:00,SO2,13.0,10.4,ug/m3,mean24,False
 "NSUT Jaffarpur, Delhi - DPCC",2026-09-17 01:00:00,CO,35.0,0.7,mg/m3,mean8,False
 "NSUT Jaffarpur, Delhi - DPCC",2026-09-17 01:00:00,NO2,22.0,17.6,ug/m3,mean24,False
 "NSUT Jaffarpur, Delhi - DPCC",2026-09-17 01:00:00,OZONE,21.0,21.0,ug/m3,mean8,False
@@ -15188,6 +15422,12 @@ station,hour_ist,pollutant,subindex,concentration,unit,statistic,censored
 "NSUT Jaffarpur, Delhi - DPCC",2026-11-18 11:00:00,PM10,140.0,160.0,ug/m3,mean24,False
 "NSUT Jaffarpur, Delhi - DPCC",2026-11-18 11:00:00,PM2.5,284.0,115.2,ug/m3,mean24,False
 "NSUT Jaffarpur, Delhi - DPCC",2026-11-18 11:00:00,SO2,5.0,4.0,ug/m3,mean24,False
+"NSUT Jaffarpur, Delhi - DPCC",2026-11-18 20:00:00,CO,45.0,0.9,mg/m3,mean8,False
+"NSUT Jaffarpur, Delhi - DPCC",2026-11-18 20:00:00,NO2,59.0,47.2,ug/m3,mean24,False
+"NSUT Jaffarpur, Delhi - DPCC",2026-11-18 20:00:00,OZONE,74.0,74.0,ug/m3,mean8,False
+"NSUT Jaffarpur, Delhi - DPCC",2026-11-18 20:00:00,PM10,150.0,175.0,ug/m3,mean24,False
+"NSUT Jaffarpur, Delhi - DPCC",2026-11-18 20:00:00,PM2.5,317.0,142.1,ug/m3,mean24,False
+"NSUT Jaffarpur, Delhi - DPCC",2026-11-18 20:00:00,SO2,6.0,4.8,ug/m3,mean24,False
 "Najafgarh, Delhi - DPCC",2026-09-17 01:00:00,CO,87.0,1.74,mg/m3,mean8,False
 "Najafgarh, Delhi - DPCC",2026-09-17 01:00:00,OZONE,13.0,13.0,ug/m3,mean8,False
 "Najafgarh, Delhi - DPCC",2026-09-17 18:00:00,CO,14.0,0.28,mg/m3,mean8,False
@@ -15568,6 +15808,12 @@ station,hour_ist,pollutant,subindex,concentration,unit,statistic,censored
 "Najafgarh, Delhi - DPCC",2026-11-18 11:00:00,PM10,109.0,113.5,ug/m3,mean24,False
 "Najafgarh, Delhi - DPCC",2026-11-18 11:00:00,PM2.5,188.0,86.4,ug/m3,mean24,False
 "Najafgarh, Delhi - DPCC",2026-11-18 11:00:00,SO2,18.0,14.4,ug/m3,mean24,False
+"Najafgarh, Delhi - DPCC",2026-11-18 20:00:00,CO,24.0,0.48,mg/m3,mean8,False
+"Najafgarh, Delhi - DPCC",2026-11-18 20:00:00,NO2,79.0,63.2,ug/m3,mean24,False
+"Najafgarh, Delhi - DPCC",2026-11-18 20:00:00,OZONE,63.0,63.0,ug/m3,mean8,False
+"Najafgarh, Delhi - DPCC",2026-11-18 20:00:00,PM10,116.0,124.0,ug/m3,mean24,False
+"Najafgarh, Delhi - DPCC",2026-11-18 20:00:00,PM2.5,204.0,91.2,ug/m3,mean24,False
+"Najafgarh, Delhi - DPCC",2026-11-18 20:00:00,SO2,17.0,13.6,ug/m3,mean24,False
 "Nangloi, Delhi-DPCC",2026-11-07 12:00:00,NO2,100.0,80.0,ug/m3,mean24,False
 "Nangloi, Delhi-DPCC",2026-11-07 12:00:00,PM10,275.0,325.0,ug/m3,mean24,False
 "Nangloi, Delhi-DPCC",2026-11-07 12:00:00,PM2.5,363.0,201.9,ug/m3,mean24,False
@@ -15673,6 +15919,12 @@ station,hour_ist,pollutant,subindex,concentration,unit,statistic,censored
 "Nangloi, Delhi-DPCC",2026-11-18 11:00:00,PM10,228.0,278.0,ug/m3,mean24,False
 "Nangloi, Delhi-DPCC",2026-11-18 11:00:00,PM2.5,184.0,85.2,ug/m3,mean24,False
 "Nangloi, Delhi-DPCC",2026-11-18 11:00:00,SO2,11.0,8.8,ug/m3,mean24,False
+"Nangloi, Delhi-DPCC",2026-11-18 20:00:00,CO,133.0,4.64,mg/m3,mean8,False
+"Nangloi, Delhi-DPCC",2026-11-18 20:00:00,NO2,117.0,97.0,ug/m3,mean24,False
+"Nangloi, Delhi-DPCC",2026-11-18 20:00:00,OZONE,24.0,24.0,ug/m3,mean8,False
+"Nangloi, Delhi-DPCC",2026-11-18 20:00:00,PM10,244.0,294.0,ug/m3,mean24,False
+"Nangloi, Delhi-DPCC",2026-11-18 20:00:00,PM2.5,221.0,96.3,ug/m3,mean24,False
+"Nangloi, Delhi-DPCC",2026-11-18 20:00:00,SO2,11.0,8.8,ug/m3,mean24,False
 "Nangloi,Delhi-DPCC",2026-10-13 16:00:00,CO,34.0,0.68,mg/m3,mean8,False
 "Nangloi,Delhi-DPCC",2026-10-13 16:00:00,NO2,23.0,18.4,ug/m3,mean24,False
 "Nangloi,Delhi-DPCC",2026-10-13 16:00:00,OZONE,183.0,156.44,ug/m3,mean8,False
@@ -16293,6 +16545,12 @@ station,hour_ist,pollutant,subindex,concentration,unit,statistic,censored
 "Narela, Delhi - DPCC",2026-11-18 11:00:00,PM10,165.0,197.5,ug/m3,mean24,False
 "Narela, Delhi - DPCC",2026-11-18 11:00:00,PM2.5,225.0,97.5,ug/m3,mean24,False
 "Narela, Delhi - DPCC",2026-11-18 11:00:00,SO2,10.0,8.0,ug/m3,mean24,False
+"Narela, Delhi - DPCC",2026-11-18 20:00:00,CO,40.0,0.8,mg/m3,mean8,False
+"Narela, Delhi - DPCC",2026-11-18 20:00:00,NO2,14.0,11.2,ug/m3,mean24,False
+"Narela, Delhi - DPCC",2026-11-18 20:00:00,OZONE,18.0,18.0,ug/m3,mean8,False
+"Narela, Delhi - DPCC",2026-11-18 20:00:00,PM10,174.0,211.0,ug/m3,mean24,False
+"Narela, Delhi - DPCC",2026-11-18 20:00:00,PM2.5,240.0,102.0,ug/m3,mean24,False
+"Narela, Delhi - DPCC",2026-11-18 20:00:00,SO2,9.0,7.2,ug/m3,mean24,False
 "Nehru Nagar, Delhi - DPCC",2026-09-17 01:00:00,CO,57.0,1.14,mg/m3,mean8,False
 "Nehru Nagar, Delhi - DPCC",2026-09-17 01:00:00,NO2,40.0,32.0,ug/m3,mean24,False
 "Nehru Nagar, Delhi - DPCC",2026-09-17 01:00:00,OZONE,15.0,15.0,ug/m3,mean8,False
@@ -16708,6 +16966,12 @@ station,hour_ist,pollutant,subindex,concentration,unit,statistic,censored
 "Nehru Nagar, Delhi - DPCC",2026-11-18 11:00:00,PM10,149.0,173.5,ug/m3,mean24,False
 "Nehru Nagar, Delhi - DPCC",2026-11-18 11:00:00,PM2.5,198.0,89.4,ug/m3,mean24,False
 "Nehru Nagar, Delhi - DPCC",2026-11-18 11:00:00,SO2,28.0,22.4,ug/m3,mean24,False
+"Nehru Nagar, Delhi - DPCC",2026-11-18 20:00:00,CO,73.0,1.46,mg/m3,mean8,False
+"Nehru Nagar, Delhi - DPCC",2026-11-18 20:00:00,NO2,57.0,45.6,ug/m3,mean24,False
+"Nehru Nagar, Delhi - DPCC",2026-11-18 20:00:00,OZONE,44.0,44.0,ug/m3,mean8,False
+"Nehru Nagar, Delhi - DPCC",2026-11-18 20:00:00,PM10,155.0,182.5,ug/m3,mean24,False
+"Nehru Nagar, Delhi - DPCC",2026-11-18 20:00:00,PM2.5,234.0,100.2,ug/m3,mean24,False
+"Nehru Nagar, Delhi - DPCC",2026-11-18 20:00:00,SO2,26.0,20.8,ug/m3,mean24,False
 "New Industrial Town, Faridabad - HSPCB",2026-09-17 01:00:00,CO,22.0,0.44,mg/m3,mean8,False
 "New Industrial Town, Faridabad - HSPCB",2026-09-17 01:00:00,OZONE,14.0,14.0,ug/m3,mean8,False
 "New Industrial Town, Faridabad - HSPCB",2026-09-17 18:00:00,CO,22.0,0.44,mg/m3,mean8,False
@@ -17098,6 +17362,12 @@ station,hour_ist,pollutant,subindex,concentration,unit,statistic,censored
 "New Industrial Town, Faridabad - HSPCB",2026-11-18 11:00:00,PM10,193.0,239.5,ug/m3,mean24,False
 "New Industrial Town, Faridabad - HSPCB",2026-11-18 11:00:00,PM2.5,275.0,112.5,ug/m3,mean24,False
 "New Industrial Town, Faridabad - HSPCB",2026-11-18 11:00:00,SO2,6.0,4.8,ug/m3,mean24,False
+"New Industrial Town, Faridabad - HSPCB",2026-11-18 20:00:00,CO,15.0,0.3,mg/m3,mean8,False
+"New Industrial Town, Faridabad - HSPCB",2026-11-18 20:00:00,NO2,25.0,20.0,ug/m3,mean24,False
+"New Industrial Town, Faridabad - HSPCB",2026-11-18 20:00:00,OZONE,14.0,14.0,ug/m3,mean8,False
+"New Industrial Town, Faridabad - HSPCB",2026-11-18 20:00:00,PM10,131.0,146.5,ug/m3,mean24,False
+"New Industrial Town, Faridabad - HSPCB",2026-11-18 20:00:00,PM2.5,202.0,90.6,ug/m3,mean24,False
+"New Industrial Town, Faridabad - HSPCB",2026-11-18 20:00:00,SO2,5.0,4.0,ug/m3,mean24,False
 "New Tehsil-Loni, Ghaziabad-UPPCB",2026-10-27 22:00:00,CO,71.0,1.42,mg/m3,mean8,False
 "New Tehsil-Loni, Ghaziabad-UPPCB",2026-10-27 22:00:00,OZONE,23.0,23.0,ug/m3,mean8,False
 "New Tehsil-Loni, Ghaziabad-UPPCB",2026-10-28 12:00:00,CO,60.0,1.2,mg/m3,mean8,False
@@ -17298,6 +17568,12 @@ station,hour_ist,pollutant,subindex,concentration,unit,statistic,censored
 "New Tehsil-Loni, Ghaziabad-UPPCB",2026-11-18 11:00:00,PM10,260.0,310.0,ug/m3,mean24,False
 "New Tehsil-Loni, Ghaziabad-UPPCB",2026-11-18 11:00:00,PM2.5,192.0,87.6,ug/m3,mean24,False
 "New Tehsil-Loni, Ghaziabad-UPPCB",2026-11-18 11:00:00,SO2,13.0,10.4,ug/m3,mean24,False
+"New Tehsil-Loni, Ghaziabad-UPPCB",2026-11-18 20:00:00,CO,49.0,0.98,mg/m3,mean8,False
+"New Tehsil-Loni, Ghaziabad-UPPCB",2026-11-18 20:00:00,NO2,75.0,60.0,ug/m3,mean24,False
+"New Tehsil-Loni, Ghaziabad-UPPCB",2026-11-18 20:00:00,OZONE,39.0,39.0,ug/m3,mean8,False
+"New Tehsil-Loni, Ghaziabad-UPPCB",2026-11-18 20:00:00,PM10,274.0,324.0,ug/m3,mean24,False
+"New Tehsil-Loni, Ghaziabad-UPPCB",2026-11-18 20:00:00,PM2.5,209.0,92.7,ug/m3,mean24,False
+"New Tehsil-Loni, Ghaziabad-UPPCB",2026-11-18 20:00:00,SO2,13.0,10.4,ug/m3,mean24,False
 "North Campus, DU, Delhi - IITM",2026-09-17 01:00:00,CO,101.0,2.08,mg/m3,mean8,False
 "North Campus, DU, Delhi - IITM",2026-09-17 01:00:00,NO2,121.0,101.0,ug/m3,mean24,False
 "North Campus, DU, Delhi - IITM",2026-09-17 01:00:00,OZONE,51.0,51.0,ug/m3,mean8,False
@@ -17644,6 +17920,11 @@ station,hour_ist,pollutant,subindex,concentration,unit,statistic,censored
 "North Campus, DU, Delhi - IITM",2026-11-18 11:00:00,OZONE,19.0,19.0,ug/m3,mean8,False
 "North Campus, DU, Delhi - IITM",2026-11-18 11:00:00,PM10,226.0,276.0,ug/m3,mean24,False
 "North Campus, DU, Delhi - IITM",2026-11-18 11:00:00,PM2.5,280.0,114.0,ug/m3,mean24,False
+"North Campus, DU, Delhi - IITM",2026-11-18 20:00:00,CO,56.0,1.12,mg/m3,mean8,False
+"North Campus, DU, Delhi - IITM",2026-11-18 20:00:00,NO2,98.0,78.4,ug/m3,mean24,False
+"North Campus, DU, Delhi - IITM",2026-11-18 20:00:00,OZONE,142.0,128.56,ug/m3,mean8,False
+"North Campus, DU, Delhi - IITM",2026-11-18 20:00:00,PM10,240.0,290.0,ug/m3,mean24,False
+"North Campus, DU, Delhi - IITM",2026-11-18 20:00:00,PM2.5,312.0,135.6,ug/m3,mean24,False
 "Okhla Phase-2, Delhi - DPCC",2026-09-17 01:00:00,CO,84.0,1.68,mg/m3,mean8,False
 "Okhla Phase-2, Delhi - DPCC",2026-09-17 01:00:00,NO2,33.0,26.4,ug/m3,mean24,False
 "Okhla Phase-2, Delhi - DPCC",2026-09-17 01:00:00,OZONE,16.0,16.0,ug/m3,mean8,False
@@ -18063,6 +18344,12 @@ station,hour_ist,pollutant,subindex,concentration,unit,statistic,censored
 "Okhla Phase-2, Delhi - DPCC",2026-11-18 11:00:00,PM10,142.0,163.0,ug/m3,mean24,False
 "Okhla Phase-2, Delhi - DPCC",2026-11-18 11:00:00,PM2.5,179.0,83.7,ug/m3,mean24,False
 "Okhla Phase-2, Delhi - DPCC",2026-11-18 11:00:00,SO2,15.0,12.0,ug/m3,mean24,False
+"Okhla Phase-2, Delhi - DPCC",2026-11-18 20:00:00,CO,24.0,0.48,mg/m3,mean8,False
+"Okhla Phase-2, Delhi - DPCC",2026-11-18 20:00:00,NO2,75.0,60.0,ug/m3,mean24,False
+"Okhla Phase-2, Delhi - DPCC",2026-11-18 20:00:00,OZONE,48.0,48.0,ug/m3,mean8,False
+"Okhla Phase-2, Delhi - DPCC",2026-11-18 20:00:00,PM10,144.0,166.0,ug/m3,mean24,False
+"Okhla Phase-2, Delhi - DPCC",2026-11-18 20:00:00,PM2.5,187.0,86.1,ug/m3,mean24,False
+"Okhla Phase-2, Delhi - DPCC",2026-11-18 20:00:00,SO2,15.0,12.0,ug/m3,mean24,False
 "Patparganj, Delhi - DPCC",2026-09-17 01:00:00,CO,60.0,1.2,mg/m3,mean8,False
 "Patparganj, Delhi - DPCC",2026-09-17 01:00:00,NO2,34.0,27.2,ug/m3,mean24,False
 "Patparganj, Delhi - DPCC",2026-09-17 01:00:00,OZONE,19.0,19.0,ug/m3,mean8,False
@@ -18463,6 +18750,12 @@ station,hour_ist,pollutant,subindex,concentration,unit,statistic,censored
 "Patparganj, Delhi - DPCC",2026-11-18 11:00:00,CO,110.0,2.8,mg/m3,mean8,False
 "Patparganj, Delhi - DPCC",2026-11-18 11:00:00,PM10,140.0,160.0,ug/m3,mean24,False
 "Patparganj, Delhi - DPCC",2026-11-18 11:00:00,PM2.5,166.0,79.8,ug/m3,mean24,False
+"Patparganj, Delhi - DPCC",2026-11-18 20:00:00,CO,91.0,1.82,mg/m3,mean8,False
+"Patparganj, Delhi - DPCC",2026-11-18 20:00:00,NO2,94.0,75.2,ug/m3,mean24,False
+"Patparganj, Delhi - DPCC",2026-11-18 20:00:00,OZONE,29.0,29.0,ug/m3,mean8,False
+"Patparganj, Delhi - DPCC",2026-11-18 20:00:00,PM10,149.0,173.5,ug/m3,mean24,False
+"Patparganj, Delhi - DPCC",2026-11-18 20:00:00,PM2.5,177.0,83.1,ug/m3,mean24,False
+"Patparganj, Delhi - DPCC",2026-11-18 20:00:00,SO2,17.0,13.6,ug/m3,mean24,False
 "Punjabi Bagh, Delhi - DPCC",2026-09-17 01:00:00,CO,43.0,0.86,mg/m3,mean8,False
 "Punjabi Bagh, Delhi - DPCC",2026-09-17 01:00:00,NO2,38.0,30.4,ug/m3,mean24,False
 "Punjabi Bagh, Delhi - DPCC",2026-09-17 01:00:00,OZONE,18.0,18.0,ug/m3,mean8,False
@@ -18881,6 +19174,11 @@ station,hour_ist,pollutant,subindex,concentration,unit,statistic,censored
 "Punjabi Bagh, Delhi - DPCC",2026-11-18 11:00:00,PM10,187.0,230.5,ug/m3,mean24,False
 "Punjabi Bagh, Delhi - DPCC",2026-11-18 11:00:00,PM2.5,265.0,109.5,ug/m3,mean24,False
 "Punjabi Bagh, Delhi - DPCC",2026-11-18 11:00:00,SO2,31.0,24.8,ug/m3,mean24,False
+"Punjabi Bagh, Delhi - DPCC",2026-11-18 20:00:00,CO,78.0,1.56,mg/m3,mean8,False
+"Punjabi Bagh, Delhi - DPCC",2026-11-18 20:00:00,OZONE,47.0,47.0,ug/m3,mean8,False
+"Punjabi Bagh, Delhi - DPCC",2026-11-18 20:00:00,PM10,201.0,251.0,ug/m3,mean24,False
+"Punjabi Bagh, Delhi - DPCC",2026-11-18 20:00:00,PM2.5,290.0,117.0,ug/m3,mean24,False
+"Punjabi Bagh, Delhi - DPCC",2026-11-18 20:00:00,SO2,35.0,28.0,ug/m3,mean24,False
 "Pusa, Delhi - DPCC",2026-09-17 01:00:00,CO,93.0,1.86,mg/m3,mean8,False
 "Pusa, Delhi - DPCC",2026-09-17 01:00:00,NO2,44.0,35.2,ug/m3,mean24,False
 "Pusa, Delhi - DPCC",2026-09-17 01:00:00,OZONE,6.0,6.0,ug/m3,mean8,False
@@ -19289,6 +19587,12 @@ station,hour_ist,pollutant,subindex,concentration,unit,statistic,censored
 "Pusa, Delhi - DPCC",2026-11-18 11:00:00,PM10,127.0,140.5,ug/m3,mean24,False
 "Pusa, Delhi - DPCC",2026-11-18 11:00:00,PM2.5,139.0,71.7,ug/m3,mean24,False
 "Pusa, Delhi - DPCC",2026-11-18 11:00:00,SO2,14.0,11.2,ug/m3,mean24,False
+"Pusa, Delhi - DPCC",2026-11-18 20:00:00,CO,96.0,1.92,mg/m3,mean8,False
+"Pusa, Delhi - DPCC",2026-11-18 20:00:00,NO2,55.0,44.0,ug/m3,mean24,False
+"Pusa, Delhi - DPCC",2026-11-18 20:00:00,OZONE,17.0,17.0,ug/m3,mean8,False
+"Pusa, Delhi - DPCC",2026-11-18 20:00:00,PM10,143.0,164.5,ug/m3,mean24,False
+"Pusa, Delhi - DPCC",2026-11-18 20:00:00,PM2.5,162.0,78.6,ug/m3,mean24,False
+"Pusa, Delhi - DPCC",2026-11-18 20:00:00,SO2,13.0,10.4,ug/m3,mean24,False
 "Pusa, Delhi - IITM",2026-09-17 01:00:00,CO,65.0,1.3,mg/m3,mean8,False
 "Pusa, Delhi - IITM",2026-09-17 01:00:00,NO2,81.0,64.8,ug/m3,mean24,False
 "Pusa, Delhi - IITM",2026-09-17 01:00:00,OZONE,62.0,62.0,ug/m3,mean8,False
@@ -19632,6 +19936,11 @@ station,hour_ist,pollutant,subindex,concentration,unit,statistic,censored
 "Pusa, Delhi - IITM",2026-11-18 11:00:00,OZONE,13.0,13.0,ug/m3,mean8,False
 "Pusa, Delhi - IITM",2026-11-18 11:00:00,PM10,192.0,238.0,ug/m3,mean24,False
 "Pusa, Delhi - IITM",2026-11-18 11:00:00,PM2.5,278.0,113.4,ug/m3,mean24,False
+"Pusa, Delhi - IITM",2026-11-18 20:00:00,CO,55.0,1.1,mg/m3,mean8,False
+"Pusa, Delhi - IITM",2026-11-18 20:00:00,NO2,73.0,58.4,ug/m3,mean24,False
+"Pusa, Delhi - IITM",2026-11-18 20:00:00,OZONE,93.0,93.0,ug/m3,mean8,False
+"Pusa, Delhi - IITM",2026-11-18 20:00:00,PM10,212.0,262.0,ug/m3,mean24,False
+"Pusa, Delhi - IITM",2026-11-18 20:00:00,PM2.5,313.0,136.9,ug/m3,mean24,False
 Pusa_IMD,2026-09-25 12:00:00,CO,67.0,1.34,mg/m3,mean8,False
 Pusa_IMD,2026-09-25 12:00:00,NO2,27.0,21.6,ug/m3,mean24,False
 Pusa_IMD,2026-09-25 12:00:00,OZONE,7.0,7.0,ug/m3,mean8,False
@@ -20051,6 +20360,12 @@ Pusa_IMD,2026-09-25 18:00:00,SO2,14.0,11.2,ug/m3,mean24,False
 "R K Puram, Delhi - DPCC",2026-11-18 11:00:00,OZONE,8.0,8.0,ug/m3,mean8,False
 "R K Puram, Delhi - DPCC",2026-11-18 11:00:00,PM10,131.0,146.5,ug/m3,mean24,False
 "R K Puram, Delhi - DPCC",2026-11-18 11:00:00,PM2.5,196.0,88.8,ug/m3,mean24,False
+"R K Puram, Delhi - DPCC",2026-11-18 20:00:00,CO,80.0,1.6,mg/m3,mean8,False
+"R K Puram, Delhi - DPCC",2026-11-18 20:00:00,NO2,86.0,68.8,ug/m3,mean24,False
+"R K Puram, Delhi - DPCC",2026-11-18 20:00:00,OZONE,38.0,38.0,ug/m3,mean8,False
+"R K Puram, Delhi - DPCC",2026-11-18 20:00:00,PM10,136.0,154.0,ug/m3,mean24,False
+"R K Puram, Delhi - DPCC",2026-11-18 20:00:00,PM2.5,214.0,94.2,ug/m3,mean24,False
+"R K Puram, Delhi - DPCC",2026-11-18 20:00:00,SO2,11.0,8.8,ug/m3,mean24,False
 "Rohini, Delhi - DPCC",2026-09-17 01:00:00,CO,54.0,1.08,mg/m3,mean8,False
 "Rohini, Delhi - DPCC",2026-09-17 01:00:00,NO2,5.0,4.0,ug/m3,mean24,False
 "Rohini, Delhi - DPCC",2026-09-17 01:00:00,OZONE,18.0,18.0,ug/m3,mean8,False
@@ -20466,6 +20781,12 @@ Pusa_IMD,2026-09-25 18:00:00,SO2,14.0,11.2,ug/m3,mean24,False
 "Rohini, Delhi - DPCC",2026-11-18 11:00:00,PM10,166.0,199.0,ug/m3,mean24,False
 "Rohini, Delhi - DPCC",2026-11-18 11:00:00,PM2.5,234.0,100.2,ug/m3,mean24,False
 "Rohini, Delhi - DPCC",2026-11-18 11:00:00,SO2,20.0,16.0,ug/m3,mean24,False
+"Rohini, Delhi - DPCC",2026-11-18 20:00:00,CO,80.0,1.6,mg/m3,mean8,False
+"Rohini, Delhi - DPCC",2026-11-18 20:00:00,NO2,86.0,68.8,ug/m3,mean24,False
+"Rohini, Delhi - DPCC",2026-11-18 20:00:00,OZONE,39.0,39.0,ug/m3,mean8,False
+"Rohini, Delhi - DPCC",2026-11-18 20:00:00,PM10,181.0,221.5,ug/m3,mean24,False
+"Rohini, Delhi - DPCC",2026-11-18 20:00:00,PM2.5,261.0,108.3,ug/m3,mean24,False
+"Rohini, Delhi - DPCC",2026-11-18 20:00:00,SO2,21.0,16.8,ug/m3,mean24,False
 "Sanjay Nagar, Ghaziabad - UPPCB",2026-09-17 01:00:00,CO,59.0,1.18,mg/m3,mean8,False
 "Sanjay Nagar, Ghaziabad - UPPCB",2026-09-17 01:00:00,NO2,34.0,27.2,ug/m3,mean24,False
 "Sanjay Nagar, Ghaziabad - UPPCB",2026-09-17 01:00:00,OZONE,35.0,35.0,ug/m3,mean8,False
@@ -20883,6 +21204,12 @@ Pusa_IMD,2026-09-25 18:00:00,SO2,14.0,11.2,ug/m3,mean24,False
 "Sanjay Nagar, Ghaziabad - UPPCB",2026-11-18 11:00:00,PM10,118.0,127.0,ug/m3,mean24,False
 "Sanjay Nagar, Ghaziabad - UPPCB",2026-11-18 11:00:00,PM2.5,146.0,73.8,ug/m3,mean24,False
 "Sanjay Nagar, Ghaziabad - UPPCB",2026-11-18 11:00:00,SO2,8.0,6.4,ug/m3,mean24,False
+"Sanjay Nagar, Ghaziabad - UPPCB",2026-11-18 20:00:00,CO,60.0,1.2,mg/m3,mean8,False
+"Sanjay Nagar, Ghaziabad - UPPCB",2026-11-18 20:00:00,NO2,39.0,31.2,ug/m3,mean24,False
+"Sanjay Nagar, Ghaziabad - UPPCB",2026-11-18 20:00:00,OZONE,25.0,25.0,ug/m3,mean8,False
+"Sanjay Nagar, Ghaziabad - UPPCB",2026-11-18 20:00:00,PM10,127.0,140.5,ug/m3,mean24,False
+"Sanjay Nagar, Ghaziabad - UPPCB",2026-11-18 20:00:00,PM2.5,152.0,75.6,ug/m3,mean24,False
+"Sanjay Nagar, Ghaziabad - UPPCB",2026-11-18 20:00:00,SO2,6.0,4.8,ug/m3,mean24,False
 "Sector - 125, Noida - UPPCB",2026-09-17 01:00:00,CO,47.0,0.94,mg/m3,mean8,False
 "Sector - 125, Noida - UPPCB",2026-09-17 01:00:00,NO2,17.0,13.6,ug/m3,mean24,False
 "Sector - 125, Noida - UPPCB",2026-09-17 01:00:00,OZONE,16.0,16.0,ug/m3,mean8,False
@@ -21844,6 +22171,12 @@ Pusa_IMD,2026-09-25 18:00:00,SO2,14.0,11.2,ug/m3,mean24,False
 "Sector 11, Faridabad - HSPCB",2026-11-18 11:00:00,PM10,139.0,158.5,ug/m3,mean24,False
 "Sector 11, Faridabad - HSPCB",2026-11-18 11:00:00,PM2.5,148.0,74.4,ug/m3,mean24,False
 "Sector 11, Faridabad - HSPCB",2026-11-18 11:00:00,SO2,10.0,8.0,ug/m3,mean24,False
+"Sector 11, Faridabad - HSPCB",2026-11-18 20:00:00,CO,74.0,1.48,mg/m3,mean8,False
+"Sector 11, Faridabad - HSPCB",2026-11-18 20:00:00,NO2,31.0,24.8,ug/m3,mean24,False
+"Sector 11, Faridabad - HSPCB",2026-11-18 20:00:00,OZONE,6.0,6.0,ug/m3,mean8,False
+"Sector 11, Faridabad - HSPCB",2026-11-18 20:00:00,PM10,141.0,161.5,ug/m3,mean24,False
+"Sector 11, Faridabad - HSPCB",2026-11-18 20:00:00,PM2.5,154.0,76.2,ug/m3,mean24,False
+"Sector 11, Faridabad - HSPCB",2026-11-18 20:00:00,SO2,11.0,8.8,ug/m3,mean24,False
 "Sector 30, Faridabad - HSPCB",2026-09-17 01:00:00,CO,26.0,0.52,mg/m3,mean8,False
 "Sector 30, Faridabad - HSPCB",2026-09-17 01:00:00,NO2,38.0,30.4,ug/m3,mean24,False
 "Sector 30, Faridabad - HSPCB",2026-09-17 01:00:00,OZONE,16.0,16.0,ug/m3,mean8,False
@@ -22246,6 +22579,12 @@ Pusa_IMD,2026-09-25 18:00:00,SO2,14.0,11.2,ug/m3,mean24,False
 "Sector 30, Faridabad - HSPCB",2026-11-18 11:00:00,PM10,224.0,274.0,ug/m3,mean24,False
 "Sector 30, Faridabad - HSPCB",2026-11-18 11:00:00,PM2.5,324.0,151.2,ug/m3,mean24,False
 "Sector 30, Faridabad - HSPCB",2026-11-18 11:00:00,SO2,2.0,1.6,ug/m3,mean24,False
+"Sector 30, Faridabad - HSPCB",2026-11-18 20:00:00,CO,26.0,0.52,mg/m3,mean8,False
+"Sector 30, Faridabad - HSPCB",2026-11-18 20:00:00,NO2,38.0,30.4,ug/m3,mean24,False
+"Sector 30, Faridabad - HSPCB",2026-11-18 20:00:00,OZONE,7.0,7.0,ug/m3,mean8,False
+"Sector 30, Faridabad - HSPCB",2026-11-18 20:00:00,PM10,230.0,280.0,ug/m3,mean24,False
+"Sector 30, Faridabad - HSPCB",2026-11-18 20:00:00,PM2.5,297.0,119.1,ug/m3,mean24,False
+"Sector 30, Faridabad - HSPCB",2026-11-18 20:00:00,SO2,2.0,1.6,ug/m3,mean24,False
 "Sector-1, Noida - UPPCB",2026-09-17 01:00:00,CO,56.0,1.12,mg/m3,mean8,False
 "Sector-1, Noida - UPPCB",2026-09-17 01:00:00,NO2,30.0,24.0,ug/m3,mean24,False
 "Sector-1, Noida - UPPCB",2026-09-17 01:00:00,OZONE,45.0,45.0,ug/m3,mean8,False
@@ -22653,6 +22992,11 @@ Pusa_IMD,2026-09-25 18:00:00,SO2,14.0,11.2,ug/m3,mean24,False
 "Sector-1, Noida - UPPCB",2026-11-18 11:00:00,PM10,102.0,103.0,ug/m3,mean24,False
 "Sector-1, Noida - UPPCB",2026-11-18 11:00:00,PM2.5,116.0,64.8,ug/m3,mean24,False
 "Sector-1, Noida - UPPCB",2026-11-18 11:00:00,SO2,12.0,9.6,ug/m3,mean24,False
+"Sector-1, Noida - UPPCB",2026-11-18 20:00:00,CO,57.0,1.14,mg/m3,mean8,False
+"Sector-1, Noida - UPPCB",2026-11-18 20:00:00,NO2,155.0,135.0,ug/m3,mean24,False
+"Sector-1, Noida - UPPCB",2026-11-18 20:00:00,OZONE,109.0,106.12,ug/m3,mean8,False
+"Sector-1, Noida - UPPCB",2026-11-18 20:00:00,PM2.5,125.0,67.5,ug/m3,mean24,False
+"Sector-1, Noida - UPPCB",2026-11-18 20:00:00,SO2,14.0,11.2,ug/m3,mean24,False
 "Sector-110, Noida-UPPCB",2026-10-27 11:00:00,CO,114.0,3.12,mg/m3,mean8,False
 "Sector-110, Noida-UPPCB",2026-10-27 11:00:00,NO2,25.0,20.0,ug/m3,mean24,False
 "Sector-110, Noida-UPPCB",2026-10-27 11:00:00,OZONE,14.0,14.0,ug/m3,mean8,False
@@ -22843,6 +23187,10 @@ Pusa_IMD,2026-09-25 18:00:00,SO2,14.0,11.2,ug/m3,mean24,False
 "Sector-110, Noida-UPPCB",2026-11-18 11:00:00,PM10,205.0,255.0,ug/m3,mean24,False
 "Sector-110, Noida-UPPCB",2026-11-18 11:00:00,PM2.5,270.0,111.0,ug/m3,mean24,False
 "Sector-110, Noida-UPPCB",2026-11-18 11:00:00,SO2,35.0,28.0,ug/m3,mean24,False
+"Sector-110, Noida-UPPCB",2026-11-18 20:00:00,CO,53.0,1.06,mg/m3,mean8,False
+"Sector-110, Noida-UPPCB",2026-11-18 20:00:00,OZONE,24.0,24.0,ug/m3,mean8,False
+"Sector-110, Noida-UPPCB",2026-11-18 20:00:00,PM10,224.0,274.0,ug/m3,mean24,False
+"Sector-110, Noida-UPPCB",2026-11-18 20:00:00,SO2,38.0,30.4,ug/m3,mean24,False
 "Sector-116, Noida - UPPCB",2026-09-17 01:00:00,CO,78.0,1.56,mg/m3,mean8,False
 "Sector-116, Noida - UPPCB",2026-09-17 01:00:00,NO2,55.0,44.0,ug/m3,mean24,False
 "Sector-116, Noida - UPPCB",2026-09-17 01:00:00,OZONE,69.0,69.0,ug/m3,mean8,False
@@ -23240,6 +23588,12 @@ Pusa_IMD,2026-09-25 18:00:00,SO2,14.0,11.2,ug/m3,mean24,False
 "Sector-116, Noida - UPPCB",2026-11-18 11:00:00,PM10,84.0,84.0,ug/m3,mean24,False
 "Sector-116, Noida - UPPCB",2026-11-18 11:00:00,PM2.5,142.0,72.6,ug/m3,mean24,False
 "Sector-116, Noida - UPPCB",2026-11-18 11:00:00,SO2,17.0,13.6,ug/m3,mean24,False
+"Sector-116, Noida - UPPCB",2026-11-18 20:00:00,CO,87.0,1.74,mg/m3,mean8,False
+"Sector-116, Noida - UPPCB",2026-11-18 20:00:00,NO2,121.0,101.0,ug/m3,mean24,False
+"Sector-116, Noida - UPPCB",2026-11-18 20:00:00,OZONE,74.0,74.0,ug/m3,mean8,False
+"Sector-116, Noida - UPPCB",2026-11-18 20:00:00,PM10,91.0,91.0,ug/m3,mean24,False
+"Sector-116, Noida - UPPCB",2026-11-18 20:00:00,PM2.5,152.0,75.6,ug/m3,mean24,False
+"Sector-116, Noida - UPPCB",2026-11-18 20:00:00,SO2,19.0,15.2,ug/m3,mean24,False
 "Sector-125, Noida - UPPCB",2026-11-07 12:00:00,CO,44.0,0.88,mg/m3,mean8,False
 "Sector-125, Noida - UPPCB",2026-11-07 12:00:00,OZONE,16.0,16.0,ug/m3,mean8,False
 "Sector-125, Noida - UPPCB",2026-11-07 12:00:00,PM10,167.0,200.5,ug/m3,mean24,False
@@ -23332,6 +23686,12 @@ Pusa_IMD,2026-09-25 18:00:00,SO2,14.0,11.2,ug/m3,mean24,False
 "Sector-125, Noida - UPPCB",2026-11-18 11:00:00,PM10,106.0,109.0,ug/m3,mean24,False
 "Sector-125, Noida - UPPCB",2026-11-18 11:00:00,PM2.5,188.0,86.4,ug/m3,mean24,False
 "Sector-125, Noida - UPPCB",2026-11-18 11:00:00,SO2,13.0,10.4,ug/m3,mean24,False
+"Sector-125, Noida - UPPCB",2026-11-18 20:00:00,CO,22.0,0.44,mg/m3,mean8,False
+"Sector-125, Noida - UPPCB",2026-11-18 20:00:00,NO2,20.0,16.0,ug/m3,mean24,False
+"Sector-125, Noida - UPPCB",2026-11-18 20:00:00,OZONE,71.0,71.0,ug/m3,mean8,False
+"Sector-125, Noida - UPPCB",2026-11-18 20:00:00,PM10,116.0,124.0,ug/m3,mean24,False
+"Sector-125, Noida - UPPCB",2026-11-18 20:00:00,PM2.5,197.0,89.1,ug/m3,mean24,False
+"Sector-125, Noida - UPPCB",2026-11-18 20:00:00,SO2,12.0,9.6,ug/m3,mean24,False
 "Sector-150, Noida-UPPCB",2026-10-27 11:00:00,CO,60.0,1.2,mg/m3,mean8,False
 "Sector-150, Noida-UPPCB",2026-10-27 11:00:00,NO2,57.0,45.6,ug/m3,mean24,False
 "Sector-150, Noida-UPPCB",2026-10-27 11:00:00,OZONE,9.0,9.0,ug/m3,mean8,False
@@ -23539,6 +23899,12 @@ Pusa_IMD,2026-09-25 18:00:00,SO2,14.0,11.2,ug/m3,mean24,False
 "Sector-150, Noida-UPPCB",2026-11-18 11:00:00,PM10,185.0,227.5,ug/m3,mean24,False
 "Sector-150, Noida-UPPCB",2026-11-18 11:00:00,PM2.5,244.0,103.2,ug/m3,mean24,False
 "Sector-150, Noida-UPPCB",2026-11-18 11:00:00,SO2,21.0,16.8,ug/m3,mean24,False
+"Sector-150, Noida-UPPCB",2026-11-18 20:00:00,CO,57.0,1.14,mg/m3,mean8,False
+"Sector-150, Noida-UPPCB",2026-11-18 20:00:00,NO2,97.0,77.6,ug/m3,mean24,False
+"Sector-150, Noida-UPPCB",2026-11-18 20:00:00,OZONE,62.0,62.0,ug/m3,mean8,False
+"Sector-150, Noida-UPPCB",2026-11-18 20:00:00,PM10,189.0,233.5,ug/m3,mean24,False
+"Sector-150, Noida-UPPCB",2026-11-18 20:00:00,PM2.5,233.0,99.9,ug/m3,mean24,False
+"Sector-150, Noida-UPPCB",2026-11-18 20:00:00,SO2,22.0,17.6,ug/m3,mean24,False
 "Sector-39, Noida-UPPCB",2026-10-27 11:00:00,CO,129.0,4.32,mg/m3,mean8,False
 "Sector-39, Noida-UPPCB",2026-10-27 11:00:00,OZONE,24.0,24.0,ug/m3,mean8,False
 "Sector-39, Noida-UPPCB",2026-10-27 11:00:00,PM10,135.0,152.5,ug/m3,mean24,False
@@ -23730,6 +24096,11 @@ Pusa_IMD,2026-09-25 18:00:00,SO2,14.0,11.2,ug/m3,mean24,False
 "Sector-39, Noida-UPPCB",2026-11-18 11:00:00,PM10,138.0,157.0,ug/m3,mean24,False
 "Sector-39, Noida-UPPCB",2026-11-18 11:00:00,PM2.5,153.0,75.9,ug/m3,mean24,False
 "Sector-39, Noida-UPPCB",2026-11-18 11:00:00,SO2,25.0,20.0,ug/m3,mean24,False
+"Sector-39, Noida-UPPCB",2026-11-18 20:00:00,CO,72.0,1.44,mg/m3,mean8,False
+"Sector-39, Noida-UPPCB",2026-11-18 20:00:00,NO2,66.0,52.8,ug/m3,mean24,False
+"Sector-39, Noida-UPPCB",2026-11-18 20:00:00,OZONE,27.0,27.0,ug/m3,mean8,False
+"Sector-39, Noida-UPPCB",2026-11-18 20:00:00,PM2.5,187.0,86.1,ug/m3,mean24,False
+"Sector-39, Noida-UPPCB",2026-11-18 20:00:00,SO2,27.0,21.6,ug/m3,mean24,False
 "Sector-51, Gurugram - HSPCB",2026-09-17 01:00:00,CO,34.0,0.68,mg/m3,mean8,False
 "Sector-51, Gurugram - HSPCB",2026-09-17 01:00:00,NO2,30.0,24.0,ug/m3,mean24,False
 "Sector-51, Gurugram - HSPCB",2026-09-17 01:00:00,OZONE,19.0,19.0,ug/m3,mean8,False
@@ -24147,6 +24518,12 @@ Pusa_IMD,2026-09-25 18:00:00,SO2,14.0,11.2,ug/m3,mean24,False
 "Sector-51, Gurugram - HSPCB",2026-11-18 11:00:00,PM10,175.0,212.5,ug/m3,mean24,False
 "Sector-51, Gurugram - HSPCB",2026-11-18 11:00:00,PM2.5,279.0,113.7,ug/m3,mean24,False
 "Sector-51, Gurugram - HSPCB",2026-11-18 11:00:00,SO2,7.0,5.6,ug/m3,mean24,False
+"Sector-51, Gurugram - HSPCB",2026-11-18 20:00:00,CO,32.0,0.64,mg/m3,mean8,False
+"Sector-51, Gurugram - HSPCB",2026-11-18 20:00:00,NO2,40.0,32.0,ug/m3,mean24,False
+"Sector-51, Gurugram - HSPCB",2026-11-18 20:00:00,OZONE,32.0,32.0,ug/m3,mean8,False
+"Sector-51, Gurugram - HSPCB",2026-11-18 20:00:00,PM10,169.0,203.5,ug/m3,mean24,False
+"Sector-51, Gurugram - HSPCB",2026-11-18 20:00:00,PM2.5,260.0,108.0,ug/m3,mean24,False
+"Sector-51, Gurugram - HSPCB",2026-11-18 20:00:00,SO2,7.0,5.6,ug/m3,mean24,False
 "Sector-62, Noida - IITM",2026-11-07 12:00:00,CO,63.0,1.26,mg/m3,mean8,False
 "Sector-62, Noida - IITM",2026-11-07 12:00:00,NO2,24.0,19.2,ug/m3,mean24,False
 "Sector-62, Noida - IITM",2026-11-07 12:00:00,OZONE,27.0,27.0,ug/m3,mean8,False
@@ -24237,6 +24614,10 @@ Pusa_IMD,2026-09-25 18:00:00,SO2,14.0,11.2,ug/m3,mean24,False
 "Sector-62, Noida - IITM",2026-11-18 11:00:00,OZONE,16.0,16.0,ug/m3,mean8,False
 "Sector-62, Noida - IITM",2026-11-18 11:00:00,PM10,216.0,266.0,ug/m3,mean24,False
 "Sector-62, Noida - IITM",2026-11-18 11:00:00,PM2.5,306.0,127.8,ug/m3,mean24,False
+"Sector-62, Noida - IITM",2026-11-18 20:00:00,CO,44.0,0.88,mg/m3,mean8,False
+"Sector-62, Noida - IITM",2026-11-18 20:00:00,NO2,23.0,18.4,ug/m3,mean24,False
+"Sector-62, Noida - IITM",2026-11-18 20:00:00,PM10,234.0,284.0,ug/m3,mean24,False
+"Sector-62, Noida - IITM",2026-11-18 20:00:00,PM2.5,326.0,153.8,ug/m3,mean24,False
 "Shadipur, Delhi - CPCB",2026-09-17 01:00:00,CO,61.0,1.22,mg/m3,mean8,False
 "Shadipur, Delhi - CPCB",2026-09-17 01:00:00,NO2,65.0,52.0,ug/m3,mean24,False
 "Shadipur, Delhi - CPCB",2026-09-17 01:00:00,OZONE,12.0,12.0,ug/m3,mean8,False
@@ -24662,6 +25043,12 @@ Pusa_IMD,2026-09-25 18:00:00,SO2,14.0,11.2,ug/m3,mean24,False
 "Shadipur, Delhi - CPCB",2026-11-18 11:00:00,PM10,156.0,184.0,ug/m3,mean24,False
 "Shadipur, Delhi - CPCB",2026-11-18 11:00:00,PM2.5,230.0,99.0,ug/m3,mean24,False
 "Shadipur, Delhi - CPCB",2026-11-18 11:00:00,SO2,8.0,6.4,ug/m3,mean24,False
+"Shadipur, Delhi - CPCB",2026-11-18 20:00:00,CO,22.0,0.44,mg/m3,mean8,False
+"Shadipur, Delhi - CPCB",2026-11-18 20:00:00,NO2,162.0,142.0,ug/m3,mean24,False
+"Shadipur, Delhi - CPCB",2026-11-18 20:00:00,OZONE,8.0,8.0,ug/m3,mean8,False
+"Shadipur, Delhi - CPCB",2026-11-18 20:00:00,PM10,169.0,203.5,ug/m3,mean24,False
+"Shadipur, Delhi - CPCB",2026-11-18 20:00:00,PM2.5,270.0,111.0,ug/m3,mean24,False
+"Shadipur, Delhi - CPCB",2026-11-18 20:00:00,SO2,8.0,6.4,ug/m3,mean24,False
 "Sirifort, Delhi - CPCB",2026-09-17 01:00:00,CO,64.0,1.28,mg/m3,mean8,False
 "Sirifort, Delhi - CPCB",2026-09-17 01:00:00,NO2,33.0,26.4,ug/m3,mean24,False
 "Sirifort, Delhi - CPCB",2026-09-17 01:00:00,OZONE,16.0,16.0,ug/m3,mean8,False
@@ -25070,6 +25457,12 @@ Pusa_IMD,2026-09-25 18:00:00,SO2,14.0,11.2,ug/m3,mean24,False
 "Sirifort, Delhi - CPCB",2026-11-18 11:00:00,PM10,212.0,262.0,ug/m3,mean24,False
 "Sirifort, Delhi - CPCB",2026-11-18 11:00:00,PM2.5,281.0,114.3,ug/m3,mean24,False
 "Sirifort, Delhi - CPCB",2026-11-18 11:00:00,SO2,33.0,26.4,ug/m3,mean24,False
+"Sirifort, Delhi - CPCB",2026-11-18 20:00:00,CO,74.0,1.48,mg/m3,mean8,False
+"Sirifort, Delhi - CPCB",2026-11-18 20:00:00,NO2,57.0,45.6,ug/m3,mean24,False
+"Sirifort, Delhi - CPCB",2026-11-18 20:00:00,OZONE,9.0,9.0,ug/m3,mean8,False
+"Sirifort, Delhi - CPCB",2026-11-18 20:00:00,PM10,224.0,274.0,ug/m3,mean24,False
+"Sirifort, Delhi - CPCB",2026-11-18 20:00:00,PM2.5,317.0,142.1,ug/m3,mean24,False
+"Sirifort, Delhi - CPCB",2026-11-18 20:00:00,SO2,29.0,23.2,ug/m3,mean24,False
 "Sonia Vihar, Delhi - DPCC",2026-09-17 01:00:00,CO,67.0,1.34,mg/m3,mean8,False
 "Sonia Vihar, Delhi - DPCC",2026-09-17 01:00:00,NO2,24.0,19.2,ug/m3,mean24,False
 "Sonia Vihar, Delhi - DPCC",2026-09-17 01:00:00,OZONE,13.0,13.0,ug/m3,mean8,False
@@ -25474,6 +25867,12 @@ Pusa_IMD,2026-09-25 18:00:00,SO2,14.0,11.2,ug/m3,mean24,False
 "Sonia Vihar, Delhi - DPCC",2026-11-18 11:00:00,PM10,143.0,164.5,ug/m3,mean24,False
 "Sonia Vihar, Delhi - DPCC",2026-11-18 11:00:00,PM2.5,231.0,99.3,ug/m3,mean24,False
 "Sonia Vihar, Delhi - DPCC",2026-11-18 11:00:00,SO2,19.0,15.2,ug/m3,mean24,False
+"Sonia Vihar, Delhi - DPCC",2026-11-18 20:00:00,CO,65.0,1.3,mg/m3,mean8,False
+"Sonia Vihar, Delhi - DPCC",2026-11-18 20:00:00,NO2,69.0,55.2,ug/m3,mean24,False
+"Sonia Vihar, Delhi - DPCC",2026-11-18 20:00:00,OZONE,19.0,19.0,ug/m3,mean8,False
+"Sonia Vihar, Delhi - DPCC",2026-11-18 20:00:00,PM10,150.0,175.0,ug/m3,mean24,False
+"Sonia Vihar, Delhi - DPCC",2026-11-18 20:00:00,PM2.5,253.0,105.9,ug/m3,mean24,False
+"Sonia Vihar, Delhi - DPCC",2026-11-18 20:00:00,SO2,20.0,16.0,ug/m3,mean24,False
 "Sri Aurobindo Marg, Delhi - DPCC",2026-09-17 01:00:00,CO,73.0,1.46,mg/m3,mean8,False
 "Sri Aurobindo Marg, Delhi - DPCC",2026-09-17 01:00:00,NO2,16.0,12.8,ug/m3,mean24,False
 "Sri Aurobindo Marg, Delhi - DPCC",2026-09-17 01:00:00,OZONE,8.0,8.0,ug/m3,mean8,False
@@ -25887,6 +26286,12 @@ Pusa_IMD,2026-09-25 18:00:00,SO2,14.0,11.2,ug/m3,mean24,False
 "Sri Aurobindo Marg, Delhi - DPCC",2026-11-18 11:00:00,PM10,167.0,200.5,ug/m3,mean24,False
 "Sri Aurobindo Marg, Delhi - DPCC",2026-11-18 11:00:00,PM2.5,162.0,78.6,ug/m3,mean24,False
 "Sri Aurobindo Marg, Delhi - DPCC",2026-11-18 11:00:00,SO2,8.0,6.4,ug/m3,mean24,False
+"Sri Aurobindo Marg, Delhi - DPCC",2026-11-18 20:00:00,CO,50.0,1.0,mg/m3,mean8,False
+"Sri Aurobindo Marg, Delhi - DPCC",2026-11-18 20:00:00,NO2,44.0,35.2,ug/m3,mean24,False
+"Sri Aurobindo Marg, Delhi - DPCC",2026-11-18 20:00:00,OZONE,41.0,41.0,ug/m3,mean8,False
+"Sri Aurobindo Marg, Delhi - DPCC",2026-11-18 20:00:00,PM10,158.0,187.0,ug/m3,mean24,False
+"Sri Aurobindo Marg, Delhi - DPCC",2026-11-18 20:00:00,PM2.5,174.0,82.2,ug/m3,mean24,False
+"Sri Aurobindo Marg, Delhi - DPCC",2026-11-18 20:00:00,SO2,6.0,4.8,ug/m3,mean24,False
 "Talkatora Garden, Delhi - DPCC",2026-09-17 01:00:00,CO,77.0,1.54,mg/m3,mean8,False
 "Talkatora Garden, Delhi - DPCC",2026-09-17 01:00:00,NO2,17.0,13.6,ug/m3,mean24,False
 "Talkatora Garden, Delhi - DPCC",2026-09-17 01:00:00,OZONE,10.0,10.0,ug/m3,mean8,False
@@ -26306,6 +26711,12 @@ Pusa_IMD,2026-09-25 18:00:00,SO2,14.0,11.2,ug/m3,mean24,False
 "Talkatora Garden, Delhi - DPCC",2026-11-18 11:00:00,PM10,148.0,172.0,ug/m3,mean24,False
 "Talkatora Garden, Delhi - DPCC",2026-11-18 11:00:00,PM2.5,236.0,100.8,ug/m3,mean24,False
 "Talkatora Garden, Delhi - DPCC",2026-11-18 11:00:00,SO2,4.0,3.2,ug/m3,mean24,False
+"Talkatora Garden, Delhi - DPCC",2026-11-18 20:00:00,CO,30.0,0.6,mg/m3,mean8,False
+"Talkatora Garden, Delhi - DPCC",2026-11-18 20:00:00,NO2,28.0,22.4,ug/m3,mean24,False
+"Talkatora Garden, Delhi - DPCC",2026-11-18 20:00:00,OZONE,14.0,14.0,ug/m3,mean8,False
+"Talkatora Garden, Delhi - DPCC",2026-11-18 20:00:00,PM10,164.0,196.0,ug/m3,mean24,False
+"Talkatora Garden, Delhi - DPCC",2026-11-18 20:00:00,PM2.5,271.0,111.3,ug/m3,mean24,False
+"Talkatora Garden, Delhi - DPCC",2026-11-18 20:00:00,SO2,4.0,3.2,ug/m3,mean24,False
 "Teri Gram, Gurugram - HSPCB",2026-09-17 01:00:00,CO,10.0,0.2,mg/m3,mean8,False
 "Teri Gram, Gurugram - HSPCB",2026-09-17 01:00:00,NO2,45.0,36.0,ug/m3,mean24,False
 "Teri Gram, Gurugram - HSPCB",2026-09-17 01:00:00,OZONE,15.0,15.0,ug/m3,mean8,False
@@ -26719,6 +27130,12 @@ Pusa_IMD,2026-09-25 18:00:00,SO2,14.0,11.2,ug/m3,mean24,False
 "Teri Gram, Gurugram - HSPCB",2026-11-18 11:00:00,PM10,171.0,206.5,ug/m3,mean24,False
 "Teri Gram, Gurugram - HSPCB",2026-11-18 11:00:00,PM2.5,214.0,94.2,ug/m3,mean24,False
 "Teri Gram, Gurugram - HSPCB",2026-11-18 11:00:00,SO2,15.0,12.0,ug/m3,mean24,False
+"Teri Gram, Gurugram - HSPCB",2026-11-18 20:00:00,CO,32.0,0.64,mg/m3,mean8,False
+"Teri Gram, Gurugram - HSPCB",2026-11-18 20:00:00,NO2,44.0,35.2,ug/m3,mean24,False
+"Teri Gram, Gurugram - HSPCB",2026-11-18 20:00:00,OZONE,29.0,29.0,ug/m3,mean8,False
+"Teri Gram, Gurugram - HSPCB",2026-11-18 20:00:00,PM10,189.0,233.5,ug/m3,mean24,False
+"Teri Gram, Gurugram - HSPCB",2026-11-18 20:00:00,PM2.5,236.0,100.8,ug/m3,mean24,False
+"Teri Gram, Gurugram - HSPCB",2026-11-18 20:00:00,SO2,17.0,13.6,ug/m3,mean24,False
 "Tikri Kalan ,Delhi-DPCC",2026-10-13 16:00:00,CO,32.0,0.64,mg/m3,mean8,False
 "Tikri Kalan ,Delhi-DPCC",2026-10-13 16:00:00,NO2,69.0,55.2,ug/m3,mean24,False
 "Tikri Kalan ,Delhi-DPCC",2026-10-13 16:00:00,OZONE,185.0,157.8,ug/m3,mean8,False
@@ -27043,6 +27460,12 @@ Pusa_IMD,2026-09-25 18:00:00,SO2,14.0,11.2,ug/m3,mean24,False
 "Tikri Kalan, Delhi-DPCC",2026-11-18 11:00:00,PM10,230.0,280.0,ug/m3,mean24,False
 "Tikri Kalan, Delhi-DPCC",2026-11-18 11:00:00,PM2.5,148.0,74.4,ug/m3,mean24,False
 "Tikri Kalan, Delhi-DPCC",2026-11-18 11:00:00,SO2,10.0,8.0,ug/m3,mean24,False
+"Tikri Kalan, Delhi-DPCC",2026-11-18 20:00:00,CO,53.0,1.06,mg/m3,mean8,False
+"Tikri Kalan, Delhi-DPCC",2026-11-18 20:00:00,NO2,90.0,72.0,ug/m3,mean24,False
+"Tikri Kalan, Delhi-DPCC",2026-11-18 20:00:00,OZONE,145.0,130.6,ug/m3,mean8,False
+"Tikri Kalan, Delhi-DPCC",2026-11-18 20:00:00,PM10,229.0,279.0,ug/m3,mean24,False
+"Tikri Kalan, Delhi-DPCC",2026-11-18 20:00:00,PM2.5,146.0,73.8,ug/m3,mean24,False
+"Tikri Kalan, Delhi-DPCC",2026-11-18 20:00:00,SO2,12.0,9.6,ug/m3,mean24,False
 "Uttam Nagar ,Delhi-DPCC",2026-10-13 16:00:00,CO,66.0,1.32,mg/m3,mean8,False
 "Uttam Nagar ,Delhi-DPCC",2026-10-13 16:00:00,NO2,66.0,52.8,ug/m3,mean24,False
 "Uttam Nagar ,Delhi-DPCC",2026-10-13 16:00:00,OZONE,208.0,171.2,ug/m3,mean8,False
@@ -27367,6 +27790,12 @@ Pusa_IMD,2026-09-25 18:00:00,SO2,14.0,11.2,ug/m3,mean24,False
 "Uttam Nagar, Delhi-DPCC",2026-11-18 11:00:00,OZONE,41.0,41.0,ug/m3,mean8,False
 "Uttam Nagar, Delhi-DPCC",2026-11-18 11:00:00,PM2.5,431.0,327.5,ug/m3,mean24,False
 "Uttam Nagar, Delhi-DPCC",2026-11-18 11:00:00,SO2,5.0,4.0,ug/m3,mean24,False
+"Uttam Nagar, Delhi-DPCC",2026-11-18 20:00:00,CO,32.0,0.64,mg/m3,mean8,False
+"Uttam Nagar, Delhi-DPCC",2026-11-18 20:00:00,NO2,33.0,26.4,ug/m3,mean24,False
+"Uttam Nagar, Delhi-DPCC",2026-11-18 20:00:00,OZONE,110.0,106.8,ug/m3,mean8,False
+"Uttam Nagar, Delhi-DPCC",2026-11-18 20:00:00,PM10,258.0,308.0,ug/m3,mean24,False
+"Uttam Nagar, Delhi-DPCC",2026-11-18 20:00:00,PM2.5,347.0,181.1,ug/m3,mean24,False
+"Uttam Nagar, Delhi-DPCC",2026-11-18 20:00:00,SO2,5.0,4.0,ug/m3,mean24,False
 "Vasundhara Enclave, Delhi - DPCC",2026-10-13 16:00:00,CO,76.0,1.52,mg/m3,mean8,False
 "Vasundhara Enclave, Delhi - DPCC",2026-10-13 16:00:00,NO2,75.0,60.0,ug/m3,mean24,False
 "Vasundhara Enclave, Delhi - DPCC",2026-10-13 16:00:00,OZONE,97.0,97.0,ug/m3,mean8,False
@@ -27699,6 +28128,12 @@ Pusa_IMD,2026-09-25 18:00:00,SO2,14.0,11.2,ug/m3,mean24,False
 "Vasundhara Enclave, Delhi - DPCC",2026-11-18 11:00:00,PM10,163.0,194.5,ug/m3,mean24,False
 "Vasundhara Enclave, Delhi - DPCC",2026-11-18 11:00:00,PM2.5,105.0,61.5,ug/m3,mean24,False
 "Vasundhara Enclave, Delhi - DPCC",2026-11-18 11:00:00,SO2,11.0,8.8,ug/m3,mean24,False
+"Vasundhara Enclave, Delhi - DPCC",2026-11-18 20:00:00,CO,84.0,1.68,mg/m3,mean8,False
+"Vasundhara Enclave, Delhi - DPCC",2026-11-18 20:00:00,NO2,50.0,40.0,ug/m3,mean24,False
+"Vasundhara Enclave, Delhi - DPCC",2026-11-18 20:00:00,OZONE,9.0,9.0,ug/m3,mean8,False
+"Vasundhara Enclave, Delhi - DPCC",2026-11-18 20:00:00,PM10,185.0,227.5,ug/m3,mean24,False
+"Vasundhara Enclave, Delhi - DPCC",2026-11-18 20:00:00,PM2.5,141.0,72.3,ug/m3,mean24,False
+"Vasundhara Enclave, Delhi - DPCC",2026-11-18 20:00:00,SO2,12.0,9.6,ug/m3,mean24,False
 "Vasundhara, Ghaziabad - UPPCB",2026-09-17 01:00:00,CO,29.0,0.58,mg/m3,mean8,False
 "Vasundhara, Ghaziabad - UPPCB",2026-09-17 01:00:00,NO2,44.0,35.2,ug/m3,mean24,False
 "Vasundhara, Ghaziabad - UPPCB",2026-09-17 01:00:00,OZONE,37.0,37.0,ug/m3,mean8,False
@@ -28088,6 +28523,12 @@ Pusa_IMD,2026-09-25 18:00:00,SO2,14.0,11.2,ug/m3,mean24,False
 "Vasundhara, Ghaziabad - UPPCB",2026-11-18 11:00:00,PM10,125.0,137.5,ug/m3,mean24,False
 "Vasundhara, Ghaziabad - UPPCB",2026-11-18 11:00:00,PM2.5,194.0,88.2,ug/m3,mean24,False
 "Vasundhara, Ghaziabad - UPPCB",2026-11-18 11:00:00,SO2,24.0,19.2,ug/m3,mean24,False
+"Vasundhara, Ghaziabad - UPPCB",2026-11-18 20:00:00,CO,70.0,1.4,mg/m3,mean8,False
+"Vasundhara, Ghaziabad - UPPCB",2026-11-18 20:00:00,NO2,97.0,77.6,ug/m3,mean24,False
+"Vasundhara, Ghaziabad - UPPCB",2026-11-18 20:00:00,OZONE,80.0,80.0,ug/m3,mean8,False
+"Vasundhara, Ghaziabad - UPPCB",2026-11-18 20:00:00,PM10,134.0,151.0,ug/m3,mean24,False
+"Vasundhara, Ghaziabad - UPPCB",2026-11-18 20:00:00,PM2.5,212.0,93.6,ug/m3,mean24,False
+"Vasundhara, Ghaziabad - UPPCB",2026-11-18 20:00:00,SO2,32.0,25.6,ug/m3,mean24,False
 "Ved Vihar-Loni, Ghaziabad - UPPCB",2026-09-17 01:00:00,CO,92.0,1.84,mg/m3,mean8,False
 "Ved Vihar-Loni, Ghaziabad - UPPCB",2026-09-17 01:00:00,NO2,34.0,27.2,ug/m3,mean24,False
 "Ved Vihar-Loni, Ghaziabad - UPPCB",2026-09-17 01:00:00,OZONE,16.0,16.0,ug/m3,mean8,False
@@ -28449,6 +28890,11 @@ Pusa_IMD,2026-09-25 18:00:00,SO2,14.0,11.2,ug/m3,mean24,False
 "Ved Vihar-Loni, Ghaziabad - UPPCB",2026-11-18 11:00:00,PM10,155.0,182.5,ug/m3,mean24,False
 "Ved Vihar-Loni, Ghaziabad - UPPCB",2026-11-18 11:00:00,PM2.5,224.0,97.2,ug/m3,mean24,False
 "Ved Vihar-Loni, Ghaziabad - UPPCB",2026-11-18 11:00:00,SO2,26.0,20.8,ug/m3,mean24,False
+"Ved Vihar-Loni, Ghaziabad - UPPCB",2026-11-18 20:00:00,CO,65.0,1.3,mg/m3,mean8,False
+"Ved Vihar-Loni, Ghaziabad - UPPCB",2026-11-18 20:00:00,OZONE,47.0,47.0,ug/m3,mean8,False
+"Ved Vihar-Loni, Ghaziabad - UPPCB",2026-11-18 20:00:00,PM10,166.0,199.0,ug/m3,mean24,False
+"Ved Vihar-Loni, Ghaziabad - UPPCB",2026-11-18 20:00:00,PM2.5,249.0,104.7,ug/m3,mean24,False
+"Ved Vihar-Loni, Ghaziabad - UPPCB",2026-11-18 20:00:00,SO2,26.0,20.8,ug/m3,mean24,False
 "Vikas Sadan, Gurugram - HSPCB",2026-09-17 01:00:00,CO,27.0,0.54,mg/m3,mean8,False
 "Vikas Sadan, Gurugram - HSPCB",2026-09-17 01:00:00,NO2,10.0,8.0,ug/m3,mean24,False
 "Vikas Sadan, Gurugram - HSPCB",2026-09-17 01:00:00,OZONE,2.0,2.0,ug/m3,mean8,False
@@ -28853,6 +29299,12 @@ Pusa_IMD,2026-09-25 18:00:00,SO2,14.0,11.2,ug/m3,mean24,False
 "Vikas Sadan, Gurugram - HSPCB",2026-11-18 11:00:00,PM10,201.0,251.0,ug/m3,mean24,False
 "Vikas Sadan, Gurugram - HSPCB",2026-11-18 11:00:00,PM2.5,324.0,151.2,ug/m3,mean24,False
 "Vikas Sadan, Gurugram - HSPCB",2026-11-18 11:00:00,SO2,20.0,16.0,ug/m3,mean24,False
+"Vikas Sadan, Gurugram - HSPCB",2026-11-18 20:00:00,CO,26.0,0.52,mg/m3,mean8,False
+"Vikas Sadan, Gurugram - HSPCB",2026-11-18 20:00:00,NO2,16.0,12.8,ug/m3,mean24,False
+"Vikas Sadan, Gurugram - HSPCB",2026-11-18 20:00:00,OZONE,11.0,11.0,ug/m3,mean8,False
+"Vikas Sadan, Gurugram - HSPCB",2026-11-18 20:00:00,PM10,187.0,230.5,ug/m3,mean24,False
+"Vikas Sadan, Gurugram - HSPCB",2026-11-18 20:00:00,PM2.5,309.0,131.7,ug/m3,mean24,False
+"Vikas Sadan, Gurugram - HSPCB",2026-11-18 20:00:00,SO2,21.0,16.8,ug/m3,mean24,False
 "Vivek Vihar, Delhi - DPCC",2026-09-17 01:00:00,CO,79.0,1.58,mg/m3,mean8,False
 "Vivek Vihar, Delhi - DPCC",2026-09-17 01:00:00,NO2,48.0,38.4,ug/m3,mean24,False
 "Vivek Vihar, Delhi - DPCC",2026-09-17 01:00:00,OZONE,21.0,21.0,ug/m3,mean8,False
@@ -29264,6 +29716,12 @@ Pusa_IMD,2026-09-25 18:00:00,SO2,14.0,11.2,ug/m3,mean24,False
 "Vivek Vihar, Delhi - DPCC",2026-11-18 11:00:00,PM10,171.0,206.5,ug/m3,mean24,False
 "Vivek Vihar, Delhi - DPCC",2026-11-18 11:00:00,PM2.5,236.0,100.8,ug/m3,mean24,False
 "Vivek Vihar, Delhi - DPCC",2026-11-18 11:00:00,SO2,14.0,11.2,ug/m3,mean24,False
+"Vivek Vihar, Delhi - DPCC",2026-11-18 20:00:00,CO,83.0,1.66,mg/m3,mean8,False
+"Vivek Vihar, Delhi - DPCC",2026-11-18 20:00:00,NO2,8.0,6.4,ug/m3,mean24,False
+"Vivek Vihar, Delhi - DPCC",2026-11-18 20:00:00,OZONE,30.0,30.0,ug/m3,mean8,False
+"Vivek Vihar, Delhi - DPCC",2026-11-18 20:00:00,PM10,187.0,230.5,ug/m3,mean24,False
+"Vivek Vihar, Delhi - DPCC",2026-11-18 20:00:00,PM2.5,261.0,108.3,ug/m3,mean24,False
+"Vivek Vihar, Delhi - DPCC",2026-11-18 20:00:00,SO2,14.0,11.2,ug/m3,mean24,False
 "Wave City, Ghaziabad - UPPCB",2026-09-17 01:00:00,CO,102.0,2.16,mg/m3,mean8,False
 "Wave City, Ghaziabad - UPPCB",2026-09-17 01:00:00,NO2,28.0,22.4,ug/m3,mean24,False
 "Wave City, Ghaziabad - UPPCB",2026-09-17 01:00:00,OZONE,14.0,14.0,ug/m3,mean8,False
@@ -29660,6 +30118,12 @@ Pusa_IMD,2026-09-25 18:00:00,SO2,14.0,11.2,ug/m3,mean24,False
 "Wave City, Ghaziabad - UPPCB",2026-11-18 11:00:00,PM10,149.0,173.5,ug/m3,mean24,False
 "Wave City, Ghaziabad - UPPCB",2026-11-18 11:00:00,PM2.5,204.0,91.2,ug/m3,mean24,False
 "Wave City, Ghaziabad - UPPCB",2026-11-18 11:00:00,SO2,35.0,28.0,ug/m3,mean24,False
+"Wave City, Ghaziabad - UPPCB",2026-11-18 20:00:00,CO,100.0,2.0,mg/m3,mean8,False
+"Wave City, Ghaziabad - UPPCB",2026-11-18 20:00:00,NO2,41.0,32.8,ug/m3,mean24,False
+"Wave City, Ghaziabad - UPPCB",2026-11-18 20:00:00,OZONE,61.0,61.0,ug/m3,mean8,False
+"Wave City, Ghaziabad - UPPCB",2026-11-18 20:00:00,PM10,154.0,181.0,ug/m3,mean24,False
+"Wave City, Ghaziabad - UPPCB",2026-11-18 20:00:00,PM2.5,209.0,92.7,ug/m3,mean24,False
+"Wave City, Ghaziabad - UPPCB",2026-11-18 20:00:00,SO2,29.0,23.2,ug/m3,mean24,False
 "Wazirpur, Delhi - DPCC",2026-09-17 01:00:00,CO,41.0,0.82,mg/m3,mean8,False
 "Wazirpur, Delhi - DPCC",2026-09-17 01:00:00,NO2,47.0,37.6,ug/m3,mean24,False
 "Wazirpur, Delhi - DPCC",2026-09-17 01:00:00,OZONE,8.0,8.0,ug/m3,mean8,False
@@ -30073,3 +30537,5 @@ Pusa_IMD,2026-09-25 18:00:00,SO2,14.0,11.2,ug/m3,mean24,False
 "Wazirpur, Delhi - DPCC",2026-11-17 22:00:00,PM2.5,233.0,99.9,ug/m3,mean24,False
 "Wazirpur, Delhi - DPCC",2026-11-17 22:00:00,SO2,14.0,11.2,ug/m3,mean24,False
 "Wazirpur, Delhi - DPCC",2026-11-18 11:00:00,OZONE,34.0,34.0,ug/m3,mean8,False
+"Wazirpur, Delhi - DPCC",2026-11-18 20:00:00,CO,84.0,1.68,mg/m3,mean8,False
+"Wazirpur, Delhi - DPCC",2026-11-18 20:00:00,OZONE,35.0,35.0,ug/m3,mean8,False
