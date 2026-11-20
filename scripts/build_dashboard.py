@@ -46,14 +46,44 @@ FAVICON = ("data:image/svg+xml,%3Csvg xmlns='http%3A//www.w3.org/2000/svg' viewB
            "%3Crect x='2' y='2' width='44' height='44' rx='13' fill='%230c171b' stroke='%236fbfb2' stroke-width='2'/%3E"
            "%3Cpath d='M8 29 C13 21 17 21 22 28 S31 35 40 22' fill='none' stroke='%23a3d2b8' stroke-width='3' stroke-linecap='round'/%3E"
            "%3Ccircle cx='14' cy='15' r='3' fill='%23a3d2b8'/%3E%3Ccircle cx='24' cy='11' r='3' fill='%23dfb277'/%3E%3Ccircle cx='34' cy='16' r='3' fill='%23a3d2b8'/%3E%3C/svg%3E")
-# (label, url) for the footer: the only other external addresses the page may carry
-FOOTER_SOURCES = [
-    ("CPCB feed via data.gov.in", "https://data.gov.in"),
-    ("OpenAQ", "https://openaq.org"),
-    ("NASA FIRMS", "https://firms.modaps.eosdis.nasa.gov"),
-    ("MODIS MAIAC AOD via Earth Engine", "https://developers.google.com/earth-engine/datasets/catalog/MODIS_061_MCD19A2_GRANULES"),
-    ("ERA5 via Copernicus CDS", "https://cds.climate.copernicus.eu"),
+LICENSE_URL = REPO_URL + "/blob/master/README.md#license"
+# Footer content. Every URL was checked to resolve; with the project links they are the only external
+# addresses the page carries.
+# (name, url, what it provides)
+FOOTER_DATA = [
+    ("CPCB real-time AQI via data.gov.in", "https://www.data.gov.in/catalog/real-time-air-quality-index-various-locations", "Hourly AQI sub-indices per NCR station (the live feed)."),
+    ("OpenAQ", "https://docs.openaq.org", "Hourly PM2.5 concentrations from the same stations, in &micro;g/m&sup3;."),
+    ("NASA FIRMS", "https://firms.modaps.eosdis.nasa.gov", "Satellite active-fire detections and their radiative power."),
+    ("MODIS MAIAC AOD, Earth Engine", "https://developers.google.com/earth-engine/datasets/catalog/MODIS_061_MCD19A2_GRANULES", "Aerosol optical depth, sampled at each station."),
+    ("ERA5, Copernicus CDS", "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels", "Wind, boundary-layer height, temperature and rain."),
 ]
+# (citation, url)
+FOOTER_REFS = [
+    ("Benjamini and Hochberg (1995), controlling the false discovery rate", "https://www.jstor.org/stable/2346101"),
+    ("Lyapustin et al. (2018), MAIAC aerosol retrieval for MODIS", "https://doi.org/10.5194/amt-11-5741-2018"),
+    ("Giglio et al. (2016), MODIS Collection 6 active fire detection", "https://doi.org/10.1016/j.rse.2016.02.054"),
+    ("Hersbach et al. (2020), the ERA5 reanalysis (dataset page)", "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels"),
+    ("Air quality index categories (India section)", "https://en.wikipedia.org/wiki/Air_quality_index#India"),
+]
+FOOTER_URLS = [GITHUB_URL, REPO_URL, LICENSE_URL] + [u for _, u, _ in FOOTER_DATA] + [u for _, u in FOOTER_REFS]
+
+
+def _a(url: str, text: str) -> str:
+    return f'<a href="{url}" target="_blank" rel="noopener">{text}</a>'
+
+
+def footer_html() -> str:
+    data = "".join(f"<li>{_a(u, html.escape(n))}<span>{d}</span></li>" for n, u, d in FOOTER_DATA)
+    refs = "".join(f"<li>{_a(u, html.escape(n))}</li>" for n, u in FOOTER_REFS)
+    return (
+        '<footer class="foot"><div class="foot-grid">'
+        '<div><h3>About</h3><p>Checks whether the NCR air-quality monitoring network can be trusted: data health, station drift, '
+        'gap filling and fire evidence. It is exploratory analysis of a few weeks of data, not an official AQI or a health advisory. '
+        f'{_a(REPO_URL, "Source code")}.</p></div>'
+        f"<div><h3>Data</h3><ul>{data}</ul></div>"
+        f"<div><h3>References</h3><ul>{refs}</ul></div></div>"
+        '<div class="foot-bar"><span>Built by <b>Sagnik</b></span>'
+        f'{_a(GITHUB_URL, "GitHub @HalcyonVector")}{_a(REPO_URL, "Repository")}{_a(LICENSE_URL, "License")}</div></footer>')
 
 # name, file pattern, what the date in the filename means, normal publication lag in days
 SOURCES = [
@@ -506,9 +536,15 @@ main{max-width:1040px}
 .count{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
 .count-i{gap:20px;align-items:center}
 .count-n{flex:0 0 auto;min-width:0;font-size:30px;line-height:1.1;white-space:nowrap}
-.foot{margin-top:34px;padding-top:22px;border-top:1px solid var(--edge);display:grid;gap:10px;justify-items:center;text-align:center}
-.foot-row{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 18px;align-items:baseline}
-.foot-k{font:600 10.5px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--muted);opacity:.8;margin-right:4px}
+.foot{margin-top:22px;padding:26px 26px 18px;text-align:left;border:1px solid var(--edge);border-radius:20px;background:var(--glass);font:400 13px/1.6 var(--sans);letter-spacing:0}
+.foot-grid{display:grid;grid-template-columns:1.1fr 1.3fr 1.2fr;gap:28px}
+.foot h3{margin:0 0 10px;font:600 11px/1.2 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--sage)}
+.foot p{margin:0;color:#b9c9c9}
+.foot ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.foot li{display:flex;flex-direction:column;align-items:flex-start;gap:1px}.foot li span{color:var(--muted);font-size:12.5px}
+.foot-bar{display:flex;flex-wrap:wrap;gap:8px 22px;align-items:baseline;margin-top:22px;padding-top:14px;border-top:1px solid var(--edge);color:var(--muted);font-size:12.5px}
+.foot-bar b{color:var(--fg);font-weight:600}.foot-bar a:first-of-type{margin-left:auto}
+@media (max-width:760px){.foot{padding:20px 16px 14px}.foot-grid{grid-template-columns:1fr;gap:22px}.foot-bar a:first-of-type{margin-left:0}}
 @media (max-width:760px){.hero{padding:30px 22px 22px}.card{padding:20px 16px 14px}}
 .scroll{overflow-x:auto}
 @media (max-width:760px){.split{grid-template-columns:1fr}.rank-row{grid-template-columns:120px 1fr 34px}.tiles{grid-template-columns:repeat(2,1fr)}.hero{padding:26px 20px 20px}.card{padding:18px 16px 14px}
@@ -614,10 +650,7 @@ station <i>follows the same day-to-day pattern as its peers</i>. With about two 
 <p><b>Nothing here is a source attribution.</b> The stubble panels show association with fire exposure, not the share of pollution caused by it.</p></details>
 </section>
 
-<footer class="foot">
-<div class="foot-row"><span class="foot-k">Data</span>{" ".join(f'<a href="{u}" target="_blank" rel="noopener">{html.escape(n)}</a>' for n, u in FOOTER_SOURCES)}</div>
-<div class="foot-row"><span class="foot-k">Project</span><a href="{REPO_URL}" target="_blank" rel="noopener">Source code</a><a href="{GITHUB_URL}" target="_blank" rel="noopener">@HalcyonVector on GitHub</a></div>
-</footer>
+{footer_html()}
 """
     return (f'<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
             f'<link rel="icon" href="{FAVICON}">'

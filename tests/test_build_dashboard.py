@@ -117,9 +117,10 @@ def test_render_has_all_sections_and_flags_an_unhealthy_source(tmp_path):
     assert "<script" not in page  # a static page: no JavaScript anywhere
     # no external requests: the only URL allowed is the footer link to the project repo
     page_wo_link = page.replace(bd.REPO_URL, "")
-    page_wo_link = page_wo_link.replace(bd.GITHUB_URL, "")
-    for _, url in bd.FOOTER_SOURCES:
+    for url in sorted(set(bd.FOOTER_URLS), key=len, reverse=True):  # longest first: some URLs contain others
         page_wo_link = page_wo_link.replace(url, "")
+    # every footer link opens in a new tab and nothing downloads or exports
+    assert page.count('target="_blank"') == page.count('href="http') and "download" not in page.lower().replace("downloads", "")
     assert "http://" not in page_wo_link and "https://" not in page_wo_link
     assert 'src="http' not in page and "@import" not in page
 
