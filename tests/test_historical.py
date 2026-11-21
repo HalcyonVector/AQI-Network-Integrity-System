@@ -100,6 +100,33 @@ def test_hist_stations_and_coordinate_attach(tmp_path):
     assert got["latitude"] == 28.77 and got["openaq_id"] == 7  # government provider, name matched ignoring case and spaces
 
 
+def _quarter_hours(station, start_utc, values):
+    ts = pd.date_range(start_utc, periods=len(values), freq="15min")
+    pm25 = pd.Series(values, dtype=float)
+    return pd.DataFrame({"Station ID": station, "Timestamp": ts, "PM2.5 (µg/m³)": pm25, "PM10 (µg/m³)": pm25 * 2})
+
+
+def test_silver_hourly_means_ist_and_completeness_rule():
+    import build_silver as bs
+
+    vals = [10, 20, 30, 40] + [50, 60, None, None]  # hour 1 complete, hour 2 has only 2 of 4 readings
+    out = bs.hourly_means(_quarter_hours("s1", "2019-11-01 00:30", vals))  # 00:30 UTC is 06:00 IST
+    assert out.loc[0, "hour_start_ist"] == pd.Timestamp("2019-11-01 06:00")
+    assert out.loc[0, "pm25"] == 25 and out.loc[0, "pm10"] == 50
+    assert pd.isna(out.loc[1, "pm25"])  # fewer than MIN_READINGS readings
+
+
+def test_silver_clean_drops_out_of_range_and_stuck_runs():
+    import build_silver as bs
+
+    hours = pd.date_range("2019-11-01", periods=12, freq="h")
+    pm = [30, 31, 0, 2000, 55, 55, 55, 55, 55, 55, 60, 61]  # zero and 2000 out of range; six identical hours stuck
+    hourly = pd.DataFrame({"station_id": "s1", "hour_start_ist": hours, "pm25": pm, "pm10": pm})
+    clean, st = bs.clean_hourly(hourly)
+    assert st["hours_raw"] == 12 and st["removed_range"] == 2 and st["removed_flatline"] == 6
+    assert clean["pm25"].notna().sum() == 4 and st["hours_clean"] == 4 and st["stations"] == 1
+
+
 def test_cpcb_history_skips_finished_years_only(tmp_path):
     import fetch_cpcb_history as fc
 
