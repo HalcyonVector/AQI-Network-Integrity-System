@@ -1,0 +1,2888 @@
+state,month,stations,completeness
+Andaman and Nicobar,2025-02,1,0.311
+Andaman and Nicobar,2025-03,1,0.938
+Andaman and Nicobar,2025-04,1,0.59
+Andaman and Nicobar,2025-05,1,0.523
+Andaman and Nicobar,2025-06,1,0.568
+Andaman and Nicobar,2025-07,1,0.371
+Andaman and Nicobar,2025-09,1,0.044
+Andaman and Nicobar,2025-10,1,0.129
+Andaman and Nicobar,2025-11,1,0.174
+Andaman and Nicobar,2025-12,1,0.265
+Andhra Pradesh,2016-06,1,0.119
+Andhra Pradesh,2016-07,2,0.694
+Andhra Pradesh,2016-08,2,0.899
+Andhra Pradesh,2016-09,2,0.834
+Andhra Pradesh,2016-10,2,0.837
+Andhra Pradesh,2016-11,2,0.819
+Andhra Pradesh,2016-12,2,0.747
+Andhra Pradesh,2017-01,2,0.007
+Andhra Pradesh,2017-05,1,0.575
+Andhra Pradesh,2017-06,1,0.633
+Andhra Pradesh,2017-07,2,0.723
+Andhra Pradesh,2017-08,2,0.688
+Andhra Pradesh,2017-09,3,0.794
+Andhra Pradesh,2017-10,3,0.373
+Andhra Pradesh,2017-11,4,0.724
+Andhra Pradesh,2017-12,4,0.65
+Andhra Pradesh,2018-01,2,0.007
+Andhra Pradesh,2018-01,4,0.859
+Andhra Pradesh,2018-02,4,0.842
+Andhra Pradesh,2018-03,3,0.94
+Andhra Pradesh,2018-04,3,0.799
+Andhra Pradesh,2018-05,3,0.706
+Andhra Pradesh,2018-06,4,0.739
+Andhra Pradesh,2018-07,4,0.899
+Andhra Pradesh,2018-08,4,0.776
+Andhra Pradesh,2018-09,4,0.903
+Andhra Pradesh,2018-10,4,0.759
+Andhra Pradesh,2018-11,4,0.722
+Andhra Pradesh,2018-12,4,0.777
+Andhra Pradesh,2019-01,4,0.006
+Andhra Pradesh,2019-01,4,0.856
+Andhra Pradesh,2019-02,4,0.853
+Andhra Pradesh,2019-03,4,0.841
+Andhra Pradesh,2019-04,4,0.824
+Andhra Pradesh,2019-05,4,0.758
+Andhra Pradesh,2019-06,4,0.736
+Andhra Pradesh,2019-07,4,0.752
+Andhra Pradesh,2019-08,4,0.755
+Andhra Pradesh,2019-09,3,0.82
+Andhra Pradesh,2019-10,4,0.765
+Andhra Pradesh,2019-11,4,0.702
+Andhra Pradesh,2019-12,3,0.95
+Andhra Pradesh,2020-01,3,0.005
+Andhra Pradesh,2020-01,3,0.893
+Andhra Pradesh,2020-02,3,0.554
+Andhra Pradesh,2020-03,3,0.462
+Andhra Pradesh,2020-04,3,0.841
+Andhra Pradesh,2020-05,3,0.839
+Andhra Pradesh,2020-06,3,0.886
+Andhra Pradesh,2020-07,3,0.929
+Andhra Pradesh,2020-08,3,0.878
+Andhra Pradesh,2020-09,3,0.625
+Andhra Pradesh,2020-10,3,0.617
+Andhra Pradesh,2020-11,3,0.735
+Andhra Pradesh,2020-12,3,0.967
+Andhra Pradesh,2021-01,3,0.007
+Andhra Pradesh,2021-01,3,0.939
+Andhra Pradesh,2021-02,3,0.817
+Andhra Pradesh,2021-03,3,0.934
+Andhra Pradesh,2021-04,3,0.919
+Andhra Pradesh,2021-05,3,0.909
+Andhra Pradesh,2021-06,3,0.954
+Andhra Pradesh,2021-07,3,0.947
+Andhra Pradesh,2021-08,3,0.935
+Andhra Pradesh,2021-09,3,0.876
+Andhra Pradesh,2021-10,3,0.922
+Andhra Pradesh,2021-11,3,0.919
+Andhra Pradesh,2021-12,3,0.976
+Andhra Pradesh,2022-01,3,0.007
+Andhra Pradesh,2022-01,3,0.98
+Andhra Pradesh,2022-02,3,0.938
+Andhra Pradesh,2022-03,3,0.984
+Andhra Pradesh,2022-04,3,0.884
+Andhra Pradesh,2022-05,3,0.893
+Andhra Pradesh,2022-06,3,0.906
+Andhra Pradesh,2022-07,3,0.915
+Andhra Pradesh,2022-08,4,0.776
+Andhra Pradesh,2022-09,4,0.885
+Andhra Pradesh,2022-10,4,0.875
+Andhra Pradesh,2022-11,6,0.767
+Andhra Pradesh,2022-12,6,0.862
+Andhra Pradesh,2023-01,6,0.007
+Andhra Pradesh,2023-01,8,0.756
+Andhra Pradesh,2023-02,8,0.924
+Andhra Pradesh,2023-03,8,0.845
+Andhra Pradesh,2023-04,8,0.733
+Andhra Pradesh,2023-05,8,0.794
+Andhra Pradesh,2023-06,8,0.852
+Andhra Pradesh,2023-07,8,0.757
+Andhra Pradesh,2023-08,9,0.753
+Andhra Pradesh,2023-09,10,0.795
+Andhra Pradesh,2023-10,10,0.877
+Andhra Pradesh,2023-11,10,0.899
+Andhra Pradesh,2023-12,10,0.886
+Andhra Pradesh,2024-01,9,0.007
+Andhra Pradesh,2024-01,11,0.744
+Andhra Pradesh,2024-02,11,0.878
+Andhra Pradesh,2024-03,11,0.881
+Andhra Pradesh,2024-04,11,0.772
+Andhra Pradesh,2024-05,11,0.779
+Andhra Pradesh,2024-06,11,0.774
+Andhra Pradesh,2024-07,11,0.833
+Andhra Pradesh,2024-08,11,0.8
+Andhra Pradesh,2024-09,11,0.61
+Andhra Pradesh,2024-10,11,0.756
+Andhra Pradesh,2024-11,11,0.86
+Andhra Pradesh,2024-12,11,0.86
+Andhra Pradesh,2025-01,10,0.007
+Andhra Pradesh,2025-01,12,0.791
+Andhra Pradesh,2025-02,12,0.904
+Andhra Pradesh,2025-03,12,0.911
+Andhra Pradesh,2025-04,12,0.903
+Andhra Pradesh,2025-05,12,0.897
+Andhra Pradesh,2025-06,12,0.873
+Andhra Pradesh,2025-07,12,0.836
+Andhra Pradesh,2025-08,11,0.89
+Andhra Pradesh,2025-09,11,0.818
+Andhra Pradesh,2025-10,11,0.755
+Andhra Pradesh,2025-11,12,0.74
+Andhra Pradesh,2025-12,12,0.84
+Andhra Pradesh,2026-01,12,0.006
+Arunachal Pradesh,2021-03,1,0.161
+Arunachal Pradesh,2021-04,1,0.482
+Arunachal Pradesh,2021-05,1,0.235
+Arunachal Pradesh,2021-06,1,0.296
+Arunachal Pradesh,2021-07,1,0.341
+Arunachal Pradesh,2021-08,1,0.513
+Arunachal Pradesh,2021-09,1,0.381
+Arunachal Pradesh,2021-10,1,0.397
+Arunachal Pradesh,2021-11,1,0.428
+Arunachal Pradesh,2021-12,1,0.348
+Arunachal Pradesh,2022-01,1,0.007
+Arunachal Pradesh,2022-01,1,0.522
+Arunachal Pradesh,2022-02,1,0.207
+Arunachal Pradesh,2022-03,1,0.497
+Arunachal Pradesh,2022-04,1,0.135
+Arunachal Pradesh,2022-05,1,0.407
+Arunachal Pradesh,2022-06,1,0.181
+Arunachal Pradesh,2022-07,1,0.411
+Arunachal Pradesh,2022-08,1,0.253
+Arunachal Pradesh,2022-09,1,0.147
+Arunachal Pradesh,2022-10,1,0.234
+Arunachal Pradesh,2022-11,1,0.081
+Arunachal Pradesh,2022-12,1,0.272
+Arunachal Pradesh,2023-01,1,0.77
+Arunachal Pradesh,2023-02,1,0.762
+Arunachal Pradesh,2023-03,1,0.665
+Arunachal Pradesh,2023-04,1,0.446
+Arunachal Pradesh,2023-05,1,0.293
+Arunachal Pradesh,2023-06,1,0.479
+Arunachal Pradesh,2023-07,1,0.534
+Arunachal Pradesh,2023-08,1,0.407
+Arunachal Pradesh,2023-09,1,0.551
+Arunachal Pradesh,2023-10,1,0.386
+Arunachal Pradesh,2023-11,1,0.396
+Arunachal Pradesh,2023-12,1,0.501
+Arunachal Pradesh,2024-01,1,0.806
+Arunachal Pradesh,2024-02,1,0.97
+Arunachal Pradesh,2024-03,1,0.906
+Arunachal Pradesh,2024-04,1,0.593
+Arunachal Pradesh,2024-05,1,0.62
+Arunachal Pradesh,2024-06,1,0.354
+Arunachal Pradesh,2024-07,1,0.673
+Arunachal Pradesh,2024-08,1,0.586
+Arunachal Pradesh,2024-09,1,0.604
+Arunachal Pradesh,2024-10,1,0.676
+Arunachal Pradesh,2024-11,1,0.754
+Arunachal Pradesh,2024-12,1,0.597
+Arunachal Pradesh,2025-01,1,0.614
+Arunachal Pradesh,2025-02,1,0.473
+Arunachal Pradesh,2025-03,1,0.632
+Arunachal Pradesh,2025-04,1,0.572
+Arunachal Pradesh,2025-05,1,0.582
+Arunachal Pradesh,2025-06,1,0.312
+Arunachal Pradesh,2025-07,1,0.398
+Arunachal Pradesh,2025-08,1,0.753
+Arunachal Pradesh,2025-09,1,0.831
+Arunachal Pradesh,2025-10,1,0.851
+Arunachal Pradesh,2025-11,1,0.968
+Arunachal Pradesh,2025-12,1,0.942
+Arunachal Pradesh,2026-01,1,0.007
+Assam,2019-02,1,0.39
+Assam,2019-03,1,0.991
+Assam,2019-04,1,0.951
+Assam,2019-05,1,0.887
+Assam,2019-06,1,0.976
+Assam,2019-07,1,0.833
+Assam,2019-08,1,0.883
+Assam,2019-09,1,0.981
+Assam,2019-10,1,0.929
+Assam,2019-11,1,0.979
+Assam,2019-12,1,0.919
+Assam,2020-01,1,0.004
+Assam,2020-01,1,0.917
+Assam,2020-02,1,0.99
+Assam,2020-03,1,0.956
+Assam,2020-04,1,0.956
+Assam,2020-05,1,0.965
+Assam,2020-06,1,0.939
+Assam,2020-07,1,0.766
+Assam,2020-08,1,0.972
+Assam,2020-09,1,0.983
+Assam,2020-10,1,0.776
+Assam,2020-11,1,0.949
+Assam,2020-12,2,0.503
+Assam,2021-01,2,0.007
+Assam,2021-01,2,0.78
+Assam,2021-02,2,0.931
+Assam,2021-03,2,0.932
+Assam,2021-04,2,0.988
+Assam,2021-05,2,0.848
+Assam,2021-06,2,0.903
+Assam,2021-07,2,0.784
+Assam,2021-08,2,0.843
+Assam,2021-09,2,0.831
+Assam,2021-10,2,0.939
+Assam,2021-11,2,0.966
+Assam,2021-12,2,0.89
+Assam,2022-01,2,0.007
+Assam,2022-01,2,0.954
+Assam,2022-02,2,0.929
+Assam,2022-03,2,0.978
+Assam,2022-04,2,0.958
+Assam,2022-05,2,0.939
+Assam,2022-06,2,0.82
+Assam,2022-07,2,0.899
+Assam,2022-08,2,0.858
+Assam,2022-09,4,0.581
+Assam,2022-10,4,0.885
+Assam,2022-11,5,0.762
+Assam,2022-12,7,0.73
+Assam,2023-01,6,0.006
+Assam,2023-01,8,0.822
+Assam,2023-02,9,0.791
+Assam,2023-03,9,0.857
+Assam,2023-04,9,0.781
+Assam,2023-05,8,0.825
+Assam,2023-06,9,0.755
+Assam,2023-07,9,0.823
+Assam,2023-08,9,0.779
+Assam,2023-09,9,0.705
+Assam,2023-10,9,0.784
+Assam,2023-11,9,0.883
+Assam,2023-12,9,0.889
+Assam,2024-01,9,0.006
+Assam,2024-01,9,0.876
+Assam,2024-02,9,0.858
+Assam,2024-03,9,0.843
+Assam,2024-04,9,0.854
+Assam,2024-05,9,0.83
+Assam,2024-06,9,0.818
+Assam,2024-07,9,0.802
+Assam,2024-08,9,0.775
+Assam,2024-09,8,0.799
+Assam,2024-10,9,0.761
+Assam,2024-11,9,0.833
+Assam,2024-12,9,0.831
+Assam,2025-01,7,0.007
+Assam,2025-01,9,0.801
+Assam,2025-02,9,0.823
+Assam,2025-03,9,0.761
+Assam,2025-04,9,0.718
+Assam,2025-05,9,0.773
+Assam,2025-06,9,0.78
+Assam,2025-07,9,0.8
+Assam,2025-08,9,0.739
+Assam,2025-09,9,0.771
+Assam,2025-10,9,0.754
+Assam,2025-11,9,0.81
+Assam,2025-12,8,0.825
+Assam,2026-01,8,0.005
+Bihar,2015-10,2,0.469
+Bihar,2015-11,2,0.861
+Bihar,2015-12,2,0.91
+Bihar,2016-01,2,0.004
+Bihar,2016-01,3,0.85
+Bihar,2016-02,3,0.797
+Bihar,2016-03,3,0.756
+Bihar,2016-04,3,0.768
+Bihar,2016-05,3,0.786
+Bihar,2016-06,3,0.672
+Bihar,2016-07,3,0.506
+Bihar,2016-08,3,0.831
+Bihar,2016-09,3,0.712
+Bihar,2016-10,3,0.688
+Bihar,2016-11,3,0.91
+Bihar,2016-12,3,0.882
+Bihar,2017-01,3,0.007
+Bihar,2017-01,3,0.798
+Bihar,2017-02,3,0.514
+Bihar,2017-03,3,0.739
+Bihar,2017-04,3,0.664
+Bihar,2017-05,2,0.81
+Bihar,2017-06,2,0.769
+Bihar,2017-07,1,0.126
+Bihar,2017-09,2,0.038
+Bihar,2017-10,3,0.169
+Bihar,2017-11,4,0.651
+Bihar,2017-12,3,0.783
+Bihar,2018-01,3,0.006
+Bihar,2018-01,3,0.832
+Bihar,2018-02,3,0.915
+Bihar,2018-03,3,0.899
+Bihar,2018-04,3,0.786
+Bihar,2018-05,3,0.908
+Bihar,2018-06,4,0.64
+Bihar,2018-07,4,0.577
+Bihar,2018-08,3,0.886
+Bihar,2018-09,3,0.912
+Bihar,2018-10,3,0.885
+Bihar,2018-11,4,0.796
+Bihar,2018-12,4,0.878
+Bihar,2019-01,4,0.006
+Bihar,2019-01,4,0.859
+Bihar,2019-02,4,0.888
+Bihar,2019-03,4,0.81
+Bihar,2019-04,4,0.865
+Bihar,2019-05,4,0.835
+Bihar,2019-06,4,0.745
+Bihar,2019-07,3,0.673
+Bihar,2019-08,4,0.779
+Bihar,2019-09,4,0.808
+Bihar,2019-10,4,0.861
+Bihar,2019-11,4,0.934
+Bihar,2019-12,7,0.613
+Bihar,2020-01,7,0.007
+Bihar,2020-01,7,0.897
+Bihar,2020-02,9,0.725
+Bihar,2020-03,11,0.805
+Bihar,2020-04,11,0.757
+Bihar,2020-05,10,0.771
+Bihar,2020-06,10,0.61
+Bihar,2020-07,9,0.604
+Bihar,2020-08,12,0.538
+Bihar,2020-09,12,0.772
+Bihar,2020-10,11,0.904
+Bihar,2020-11,12,0.899
+Bihar,2020-12,12,0.885
+Bihar,2021-01,12,0.006
+Bihar,2021-01,12,0.867
+Bihar,2021-02,12,0.845
+Bihar,2021-03,12,0.762
+Bihar,2021-04,12,0.895
+Bihar,2021-05,12,0.83
+Bihar,2021-06,12,0.747
+Bihar,2021-07,15,0.668
+Bihar,2021-08,15,0.635
+Bihar,2021-09,11,0.829
+Bihar,2021-10,11,0.808
+Bihar,2021-11,26,0.501
+Bihar,2021-12,31,0.79
+Bihar,2022-01,30,0.006
+Bihar,2022-01,31,0.82
+Bihar,2022-02,32,0.847
+Bihar,2022-03,34,0.833
+Bihar,2022-04,34,0.794
+Bihar,2022-05,34,0.766
+Bihar,2022-06,34,0.772
+Bihar,2022-07,34,0.728
+Bihar,2022-08,34,0.741
+Bihar,2022-09,34,0.742
+Bihar,2022-10,34,0.816
+Bihar,2022-11,34,0.867
+Bihar,2022-12,34,0.855
+Bihar,2023-01,32,0.006
+Bihar,2023-01,34,0.818
+Bihar,2023-02,33,0.855
+Bihar,2023-03,33,0.876
+Bihar,2023-04,33,0.857
+Bihar,2023-05,33,0.836
+Bihar,2023-06,35,0.77
+Bihar,2023-07,35,0.782
+Bihar,2023-08,35,0.803
+Bihar,2023-09,35,0.787
+Bihar,2023-10,35,0.788
+Bihar,2023-11,35,0.863
+Bihar,2023-12,35,0.867
+Bihar,2024-01,34,0.006
+Bihar,2024-01,35,0.833
+Bihar,2024-02,34,0.859
+Bihar,2024-03,34,0.819
+Bihar,2024-04,34,0.792
+Bihar,2024-05,34,0.737
+Bihar,2024-06,34,0.688
+Bihar,2024-07,33,0.671
+Bihar,2024-08,34,0.642
+Bihar,2024-09,34,0.715
+Bihar,2024-10,34,0.793
+Bihar,2024-11,34,0.852
+Bihar,2024-12,34,0.827
+Bihar,2025-01,26,0.006
+Bihar,2025-01,36,0.787
+Bihar,2025-02,36,0.784
+Bihar,2025-03,36,0.787
+Bihar,2025-04,36,0.722
+Bihar,2025-05,36,0.703
+Bihar,2025-06,36,0.659
+Bihar,2025-07,36,0.595
+Bihar,2025-08,36,0.713
+Bihar,2025-09,36,0.707
+Bihar,2025-10,36,0.769
+Bihar,2025-11,37,0.818
+Bihar,2025-12,37,0.85
+Bihar,2026-01,36,0.006
+Chandigarh,2019-08,1,0.001
+Chandigarh,2019-09,1,0.315
+Chandigarh,2019-10,1,0.902
+Chandigarh,2019-11,1,0.933
+Chandigarh,2019-12,1,0.891
+Chandigarh,2020-01,1,0.007
+Chandigarh,2020-01,1,0.937
+Chandigarh,2020-02,1,0.947
+Chandigarh,2020-03,1,0.956
+Chandigarh,2020-04,1,0.906
+Chandigarh,2020-05,1,0.961
+Chandigarh,2020-06,1,0.931
+Chandigarh,2020-07,1,0.962
+Chandigarh,2020-08,1,0.978
+Chandigarh,2020-09,1,0.957
+Chandigarh,2020-10,1,0.953
+Chandigarh,2020-11,1,0.947
+Chandigarh,2020-12,1,0.981
+Chandigarh,2021-01,1,0.007
+Chandigarh,2021-01,1,0.953
+Chandigarh,2021-02,1,0.982
+Chandigarh,2021-03,1,0.974
+Chandigarh,2021-04,1,0.962
+Chandigarh,2021-05,1,0.935
+Chandigarh,2021-06,1,0.926
+Chandigarh,2021-07,1,0.944
+Chandigarh,2021-08,2,0.863
+Chandigarh,2021-09,2,0.951
+Chandigarh,2021-10,2,0.986
+Chandigarh,2021-11,2,0.988
+Chandigarh,2021-12,2,0.983
+Chandigarh,2022-01,2,0.007
+Chandigarh,2022-01,3,0.61
+Chandigarh,2022-02,3,0.912
+Chandigarh,2022-03,3,0.969
+Chandigarh,2022-04,3,0.976
+Chandigarh,2022-05,3,0.974
+Chandigarh,2022-06,3,0.925
+Chandigarh,2022-07,3,0.943
+Chandigarh,2022-08,3,0.932
+Chandigarh,2022-09,3,0.913
+Chandigarh,2022-10,3,0.975
+Chandigarh,2022-11,3,0.98
+Chandigarh,2022-12,3,0.807
+Chandigarh,2023-01,2,0.007
+Chandigarh,2023-01,3,0.753
+Chandigarh,2023-02,3,0.944
+Chandigarh,2023-03,3,0.943
+Chandigarh,2023-04,3,0.964
+Chandigarh,2023-05,3,0.934
+Chandigarh,2023-06,3,0.946
+Chandigarh,2023-07,3,0.876
+Chandigarh,2023-08,3,0.956
+Chandigarh,2023-09,3,0.977
+Chandigarh,2023-10,3,0.957
+Chandigarh,2023-11,3,0.977
+Chandigarh,2023-12,3,0.932
+Chandigarh,2024-01,3,0.004
+Chandigarh,2024-01,3,0.938
+Chandigarh,2024-02,3,0.952
+Chandigarh,2024-03,3,0.966
+Chandigarh,2024-04,3,0.937
+Chandigarh,2024-05,3,0.983
+Chandigarh,2024-06,3,0.965
+Chandigarh,2024-07,3,0.953
+Chandigarh,2024-08,3,0.9
+Chandigarh,2024-09,3,0.952
+Chandigarh,2024-10,3,0.953
+Chandigarh,2024-11,3,0.955
+Chandigarh,2024-12,3,0.969
+Chandigarh,2025-01,3,0.007
+Chandigarh,2025-01,3,0.974
+Chandigarh,2025-02,3,0.907
+Chandigarh,2025-03,3,0.893
+Chandigarh,2025-04,3,0.973
+Chandigarh,2025-05,3,0.792
+Chandigarh,2025-06,3,0.913
+Chandigarh,2025-07,3,0.932
+Chandigarh,2025-08,3,0.83
+Chandigarh,2025-09,3,0.724
+Chandigarh,2025-10,3,0.842
+Chandigarh,2025-11,3,0.894
+Chandigarh,2025-12,3,0.961
+Chandigarh,2026-01,3,0.007
+Chhattisgarh,2021-09,1,0.183
+Chhattisgarh,2021-10,1,0.841
+Chhattisgarh,2021-11,2,0.481
+Chhattisgarh,2021-12,2,0.919
+Chhattisgarh,2022-01,2,0.007
+Chhattisgarh,2022-01,2,0.803
+Chhattisgarh,2022-02,2,0.866
+Chhattisgarh,2022-03,2,0.782
+Chhattisgarh,2022-04,2,0.772
+Chhattisgarh,2022-05,2,0.759
+Chhattisgarh,2022-06,2,0.713
+Chhattisgarh,2022-07,2,0.511
+Chhattisgarh,2022-08,2,0.486
+Chhattisgarh,2022-09,2,0.722
+Chhattisgarh,2022-10,9,0.269
+Chhattisgarh,2022-11,2,0.492
+Chhattisgarh,2022-12,1,0.978
+Chhattisgarh,2023-01,1,0.007
+Chhattisgarh,2023-01,14,0.631
+Chhattisgarh,2023-02,14,0.828
+Chhattisgarh,2023-03,14,0.833
+Chhattisgarh,2023-04,14,0.854
+Chhattisgarh,2023-05,14,0.823
+Chhattisgarh,2023-06,14,0.759
+Chhattisgarh,2023-07,13,0.757
+Chhattisgarh,2023-08,14,0.802
+Chhattisgarh,2023-09,14,0.771
+Chhattisgarh,2023-10,14,0.816
+Chhattisgarh,2023-11,14,0.805
+Chhattisgarh,2023-12,14,0.825
+Chhattisgarh,2024-01,11,0.006
+Chhattisgarh,2024-01,14,0.822
+Chhattisgarh,2024-02,14,0.829
+Chhattisgarh,2024-03,14,0.817
+Chhattisgarh,2024-04,14,0.784
+Chhattisgarh,2024-05,14,0.828
+Chhattisgarh,2024-06,14,0.726
+Chhattisgarh,2024-07,14,0.724
+Chhattisgarh,2024-08,14,0.71
+Chhattisgarh,2024-09,14,0.793
+Chhattisgarh,2024-10,14,0.859
+Chhattisgarh,2024-11,14,0.853
+Chhattisgarh,2024-12,14,0.827
+Chhattisgarh,2025-01,7,0.007
+Chhattisgarh,2025-01,14,0.835
+Chhattisgarh,2025-02,14,0.853
+Chhattisgarh,2025-03,14,0.832
+Chhattisgarh,2025-04,14,0.849
+Chhattisgarh,2025-05,14,0.785
+Chhattisgarh,2025-06,14,0.809
+Chhattisgarh,2025-07,14,0.756
+Chhattisgarh,2025-08,14,0.849
+Chhattisgarh,2025-09,14,0.824
+Chhattisgarh,2025-10,14,0.821
+Chhattisgarh,2025-11,14,0.908
+Chhattisgarh,2025-12,14,0.898
+Chhattisgarh,2026-01,14,0.007
+Delhi,2015-01,1,0.906
+Delhi,2015-02,1,0.811
+Delhi,2015-03,3,0.451
+Delhi,2015-04,7,0.719
+Delhi,2015-05,7,0.838
+Delhi,2015-06,6,0.84
+Delhi,2015-07,6,0.807
+Delhi,2015-08,6,0.854
+Delhi,2015-09,6,0.905
+Delhi,2015-10,6,0.702
+Delhi,2015-11,7,0.86
+Delhi,2015-12,7,0.762
+Delhi,2016-01,7,0.007
+Delhi,2016-01,7,0.781
+Delhi,2016-02,7,0.695
+Delhi,2016-03,6,0.669
+Delhi,2016-04,7,0.685
+Delhi,2016-05,7,0.709
+Delhi,2016-06,7,0.773
+Delhi,2016-07,7,0.669
+Delhi,2016-08,6,0.746
+Delhi,2016-09,7,0.655
+Delhi,2016-10,6,0.886
+Delhi,2016-11,10,0.675
+Delhi,2016-12,10,0.892
+Delhi,2017-01,7,0.007
+Delhi,2017-01,13,0.632
+Delhi,2017-02,10,0.832
+Delhi,2017-03,10,0.719
+Delhi,2017-04,10,0.755
+Delhi,2017-05,10,0.628
+Delhi,2017-06,10,0.581
+Delhi,2017-07,7,0.829
+Delhi,2017-08,10,0.556
+Delhi,2017-09,14,0.509
+Delhi,2017-10,16,0.321
+Delhi,2017-11,16,0.881
+Delhi,2017-12,16,0.765
+Delhi,2018-01,14,0.007
+Delhi,2018-01,17,0.886
+Delhi,2018-02,32,0.911
+Delhi,2018-03,32,0.903
+Delhi,2018-04,32,0.863
+Delhi,2018-05,32,0.863
+Delhi,2018-06,31,0.897
+Delhi,2018-07,33,0.931
+Delhi,2018-08,35,0.919
+Delhi,2018-09,35,0.923
+Delhi,2018-10,35,0.928
+Delhi,2018-11,36,0.942
+Delhi,2018-12,36,0.975
+Delhi,2019-01,36,0.007
+Delhi,2019-01,36,0.95
+Delhi,2019-02,36,0.948
+Delhi,2019-03,36,0.961
+Delhi,2019-04,36,0.934
+Delhi,2019-05,36,0.903
+Delhi,2019-06,36,0.929
+Delhi,2019-07,36,0.953
+Delhi,2019-08,36,0.904
+Delhi,2019-09,35,0.937
+Delhi,2019-10,36,0.956
+Delhi,2019-11,36,0.972
+Delhi,2019-12,36,0.952
+Delhi,2020-01,35,0.006
+Delhi,2020-01,35,0.964
+Delhi,2020-02,35,0.969
+Delhi,2020-03,35,0.914
+Delhi,2020-04,35,0.843
+Delhi,2020-05,35,0.862
+Delhi,2020-06,35,0.935
+Delhi,2020-07,35,0.897
+Delhi,2020-08,35,0.874
+Delhi,2020-09,35,0.938
+Delhi,2020-10,35,0.942
+Delhi,2020-11,36,0.937
+Delhi,2020-12,36,0.97
+Delhi,2021-01,36,0.007
+Delhi,2021-01,35,0.928
+Delhi,2021-02,35,0.96
+Delhi,2021-03,36,0.883
+Delhi,2021-04,35,0.924
+Delhi,2021-05,34,0.888
+Delhi,2021-06,35,0.907
+Delhi,2021-07,36,0.871
+Delhi,2021-08,36,0.908
+Delhi,2021-09,36,0.897
+Delhi,2021-10,37,0.873
+Delhi,2021-11,37,0.948
+Delhi,2021-12,37,0.959
+Delhi,2022-01,35,0.006
+Delhi,2022-01,37,0.916
+Delhi,2022-02,37,0.951
+Delhi,2022-03,37,0.955
+Delhi,2022-04,37,0.949
+Delhi,2022-05,37,0.921
+Delhi,2022-06,37,0.917
+Delhi,2022-07,36,0.903
+Delhi,2022-08,37,0.893
+Delhi,2022-09,36,0.893
+Delhi,2022-10,36,0.921
+Delhi,2022-11,36,0.956
+Delhi,2022-12,37,0.943
+Delhi,2023-01,37,0.007
+Delhi,2023-01,37,0.94
+Delhi,2023-02,37,0.955
+Delhi,2023-03,37,0.928
+Delhi,2023-04,37,0.945
+Delhi,2023-05,37,0.926
+Delhi,2023-06,37,0.894
+Delhi,2023-07,36,0.733
+Delhi,2023-08,36,0.919
+Delhi,2023-09,36,0.908
+Delhi,2023-10,36,0.94
+Delhi,2023-11,36,0.959
+Delhi,2023-12,36,0.967
+Delhi,2024-01,34,0.007
+Delhi,2024-01,36,0.96
+Delhi,2024-02,35,0.955
+Delhi,2024-03,36,0.951
+Delhi,2024-04,36,0.949
+Delhi,2024-05,37,0.936
+Delhi,2024-06,37,0.918
+Delhi,2024-07,36,0.935
+Delhi,2024-08,37,0.857
+Delhi,2024-09,35,0.919
+Delhi,2024-10,36,0.934
+Delhi,2024-11,36,0.969
+Delhi,2024-12,37,0.949
+Delhi,2025-01,35,0.007
+Delhi,2025-01,37,0.933
+Delhi,2025-02,37,0.954
+Delhi,2025-03,37,0.959
+Delhi,2025-04,37,0.955
+Delhi,2025-05,37,0.927
+Delhi,2025-06,37,0.911
+Delhi,2025-07,37,0.875
+Delhi,2025-08,36,0.903
+Delhi,2025-09,37,0.874
+Delhi,2025-10,37,0.944
+Delhi,2025-11,37,0.966
+Delhi,2025-12,38,0.96
+Delhi,2026-01,35,0.007
+Gujarat,2015-01,1,0.098
+Gujarat,2015-02,1,0.875
+Gujarat,2015-03,1,0.901
+Gujarat,2015-04,1,0.781
+Gujarat,2015-05,1,0.859
+Gujarat,2015-06,1,0.989
+Gujarat,2015-07,1,0.957
+Gujarat,2015-08,1,0.995
+Gujarat,2015-09,1,0.881
+Gujarat,2015-10,1,0.882
+Gujarat,2015-11,1,0.103
+Gujarat,2016-06,1,0.106
+Gujarat,2016-07,1,0.77
+Gujarat,2016-08,1,0.88
+Gujarat,2016-09,1,0.828
+Gujarat,2016-10,1,0.884
+Gujarat,2016-11,1,0.868
+Gujarat,2016-12,1,0.816
+Gujarat,2017-01,1,0.007
+Gujarat,2017-01,1,0.962
+Gujarat,2017-02,1,0.975
+Gujarat,2017-03,1,0.724
+Gujarat,2017-09,1,0.106
+Gujarat,2017-10,1,0.05
+Gujarat,2017-11,1,0.99
+Gujarat,2017-12,1,0.972
+Gujarat,2018-01,1,0.007
+Gujarat,2018-01,1,0.891
+Gujarat,2018-02,1,0.81
+Gujarat,2018-03,1,0.876
+Gujarat,2018-04,1,0.814
+Gujarat,2018-05,1,0.94
+Gujarat,2018-06,1,0.956
+Gujarat,2018-07,1,0.976
+Gujarat,2018-08,1,0.949
+Gujarat,2018-09,1,0.904
+Gujarat,2018-10,1,0.923
+Gujarat,2018-11,1,0.992
+Gujarat,2018-12,1,1.0
+Gujarat,2019-01,1,0.007
+Gujarat,2019-01,1,0.964
+Gujarat,2019-02,5,0.809
+Gujarat,2019-03,5,0.821
+Gujarat,2019-04,5,0.86
+Gujarat,2019-05,5,0.925
+Gujarat,2019-06,5,0.931
+Gujarat,2019-07,5,0.905
+Gujarat,2019-08,5,0.874
+Gujarat,2019-09,5,0.863
+Gujarat,2019-10,5,0.869
+Gujarat,2019-11,5,0.917
+Gujarat,2019-12,5,0.88
+Gujarat,2020-01,4,0.006
+Gujarat,2020-01,6,0.738
+Gujarat,2020-02,6,0.873
+Gujarat,2020-03,6,0.918
+Gujarat,2020-04,6,0.782
+Gujarat,2020-05,6,0.829
+Gujarat,2020-06,6,0.625
+Gujarat,2020-07,6,0.649
+Gujarat,2020-08,6,0.715
+Gujarat,2020-09,6,0.868
+Gujarat,2020-10,6,0.87
+Gujarat,2020-11,6,0.847
+Gujarat,2020-12,6,0.875
+Gujarat,2021-01,5,0.006
+Gujarat,2021-01,6,0.895
+Gujarat,2021-02,6,0.739
+Gujarat,2021-03,6,0.746
+Gujarat,2021-04,5,0.798
+Gujarat,2021-05,5,0.766
+Gujarat,2021-06,16,0.534
+Gujarat,2021-07,16,0.827
+Gujarat,2021-08,16,0.82
+Gujarat,2021-09,16,0.863
+Gujarat,2021-10,16,0.738
+Gujarat,2021-11,16,0.877
+Gujarat,2021-12,16,0.833
+Gujarat,2022-01,14,0.006
+Gujarat,2022-01,16,0.841
+Gujarat,2022-02,15,0.882
+Gujarat,2022-03,16,0.884
+Gujarat,2022-04,16,0.789
+Gujarat,2022-05,15,0.778
+Gujarat,2022-06,14,0.733
+Gujarat,2022-07,13,0.379
+Gujarat,2022-08,6,0.75
+Gujarat,2022-09,7,0.708
+Gujarat,2022-10,7,0.765
+Gujarat,2022-11,7,0.785
+Gujarat,2022-12,7,0.853
+Gujarat,2023-01,7,0.007
+Gujarat,2023-01,15,0.703
+Gujarat,2023-02,15,0.924
+Gujarat,2023-03,16,0.848
+Gujarat,2023-04,16,0.873
+Gujarat,2023-05,16,0.865
+Gujarat,2023-06,16,0.766
+Gujarat,2023-07,15,0.778
+Gujarat,2023-08,17,0.714
+Gujarat,2023-09,17,0.814
+Gujarat,2023-10,17,0.824
+Gujarat,2023-11,17,0.817
+Gujarat,2023-12,17,0.874
+Gujarat,2024-01,17,0.006
+Gujarat,2024-01,17,0.859
+Gujarat,2024-02,17,0.833
+Gujarat,2024-03,17,0.858
+Gujarat,2024-04,16,0.837
+Gujarat,2024-05,15,0.728
+Gujarat,2024-06,14,0.775
+Gujarat,2024-07,14,0.858
+Gujarat,2024-08,14,0.84
+Gujarat,2024-09,15,0.821
+Gujarat,2024-10,17,0.841
+Gujarat,2024-11,17,0.867
+Gujarat,2024-12,17,0.911
+Gujarat,2025-01,14,0.007
+Gujarat,2025-01,17,0.914
+Gujarat,2025-02,17,0.807
+Gujarat,2025-03,14,0.908
+Gujarat,2025-04,17,0.804
+Gujarat,2025-05,17,0.844
+Gujarat,2025-06,17,0.831
+Gujarat,2025-07,17,0.87
+Gujarat,2025-08,17,0.879
+Gujarat,2025-09,16,0.84
+Gujarat,2025-10,16,0.886
+Gujarat,2025-11,16,0.862
+Gujarat,2025-12,16,0.812
+Gujarat,2026-01,15,0.006
+Haryana,2015-05,1,0.007
+Haryana,2015-06,1,0.869
+Haryana,2015-07,1,0.978
+Haryana,2015-08,1,0.867
+Haryana,2015-09,1,0.872
+Haryana,2015-10,1,0.968
+Haryana,2015-11,1,0.974
+Haryana,2015-12,1,0.879
+Haryana,2016-01,1,0.005
+Haryana,2016-01,2,0.51
+Haryana,2016-02,1,0.852
+Haryana,2016-03,1,0.758
+Haryana,2016-04,1,0.658
+Haryana,2016-05,1,0.899
+Haryana,2016-06,1,0.958
+Haryana,2016-07,1,0.815
+Haryana,2016-08,1,0.305
+Haryana,2016-09,1,0.004
+Haryana,2016-10,1,0.012
+Haryana,2016-11,2,0.088
+Haryana,2016-12,2,0.418
+Haryana,2017-01,1,0.007
+Haryana,2017-01,4,0.636
+Haryana,2017-02,4,0.529
+Haryana,2017-03,4,0.667
+Haryana,2017-04,4,0.669
+Haryana,2017-05,4,0.597
+Haryana,2017-06,4,0.553
+Haryana,2017-07,3,0.556
+Haryana,2017-08,3,0.742
+Haryana,2017-09,3,0.709
+Haryana,2017-10,4,0.497
+Haryana,2017-11,4,0.865
+Haryana,2017-12,5,0.338
+Haryana,2018-01,2,0.007
+Haryana,2018-01,5,0.912
+Haryana,2018-02,5,0.787
+Haryana,2018-03,4,0.881
+Haryana,2018-04,4,0.732
+Haryana,2018-05,5,0.849
+Haryana,2018-06,5,0.798
+Haryana,2018-07,4,0.881
+Haryana,2018-08,4,0.855
+Haryana,2018-09,5,0.609
+Haryana,2018-10,5,0.865
+Haryana,2018-11,5,0.919
+Haryana,2018-12,7,0.746
+Haryana,2019-01,7,0.007
+Haryana,2019-01,22,0.725
+Haryana,2019-02,23,0.893
+Haryana,2019-03,23,0.947
+Haryana,2019-04,23,0.927
+Haryana,2019-05,23,0.934
+Haryana,2019-06,23,0.925
+Haryana,2019-07,23,0.911
+Haryana,2019-08,23,0.871
+Haryana,2019-09,23,0.893
+Haryana,2019-10,23,0.907
+Haryana,2019-11,23,0.918
+Haryana,2019-12,23,0.878
+Haryana,2020-01,23,0.006
+Haryana,2020-01,23,0.884
+Haryana,2020-02,23,0.856
+Haryana,2020-03,29,0.797
+Haryana,2020-04,29,0.868
+Haryana,2020-05,29,0.783
+Haryana,2020-06,29,0.803
+Haryana,2020-07,29,0.779
+Haryana,2020-08,29,0.8
+Haryana,2020-09,29,0.809
+Haryana,2020-10,29,0.836
+Haryana,2020-11,29,0.811
+Haryana,2020-12,29,0.834
+Haryana,2021-01,25,0.006
+Haryana,2021-01,27,0.778
+Haryana,2021-02,29,0.814
+Haryana,2021-03,29,0.837
+Haryana,2021-04,29,0.865
+Haryana,2021-05,29,0.806
+Haryana,2021-06,29,0.793
+Haryana,2021-07,29,0.78
+Haryana,2021-08,28,0.766
+Haryana,2021-09,29,0.757
+Haryana,2021-10,29,0.765
+Haryana,2021-11,29,0.812
+Haryana,2021-12,29,0.804
+Haryana,2022-01,29,0.005
+Haryana,2022-01,29,0.814
+Haryana,2022-02,29,0.843
+Haryana,2022-03,29,0.849
+Haryana,2022-04,28,0.777
+Haryana,2022-05,29,0.77
+Haryana,2022-06,28,0.85
+Haryana,2022-07,28,0.74
+Haryana,2022-08,28,0.833
+Haryana,2022-09,28,0.788
+Haryana,2022-10,29,0.85
+Haryana,2022-11,29,0.881
+Haryana,2022-12,29,0.851
+Haryana,2023-01,28,0.007
+Haryana,2023-01,29,0.837
+Haryana,2023-02,29,0.857
+Haryana,2023-03,29,0.796
+Haryana,2023-04,29,0.806
+Haryana,2023-05,29,0.786
+Haryana,2023-06,29,0.77
+Haryana,2023-07,29,0.733
+Haryana,2023-08,29,0.802
+Haryana,2023-09,29,0.84
+Haryana,2023-10,29,0.864
+Haryana,2023-11,29,0.883
+Haryana,2023-12,29,0.894
+Haryana,2024-01,28,0.006
+Haryana,2024-01,29,0.862
+Haryana,2024-02,29,0.826
+Haryana,2024-03,28,0.843
+Haryana,2024-04,28,0.891
+Haryana,2024-05,29,0.851
+Haryana,2024-06,29,0.816
+Haryana,2024-07,29,0.784
+Haryana,2024-08,28,0.802
+Haryana,2024-09,28,0.792
+Haryana,2024-10,29,0.832
+Haryana,2024-11,29,0.856
+Haryana,2024-12,28,0.658
+Haryana,2025-01,6,0.007
+Haryana,2025-01,20,0.558
+Haryana,2025-02,10,0.764
+Haryana,2025-03,9,0.767
+Haryana,2025-04,7,0.306
+Haryana,2025-05,2,0.931
+Haryana,2025-06,3,0.567
+Haryana,2025-07,2,0.682
+Haryana,2025-08,2,0.856
+Haryana,2025-09,14,0.163
+Haryana,2025-10,30,0.64
+Haryana,2025-11,30,0.887
+Haryana,2025-12,30,0.906
+Haryana,2026-01,27,0.007
+Himachal Pradesh,2022-03,1,0.633
+Himachal Pradesh,2022-04,1,0.981
+Himachal Pradesh,2022-05,1,0.96
+Himachal Pradesh,2022-06,1,0.958
+Himachal Pradesh,2022-07,1,0.872
+Himachal Pradesh,2022-08,1,0.922
+Himachal Pradesh,2022-09,1,0.928
+Himachal Pradesh,2022-10,1,0.964
+Himachal Pradesh,2022-11,1,0.972
+Himachal Pradesh,2022-12,1,0.953
+Himachal Pradesh,2023-01,1,0.007
+Himachal Pradesh,2023-01,1,0.762
+Himachal Pradesh,2023-02,1,0.982
+Himachal Pradesh,2023-03,1,0.962
+Himachal Pradesh,2023-04,1,0.953
+Himachal Pradesh,2023-05,1,0.879
+Himachal Pradesh,2023-06,1,0.935
+Himachal Pradesh,2023-07,1,0.898
+Himachal Pradesh,2023-08,1,0.898
+Himachal Pradesh,2023-09,1,0.958
+Himachal Pradesh,2023-10,1,0.872
+Himachal Pradesh,2023-11,1,0.725
+Himachal Pradesh,2023-12,1,0.782
+Himachal Pradesh,2024-01,1,0.007
+Himachal Pradesh,2024-01,1,0.923
+Himachal Pradesh,2024-02,1,0.568
+Himachal Pradesh,2024-03,1,0.948
+Himachal Pradesh,2024-04,1,0.965
+Himachal Pradesh,2024-05,1,0.918
+Himachal Pradesh,2024-06,1,0.943
+Himachal Pradesh,2024-07,1,0.974
+Himachal Pradesh,2024-08,1,0.988
+Himachal Pradesh,2024-09,1,0.957
+Himachal Pradesh,2024-10,1,0.989
+Himachal Pradesh,2024-11,1,0.996
+Himachal Pradesh,2024-12,1,0.985
+Himachal Pradesh,2025-01,1,0.007
+Himachal Pradesh,2025-01,1,0.992
+Himachal Pradesh,2025-02,1,0.978
+Himachal Pradesh,2025-03,1,0.984
+Himachal Pradesh,2025-04,1,0.994
+Himachal Pradesh,2025-05,1,0.742
+Himachal Pradesh,2025-06,1,0.999
+Himachal Pradesh,2025-07,1,0.993
+Himachal Pradesh,2025-08,1,0.993
+Himachal Pradesh,2025-09,1,0.985
+Himachal Pradesh,2025-10,1,0.988
+Himachal Pradesh,2025-11,1,0.994
+Himachal Pradesh,2025-12,1,0.989
+Himachal Pradesh,2026-01,1,0.007
+Jammu and Kashmir,2025-01,1,0.634
+Jammu and Kashmir,2025-02,1,0.427
+Jammu and Kashmir,2025-03,1,0.668
+Jammu and Kashmir,2025-04,1,0.717
+Jammu and Kashmir,2025-05,1,0.546
+Jammu and Kashmir,2025-06,1,0.797
+Jammu and Kashmir,2025-07,1,0.329
+Jammu and Kashmir,2025-08,1,0.628
+Jammu and Kashmir,2025-09,1,0.36
+Jammu and Kashmir,2025-10,1,0.891
+Jammu and Kashmir,2025-11,1,0.911
+Jammu and Kashmir,2025-12,3,0.587
+Jammu and Kashmir,2026-01,3,0.006
+Jharkhand,2019-01,1,0.671
+Jharkhand,2019-02,1,0.905
+Jharkhand,2019-03,1,0.87
+Jharkhand,2019-04,1,0.711
+Jharkhand,2019-08,1,0.013
+Jharkhand,2019-09,1,0.322
+Jharkhand,2019-10,1,0.641
+Jharkhand,2019-11,1,0.844
+Jharkhand,2019-12,1,0.919
+Jharkhand,2020-01,1,0.005
+Jharkhand,2020-01,1,0.938
+Jharkhand,2020-02,1,0.418
+Jharkhand,2020-03,1,0.218
+Jharkhand,2020-04,1,0.926
+Jharkhand,2020-05,1,0.923
+Jharkhand,2020-06,1,0.001
+Jharkhand,2023-02,1,0.036
+Jharkhand,2023-03,1,0.888
+Jharkhand,2023-04,1,0.754
+Jharkhand,2023-05,1,0.367
+Jharkhand,2023-06,1,0.249
+Jharkhand,2023-07,1,0.617
+Jharkhand,2023-08,1,0.676
+Jharkhand,2023-09,1,0.615
+Jharkhand,2023-10,1,0.722
+Jharkhand,2023-11,2,0.431
+Jharkhand,2023-12,3,0.375
+Jharkhand,2024-01,2,0.483
+Jharkhand,2024-02,3,0.513
+Jharkhand,2024-03,3,0.605
+Jharkhand,2024-04,3,0.565
+Jharkhand,2024-05,3,0.261
+Jharkhand,2024-06,3,0.074
+Jharkhand,2024-07,2,0.106
+Jharkhand,2024-08,1,0.009
+Jharkhand,2024-09,1,0.083
+Jharkhand,2024-10,1,0.095
+Jharkhand,2024-11,2,0.191
+Jharkhand,2024-12,2,0.615
+Jharkhand,2025-01,1,0.007
+Jharkhand,2025-01,2,0.363
+Jharkhand,2025-02,2,0.007
+Jharkhand,2025-03,1,0.001
+Jharkhand,2025-05,1,0.001
+Jharkhand,2025-06,1,0.003
+Jharkhand,2025-08,1,0.022
+Jharkhand,2025-09,1,0.015
+Jharkhand,2025-10,1,0.001
+Jharkhand,2025-11,1,0.001
+Jharkhand,2025-12,1,0.028
+Karnataka,2015-03,3,0.215
+Karnataka,2015-04,3,0.664
+Karnataka,2015-05,3,0.791
+Karnataka,2015-06,3,0.799
+Karnataka,2015-07,3,0.88
+Karnataka,2015-08,3,0.879
+Karnataka,2015-09,3,0.786
+Karnataka,2015-10,3,0.771
+Karnataka,2015-11,3,0.764
+Karnataka,2015-12,3,0.909
+Karnataka,2016-01,3,0.007
+Karnataka,2016-01,3,0.891
+Karnataka,2016-02,3,0.946
+Karnataka,2016-03,3,0.9
+Karnataka,2016-04,3,0.902
+Karnataka,2016-05,3,0.741
+Karnataka,2016-06,3,0.307
+Karnataka,2016-07,3,0.22
+Karnataka,2016-08,3,0.267
+Karnataka,2016-09,3,0.508
+Karnataka,2016-10,3,0.701
+Karnataka,2016-11,3,0.572
+Karnataka,2016-12,2,0.784
+Karnataka,2017-01,1,0.007
+Karnataka,2017-01,2,0.662
+Karnataka,2017-02,2,0.758
+Karnataka,2017-03,2,0.938
+Karnataka,2017-04,2,0.752
+Karnataka,2017-05,2,0.739
+Karnataka,2017-06,2,0.831
+Karnataka,2017-07,2,0.56
+Karnataka,2017-08,2,0.839
+Karnataka,2017-09,3,0.585
+Karnataka,2017-10,3,0.659
+Karnataka,2017-11,3,0.704
+Karnataka,2017-12,2,0.405
+Karnataka,2018-01,1,0.003
+Karnataka,2018-01,3,0.759
+Karnataka,2018-02,3,0.949
+Karnataka,2018-03,3,0.533
+Karnataka,2018-04,3,0.337
+Karnataka,2018-05,4,0.576
+Karnataka,2018-06,9,0.423
+Karnataka,2018-07,12,0.833
+Karnataka,2018-08,12,0.804
+Karnataka,2018-09,11,0.805
+Karnataka,2018-10,12,0.693
+Karnataka,2018-11,12,0.715
+Karnataka,2018-12,12,0.814
+Karnataka,2019-01,12,0.007
+Karnataka,2019-01,12,0.846
+Karnataka,2019-02,12,0.764
+Karnataka,2019-03,12,0.805
+Karnataka,2019-04,12,0.756
+Karnataka,2019-05,12,0.745
+Karnataka,2019-06,12,0.714
+Karnataka,2019-07,13,0.751
+Karnataka,2019-08,12,0.649
+Karnataka,2019-09,14,0.706
+Karnataka,2019-10,14,0.785
+Karnataka,2019-11,14,0.903
+Karnataka,2019-12,15,0.836
+Karnataka,2020-01,13,0.006
+Karnataka,2020-01,19,0.799
+Karnataka,2020-02,19,0.65
+Karnataka,2020-03,17,0.671
+Karnataka,2020-04,16,0.679
+Karnataka,2020-05,18,0.675
+Karnataka,2020-06,18,0.702
+Karnataka,2020-07,18,0.692
+Karnataka,2020-08,17,0.715
+Karnataka,2020-09,18,0.695
+Karnataka,2020-10,20,0.71
+Karnataka,2020-11,20,0.76
+Karnataka,2020-12,21,0.737
+Karnataka,2021-01,19,0.006
+Karnataka,2021-01,26,0.689
+Karnataka,2021-02,26,0.755
+Karnataka,2021-03,27,0.717
+Karnataka,2021-04,27,0.735
+Karnataka,2021-05,27,0.65
+Karnataka,2021-06,26,0.735
+Karnataka,2021-07,28,0.686
+Karnataka,2021-08,26,0.737
+Karnataka,2021-09,26,0.745
+Karnataka,2021-10,27,0.681
+Karnataka,2021-11,27,0.705
+Karnataka,2021-12,27,0.69
+Karnataka,2022-01,27,0.006
+Karnataka,2022-01,27,0.824
+Karnataka,2022-02,27,0.855
+Karnataka,2022-03,27,0.834
+Karnataka,2022-04,28,0.804
+Karnataka,2022-05,28,0.772
+Karnataka,2022-06,27,0.693
+Karnataka,2022-07,26,0.798
+Karnataka,2022-08,28,0.722
+Karnataka,2022-09,26,0.836
+Karnataka,2022-10,27,0.813
+Karnataka,2022-11,29,0.801
+Karnataka,2022-12,32,0.788
+Karnataka,2023-01,31,0.006
+Karnataka,2023-01,32,0.808
+Karnataka,2023-02,32,0.826
+Karnataka,2023-03,34,0.808
+Karnataka,2023-04,37,0.778
+Karnataka,2023-05,35,0.777
+Karnataka,2023-06,38,0.676
+Karnataka,2023-07,36,0.664
+Karnataka,2023-08,35,0.715
+Karnataka,2023-09,38,0.671
+Karnataka,2023-10,38,0.775
+Karnataka,2023-11,38,0.832
+Karnataka,2023-12,39,0.827
+Karnataka,2024-01,34,0.007
+Karnataka,2024-01,37,0.828
+Karnataka,2024-02,39,0.772
+Karnataka,2024-03,39,0.836
+Karnataka,2024-04,39,0.744
+Karnataka,2024-05,39,0.742
+Karnataka,2024-06,36,0.795
+Karnataka,2024-07,38,0.789
+Karnataka,2024-08,39,0.786
+Karnataka,2024-09,39,0.838
+Karnataka,2024-10,39,0.787
+Karnataka,2024-11,39,0.843
+Karnataka,2024-12,39,0.793
+Karnataka,2025-01,25,0.007
+Karnataka,2025-01,39,0.781
+Karnataka,2025-02,37,0.728
+Karnataka,2025-03,39,0.631
+Karnataka,2025-04,35,0.691
+Karnataka,2025-05,34,0.662
+Karnataka,2025-06,35,0.696
+Karnataka,2025-07,36,0.711
+Karnataka,2025-08,37,0.652
+Karnataka,2025-09,32,0.7
+Karnataka,2025-10,37,0.631
+Karnataka,2025-11,34,0.727
+Karnataka,2025-12,29,0.737
+Karnataka,2026-01,24,0.007
+Kerala,2017-06,1,0.006
+Kerala,2017-07,1,0.009
+Kerala,2017-08,1,0.009
+Kerala,2017-09,1,0.29
+Kerala,2017-10,1,0.056
+Kerala,2017-11,1,0.953
+Kerala,2017-12,1,0.763
+Kerala,2018-01,1,0.007
+Kerala,2018-01,1,0.895
+Kerala,2018-02,1,0.798
+Kerala,2018-03,1,0.874
+Kerala,2018-04,1,0.875
+Kerala,2018-05,1,0.919
+Kerala,2018-06,1,0.856
+Kerala,2018-07,1,0.829
+Kerala,2018-08,1,0.786
+Kerala,2018-09,1,0.906
+Kerala,2018-10,1,0.886
+Kerala,2018-11,1,0.942
+Kerala,2018-12,1,0.872
+Kerala,2019-01,1,0.007
+Kerala,2019-01,1,0.976
+Kerala,2019-02,1,0.969
+Kerala,2019-03,1,0.797
+Kerala,2019-04,1,0.897
+Kerala,2019-05,2,0.614
+Kerala,2019-06,2,0.418
+Kerala,2019-07,2,0.735
+Kerala,2019-08,2,0.739
+Kerala,2019-09,2,0.744
+Kerala,2019-10,2,0.67
+Kerala,2019-11,2,0.747
+Kerala,2019-12,2,0.598
+Kerala,2020-01,2,0.007
+Kerala,2020-01,5,0.448
+Kerala,2020-02,8,0.761
+Kerala,2020-03,8,0.829
+Kerala,2020-04,8,0.797
+Kerala,2020-05,8,0.822
+Kerala,2020-06,8,0.768
+Kerala,2020-07,8,0.619
+Kerala,2020-08,8,0.595
+Kerala,2020-09,8,0.663
+Kerala,2020-10,9,0.728
+Kerala,2020-11,9,0.896
+Kerala,2020-12,9,0.767
+Kerala,2021-01,9,0.006
+Kerala,2021-01,9,0.805
+Kerala,2021-02,9,0.88
+Kerala,2021-03,9,0.841
+Kerala,2021-04,9,0.869
+Kerala,2021-05,9,0.733
+Kerala,2021-06,9,0.791
+Kerala,2021-07,9,0.729
+Kerala,2021-08,9,0.829
+Kerala,2021-09,9,0.836
+Kerala,2021-10,9,0.665
+Kerala,2021-11,9,0.719
+Kerala,2021-12,9,0.845
+Kerala,2022-01,9,0.006
+Kerala,2022-01,9,0.801
+Kerala,2022-02,9,0.835
+Kerala,2022-03,9,0.75
+Kerala,2022-04,9,0.821
+Kerala,2022-05,9,0.68
+Kerala,2022-06,9,0.641
+Kerala,2022-07,9,0.689
+Kerala,2022-08,9,0.637
+Kerala,2022-09,9,0.72
+Kerala,2022-10,9,0.803
+Kerala,2022-11,9,0.685
+Kerala,2022-12,8,0.801
+Kerala,2023-01,5,0.007
+Kerala,2023-01,8,0.747
+Kerala,2023-02,7,0.855
+Kerala,2023-03,8,0.719
+Kerala,2023-04,7,0.735
+Kerala,2023-05,7,0.76
+Kerala,2023-06,7,0.803
+Kerala,2023-07,7,0.674
+Kerala,2023-08,7,0.756
+Kerala,2023-09,7,0.801
+Kerala,2023-10,7,0.727
+Kerala,2023-11,7,0.705
+Kerala,2023-12,7,0.796
+Kerala,2024-01,3,0.006
+Kerala,2024-01,7,0.69
+Kerala,2024-02,7,0.861
+Kerala,2024-03,7,0.805
+Kerala,2024-04,6,0.874
+Kerala,2024-05,6,0.764
+Kerala,2024-06,6,0.684
+Kerala,2024-07,6,0.664
+Kerala,2024-08,5,0.816
+Kerala,2024-09,5,0.686
+Kerala,2024-10,5,0.772
+Kerala,2024-11,6,0.763
+Kerala,2024-12,6,0.891
+Kerala,2025-01,6,0.007
+Kerala,2025-01,6,0.825
+Kerala,2025-02,6,0.819
+Kerala,2025-03,6,0.848
+Kerala,2025-04,6,0.86
+Kerala,2025-05,6,0.669
+Kerala,2025-06,6,0.681
+Kerala,2025-07,6,0.765
+Kerala,2025-08,6,0.796
+Kerala,2025-09,6,0.778
+Kerala,2025-10,6,0.698
+Kerala,2025-11,6,0.799
+Kerala,2025-12,6,0.786
+Kerala,2026-01,6,0.007
+Madhya Pradesh,2017-11,3,0.288
+Madhya Pradesh,2017-12,4,0.916
+Madhya Pradesh,2018-01,3,0.007
+Madhya Pradesh,2018-01,5,0.941
+Madhya Pradesh,2018-02,6,0.944
+Madhya Pradesh,2018-03,6,0.955
+Madhya Pradesh,2018-04,6,0.959
+Madhya Pradesh,2018-05,6,0.97
+Madhya Pradesh,2018-06,6,0.972
+Madhya Pradesh,2018-07,6,0.949
+Madhya Pradesh,2018-08,6,0.94
+Madhya Pradesh,2018-09,6,0.936
+Madhya Pradesh,2018-10,6,0.842
+Madhya Pradesh,2018-11,6,0.853
+Madhya Pradesh,2018-12,8,0.724
+Madhya Pradesh,2019-01,7,0.007
+Madhya Pradesh,2019-01,8,0.865
+Madhya Pradesh,2019-02,9,0.86
+Madhya Pradesh,2019-03,9,0.879
+Madhya Pradesh,2019-04,9,0.86
+Madhya Pradesh,2019-05,9,0.935
+Madhya Pradesh,2019-06,9,0.828
+Madhya Pradesh,2019-07,9,0.832
+Madhya Pradesh,2019-08,9,0.796
+Madhya Pradesh,2019-09,13,0.637
+Madhya Pradesh,2019-10,13,0.828
+Madhya Pradesh,2019-11,13,0.885
+Madhya Pradesh,2019-12,13,0.847
+Madhya Pradesh,2020-01,12,0.006
+Madhya Pradesh,2020-01,16,0.768
+Madhya Pradesh,2020-02,16,0.789
+Madhya Pradesh,2020-03,16,0.766
+Madhya Pradesh,2020-04,15,0.88
+Madhya Pradesh,2020-05,15,0.929
+Madhya Pradesh,2020-06,15,0.91
+Madhya Pradesh,2020-07,15,0.878
+Madhya Pradesh,2020-08,15,0.862
+Madhya Pradesh,2020-09,15,0.871
+Madhya Pradesh,2020-10,15,0.89
+Madhya Pradesh,2020-11,16,0.862
+Madhya Pradesh,2020-12,16,0.873
+Madhya Pradesh,2021-01,15,0.006
+Madhya Pradesh,2021-01,15,0.898
+Madhya Pradesh,2021-02,16,0.855
+Madhya Pradesh,2021-03,16,0.79
+Madhya Pradesh,2021-04,14,0.899
+Madhya Pradesh,2021-05,14,0.922
+Madhya Pradesh,2021-06,16,0.787
+Madhya Pradesh,2021-07,16,0.801
+Madhya Pradesh,2021-08,16,0.868
+Madhya Pradesh,2021-09,16,0.834
+Madhya Pradesh,2021-10,16,0.802
+Madhya Pradesh,2021-11,16,0.812
+Madhya Pradesh,2021-12,16,0.887
+Madhya Pradesh,2022-01,15,0.006
+Madhya Pradesh,2022-01,15,0.891
+Madhya Pradesh,2022-02,15,0.929
+Madhya Pradesh,2022-03,15,0.881
+Madhya Pradesh,2022-04,14,0.92
+Madhya Pradesh,2022-05,15,0.831
+Madhya Pradesh,2022-06,15,0.743
+Madhya Pradesh,2022-07,16,0.75
+Madhya Pradesh,2022-08,16,0.818
+Madhya Pradesh,2022-09,17,0.824
+Madhya Pradesh,2022-10,18,0.826
+Madhya Pradesh,2022-11,18,0.95
+Madhya Pradesh,2022-12,19,0.903
+Madhya Pradesh,2023-01,18,0.006
+Madhya Pradesh,2023-01,19,0.892
+Madhya Pradesh,2023-02,20,0.867
+Madhya Pradesh,2023-03,21,0.852
+Madhya Pradesh,2023-04,21,0.821
+Madhya Pradesh,2023-05,21,0.824
+Madhya Pradesh,2023-06,22,0.769
+Madhya Pradesh,2023-07,22,0.811
+Madhya Pradesh,2023-08,22,0.909
+Madhya Pradesh,2023-09,22,0.802
+Madhya Pradesh,2023-10,23,0.888
+Madhya Pradesh,2023-11,24,0.887
+Madhya Pradesh,2023-12,27,0.843
+Madhya Pradesh,2024-01,25,0.006
+Madhya Pradesh,2024-01,27,0.906
+Madhya Pradesh,2024-02,26,0.889
+Madhya Pradesh,2024-03,25,0.899
+Madhya Pradesh,2024-04,26,0.885
+Madhya Pradesh,2024-05,26,0.874
+Madhya Pradesh,2024-06,27,0.848
+Madhya Pradesh,2024-07,27,0.779
+Madhya Pradesh,2024-08,27,0.822
+Madhya Pradesh,2024-09,28,0.803
+Madhya Pradesh,2024-10,28,0.856
+Madhya Pradesh,2024-11,28,0.878
+Madhya Pradesh,2024-12,28,0.895
+Madhya Pradesh,2025-01,24,0.007
+Madhya Pradesh,2025-01,28,0.857
+Madhya Pradesh,2025-02,29,0.844
+Madhya Pradesh,2025-03,27,0.912
+Madhya Pradesh,2025-04,28,0.869
+Madhya Pradesh,2025-05,28,0.798
+Madhya Pradesh,2025-06,27,0.787
+Madhya Pradesh,2025-07,26,0.789
+Madhya Pradesh,2025-08,26,0.81
+Madhya Pradesh,2025-09,24,0.833
+Madhya Pradesh,2025-10,24,0.892
+Madhya Pradesh,2025-11,25,0.867
+Madhya Pradesh,2025-12,26,0.887
+Madhya Pradesh,2026-01,24,0.006
+Maharashtra,2015-01,2,0.991
+Maharashtra,2015-02,2,0.966
+Maharashtra,2015-03,2,0.93
+Maharashtra,2015-04,2,0.924
+Maharashtra,2015-05,2,0.894
+Maharashtra,2015-06,3,0.781
+Maharashtra,2015-07,3,0.979
+Maharashtra,2015-08,3,0.972
+Maharashtra,2015-09,3,0.94
+Maharashtra,2015-10,3,0.986
+Maharashtra,2015-11,3,0.951
+Maharashtra,2015-12,3,0.965
+Maharashtra,2016-01,3,0.007
+Maharashtra,2016-01,4,0.962
+Maharashtra,2016-02,4,0.974
+Maharashtra,2016-03,4,0.973
+Maharashtra,2016-04,5,0.669
+Maharashtra,2016-05,4,0.915
+Maharashtra,2016-06,4,0.824
+Maharashtra,2016-07,4,0.884
+Maharashtra,2016-08,6,0.573
+Maharashtra,2016-09,6,0.913
+Maharashtra,2016-10,6,0.868
+Maharashtra,2016-11,6,0.915
+Maharashtra,2016-12,6,0.845
+Maharashtra,2017-01,4,0.006
+Maharashtra,2017-01,4,0.942
+Maharashtra,2017-02,6,0.805
+Maharashtra,2017-03,5,0.871
+Maharashtra,2017-04,6,0.853
+Maharashtra,2017-05,6,0.915
+Maharashtra,2017-06,6,0.824
+Maharashtra,2017-07,6,0.91
+Maharashtra,2017-08,6,0.797
+Maharashtra,2017-09,7,0.565
+Maharashtra,2017-10,7,0.44
+Maharashtra,2017-11,6,0.78
+Maharashtra,2017-12,4,0.467
+Maharashtra,2018-01,2,0.007
+Maharashtra,2018-01,3,0.569
+Maharashtra,2018-02,2,0.95
+Maharashtra,2018-03,3,0.677
+Maharashtra,2018-04,4,0.527
+Maharashtra,2018-05,4,0.67
+Maharashtra,2018-06,5,0.744
+Maharashtra,2018-07,5,0.804
+Maharashtra,2018-08,5,0.923
+Maharashtra,2018-09,5,0.849
+Maharashtra,2018-10,5,0.873
+Maharashtra,2018-11,5,0.921
+Maharashtra,2018-12,5,0.934
+Maharashtra,2019-01,5,0.007
+Maharashtra,2019-01,5,0.908
+Maharashtra,2019-02,5,0.975
+Maharashtra,2019-03,5,0.962
+Maharashtra,2019-04,5,0.872
+Maharashtra,2019-05,5,0.933
+Maharashtra,2019-06,17,0.651
+Maharashtra,2019-07,17,0.802
+Maharashtra,2019-08,16,0.846
+Maharashtra,2019-09,17,0.795
+Maharashtra,2019-10,17,0.882
+Maharashtra,2019-11,17,0.937
+Maharashtra,2019-12,18,0.906
+Maharashtra,2020-01,18,0.006
+Maharashtra,2020-01,18,0.849
+Maharashtra,2020-02,17,0.886
+Maharashtra,2020-03,18,0.842
+Maharashtra,2020-04,18,0.64
+Maharashtra,2020-05,18,0.76
+Maharashtra,2020-06,17,0.734
+Maharashtra,2020-07,17,0.679
+Maharashtra,2020-08,17,0.638
+Maharashtra,2020-09,18,0.719
+Maharashtra,2020-10,18,0.696
+Maharashtra,2020-11,28,0.651
+Maharashtra,2020-12,32,0.756
+Maharashtra,2021-01,26,0.006
+Maharashtra,2021-01,34,0.779
+Maharashtra,2021-02,35,0.817
+Maharashtra,2021-03,34,0.814
+Maharashtra,2021-04,35,0.754
+Maharashtra,2021-05,35,0.67
+Maharashtra,2021-06,35,0.693
+Maharashtra,2021-07,34,0.696
+Maharashtra,2021-08,35,0.743
+Maharashtra,2021-09,34,0.706
+Maharashtra,2021-10,32,0.749
+Maharashtra,2021-11,32,0.704
+Maharashtra,2021-12,32,0.753
+Maharashtra,2022-01,25,0.006
+Maharashtra,2022-01,30,0.763
+Maharashtra,2022-02,33,0.839
+Maharashtra,2022-03,34,0.847
+Maharashtra,2022-04,33,0.82
+Maharashtra,2022-05,34,0.772
+Maharashtra,2022-06,32,0.756
+Maharashtra,2022-07,31,0.581
+Maharashtra,2022-08,27,0.654
+Maharashtra,2022-09,27,0.702
+Maharashtra,2022-10,27,0.804
+Maharashtra,2022-11,26,0.804
+Maharashtra,2022-12,26,0.753
+Maharashtra,2023-01,22,0.007
+Maharashtra,2023-01,33,0.719
+Maharashtra,2023-02,33,0.716
+Maharashtra,2023-03,29,0.785
+Maharashtra,2023-04,34,0.682
+Maharashtra,2023-05,40,0.639
+Maharashtra,2023-06,66,0.598
+Maharashtra,2023-07,70,0.747
+Maharashtra,2023-08,75,0.793
+Maharashtra,2023-09,75,0.838
+Maharashtra,2023-10,77,0.865
+Maharashtra,2023-11,82,0.863
+Maharashtra,2023-12,82,0.875
+Maharashtra,2024-01,72,0.007
+Maharashtra,2024-01,82,0.867
+Maharashtra,2024-02,81,0.885
+Maharashtra,2024-03,79,0.876
+Maharashtra,2024-04,82,0.855
+Maharashtra,2024-05,82,0.838
+Maharashtra,2024-06,83,0.801
+Maharashtra,2024-07,83,0.829
+Maharashtra,2024-08,81,0.844
+Maharashtra,2024-09,80,0.859
+Maharashtra,2024-10,81,0.857
+Maharashtra,2024-11,83,0.895
+Maharashtra,2024-12,82,0.892
+Maharashtra,2025-01,66,0.007
+Maharashtra,2025-01,86,0.831
+Maharashtra,2025-02,84,0.856
+Maharashtra,2025-03,86,0.848
+Maharashtra,2025-04,86,0.817
+Maharashtra,2025-05,85,0.812
+Maharashtra,2025-06,82,0.839
+Maharashtra,2025-07,82,0.874
+Maharashtra,2025-08,83,0.832
+Maharashtra,2025-09,81,0.834
+Maharashtra,2025-10,83,0.851
+Maharashtra,2025-11,83,0.859
+Maharashtra,2025-12,83,0.844
+Maharashtra,2026-01,75,0.006
+Manipur,2022-04,2,0.331
+Manipur,2022-05,2,0.817
+Manipur,2022-06,2,0.828
+Manipur,2022-07,2,0.818
+Manipur,2022-08,2,0.942
+Manipur,2022-09,2,0.926
+Manipur,2022-10,2,0.575
+Manipur,2022-11,2,0.76
+Manipur,2022-12,2,0.886
+Manipur,2023-01,2,0.007
+Manipur,2023-01,2,0.882
+Manipur,2023-02,2,0.933
+Manipur,2023-03,2,0.681
+Manipur,2023-04,2,0.781
+Manipur,2023-05,2,0.352
+Manipur,2023-09,1,0.133
+Manipur,2023-10,2,0.581
+Manipur,2023-11,2,0.772
+Manipur,2023-12,2,0.879
+Manipur,2024-01,2,0.007
+Manipur,2024-01,2,0.818
+Manipur,2024-02,2,0.873
+Manipur,2024-03,2,0.807
+Manipur,2024-04,2,0.756
+Manipur,2024-05,2,0.765
+Manipur,2024-06,2,0.631
+Manipur,2024-07,2,0.36
+Manipur,2024-08,2,0.415
+Manipur,2024-09,2,0.431
+Manipur,2024-10,2,0.388
+Manipur,2024-11,1,0.431
+Manipur,2024-12,1,0.711
+Manipur,2025-01,1,0.796
+Manipur,2025-02,1,0.58
+Manipur,2025-03,1,0.559
+Manipur,2025-04,1,0.672
+Manipur,2025-05,1,0.843
+Manipur,2025-06,1,0.399
+Manipur,2025-07,1,0.407
+Meghalaya,2019-08,1,0.118
+Meghalaya,2019-09,1,0.728
+Meghalaya,2019-10,1,0.532
+Meghalaya,2019-11,1,0.057
+Meghalaya,2020-01,1,0.575
+Meghalaya,2020-02,1,0.828
+Meghalaya,2020-03,1,0.929
+Meghalaya,2020-04,1,0.115
+Meghalaya,2020-05,1,0.874
+Meghalaya,2020-06,1,0.685
+Meghalaya,2020-07,1,0.554
+Meghalaya,2020-08,1,0.656
+Meghalaya,2020-09,1,0.668
+Meghalaya,2020-10,1,0.633
+Meghalaya,2020-11,1,0.738
+Meghalaya,2020-12,1,0.556
+Meghalaya,2021-01,1,0.157
+Meghalaya,2021-02,1,0.318
+Meghalaya,2021-03,1,0.594
+Meghalaya,2021-04,1,0.221
+Meghalaya,2021-05,1,0.238
+Meghalaya,2021-07,1,0.168
+Meghalaya,2021-08,1,0.512
+Meghalaya,2021-09,1,0.149
+Meghalaya,2021-10,1,0.3
+Meghalaya,2021-11,1,0.399
+Meghalaya,2021-12,1,0.606
+Meghalaya,2022-01,1,0.005
+Meghalaya,2022-01,1,0.597
+Meghalaya,2022-02,1,0.485
+Meghalaya,2022-03,1,0.589
+Meghalaya,2022-04,2,0.469
+Meghalaya,2022-05,2,0.679
+Meghalaya,2022-06,2,0.444
+Meghalaya,2022-07,2,0.593
+Meghalaya,2022-08,2,0.742
+Meghalaya,2022-09,2,0.701
+Meghalaya,2022-10,2,0.491
+Meghalaya,2022-11,2,0.343
+Meghalaya,2022-12,1,0.942
+Meghalaya,2023-01,1,0.007
+Meghalaya,2023-01,1,0.941
+Meghalaya,2023-02,1,0.951
+Meghalaya,2023-03,1,0.737
+Meghalaya,2023-04,1,0.475
+Meghalaya,2023-05,1,0.442
+Meghalaya,2023-06,1,0.7
+Meghalaya,2023-07,2,0.482
+Meghalaya,2023-08,2,0.868
+Meghalaya,2023-09,2,0.84
+Meghalaya,2023-10,2,0.739
+Meghalaya,2023-11,2,0.781
+Meghalaya,2023-12,2,0.63
+Meghalaya,2024-01,1,0.007
+Meghalaya,2024-01,1,0.944
+Meghalaya,2024-02,1,0.932
+Meghalaya,2024-03,1,0.81
+Meghalaya,2024-04,1,0.764
+Meghalaya,2024-05,1,0.255
+Meghalaya,2024-06,1,0.131
+Meghalaya,2024-07,1,0.331
+Meghalaya,2024-08,1,0.401
+Meghalaya,2024-09,1,0.299
+Meghalaya,2024-10,2,0.27
+Meghalaya,2024-11,2,0.343
+Meghalaya,2024-12,2,0.144
+Meghalaya,2025-01,2,0.144
+Meghalaya,2025-02,2,0.19
+Meghalaya,2025-03,2,0.796
+Meghalaya,2025-04,2,0.579
+Meghalaya,2025-05,2,0.579
+Meghalaya,2025-06,1,0.944
+Meghalaya,2025-07,1,0.612
+Meghalaya,2025-08,1,0.563
+Meghalaya,2025-09,2,0.354
+Meghalaya,2025-10,2,0.428
+Meghalaya,2025-11,2,0.069
+Meghalaya,2025-12,2,0.173
+Meghalaya,2026-01,1,0.005
+Mizoram,2020-03,1,0.598
+Mizoram,2020-04,1,0.668
+Mizoram,2020-05,1,0.755
+Mizoram,2020-06,1,0.425
+Mizoram,2020-07,1,0.091
+Mizoram,2020-08,1,0.164
+Mizoram,2020-09,1,0.143
+Mizoram,2020-10,1,0.004
+Mizoram,2020-11,1,0.44
+Mizoram,2020-12,1,0.823
+Mizoram,2021-01,1,0.007
+Mizoram,2021-01,1,0.946
+Mizoram,2021-02,1,0.957
+Mizoram,2021-03,1,0.926
+Mizoram,2021-04,1,0.983
+Mizoram,2021-05,1,0.716
+Mizoram,2021-06,1,0.418
+Mizoram,2021-07,1,0.255
+Mizoram,2021-08,1,0.376
+Mizoram,2021-09,1,0.201
+Mizoram,2021-10,1,0.571
+Mizoram,2021-11,1,0.692
+Mizoram,2021-12,1,0.504
+Mizoram,2022-01,1,0.007
+Mizoram,2022-01,1,0.555
+Mizoram,2022-02,1,0.823
+Mizoram,2022-03,1,0.991
+Mizoram,2022-04,1,0.9
+Mizoram,2022-05,1,0.88
+Mizoram,2022-06,1,0.511
+Mizoram,2022-07,1,0.255
+Mizoram,2022-08,1,0.379
+Mizoram,2022-09,1,0.244
+Mizoram,2022-10,1,0.613
+Mizoram,2022-11,1,0.343
+Mizoram,2022-12,1,0.642
+Mizoram,2023-01,1,0.004
+Mizoram,2023-01,1,0.86
+Mizoram,2023-02,1,0.698
+Mizoram,2023-03,1,0.915
+Mizoram,2023-04,1,0.801
+Mizoram,2023-05,1,0.805
+Mizoram,2023-06,1,0.517
+Mizoram,2023-07,1,0.179
+Mizoram,2023-08,1,0.079
+Mizoram,2023-09,1,0.119
+Mizoram,2023-10,1,0.48
+Mizoram,2023-11,1,0.629
+Mizoram,2023-12,1,0.923
+Mizoram,2024-01,1,0.007
+Mizoram,2024-01,1,0.938
+Mizoram,2024-02,1,0.989
+Mizoram,2024-03,1,0.987
+Mizoram,2024-04,1,0.919
+Mizoram,2024-05,1,0.886
+Mizoram,2024-06,1,0.807
+Mizoram,2024-07,1,0.394
+Mizoram,2024-08,1,0.11
+Mizoram,2024-09,1,0.386
+Mizoram,2024-10,1,0.722
+Mizoram,2024-11,1,0.45
+Mizoram,2024-12,1,0.312
+Mizoram,2025-01,1,0.656
+Mizoram,2025-02,1,0.914
+Mizoram,2025-03,1,0.954
+Mizoram,2025-04,1,0.697
+Mizoram,2025-05,1,0.359
+Mizoram,2025-06,1,0.332
+Mizoram,2025-07,1,0.245
+Mizoram,2025-08,1,0.113
+Mizoram,2025-11,1,0.093
+Mizoram,2025-12,1,0.901
+Mizoram,2026-01,1,0.007
+Nagaland,2025-01,1,0.711
+Nagaland,2025-02,1,0.679
+Nagaland,2025-03,1,0.652
+Nagaland,2025-04,1,0.542
+Nagaland,2025-05,1,0.644
+Nagaland,2025-06,1,0.785
+Nagaland,2025-07,1,0.778
+Nagaland,2025-08,1,0.86
+Nagaland,2025-09,1,0.817
+Nagaland,2025-10,1,0.892
+Nagaland,2025-11,1,0.857
+Nagaland,2025-12,1,0.949
+Nagaland,2026-01,1,0.007
+Odisha,2017-12,1,0.313
+Odisha,2018-02,2,0.763
+Odisha,2018-03,2,0.799
+Odisha,2018-04,2,0.652
+Odisha,2018-05,2,0.848
+Odisha,2018-06,2,0.696
+Odisha,2018-07,2,0.892
+Odisha,2018-08,2,0.651
+Odisha,2018-10,2,0.234
+Odisha,2018-11,2,0.681
+Odisha,2018-12,2,0.679
+Odisha,2019-01,2,0.007
+Odisha,2019-01,2,0.925
+Odisha,2019-02,2,0.871
+Odisha,2019-03,2,0.751
+Odisha,2019-04,2,0.531
+Odisha,2019-05,2,0.712
+Odisha,2019-06,2,0.555
+Odisha,2019-07,2,0.683
+Odisha,2019-08,2,0.467
+Odisha,2019-09,2,0.566
+Odisha,2019-10,2,0.349
+Odisha,2019-11,2,0.704
+Odisha,2019-12,2,0.924
+Odisha,2020-01,2,0.007
+Odisha,2020-01,2,0.783
+Odisha,2020-02,2,0.884
+Odisha,2020-03,2,0.495
+Odisha,2020-04,2,0.51
+Odisha,2020-05,2,0.476
+Odisha,2020-06,2,0.321
+Odisha,2020-07,2,0.654
+Odisha,2020-08,2,0.7
+Odisha,2020-09,2,0.755
+Odisha,2020-10,2,0.81
+Odisha,2020-11,2,0.919
+Odisha,2020-12,2,0.933
+Odisha,2021-01,2,0.007
+Odisha,2021-01,2,0.903
+Odisha,2021-02,2,0.647
+Odisha,2021-03,2,0.787
+Odisha,2021-04,2,0.778
+Odisha,2021-05,2,0.53
+Odisha,2021-06,2,0.601
+Odisha,2021-07,2,0.557
+Odisha,2021-08,2,0.659
+Odisha,2021-09,2,0.268
+Odisha,2021-10,2,0.077
+Odisha,2021-11,2,0.456
+Odisha,2021-12,2,0.436
+Odisha,2022-01,1,0.007
+Odisha,2022-01,2,0.443
+Odisha,2022-02,2,0.438
+Odisha,2022-03,2,0.507
+Odisha,2022-04,2,0.465
+Odisha,2022-05,2,0.314
+Odisha,2022-06,2,0.327
+Odisha,2022-07,2,0.294
+Odisha,2022-08,2,0.21
+Odisha,2022-09,2,0.081
+Odisha,2022-10,1,0.21
+Odisha,2022-11,10,0.162
+Odisha,2022-12,10,0.843
+Odisha,2023-01,10,0.006
+Odisha,2023-01,12,0.791
+Odisha,2023-02,12,0.845
+Odisha,2023-03,12,0.838
+Odisha,2023-04,12,0.792
+Odisha,2023-05,12,0.755
+Odisha,2023-06,12,0.743
+Odisha,2023-07,11,0.67
+Odisha,2023-08,10,0.717
+Odisha,2023-09,11,0.771
+Odisha,2023-10,18,0.568
+Odisha,2023-11,18,0.913
+Odisha,2023-12,19,0.891
+Odisha,2024-01,16,0.006
+Odisha,2024-01,19,0.918
+Odisha,2024-02,19,0.898
+Odisha,2024-03,19,0.902
+Odisha,2024-04,19,0.87
+Odisha,2024-05,19,0.867
+Odisha,2024-06,19,0.857
+Odisha,2024-07,19,0.8
+Odisha,2024-08,19,0.834
+Odisha,2024-09,19,0.877
+Odisha,2024-10,19,0.928
+Odisha,2024-11,19,0.907
+Odisha,2024-12,19,0.915
+Odisha,2025-01,16,0.007
+Odisha,2025-01,19,0.918
+Odisha,2025-02,19,0.917
+Odisha,2025-03,19,0.852
+Odisha,2025-04,19,0.873
+Odisha,2025-05,19,0.878
+Odisha,2025-06,19,0.809
+Odisha,2025-07,19,0.82
+Odisha,2025-08,19,0.796
+Odisha,2025-09,19,0.778
+Odisha,2025-10,19,0.749
+Odisha,2025-11,19,0.771
+Odisha,2025-12,19,0.828
+Odisha,2026-01,18,0.006
+Puducherry,2021-01,1,0.601
+Puducherry,2021-02,1,0.967
+Puducherry,2021-03,1,0.996
+Puducherry,2021-04,1,0.938
+Puducherry,2021-05,1,0.792
+Puducherry,2021-06,1,0.922
+Puducherry,2021-07,1,0.765
+Puducherry,2021-08,1,0.905
+Puducherry,2021-09,1,0.904
+Puducherry,2021-10,1,0.82
+Puducherry,2021-11,1,0.742
+Puducherry,2021-12,1,0.969
+Puducherry,2022-01,1,0.007
+Puducherry,2022-01,1,0.949
+Puducherry,2022-02,1,0.994
+Puducherry,2022-03,1,0.974
+Puducherry,2022-04,1,0.743
+Puducherry,2022-05,1,0.95
+Puducherry,2022-06,1,0.924
+Puducherry,2022-07,1,0.937
+Puducherry,2022-08,1,0.87
+Puducherry,2022-09,1,0.953
+Puducherry,2022-10,1,0.929
+Puducherry,2022-11,1,0.919
+Puducherry,2022-12,1,0.923
+Puducherry,2023-01,1,0.007
+Puducherry,2023-01,1,0.987
+Puducherry,2023-02,1,0.985
+Puducherry,2023-03,1,0.944
+Puducherry,2023-04,1,0.925
+Puducherry,2023-05,1,0.946
+Puducherry,2023-06,1,0.919
+Puducherry,2023-07,1,0.94
+Puducherry,2023-08,1,0.965
+Puducherry,2023-09,1,0.911
+Puducherry,2023-10,1,0.902
+Puducherry,2023-11,1,0.792
+Puducherry,2023-12,1,0.935
+Puducherry,2024-01,1,0.007
+Puducherry,2024-01,1,0.888
+Puducherry,2024-02,1,0.97
+Puducherry,2024-03,1,0.962
+Puducherry,2024-04,1,0.751
+Puducherry,2024-05,1,0.853
+Puducherry,2024-06,1,0.692
+Puducherry,2024-07,1,0.845
+Puducherry,2024-08,1,0.793
+Puducherry,2024-09,1,0.901
+Puducherry,2024-10,1,0.734
+Puducherry,2024-11,1,0.808
+Puducherry,2024-12,1,0.898
+Puducherry,2025-01,1,0.007
+Puducherry,2025-01,1,0.962
+Puducherry,2025-02,1,0.985
+Puducherry,2025-03,1,0.866
+Puducherry,2025-04,1,0.924
+Puducherry,2025-05,1,0.618
+Puducherry,2025-06,1,0.928
+Puducherry,2025-07,1,0.94
+Puducherry,2025-08,1,0.899
+Puducherry,2025-10,1,0.64
+Puducherry,2025-11,1,0.879
+Puducherry,2025-12,1,0.968
+Puducherry,2026-01,1,0.007
+Punjab,2017-03,1,0.938
+Punjab,2017-04,1,0.721
+Punjab,2017-05,1,0.724
+Punjab,2017-06,1,0.825
+Punjab,2017-07,1,0.718
+Punjab,2017-08,3,0.462
+Punjab,2017-09,3,0.766
+Punjab,2017-10,3,0.341
+Punjab,2017-11,3,0.943
+Punjab,2017-12,3,0.952
+Punjab,2018-01,3,0.006
+Punjab,2018-01,3,0.867
+Punjab,2018-02,5,0.816
+Punjab,2018-03,5,0.698
+Punjab,2018-04,7,0.603
+Punjab,2018-05,7,0.869
+Punjab,2018-06,8,0.834
+Punjab,2018-07,8,0.848
+Punjab,2018-08,7,0.892
+Punjab,2018-09,7,0.909
+Punjab,2018-10,8,0.81
+Punjab,2018-11,8,0.894
+Punjab,2018-12,8,0.937
+Punjab,2019-01,8,0.006
+Punjab,2019-01,8,0.893
+Punjab,2019-02,8,0.945
+Punjab,2019-03,8,0.937
+Punjab,2019-04,8,0.914
+Punjab,2019-05,8,0.877
+Punjab,2019-06,8,0.894
+Punjab,2019-07,8,0.922
+Punjab,2019-08,8,0.881
+Punjab,2019-09,8,0.922
+Punjab,2019-10,8,0.94
+Punjab,2019-11,8,0.929
+Punjab,2019-12,8,0.932
+Punjab,2020-01,8,0.007
+Punjab,2020-01,8,0.929
+Punjab,2020-02,8,0.94
+Punjab,2020-03,8,0.945
+Punjab,2020-04,8,0.873
+Punjab,2020-05,8,0.912
+Punjab,2020-06,8,0.886
+Punjab,2020-07,8,0.869
+Punjab,2020-08,8,0.813
+Punjab,2020-09,8,0.779
+Punjab,2020-10,8,0.902
+Punjab,2020-11,8,0.856
+Punjab,2020-12,8,0.845
+Punjab,2021-01,8,0.005
+Punjab,2021-01,8,0.808
+Punjab,2021-02,8,0.758
+Punjab,2021-03,8,0.753
+Punjab,2021-04,8,0.701
+Punjab,2021-05,7,0.834
+Punjab,2021-06,7,0.812
+Punjab,2021-07,7,0.841
+Punjab,2021-08,7,0.839
+Punjab,2021-09,7,0.82
+Punjab,2021-10,7,0.811
+Punjab,2021-11,8,0.823
+Punjab,2021-12,8,0.901
+Punjab,2022-01,8,0.006
+Punjab,2022-01,8,0.926
+Punjab,2022-02,8,0.945
+Punjab,2022-03,8,0.946
+Punjab,2022-04,8,0.929
+Punjab,2022-05,8,0.937
+Punjab,2022-06,8,0.911
+Punjab,2022-07,8,0.917
+Punjab,2022-08,8,0.913
+Punjab,2022-09,8,0.903
+Punjab,2022-10,8,0.915
+Punjab,2022-11,8,0.922
+Punjab,2022-12,8,0.928
+Punjab,2023-01,8,0.007
+Punjab,2023-01,8,0.902
+Punjab,2023-02,8,0.94
+Punjab,2023-03,8,0.942
+Punjab,2023-04,8,0.938
+Punjab,2023-05,8,0.897
+Punjab,2023-06,8,0.891
+Punjab,2023-07,8,0.889
+Punjab,2023-08,8,0.901
+Punjab,2023-09,8,0.872
+Punjab,2023-10,8,0.907
+Punjab,2023-11,8,0.923
+Punjab,2023-12,8,0.944
+Punjab,2024-01,8,0.007
+Punjab,2024-01,8,0.902
+Punjab,2024-02,8,0.937
+Punjab,2024-03,8,0.901
+Punjab,2024-04,8,0.909
+Punjab,2024-05,8,0.948
+Punjab,2024-06,8,0.877
+Punjab,2024-07,8,0.896
+Punjab,2024-08,8,0.928
+Punjab,2024-09,8,0.916
+Punjab,2024-10,8,0.943
+Punjab,2024-11,8,0.937
+Punjab,2024-12,8,0.939
+Punjab,2025-01,7,0.007
+Punjab,2025-01,8,0.912
+Punjab,2025-02,8,0.903
+Punjab,2025-03,8,0.922
+Punjab,2025-04,8,0.832
+Punjab,2025-05,7,0.904
+Punjab,2025-06,7,0.95
+Punjab,2025-07,8,0.898
+Punjab,2025-08,8,0.89
+Punjab,2025-09,8,0.948
+Punjab,2025-10,8,0.961
+Punjab,2025-11,8,0.906
+Punjab,2025-12,8,0.905
+Punjab,2026-01,8,0.007
+Rajasthan,2015-11,1,0.315
+Rajasthan,2015-12,1,0.862
+Rajasthan,2016-01,1,0.007
+Rajasthan,2016-01,1,0.816
+Rajasthan,2016-02,1,0.941
+Rajasthan,2016-03,1,0.907
+Rajasthan,2016-04,1,0.867
+Rajasthan,2016-05,1,0.817
+Rajasthan,2016-06,1,0.669
+Rajasthan,2016-07,1,0.599
+Rajasthan,2016-08,1,0.148
+Rajasthan,2017-01,1,0.001
+Rajasthan,2017-05,1,0.001
+Rajasthan,2017-07,1,0.647
+Rajasthan,2017-08,2,0.269
+Rajasthan,2017-09,2,0.55
+Rajasthan,2017-10,10,0.285
+Rajasthan,2017-11,10,0.839
+Rajasthan,2017-12,5,0.211
+Rajasthan,2018-01,2,0.007
+Rajasthan,2018-01,10,0.825
+Rajasthan,2018-02,10,0.529
+Rajasthan,2018-03,10,0.767
+Rajasthan,2018-04,10,0.764
+Rajasthan,2018-05,10,0.799
+Rajasthan,2018-06,10,0.814
+Rajasthan,2018-07,10,0.761
+Rajasthan,2018-08,10,0.88
+Rajasthan,2018-09,10,0.909
+Rajasthan,2018-10,10,0.838
+Rajasthan,2018-11,10,0.912
+Rajasthan,2018-12,10,0.922
+Rajasthan,2019-01,10,0.006
+Rajasthan,2019-01,10,0.914
+Rajasthan,2019-02,10,0.923
+Rajasthan,2019-03,10,0.927
+Rajasthan,2019-04,10,0.912
+Rajasthan,2019-05,10,0.927
+Rajasthan,2019-06,10,0.935
+Rajasthan,2019-07,10,0.911
+Rajasthan,2019-08,10,0.904
+Rajasthan,2019-09,10,0.903
+Rajasthan,2019-10,10,0.902
+Rajasthan,2019-11,10,0.918
+Rajasthan,2019-12,10,0.919
+Rajasthan,2020-01,10,0.007
+Rajasthan,2020-01,10,0.913
+Rajasthan,2020-02,10,0.923
+Rajasthan,2020-03,10,0.895
+Rajasthan,2020-04,10,0.933
+Rajasthan,2020-05,10,0.905
+Rajasthan,2020-06,10,0.886
+Rajasthan,2020-07,10,0.884
+Rajasthan,2020-08,10,0.861
+Rajasthan,2020-09,10,0.891
+Rajasthan,2020-10,10,0.881
+Rajasthan,2020-11,10,0.888
+Rajasthan,2020-12,10,0.867
+Rajasthan,2021-01,10,0.006
+Rajasthan,2021-01,10,0.876
+Rajasthan,2021-02,10,0.891
+Rajasthan,2021-03,10,0.879
+Rajasthan,2021-04,10,0.879
+Rajasthan,2021-05,10,0.849
+Rajasthan,2021-06,10,0.823
+Rajasthan,2021-07,10,0.81
+Rajasthan,2021-08,10,0.822
+Rajasthan,2021-09,10,0.782
+Rajasthan,2021-10,10,0.825
+Rajasthan,2021-11,10,0.846
+Rajasthan,2021-12,10,0.838
+Rajasthan,2022-01,8,0.007
+Rajasthan,2022-01,10,0.809
+Rajasthan,2022-02,10,0.854
+Rajasthan,2022-03,10,0.857
+Rajasthan,2022-04,10,0.82
+Rajasthan,2022-05,10,0.858
+Rajasthan,2022-06,10,0.878
+Rajasthan,2022-07,10,0.855
+Rajasthan,2022-08,10,0.839
+Rajasthan,2022-09,10,0.757
+Rajasthan,2022-10,10,0.87
+Rajasthan,2022-11,10,0.912
+Rajasthan,2022-12,10,0.908
+Rajasthan,2023-01,10,0.007
+Rajasthan,2023-01,10,0.872
+Rajasthan,2023-02,24,0.643
+Rajasthan,2023-03,35,0.777
+Rajasthan,2023-04,39,0.807
+Rajasthan,2023-05,42,0.819
+Rajasthan,2023-06,43,0.851
+Rajasthan,2023-07,43,0.848
+Rajasthan,2023-08,43,0.93
+Rajasthan,2023-09,45,0.899
+Rajasthan,2023-10,45,0.926
+Rajasthan,2023-11,45,0.945
+Rajasthan,2023-12,45,0.933
+Rajasthan,2024-01,43,0.007
+Rajasthan,2024-01,45,0.922
+Rajasthan,2024-02,46,0.917
+Rajasthan,2024-03,46,0.933
+Rajasthan,2024-04,46,0.922
+Rajasthan,2024-05,46,0.898
+Rajasthan,2024-06,46,0.876
+Rajasthan,2024-07,46,0.852
+Rajasthan,2024-08,46,0.846
+Rajasthan,2024-09,46,0.896
+Rajasthan,2024-10,46,0.943
+Rajasthan,2024-11,46,0.958
+Rajasthan,2024-12,46,0.949
+Rajasthan,2025-01,43,0.007
+Rajasthan,2025-01,46,0.93
+Rajasthan,2025-02,46,0.944
+Rajasthan,2025-03,46,0.948
+Rajasthan,2025-04,46,0.944
+Rajasthan,2025-05,46,0.938
+Rajasthan,2025-06,46,0.926
+Rajasthan,2025-07,46,0.921
+Rajasthan,2025-08,46,0.921
+Rajasthan,2025-09,46,0.933
+Rajasthan,2025-10,46,0.933
+Rajasthan,2025-11,46,0.961
+Rajasthan,2025-12,46,0.96
+Rajasthan,2026-01,45,0.007
+Sikkim,2022-04,1,0.143
+Sikkim,2022-05,1,0.503
+Sikkim,2022-06,1,0.493
+Sikkim,2022-07,1,0.448
+Sikkim,2022-08,1,0.422
+Sikkim,2022-09,1,0.7
+Sikkim,2022-10,1,0.816
+Sikkim,2022-11,1,0.968
+Sikkim,2022-12,1,0.931
+Sikkim,2023-01,1,0.007
+Sikkim,2023-01,1,0.989
+Sikkim,2023-02,1,0.589
+Sikkim,2023-03,1,0.698
+Sikkim,2023-04,1,0.975
+Sikkim,2023-05,1,0.712
+Sikkim,2023-06,1,0.432
+Sikkim,2023-07,1,0.876
+Sikkim,2023-08,1,0.894
+Sikkim,2023-09,1,0.49
+Sikkim,2023-10,1,0.965
+Sikkim,2023-11,1,0.496
+Sikkim,2023-12,1,0.933
+Sikkim,2024-01,1,0.007
+Sikkim,2024-01,1,0.922
+Sikkim,2024-03,1,0.442
+Sikkim,2024-04,1,0.928
+Sikkim,2024-05,1,0.566
+Sikkim,2024-06,1,0.682
+Sikkim,2024-07,1,0.763
+Sikkim,2024-08,1,0.304
+Sikkim,2024-09,1,0.682
+Sikkim,2024-10,1,0.68
+Sikkim,2024-11,1,0.59
+Sikkim,2024-12,1,0.34
+Sikkim,2025-01,1,0.007
+Sikkim,2025-01,1,0.371
+Sikkim,2025-02,1,0.429
+Sikkim,2025-03,1,0.487
+Sikkim,2025-04,1,0.369
+Sikkim,2025-05,1,0.555
+Sikkim,2025-06,1,0.483
+Sikkim,2025-07,1,0.302
+Sikkim,2025-08,1,0.878
+Sikkim,2025-09,1,0.808
+Sikkim,2025-10,1,0.831
+Sikkim,2025-11,1,0.59
+Sikkim,2025-12,1,0.468
+Tamil Nadu,2015-03,2,0.093
+Tamil Nadu,2015-04,3,0.529
+Tamil Nadu,2015-05,3,0.829
+Tamil Nadu,2015-06,3,0.975
+Tamil Nadu,2015-07,3,0.913
+Tamil Nadu,2015-08,3,0.98
+Tamil Nadu,2015-09,3,0.976
+Tamil Nadu,2015-10,3,0.969
+Tamil Nadu,2015-11,3,0.989
+Tamil Nadu,2015-12,3,0.635
+Tamil Nadu,2016-01,2,0.007
+Tamil Nadu,2016-01,3,0.877
+Tamil Nadu,2016-02,3,0.907
+Tamil Nadu,2016-03,3,0.984
+Tamil Nadu,2016-04,3,0.997
+Tamil Nadu,2016-05,3,0.985
+Tamil Nadu,2016-06,3,0.431
+Tamil Nadu,2016-07,3,0.675
+Tamil Nadu,2016-08,3,0.919
+Tamil Nadu,2016-09,3,0.889
+Tamil Nadu,2016-10,3,0.911
+Tamil Nadu,2016-11,3,0.937
+Tamil Nadu,2016-12,3,0.438
+Tamil Nadu,2017-01,3,0.007
+Tamil Nadu,2017-01,3,0.944
+Tamil Nadu,2017-02,3,0.981
+Tamil Nadu,2017-03,3,0.943
+Tamil Nadu,2017-04,3,0.902
+Tamil Nadu,2017-05,3,0.929
+Tamil Nadu,2017-06,3,0.916
+Tamil Nadu,2017-07,3,0.93
+Tamil Nadu,2017-08,3,0.794
+Tamil Nadu,2017-09,3,0.944
+Tamil Nadu,2017-10,3,0.619
+Tamil Nadu,2017-11,3,0.951
+Tamil Nadu,2017-12,3,0.301
+Tamil Nadu,2018-01,1,0.007
+Tamil Nadu,2018-01,3,0.962
+Tamil Nadu,2018-02,3,0.954
+Tamil Nadu,2018-03,3,0.951
+Tamil Nadu,2018-04,2,0.984
+Tamil Nadu,2018-05,2,0.959
+Tamil Nadu,2018-06,2,0.977
+Tamil Nadu,2018-07,3,0.642
+Tamil Nadu,2018-08,3,0.679
+Tamil Nadu,2018-09,3,0.95
+Tamil Nadu,2018-10,3,0.904
+Tamil Nadu,2018-11,3,0.949
+Tamil Nadu,2018-12,3,0.95
+Tamil Nadu,2019-01,3,0.007
+Tamil Nadu,2019-01,3,0.942
+Tamil Nadu,2019-02,3,0.953
+Tamil Nadu,2019-03,4,0.721
+Tamil Nadu,2019-04,4,0.84
+Tamil Nadu,2019-05,4,0.839
+Tamil Nadu,2019-06,5,0.656
+Tamil Nadu,2019-07,5,0.707
+Tamil Nadu,2019-08,5,0.735
+Tamil Nadu,2019-09,5,0.833
+Tamil Nadu,2019-10,5,0.802
+Tamil Nadu,2019-11,5,0.698
+Tamil Nadu,2019-12,5,0.794
+Tamil Nadu,2020-01,5,0.007
+Tamil Nadu,2020-01,5,0.865
+Tamil Nadu,2020-02,5,0.917
+Tamil Nadu,2020-03,5,0.77
+Tamil Nadu,2020-04,5,0.818
+Tamil Nadu,2020-05,5,0.909
+Tamil Nadu,2020-06,5,0.876
+Tamil Nadu,2020-07,5,0.834
+Tamil Nadu,2020-08,5,0.849
+Tamil Nadu,2020-09,5,0.811
+Tamil Nadu,2020-10,5,0.814
+Tamil Nadu,2020-11,8,0.653
+Tamil Nadu,2020-12,9,0.698
+Tamil Nadu,2021-01,8,0.006
+Tamil Nadu,2021-01,10,0.84
+Tamil Nadu,2021-02,10,0.831
+Tamil Nadu,2021-03,10,0.776
+Tamil Nadu,2021-04,9,0.837
+Tamil Nadu,2021-05,9,0.803
+Tamil Nadu,2021-06,9,0.803
+Tamil Nadu,2021-07,9,0.759
+Tamil Nadu,2021-08,8,0.864
+Tamil Nadu,2021-09,8,0.906
+Tamil Nadu,2021-10,10,0.664
+Tamil Nadu,2021-11,10,0.666
+Tamil Nadu,2021-12,10,0.714
+Tamil Nadu,2022-01,8,0.006
+Tamil Nadu,2022-01,9,0.881
+Tamil Nadu,2022-02,9,0.833
+Tamil Nadu,2022-03,9,0.893
+Tamil Nadu,2022-04,9,0.788
+Tamil Nadu,2022-05,10,0.756
+Tamil Nadu,2022-06,10,0.783
+Tamil Nadu,2022-07,10,0.799
+Tamil Nadu,2022-08,18,0.606
+Tamil Nadu,2022-09,20,0.738
+Tamil Nadu,2022-10,21,0.643
+Tamil Nadu,2022-11,21,0.609
+Tamil Nadu,2022-12,21,0.662
+Tamil Nadu,2023-01,17,0.006
+Tamil Nadu,2023-01,21,0.782
+Tamil Nadu,2023-02,21,0.716
+Tamil Nadu,2023-03,23,0.69
+Tamil Nadu,2023-04,21,0.662
+Tamil Nadu,2023-05,23,0.614
+Tamil Nadu,2023-06,23,0.612
+Tamil Nadu,2023-07,23,0.622
+Tamil Nadu,2023-08,20,0.61
+Tamil Nadu,2023-09,21,0.559
+Tamil Nadu,2023-10,21,0.673
+Tamil Nadu,2023-11,22,0.689
+Tamil Nadu,2023-12,23,0.637
+Tamil Nadu,2024-01,17,0.007
+Tamil Nadu,2024-01,23,0.748
+Tamil Nadu,2024-02,22,0.771
+Tamil Nadu,2024-03,22,0.675
+Tamil Nadu,2024-04,21,0.673
+Tamil Nadu,2024-05,20,0.66
+Tamil Nadu,2024-06,20,0.652
+Tamil Nadu,2024-07,20,0.622
+Tamil Nadu,2024-08,26,0.565
+Tamil Nadu,2024-09,26,0.776
+Tamil Nadu,2024-10,33,0.726
+Tamil Nadu,2024-11,33,0.782
+Tamil Nadu,2024-12,33,0.683
+Tamil Nadu,2025-01,12,0.006
+Tamil Nadu,2025-01,33,0.769
+Tamil Nadu,2025-02,33,0.787
+Tamil Nadu,2025-03,35,0.754
+Tamil Nadu,2025-04,34,0.775
+Tamil Nadu,2025-05,34,0.727
+Tamil Nadu,2025-06,35,0.705
+Tamil Nadu,2025-07,35,0.727
+Tamil Nadu,2025-08,35,0.777
+Tamil Nadu,2025-09,35,0.773
+Tamil Nadu,2025-10,36,0.738
+Tamil Nadu,2025-11,33,0.653
+Tamil Nadu,2025-12,26,0.565
+Tamil Nadu,2026-01,14,0.006
+Telangana,2015-03,1,0.024
+Telangana,2015-04,1,0.789
+Telangana,2015-05,1,1.0
+Telangana,2015-06,1,0.929
+Telangana,2015-07,1,1.0
+Telangana,2015-08,1,0.901
+Telangana,2015-09,2,0.669
+Telangana,2015-10,2,0.832
+Telangana,2015-11,2,0.924
+Telangana,2015-12,2,0.898
+Telangana,2016-01,1,0.007
+Telangana,2016-01,2,0.83
+Telangana,2016-02,2,0.828
+Telangana,2016-03,2,0.845
+Telangana,2016-04,2,0.708
+Telangana,2016-05,2,0.861
+Telangana,2016-06,1,0.914
+Telangana,2016-07,1,0.77
+Telangana,2016-08,2,0.458
+Telangana,2016-09,2,0.735
+Telangana,2016-10,2,0.798
+Telangana,2016-11,3,0.445
+Telangana,2016-12,3,0.674
+Telangana,2017-01,3,0.007
+Telangana,2017-01,3,0.802
+Telangana,2017-02,3,0.862
+Telangana,2017-03,5,0.949
+Telangana,2017-04,5,0.872
+Telangana,2017-05,5,0.848
+Telangana,2017-06,5,0.864
+Telangana,2017-07,6,0.923
+Telangana,2017-08,6,0.838
+Telangana,2017-09,6,0.815
+Telangana,2017-10,6,0.232
+Telangana,2017-11,6,0.939
+Telangana,2017-12,6,0.968
+Telangana,2018-01,6,0.007
+Telangana,2018-01,6,0.949
+Telangana,2018-02,6,0.967
+Telangana,2018-03,6,0.956
+Telangana,2018-04,6,0.944
+Telangana,2018-05,6,0.955
+Telangana,2018-06,6,0.912
+Telangana,2018-07,6,0.849
+Telangana,2018-08,6,0.817
+Telangana,2018-09,6,0.925
+Telangana,2018-10,6,0.895
+Telangana,2018-11,6,0.928
+Telangana,2018-12,6,0.933
+Telangana,2019-01,6,0.006
+Telangana,2019-01,6,0.914
+Telangana,2019-02,6,0.895
+Telangana,2019-03,6,0.863
+Telangana,2019-04,6,0.868
+Telangana,2019-05,6,0.865
+Telangana,2019-06,6,0.859
+Telangana,2019-07,6,0.806
+Telangana,2019-08,6,0.837
+Telangana,2019-09,6,0.859
+Telangana,2019-10,6,0.907
+Telangana,2019-11,6,0.9
+Telangana,2019-12,6,0.894
+Telangana,2020-01,6,0.007
+Telangana,2020-01,6,0.88
+Telangana,2020-02,6,0.859
+Telangana,2020-03,6,0.862
+Telangana,2020-04,6,0.827
+Telangana,2020-05,6,0.821
+Telangana,2020-06,6,0.871
+Telangana,2020-07,6,0.884
+Telangana,2020-08,6,0.737
+Telangana,2020-09,6,0.862
+Telangana,2020-10,6,0.902
+Telangana,2020-11,6,0.961
+Telangana,2020-12,6,0.969
+Telangana,2021-01,6,0.007
+Telangana,2021-01,6,0.883
+Telangana,2021-02,6,0.906
+Telangana,2021-03,6,0.866
+Telangana,2021-04,6,0.959
+Telangana,2021-05,6,0.895
+Telangana,2021-06,6,0.869
+Telangana,2021-07,6,0.841
+Telangana,2021-08,6,0.867
+Telangana,2021-09,6,0.753
+Telangana,2021-10,6,0.849
+Telangana,2021-11,6,0.85
+Telangana,2021-12,6,0.845
+Telangana,2022-01,6,0.006
+Telangana,2022-01,6,0.852
+Telangana,2022-02,6,0.882
+Telangana,2022-03,6,0.948
+Telangana,2022-04,6,0.896
+Telangana,2022-05,12,0.533
+Telangana,2022-06,14,0.831
+Telangana,2022-07,14,0.834
+Telangana,2022-08,14,0.862
+Telangana,2022-09,14,0.808
+Telangana,2022-10,14,0.817
+Telangana,2022-11,14,0.855
+Telangana,2022-12,14,0.828
+Telangana,2023-01,13,0.006
+Telangana,2023-01,14,0.82
+Telangana,2023-02,14,0.847
+Telangana,2023-03,14,0.855
+Telangana,2023-04,14,0.777
+Telangana,2023-05,14,0.711
+Telangana,2023-06,14,0.78
+Telangana,2023-07,14,0.774
+Telangana,2023-08,14,0.755
+Telangana,2023-09,14,0.712
+Telangana,2023-10,14,0.809
+Telangana,2023-11,14,0.783
+Telangana,2023-12,14,0.836
+Telangana,2024-01,12,0.006
+Telangana,2024-01,13,0.797
+Telangana,2024-02,13,0.841
+Telangana,2024-03,13,0.825
+Telangana,2024-04,13,0.816
+Telangana,2024-05,13,0.732
+Telangana,2024-06,13,0.713
+Telangana,2024-07,14,0.745
+Telangana,2024-08,14,0.725
+Telangana,2024-09,14,0.819
+Telangana,2024-10,14,0.857
+Telangana,2024-11,14,0.859
+Telangana,2024-12,14,0.846
+Telangana,2025-01,13,0.006
+Telangana,2025-01,14,0.844
+Telangana,2025-02,14,0.898
+Telangana,2025-03,14,0.871
+Telangana,2025-04,14,0.821
+Telangana,2025-05,14,0.829
+Telangana,2025-06,14,0.825
+Telangana,2025-07,14,0.829
+Telangana,2025-08,14,0.842
+Telangana,2025-09,14,0.789
+Telangana,2025-10,14,0.82
+Telangana,2025-11,14,0.84
+Telangana,2025-12,14,0.852
+Telangana,2026-01,13,0.006
+Tripura,2020-11,1,0.651
+Tripura,2020-12,1,0.95
+Tripura,2021-01,1,0.007
+Tripura,2021-01,1,0.88
+Tripura,2021-02,1,0.927
+Tripura,2021-03,1,0.735
+Tripura,2021-04,1,0.94
+Tripura,2021-05,1,0.848
+Tripura,2021-06,1,0.54
+Tripura,2021-07,1,0.481
+Tripura,2021-08,1,0.836
+Tripura,2021-09,1,0.774
+Tripura,2021-10,1,0.757
+Tripura,2021-11,1,0.953
+Tripura,2021-12,1,0.956
+Tripura,2022-01,1,0.007
+Tripura,2022-01,1,0.907
+Tripura,2022-02,1,0.958
+Tripura,2022-03,2,0.727
+Tripura,2022-04,2,0.87
+Tripura,2022-05,2,0.888
+Tripura,2022-06,2,0.849
+Tripura,2022-07,2,0.786
+Tripura,2022-08,2,0.767
+Tripura,2022-09,2,0.888
+Tripura,2022-10,2,0.694
+Tripura,2022-11,2,0.837
+Tripura,2022-12,2,0.819
+Tripura,2023-01,2,0.005
+Tripura,2023-01,2,0.518
+Tripura,2023-02,2,0.695
+Tripura,2023-03,2,0.8
+Tripura,2023-04,2,0.547
+Tripura,2023-05,1,0.913
+Tripura,2023-06,1,0.667
+Tripura,2023-07,1,0.671
+Tripura,2023-08,1,0.616
+Tripura,2023-09,1,0.697
+Tripura,2023-10,1,0.991
+Tripura,2023-11,1,0.897
+Tripura,2023-12,1,0.899
+Tripura,2024-01,1,0.91
+Tripura,2024-02,1,0.882
+Tripura,2024-03,1,0.856
+Tripura,2024-04,1,0.978
+Tripura,2024-05,1,0.8
+Tripura,2024-06,1,0.925
+Tripura,2024-07,1,0.897
+Tripura,2024-08,1,0.719
+Tripura,2024-09,1,0.614
+Tripura,2024-10,1,0.61
+Tripura,2024-11,1,1.0
+Tripura,2024-12,1,0.997
+Tripura,2025-01,1,0.007
+Tripura,2025-01,1,0.962
+Tripura,2025-02,1,0.571
+Tripura,2025-03,1,1.0
+Tripura,2025-04,1,0.988
+Tripura,2025-05,1,0.782
+Tripura,2025-06,1,0.212
+Tripura,2025-07,1,0.829
+Tripura,2025-08,1,0.624
+Tripura,2025-09,1,0.812
+Tripura,2025-10,1,0.788
+Tripura,2025-11,1,0.838
+Tripura,2025-12,1,0.565
+Tripura,2026-01,1,0.007
+Uttar Pradesh,2015-01,1,0.031
+Uttar Pradesh,2015-02,1,0.411
+Uttar Pradesh,2015-03,4,0.373
+Uttar Pradesh,2015-04,4,0.713
+Uttar Pradesh,2015-05,5,0.846
+Uttar Pradesh,2015-06,5,0.899
+Uttar Pradesh,2015-07,5,0.829
+Uttar Pradesh,2015-08,5,0.894
+Uttar Pradesh,2015-09,5,0.871
+Uttar Pradesh,2015-10,5,0.762
+Uttar Pradesh,2015-11,5,0.941
+Uttar Pradesh,2015-12,5,0.917
+Uttar Pradesh,2016-01,5,0.007
+Uttar Pradesh,2016-01,6,0.89
+Uttar Pradesh,2016-02,6,0.874
+Uttar Pradesh,2016-03,6,0.863
+Uttar Pradesh,2016-04,6,0.876
+Uttar Pradesh,2016-05,6,0.506
+Uttar Pradesh,2016-06,6,0.663
+Uttar Pradesh,2016-07,6,0.712
+Uttar Pradesh,2016-08,6,0.788
+Uttar Pradesh,2016-09,6,0.785
+Uttar Pradesh,2016-10,6,0.846
+Uttar Pradesh,2016-11,6,0.763
+Uttar Pradesh,2016-12,5,0.87
+Uttar Pradesh,2017-01,4,0.006
+Uttar Pradesh,2017-01,5,0.846
+Uttar Pradesh,2017-02,5,0.808
+Uttar Pradesh,2017-03,5,0.892
+Uttar Pradesh,2017-04,6,0.762
+Uttar Pradesh,2017-05,6,0.799
+Uttar Pradesh,2017-06,6,0.827
+Uttar Pradesh,2017-07,7,0.769
+Uttar Pradesh,2017-08,7,0.785
+Uttar Pradesh,2017-09,9,0.722
+Uttar Pradesh,2017-10,9,0.552
+Uttar Pradesh,2017-11,9,0.948
+Uttar Pradesh,2017-12,10,0.637
+Uttar Pradesh,2018-01,6,0.007
+Uttar Pradesh,2018-01,10,0.923
+Uttar Pradesh,2018-02,10,0.834
+Uttar Pradesh,2018-03,8,0.916
+Uttar Pradesh,2018-04,8,0.91
+Uttar Pradesh,2018-05,9,0.84
+Uttar Pradesh,2018-06,12,0.766
+Uttar Pradesh,2018-07,13,0.812
+Uttar Pradesh,2018-08,13,0.908
+Uttar Pradesh,2018-09,13,0.893
+Uttar Pradesh,2018-10,14,0.849
+Uttar Pradesh,2018-11,14,0.926
+Uttar Pradesh,2018-12,14,0.949
+Uttar Pradesh,2019-01,14,0.007
+Uttar Pradesh,2019-01,13,0.932
+Uttar Pradesh,2019-02,16,0.736
+Uttar Pradesh,2019-03,16,0.93
+Uttar Pradesh,2019-04,16,0.932
+Uttar Pradesh,2019-05,16,0.888
+Uttar Pradesh,2019-06,19,0.709
+Uttar Pradesh,2019-07,19,0.782
+Uttar Pradesh,2019-08,19,0.802
+Uttar Pradesh,2019-09,19,0.857
+Uttar Pradesh,2019-10,22,0.893
+Uttar Pradesh,2019-11,21,0.929
+Uttar Pradesh,2019-12,21,0.896
+Uttar Pradesh,2020-01,20,0.006
+Uttar Pradesh,2020-01,22,0.839
+Uttar Pradesh,2020-02,21,0.861
+Uttar Pradesh,2020-03,21,0.806
+Uttar Pradesh,2020-04,20,0.777
+Uttar Pradesh,2020-05,20,0.804
+Uttar Pradesh,2020-06,21,0.888
+Uttar Pradesh,2020-07,22,0.856
+Uttar Pradesh,2020-08,22,0.779
+Uttar Pradesh,2020-09,22,0.847
+Uttar Pradesh,2020-10,22,0.873
+Uttar Pradesh,2020-11,22,0.871
+Uttar Pradesh,2020-12,23,0.821
+Uttar Pradesh,2021-01,20,0.006
+Uttar Pradesh,2021-01,23,0.823
+Uttar Pradesh,2021-02,22,0.848
+Uttar Pradesh,2021-03,23,0.833
+Uttar Pradesh,2021-04,23,0.826
+Uttar Pradesh,2021-05,21,0.84
+Uttar Pradesh,2021-06,32,0.724
+Uttar Pradesh,2021-07,38,0.791
+Uttar Pradesh,2021-08,39,0.847
+Uttar Pradesh,2021-09,40,0.85
+Uttar Pradesh,2021-10,40,0.889
+Uttar Pradesh,2021-11,41,0.908
+Uttar Pradesh,2021-12,43,0.871
+Uttar Pradesh,2022-01,40,0.007
+Uttar Pradesh,2022-01,46,0.85
+Uttar Pradesh,2022-02,46,0.916
+Uttar Pradesh,2022-03,48,0.899
+Uttar Pradesh,2022-04,46,0.889
+Uttar Pradesh,2022-05,48,0.878
+Uttar Pradesh,2022-06,51,0.843
+Uttar Pradesh,2022-07,51,0.836
+Uttar Pradesh,2022-08,52,0.876
+Uttar Pradesh,2022-09,52,0.877
+Uttar Pradesh,2022-10,52,0.89
+Uttar Pradesh,2022-11,51,0.918
+Uttar Pradesh,2022-12,52,0.893
+Uttar Pradesh,2023-01,50,0.007
+Uttar Pradesh,2023-01,52,0.876
+Uttar Pradesh,2023-02,51,0.904
+Uttar Pradesh,2023-03,51,0.899
+Uttar Pradesh,2023-04,52,0.894
+Uttar Pradesh,2023-05,52,0.88
+Uttar Pradesh,2023-06,52,0.865
+Uttar Pradesh,2023-07,52,0.82
+Uttar Pradesh,2023-08,52,0.888
+Uttar Pradesh,2023-09,52,0.857
+Uttar Pradesh,2023-10,52,0.894
+Uttar Pradesh,2023-11,52,0.907
+Uttar Pradesh,2023-12,51,0.915
+Uttar Pradesh,2024-01,46,0.006
+Uttar Pradesh,2024-01,51,0.916
+Uttar Pradesh,2024-02,51,0.906
+Uttar Pradesh,2024-03,51,0.921
+Uttar Pradesh,2024-04,51,0.915
+Uttar Pradesh,2024-05,51,0.893
+Uttar Pradesh,2024-06,51,0.865
+Uttar Pradesh,2024-07,51,0.861
+Uttar Pradesh,2024-08,51,0.876
+Uttar Pradesh,2024-09,51,0.857
+Uttar Pradesh,2024-10,51,0.921
+Uttar Pradesh,2024-11,51,0.941
+Uttar Pradesh,2024-12,51,0.923
+Uttar Pradesh,2025-01,44,0.006
+Uttar Pradesh,2025-01,51,0.922
+Uttar Pradesh,2025-02,51,0.926
+Uttar Pradesh,2025-03,51,0.92
+Uttar Pradesh,2025-04,51,0.855
+Uttar Pradesh,2025-05,51,0.864
+Uttar Pradesh,2025-06,51,0.826
+Uttar Pradesh,2025-07,51,0.797
+Uttar Pradesh,2025-08,52,0.809
+Uttar Pradesh,2025-09,51,0.85
+Uttar Pradesh,2025-10,51,0.899
+Uttar Pradesh,2025-11,51,0.919
+Uttar Pradesh,2025-12,51,0.918
+Uttar Pradesh,2026-01,50,0.007
+Uttarakhand,2022-04,1,0.218
+Uttarakhand,2022-05,1,0.761
+Uttarakhand,2022-06,1,0.86
+Uttarakhand,2022-07,1,0.696
+Uttarakhand,2022-08,1,0.698
+Uttarakhand,2022-09,1,0.432
+Uttarakhand,2022-10,1,0.368
+Uttarakhand,2022-11,1,0.629
+Uttarakhand,2022-12,1,0.551
+Uttarakhand,2023-01,1,0.007
+Uttarakhand,2023-01,1,0.293
+Uttarakhand,2023-02,3,0.658
+Uttarakhand,2023-03,3,0.92
+Uttarakhand,2023-04,2,0.976
+Uttarakhand,2023-05,2,0.942
+Uttarakhand,2023-06,3,0.615
+Uttarakhand,2023-07,3,0.724
+Uttarakhand,2023-08,3,0.822
+Uttarakhand,2023-09,3,0.829
+Uttarakhand,2023-10,3,0.895
+Uttarakhand,2023-11,3,0.961
+Uttarakhand,2023-12,3,0.937
+Uttarakhand,2024-01,2,0.007
+Uttarakhand,2024-01,3,0.9
+Uttarakhand,2024-02,3,0.944
+Uttarakhand,2024-03,3,0.906
+Uttarakhand,2024-04,3,0.957
+Uttarakhand,2024-05,3,0.956
+Uttarakhand,2024-06,3,0.838
+Uttarakhand,2024-07,3,0.844
+Uttarakhand,2024-08,3,0.858
+Uttarakhand,2024-09,3,0.855
+Uttarakhand,2024-10,3,0.922
+Uttarakhand,2024-11,3,0.931
+Uttarakhand,2024-12,3,0.888
+Uttarakhand,2025-01,3,0.007
+Uttarakhand,2025-01,3,0.73
+Uttarakhand,2025-02,3,0.714
+Uttarakhand,2025-03,3,0.893
+Uttarakhand,2025-04,3,0.942
+Uttarakhand,2025-05,3,0.841
+Uttarakhand,2025-06,3,0.743
+Uttarakhand,2025-07,3,0.786
+Uttarakhand,2025-08,3,0.805
+Uttarakhand,2025-09,3,0.693
+Uttarakhand,2025-10,3,0.771
+Uttarakhand,2025-11,3,0.819
+Uttarakhand,2025-12,3,0.786
+Uttarakhand,2026-01,3,0.004
+West Bengal,2016-06,1,0.028
+West Bengal,2018-01,1,0.352
+West Bengal,2018-02,3,0.893
+West Bengal,2018-03,3,0.93
+West Bengal,2018-04,4,0.751
+West Bengal,2018-05,4,0.866
+West Bengal,2018-06,5,0.753
+West Bengal,2018-07,5,0.832
+West Bengal,2018-08,5,0.906
+West Bengal,2018-09,5,0.877
+West Bengal,2018-10,5,0.885
+West Bengal,2018-11,6,0.931
+West Bengal,2018-12,6,0.952
+West Bengal,2019-01,6,0.007
+West Bengal,2019-01,6,0.95
+West Bengal,2019-02,6,0.955
+West Bengal,2019-03,6,0.931
+West Bengal,2019-04,6,0.93
+West Bengal,2019-05,7,0.928
+West Bengal,2019-06,9,0.956
+West Bengal,2019-07,9,0.958
+West Bengal,2019-08,12,0.791
+West Bengal,2019-09,12,0.899
+West Bengal,2019-10,12,0.894
+West Bengal,2019-11,12,0.897
+West Bengal,2019-12,12,0.902
+West Bengal,2020-01,12,0.006
+West Bengal,2020-01,12,0.9
+West Bengal,2020-02,12,0.872
+West Bengal,2020-03,12,0.855
+West Bengal,2020-04,12,0.844
+West Bengal,2020-05,12,0.811
+West Bengal,2020-06,12,0.875
+West Bengal,2020-07,12,0.809
+West Bengal,2020-08,12,0.865
+West Bengal,2020-09,12,0.858
+West Bengal,2020-10,12,0.853
+West Bengal,2020-11,12,0.861
+West Bengal,2020-12,12,0.843
+West Bengal,2021-01,12,0.006
+West Bengal,2021-01,11,0.837
+West Bengal,2021-02,11,0.87
+West Bengal,2021-03,12,0.868
+West Bengal,2021-04,12,0.891
+West Bengal,2021-05,12,0.826
+West Bengal,2021-06,11,0.893
+West Bengal,2021-07,12,0.863
+West Bengal,2021-08,12,0.88
+West Bengal,2021-09,12,0.82
+West Bengal,2021-10,12,0.865
+West Bengal,2021-11,12,0.877
+West Bengal,2021-12,12,0.833
+West Bengal,2022-01,12,0.006
+West Bengal,2022-01,12,0.887
+West Bengal,2022-02,12,0.865
+West Bengal,2022-03,12,0.949
+West Bengal,2022-04,12,0.934
+West Bengal,2022-05,12,0.938
+West Bengal,2022-06,12,0.944
+West Bengal,2022-07,12,0.917
+West Bengal,2022-08,12,0.891
+West Bengal,2022-09,12,0.907
+West Bengal,2022-10,12,0.919
+West Bengal,2022-11,12,0.935
+West Bengal,2022-12,12,0.958
+West Bengal,2023-01,12,0.007
+West Bengal,2023-01,13,0.947
+West Bengal,2023-02,13,0.951
+West Bengal,2023-03,13,0.897
+West Bengal,2023-04,13,0.938
+West Bengal,2023-05,13,0.919
+West Bengal,2023-06,13,0.955
+West Bengal,2023-07,13,0.872
+West Bengal,2023-08,13,0.933
+West Bengal,2023-09,13,0.958
+West Bengal,2023-10,13,0.935
+West Bengal,2023-11,13,0.918
+West Bengal,2023-12,14,0.929
+West Bengal,2024-01,14,0.007
+West Bengal,2024-01,14,0.918
+West Bengal,2024-02,14,0.952
+West Bengal,2024-03,14,0.916
+West Bengal,2024-04,15,0.91
+West Bengal,2024-05,15,0.954
+West Bengal,2024-06,18,0.845
+West Bengal,2024-07,19,0.896
+West Bengal,2024-08,19,0.917
+West Bengal,2024-09,20,0.921
+West Bengal,2024-10,21,0.927
+West Bengal,2024-11,21,0.95
+West Bengal,2024-12,21,0.921
+West Bengal,2025-01,19,0.007
+West Bengal,2025-01,22,0.938
+West Bengal,2025-02,22,0.96
+West Bengal,2025-03,22,0.956
+West Bengal,2025-04,21,0.961
+West Bengal,2025-05,20,0.936
+West Bengal,2025-06,22,0.86
+West Bengal,2025-07,22,0.891
+West Bengal,2025-08,22,0.908
+West Bengal,2025-09,22,0.924
+West Bengal,2025-10,22,0.945
+West Bengal,2025-11,22,0.939
+West Bengal,2025-12,22,0.954
+West Bengal,2026-01,22,0.007

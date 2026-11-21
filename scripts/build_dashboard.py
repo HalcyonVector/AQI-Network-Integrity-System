@@ -25,6 +25,7 @@ from pathlib import Path
 import pandas as pd
 
 import dashboard_extras as ex
+import dashboard_historical as dh
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 RAW_DIR = PROJECT_ROOT / "data" / "raw"
@@ -52,8 +53,9 @@ LICENSE_URL = REPO_URL + "/blob/master/README.md#license"
 # (name, url, what it provides)
 FOOTER_DATA = [
     ("CPCB real-time AQI via data.gov.in", "https://www.data.gov.in/catalog/real-time-air-quality-index-various-locations", "Hourly AQI sub-indices per NCR station (the live feed)."),
+    ("CPCB yearly station files (Vonter/india-cpcb-aqi, ODbL)", "https://github.com/Vonter/india-cpcb-aqi", "15-minute station records for 2015 to 2025, republished from CPCB&rsquo;s data repository."),
     ("OpenAQ", "https://docs.openaq.org", "Hourly PM2.5 concentrations from the same stations, in &micro;g/m&sup3;."),
-    ("NASA FIRMS", "https://firms.modaps.eosdis.nasa.gov", "Satellite active-fire detections and their radiative power."),
+    ("NASA FIRMS", "https://firms.modaps.eosdis.nasa.gov", "Satellite active-fire detections and their radiative power, live and the 2015 to 2025 archive."),
     ("MODIS MAIAC AOD, Earth Engine", "https://developers.google.com/earth-engine/datasets/catalog/MODIS_061_MCD19A2_GRANULES", "Aerosol optical depth, sampled at each station."),
     ("ERA5, Copernicus CDS", "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels", "Wind, boundary-layer height, temperature and rain."),
 ]
@@ -546,10 +548,67 @@ main{max-width:1040px}
 .foot-bar b{color:var(--fg);font-weight:600}.foot-bar a:first-of-type{margin-left:auto}
 @media (max-width:760px){.foot{padding:20px 16px 14px}.foot-grid{grid-template-columns:1fr;gap:22px}.foot-bar a:first-of-type{margin-left:0}}
 @media (max-width:760px){.hero{padding:30px 22px 22px}.card{padding:20px 16px 14px}}
+.tbl{width:100%;border-collapse:collapse;font-size:13px;min-width:520px}
+.tbl th{text-align:left;font:600 10.5px/1.3 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:6px 10px 8px;border-bottom:1px solid var(--edge)}
+.tbl td{padding:8px 10px;border-bottom:1px solid rgba(255,255,255,.05)}.tbl tr:last-child td{border-bottom:0}
+.tbl .n{text-align:right;font-variant-numeric:tabular-nums}.tbl td .muted{font-size:11.5px}
 .scroll{overflow-x:auto}
 @media (max-width:760px){.split{grid-template-columns:1fr}.rank-row{grid-template-columns:120px 1fr 34px}.tiles{grid-template-columns:repeat(2,1fr)}.hero{padding:26px 20px 20px}.card{padding:18px 16px 14px}
 .g-row{grid-template-columns:1fr 70px;gap:6px 12px}.g-track{grid-column:1 / -1;order:3}.g-head{display:none}}
 """
+
+
+def history_html(proc_dir: Path = PROC_DIR) -> str:
+    """The 2015-2025 section: backfill health, completeness, national audit, league, seasons and drift."""
+    master = _read("historical/station_master.csv", proc_dir)
+    audit = _read("historical/station_year_audit.csv", proc_dir)
+    league = _read("historical/city_league.csv", proc_dir)
+    qc = _read("historical/silver_qc_summary.csv", proc_dir)
+    comp = _read("historical/completeness_state_month.csv", proc_dir)
+    delhi = _read("historical/delhi_pm25_daily.csv", proc_dir)
+    fires = _read("historical/fire_daily.csv", proc_dir)
+    if all(x is None for x in (master, audit, league, qc, comp, delhi, fires)):
+        return ""  # the backfill has not been run on this machine: show nothing rather than a page of "not available"
+    local = proc_dir.parent / "historical"
+    count = lambda sub, pat: len(list((local / sub).glob(pat))) if (local / sub).exists() else 0  # noqa: E731
+    sources = [("CPCB station files, 15-minute", count("bronze/cpcb", "cpcb-air-quality-*.parquet"), 11, "One file per year, 2015 to 2025, from the CPCB data repository."),
+               ("NASA FIRMS archive", count("firms", "firms_*.csv"), 19, "October and November, Suomi NPP from 2015 and NOAA-20 from 2018."),
+               ("ERA5 history (winds, rain)", count("era5", "era5_*.nc"), 6, "Requested from Copernicus; needed before the stubble test can be repeated on past seasons.")]
+    years = sorted(int(y) for y in audit["year"].unique()) if audit is not None and not audit.empty else []
+    hy = years[-1] if years else 0
+    season_years = sorted({int(str(d)[:4]) for d in delhi["date"]}) if delhi is not None and not delhi.empty else []
+    n_audited = int(audit[audit["year"] == hy]["level"].isin(["ok", "watch", "flag"]).sum()) if hy else 0
+    n_total = int((audit["year"] == hy).sum()) if hy else 0
+    n_flag = int((audit[audit["year"] == hy]["level"] == "flag").sum()) if hy else 0
+    return f"""
+<section class="card" id="history"><h2>2015 to 2025: the longer record</h2>
+<p class="muted" style="margin-top:-6px">A pan-India backfill of the CPCB station network, run through the same cleaning and neighbour checks as the live data.</p>
+<div class="sub-h">Backfill health</div>{dh.backfill_html(qc, sources)}
+<div class="note">Early years are thin: there were few continuous stations before 2018, so a season before then rests on 5 to 7 Delhi stations. Station counts are
+shown on every table so that a quiet year is not mistaken for a clean one.</div>
+
+<div class="sub-h">How much of each month was reported</div><div class="scroll">{dh.completeness_matrix_svg(comp)}</div>
+
+<div class="sub-h">Station integrity across India, {hy}</div>
+<div class="split"><div>{dh.india_map_svg(master, audit, hy)}</div>
+<div><div class="sub-h">Cities with the most flagged hours, {hy}</div>{dh.league_html(league, hy)}</div></div>
+<div class="note warn"><b>Read with care.</b> A flag means "have someone look", not "faulty": a station beside a road or kiln legitimately differs from its neighbours.
+Only {n_audited} of the {n_total} stations reporting in {hy} could be checked at all, because the test compares each station with others within 25 km and many
+stations have none. Of those {n_audited}, {n_flag} carry a flag, which needs just one stuck-sensor run or one sustained departure, so most flags are brief:
+"hours flagged" is the share of a station&rsquo;s reported hours inside such an episode, and is a few percent even in the worst cities.</div>
+
+<div class="sub-h">Delhi in each burning season</div><div class="scroll">{dh.season_multiples_svg(delhi, fires, season_years)}</div>
+<div class="note">Descriptive only. These panels do not control for rain or wind, so a season with more fires and higher PM2.5 shows nothing about cause.
+Fire detections fall from about 100,000 a season around 2021 to under 15,000 in 2025 in this region.</div>
+
+<div class="sub-h">Stations that drifted against their neighbours</div>{dh.drift_watchlist_html(audit, master)}
+<div class="note">Confirmed means the slope survived the multiple-testing correction and was large enough to matter. A station can drift because it was moved,
+recalibrated or re-sited, which the data cannot tell apart from a failing sensor.</div>
+
+<div class="sub-h">Does the stubble signal repeat across seasons?</div>
+<div class="note warn"><b>Not run yet.</b> The pre-registered test is applied to each season unchanged, once, and needs the 925 hPa winds and the rain record for those seasons.
+Those come from Copernicus, whose queue has not accepted the requests so far. No result is shown here until it can be produced the same way as in 2026.</div>
+</section>"""
 
 
 def render(today: date, raw_dir: Path = RAW_DIR, proc_dir: Path = PROC_DIR) -> str:
@@ -580,8 +639,9 @@ def render(today: date, raw_dir: Path = RAW_DIR, proc_dir: Path = PROC_DIR) -> s
         j2 = aod[aod["n"] >= 10].merge(stubble_daily[["date", "pm25_delhi"]].dropna(), on="date")
         sat_scatter = ex.scatter_svg(list(j2["aod"]), list(j2["pm25_delhi"]), list(j2["date"]), "Network-mean satellite AOD (550 nm)", "Delhi PM2.5 (ug/m3)")
 
+    history = history_html(proc_dir)
     nav = "".join(f'<a href="#{a}">{t}</a>' for a, t in [("flow", "Data flow"), ("now", "Right now"), ("fires", "Fires and weather"), ("heat", "Heatmap"),
-                  ("quality", "Completeness"), ("health", "Station health"), ("sat", "Satellite"), ("ops", "Pipeline")])
+                  ("quality", "Completeness"), ("health", "Station health"), ("sat", "Satellite"), ("history", "2015 to 2025"), ("ops", "Pipeline")])
     body = f"""
 <header class="hero">
 <div class="brand">{LOGO_SVG}<b class="brand-n">AQI NIS</b></div>
@@ -611,8 +671,8 @@ for longer than usual. A gap in the CPCB feed cannot be recovered from that feed
 <div class="scroll">{stubble_html(stubble_daily)}</div>
 <div class="note warn"><b>Read with care.</b> Delhi PM2.5 stepped up the same day regional fire plumes started arriving, but the days before were
 <i>rainy</i> (about 9 mm on 26 Sep, 4 mm on 27 Sep) and 30 Sep was the first fully dry day, so rain stopping explains the step without stubble.
-On rain-free days the association is moderate and not yet significant (about 10 days). Suggestive, not established, and <b>not</b> a share of Delhi's
-pollution attributable to stubble burning.</div>
+The first look at rain-free days only, with about 10 of them, was moderate and not significant. The pre-registered test on rain-free days has not been run
+yet (see the counter below). Suggestive, not established, and <b>not</b> a share of Delhi's pollution attributable to stubble burning.</div>
 <div class="sub-h">How close is the real test?</div>{ex.dry_day_counter(stubble_daily)}
 <div class="sub-h">Regional fire activity</div><div class="scroll">{fire_chart}</div>
 <div class="sub-h">Delhi weather (the controls)</div>{ex.weather_html(stubble_daily)}
@@ -638,8 +698,10 @@ pollution attributable to stubble burning.</div>
 <div class="scroll">{decoupling_html(_read("station_temporal_decoupling.csv", proc_dir))}</div>
 <div class="sub-h">Satellite AOD against Delhi PM2.5, day by day</div><div class="scroll">{sat_scatter}</div>
 <div class="note">The satellite tracks the city's day-to-day PM2.5 but not differences between stations on the same day, so it can only check whether a
-station <i>follows the same day-to-day pattern as its peers</i>. With about two weeks of data, no station is statistically distinguishable yet.</div>
+station <i>follows the same day-to-day pattern as its peers</i>. Treat every row as a lead: a result counts only if it survives the multiple-testing correction.</div>
 </section>
+
+{history}
 
 <section class="card" id="ops"><h2>Pipeline and what&rsquo;s next</h2>
 <div class="sub-h">Coming up</div>{ex.countdown_html(today)}

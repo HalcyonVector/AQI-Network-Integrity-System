@@ -1,6 +1,7 @@
 import sys
 from pathlib import Path
 
+import numpy as np
 import pandas as pd
 import pytest
 
@@ -125,6 +126,47 @@ def test_silver_clean_drops_out_of_range_and_stuck_runs():
     clean, st = bs.clean_hourly(hourly)
     assert st["hours_raw"] == 12 and st["removed_range"] == 2 and st["removed_flatline"] == 6
     assert clean["pm25"].notna().sum() == 4 and st["hours_clean"] == 4 and st["stations"] == 1
+
+
+def test_national_audit_flags_a_stuck_station_and_leaves_isolated_ones_unchecked():
+    import national_audit as na
+
+    rng = np.random.default_rng(1)
+    hours = pd.date_range("2019-01-01", "2019-12-31 23:00", freq="h")
+    base = 60 + 30 * np.sin(np.arange(len(hours)) / 40) + rng.normal(0, 3, len(hours))
+    cols = {f"s{i}": base * (1 + 0.05 * i) + rng.normal(0, 2, len(hours)) for i in range(4)}
+    pm = pd.DataFrame(cols, index=hours)
+    pm.iloc[1000:1050, pm.columns.get_loc("s0")] = 77.0  # a stuck sensor: 50 identical hours
+    pm["far"] = base  # reports fine but sits 500 km from everyone
+    coords = pd.DataFrame({"station": ["s0", "s1", "s2", "s3", "far"], "latitude": [28.60, 28.61, 28.62, 28.63, 33.0],
+                           "longitude": [77.20, 77.21, 77.22, 77.23, 77.2]})
+    h = na.audit_year(pm, coords).set_index("station")
+    assert h.loc["s0", "flatline_hours"] >= 50 and h.loc["s0", "level"] == "flag"
+    assert h.loc["far", "level"] == "none"  # no neighbour within 25 km: cannot be checked, must not read as ok
+    h["year"] = 2019
+    h = h.reset_index().rename(columns={"station": "station_id"})
+    h["failing_share"] = na.failing_share(h)
+    h["drifting"] = False
+    master = pd.DataFrame({"cpcb_id": ["s0", "s1", "s2", "s3", "far"], "city": ["Delhi"] * 4 + ["Leh"], "state": ["Delhi"] * 4 + ["Ladakh"]})
+    league = na.city_league(h, master).set_index("city")
+    assert league.loc["Delhi", "flagged"] >= 1 and league.loc["Delhi", "stations_audited"] == 4
+    assert league.loc["Leh", "stations_audited"] == 0 and np.isnan(league.loc["Leh", "failing_share"])
+
+
+def test_gold_fire_delhi_and_completeness(tmp_path):
+    import build_gold as bg
+
+    pd.DataFrame({"source": "VIIRS_SNPP_SP", "acq_date": ["2019-10-01", "2019-10-01", "2019-10-02"], "frp": [10.0, 5.5, 2.0]}).to_csv(tmp_path / "firms_VIIRS_SNPP_SP_2019.csv", index=False)
+    fd = bg.fire_daily(tmp_path).set_index("date")
+    assert fd.loc["2019-10-01", "detections"] == 2 and fd.loc["2019-10-01", "frp_sum"] == 15.5
+
+    hours = pd.date_range("2019-10-01", periods=48, freq="h")
+    rows = [{"station_id": s, "hour_start_ist": h, "pm25": v} for s, v, n in (("d1", 100.0, 48), ("d2", 50.0, 10), ("x1", 9.0, 48)) for h in hours[:n]]
+    silver = pd.DataFrame(rows)
+    dd = bg.delhi_daily(silver, {"d1", "d2"})
+    assert list(dd["pm25"]) == [100.0, 100.0] and list(dd["stations"]) == [1, 1]  # d2 has <18 hours a day: not counted
+    comp = bg.completeness(silver, {"d1": "Delhi", "d2": "Delhi", "x1": "Goa"}).set_index("state")
+    assert comp.loc["Goa", "stations"] == 1 and comp.loc["Goa", "completeness"] == round(48 / (31 * 24), 3)
 
 
 def test_cpcb_history_skips_finished_years_only(tmp_path):
