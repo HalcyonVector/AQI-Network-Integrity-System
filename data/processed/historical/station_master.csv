@@ -1,0 +1,81 @@
+station_id,name,city,state,latitude,longitude,feed_id,n_sources,openaq_id
+delhi_delhi_mundka-delhi-dpcc,"Mundka, Delhi - DPCC",Delhi,Delhi,28.684678,77.076574,"Mundka, Delhi - DPCC",2,10486
+delhi_delhi_sirifort-delhi-cpcb,"Sirifort, Delhi - CPCB",Delhi,Delhi,28.5504249,77.2159377,"Sirifort, Delhi - CPCB",2,5586
+delhi_delhi_ghummanhera-delhi-dpcc,"Ghummanhera, Delhi-DPCC",Delhi,Delhi,28.534762,76.91609,"Ghummanhera, Delhi-DPCC",1,
+delhi_delhi_vasundhara-enclave-delhi-dpcc,"Vasundhara Enclave, Delhi - DPCC",Delhi,Delhi,28.603699,77.321644,"Vasundhara Enclave, Delhi - DPCC",1,
+delhi_delhi_narela-delhi-dpcc,"Narela, Delhi - DPCC",Delhi,Delhi,28.822836,77.101981,"Narela, Delhi - DPCC",2,10485
+delhi_delhi_cantonment-area-delhi-dpcc,"Cantonment Area, Delhi - DPCC",Delhi,Delhi,28.594169,77.1251,"Cantonment Area, Delhi - DPCC",2,6257818
+delhi_delhi_ignou-maidan-garhi-delhi-dpcc,"IGNOU_Maidan Garhi, Delhi - DPCC",Delhi,Delhi,28.493624,77.201159,"IGNOU_Maidan Garhi, Delhi - DPCC",2,6254666
+delhi_delhi_mandir-marg-delhi-dpcc,"Mandir Marg, Delhi - DPCC",Delhi,Delhi,28.636429,77.201067,"Mandir Marg, Delhi - DPCC",2,6358
+delhi_delhi_aya-nagar-delhi-iitm,"Aya Nagar, Delhi - IITM",Delhi,Delhi,28.4706914,77.1099364,"Aya Nagar, Delhi - IITM",1,
+delhi_delhi_sonia-vihar-delhi-dpcc,"Sonia Vihar, Delhi - DPCC",Delhi,Delhi,28.710508,77.249485,"Sonia Vihar, Delhi - DPCC",2,8475
+delhi_delhi_karala-delhi-dpcc,"Karala, Delhi-DPCC",Delhi,Delhi,28.7313303,77.0402585,"Karala, Delhi-DPCC",1,
+delhi_delhi_jahangirpuri-delhi-dpcc,"Jahangirpuri, Delhi - DPCC",Delhi,Delhi,28.73282,77.170633,"Jahangirpuri, Delhi - DPCC",2,8235
+delhi_delhi_bawana-delhi-dpcc,"Bawana, Delhi - DPCC",Delhi,Delhi,28.7762,77.051074,"Bawana, Delhi - DPCC",2,8472
+delhi_delhi_major-dhyan-chand-national-stadium-delhi-dpcc,"Major Dhyan Chand National Stadium, Delhi - DPCC",Delhi,Delhi,28.611281,77.237738,"Major Dhyan Chand National Stadium, Delhi - DPCC",2,6929
+delhi_delhi_ihbas-dilshad-garden-delhi-cpcb,"IHBAS, Dilshad Garden, Delhi - CPCB",Delhi,Delhi,28.6811736,77.3025234,"IHBAS, Dilshad Garden, Delhi - CPCB",2,6359
+delhi_delhi_nsit-dwarka-delhi-cpcb,"NSIT Dwarka, Delhi - CPCB",Delhi,Delhi,28.60909,77.0325413,"NSIT Dwarka, Delhi - CPCB",2,5622
+delhi_delhi_nehru-nagar-delhi-dpcc,"Nehru Nagar, Delhi - DPCC",Delhi,Delhi,28.56789,77.250515,"Nehru Nagar, Delhi - DPCC",2,8365
+delhi_delhi_nih-narela-delhi-dpcc,"NIH Narela, Delhi - DPCC",Delhi,Delhi,28.858447,77.095248,"NIH Narela, Delhi - DPCC",1,
+delhi_delhi_alipur-delhi-dpcc,"Alipur, Delhi - DPCC",Delhi,Delhi,28.815329,77.15301,"Alipur, Delhi - DPCC",2,6932
+delhi_delhi_nsut-jaffarpur-delhi-dpcc,"NSUT Jaffarpur, Delhi - DPCC",Delhi,Delhi,28.594004,76.909423,"NSUT Jaffarpur, Delhi - DPCC",2,6254664
+delhi_delhi_talkatora-garden-delhi-dpcc,"Talkatora Garden, Delhi - DPCC",Delhi,Delhi,28.62181,77.1944633,"Talkatora Garden, Delhi - DPCC",2,6254594
+delhi_delhi_tikri-kalan-delhi-dpcc,"Tikri Kalan, Delhi-DPCC",Delhi,Delhi,28.67518,76.980506,"Tikri Kalan, Delhi-DPCC",1,
+delhi_delhi_pusa-delhi-iitm,"Pusa, Delhi - IITM",Delhi,Delhi,28.63611,77.173332,"Pusa, Delhi - DPCC",2,6356
+delhi_delhi_chandni-chowk-delhi-iitm,"Chandni Chowk, Delhi - IITM",Delhi,Delhi,28.656756,77.227234,"Chandni Chowk, Delhi - IITM",2,11603
+delhi_delhi_rohini-delhi-dpcc,"Rohini, Delhi - DPCC",Delhi,Delhi,28.732528,77.11992,"Rohini, Delhi - DPCC",2,10831
+delhi_delhi_okhla-phase-2-delhi-dpcc,"Okhla Phase-2, Delhi - DPCC",Delhi,Delhi,28.530785,77.271255,"Okhla Phase-2, Delhi - DPCC",2,8239
+delhi_delhi_burari-crossing-delhi-iitm,"Burari Crossing, Delhi - IITM",Delhi,Delhi,28.7256504,77.2011573,"Burari Crossing, Delhi - IITM",2,5541
+delhi_delhi_jharoda-kalan-delhi-dpcc,"Jharoda Kalan, Delhi-DPCC",Delhi,Delhi,28.645274,76.956375,"Jharoda Kalan, Delhi-DPCC",1,
+delhi_delhi_sri-aurobindo-marg-delhi-dpcc,"Sri Aurobindo Marg, Delhi - DPCC",Delhi,Delhi,28.531346,77.190156,"Sri Aurobindo Marg, Delhi - DPCC",2,10484
+delhi_delhi_burari-delhi-dpcc,"Burari, Delhi-DPCC",Delhi,Delhi,28.769667,77.206805,"Burari, Delhi-DPCC",1,
+delhi_delhi_r-k-puram-delhi-dpcc,"R K Puram, Delhi - DPCC",Delhi,Delhi,28.563262,77.186937,"R K Puram, Delhi - DPCC",2,17
+delhi_delhi_imd-lodhi-road-delhi-iitm,"IMD Lodhi Road, Delhi - IITM",Delhi,Delhi,28.595528,77.225749,"IMD Lodhi Road, Delhi - IITM",2,5634
+delhi_delhi_lodhi-road-delhi-iitm,"Lodhi Road, Delhi - IITM",Delhi,Delhi,28.588333,77.221667,"Lodhi Road, Delhi - IITM",1,
+delhi_delhi_crri-mathura-road-delhi-iitm,"CRRI Mathura Road, Delhi - IITM",Delhi,Delhi,28.5512005,77.2735737,"CRRI Mathura Road, Delhi - IITM",2,5627
+delhi_delhi_punjabi-bagh-delhi-dpcc,"Punjabi Bagh, Delhi - DPCC",Delhi,Delhi,28.674045,77.131023,"Punjabi Bagh, Delhi - DPCC",2,50
+delhi_delhi_shadipur-delhi-cpcb,"Shadipur, Delhi - CPCB",Delhi,Delhi,28.6514781,77.1473105,"Shadipur, Delhi - CPCB",2,5630
+delhi_delhi_najafgarh-delhi-dpcc,"Najafgarh, Delhi - DPCC",Delhi,Delhi,28.570173,76.933762,"Najafgarh, Delhi - DPCC",2,10488
+delhi_delhi_dr-karni-singh-shooting-range-delhi-dpcc,"Dr. Karni Singh Shooting Range, Delhi - DPCC",Delhi,Delhi,28.498571,77.26484,"Dr. Karni Singh Shooting Range, Delhi - DPCC",2,6934
+delhi_delhi_igi-airport-t3-delhi-iitm,"IGI Airport (T3), Delhi - IITM",Delhi,Delhi,28.5627763,77.1180053,"IGI Airport (T3), Delhi - IITM",2,5650
+delhi_delhi_anand-vihar-delhi-dpcc,"Anand Vihar, Delhi - DPCC",Delhi,Delhi,28.647622,77.315809,"Anand Vihar, Delhi - DPCC",2,235
+haryana_faridabad_sector-11-faridabad-hspcb,"Sector 11, Faridabad - HSPCB",Faridabad,Haryana,28.376058,77.315741,"Sector 11, Faridabad - HSPCB",2,10908
+haryana_faridabad_sector-30-faridabad-hspcb,"Sector 30, Faridabad - HSPCB",Faridabad,Haryana,28.4417,77.3217,"Sector 30, Faridabad - HSPCB",2,10820
+haryana_gurugram_sector-51-gurugram-hspcb,"Sector-51, Gurugram - HSPCB",Gurugram,Haryana,28.4227,77.0667,"Sector-51, Gurugram - HSPCB",2,10825
+haryana_gurugram_nise-gwal-pahari-gurugram-iitm,"NISE Gwal Pahari, Gurugram - IITM",Gurugram,Haryana,28.426243,77.160376,"NISE Gwal Pahari, Gurugram - IITM",2,10921
+haryana_gurugram_vikas-sadan-gurugram-hspcb,"Vikas Sadan, Gurugram - HSPCB",Gurugram,Haryana,28.4501238,77.0263051,"Vikas Sadan, Gurugram - HSPCB",2,301
+uttar-pradesh_ghaziabad_wave-city-ghaziabad-uppcb,"Wave City, Ghaziabad - UPPCB",Ghaziabad,Uttar Pradesh,28.646675,77.489049,"Wave City, Ghaziabad - UPPCB",2,6458520
+uttar-pradesh_ghaziabad_dasna-dehat-ghaziabad-uppcb,"Dasna Dehat, Ghaziabad-UPPCB",Ghaziabad,Uttar Pradesh,28.684514,77.536291,"Dasna Dehat, Ghaziabad-UPPCB",1,
+uttar-pradesh_ghaziabad_indirapuram-ghaziabad-uppcb,"Indirapuram, Ghaziabad - UPPCB",Ghaziabad,Uttar Pradesh,28.646233,77.358075,"Indirapuram, Ghaziabad - UPPCB",2,6924
+uttar-pradesh_ghaziabad_vasundhara-ghaziabad-uppcb,"Vasundhara, Ghaziabad - UPPCB",Ghaziabad,Uttar Pradesh,28.6603346,77.3572563,"Vasundhara, Ghaziabad - UPPCB",2,5665
+uttar-pradesh_ghaziabad_ved-vihar-loni-ghaziabad-uppcb,"Ved Vihar-Loni, Ghaziabad - UPPCB",Ghaziabad,Uttar Pradesh,28.739153,77.273668,"Ved Vihar-Loni, Ghaziabad - UPPCB",2,6299678
+uttar-pradesh_ghaziabad_sanjay-nagar-ghaziabad-uppcb,"Sanjay Nagar, Ghaziabad - UPPCB",Ghaziabad,Uttar Pradesh,28.685382,77.453839,"Sanjay Nagar, Ghaziabad - UPPCB",2,10919
+uttar-pradesh_noida_sector-116-noida-uppcb,"Sector-116, Noida - UPPCB",Noida,Uttar Pradesh,28.56923,77.393848,"Sector-116, Noida - UPPCB",2,6988
+uttar-pradesh_noida_sector-125-noida-uppcb,"Sector-125, Noida - UPPCB",Noida,Uttar Pradesh,28.5447608,77.3231257,"Sector-125, Noida - UPPCB",1,
+uttar-pradesh_noida_sector-150-noida-uppcb,"Sector-150, Noida-UPPCB",Noida,Uttar Pradesh,28.433336,77.479508,"Sector-150, Noida-UPPCB",1,
+uttar-pradesh_noida_sector-110-noida-uppcb,"Sector-110, Noida-UPPCB",Noida,Uttar Pradesh,28.538314,77.377366,"Sector-110, Noida-UPPCB",1,
+uttar-pradesh_noida_sector-39-noida-uppcb,"Sector-39, Noida-UPPCB",Noida,Uttar Pradesh,28.5721609,77.355669,"Sector-39, Noida-UPPCB",1,
+uttar-pradesh_noida_sector-1-noida-uppcb,"Sector-1, Noida - UPPCB",Noida,Uttar Pradesh,28.5898,77.3101,"Sector-1, Noida - UPPCB",2,6980
+uttar-pradesh_noida_sector-62-noida-iitm,"Sector-62, Noida - IITM",Noida,Uttar Pradesh,28.625115,77.360097,"Sector-62, Noida - IITM",1,
+delhi_delhi_jawaharlal-nehru-stadium-delhi-dpcc,"Jawaharlal Nehru Stadium, Delhi - DPCC",Delhi,Delhi,28.58028,77.233829,"Jawaharlal Nehru Stadium, Delhi - DPCC",2,6957
+delhi_delhi_dtu-delhi-cpcb,"DTU, Delhi - CPCB",Delhi,Delhi,28.7500499,77.1112615,"DTU, Delhi - CPCB",2,5626
+delhi_delhi_ghoga-delhi-dpcc,"Ghoga, Delhi-DPCC",Delhi,Delhi,28.818435,77.057932,"Ghoga, Delhi-DPCC",1,
+delhi_delhi_vivek-vihar-delhi-dpcc,"Vivek Vihar, Delhi - DPCC",Delhi,Delhi,28.672342,77.31526,"Vivek Vihar, Delhi - DPCC",2,6938
+delhi_delhi_commonwealth-sports-complex-delhi-dpcc,"Commonwealth Sports Complex, Delhi - DPCC",Delhi,Delhi,28.615828,77.271992,"Commonwealth Sports Complex, Delhi - DPCC",2,6254665
+delhi_delhi_jnu-delhi-dpcc,"JNU, Delhi - DPCC",Delhi,Delhi,28.540721,77.168544,"JNU, Delhi - DPCC",2,6254663
+delhi_delhi_ito-delhi-cpcb,"ITO, Delhi - CPCB",Delhi,Delhi,28.628624,77.24106,"ITO, Delhi - CPCB",2,5613
+delhi_delhi_maidan-garhi-delhi-dpcc,"Maidan Garhi, Delhi-DPCC",Delhi,Delhi,28.475672,77.213538,"Maidan Garhi, Delhi-DPCC",1,
+delhi_delhi_patparganj-delhi-dpcc,"Patparganj, Delhi - DPCC",Delhi,Delhi,28.623763,77.287209,"Patparganj, Delhi - DPCC",2,6960
+delhi_delhi_wazirpur-delhi-dpcc,"Wazirpur, Delhi - DPCC",Delhi,Delhi,28.699793,77.165453,"Wazirpur, Delhi - DPCC",2,8915
+delhi_delhi_iit-delhi-delhi-iitm,"IIT Delhi, Delhi - IITM",Delhi,Delhi,28.54246,77.191651,"IIT Delhi, Delhi - IITM",2,6148686
+delhi_delhi_nangloi-delhi-dpcc,"Nangloi, Delhi-DPCC",Delhi,Delhi,28.6835525,77.0742812,"Nangloi, Delhi-DPCC",1,
+haryana_gurugram_teri-gram-gurugram-hspcb,"Teri Gram, Gurugram - HSPCB",Gurugram,Haryana,28.4275,77.1465,"Teri Gram, Gurugram - HSPCB",2,10900
+uttar-pradesh_ghaziabad_govindpuram-ghaziabad-uppcb,"Govindpuram, Ghaziabad - UPPCB",Ghaziabad,Uttar Pradesh,28.694528,77.494705,"Govindpuram, Ghaziabad - UPPCB",2,6311324
+uttar-pradesh_ghaziabad_loni-ghaziabad-uppcb,"Loni, Ghaziabad - UPPCB",Ghaziabad,Uttar Pradesh,28.757294,77.278792,"Loni, Ghaziabad - UPPCB",2,7005
+uttar-pradesh_ghaziabad_new-tehsil-loni-ghaziabad-uppcb,"New Tehsil-Loni, Ghaziabad-UPPCB",Ghaziabad,Uttar Pradesh,28.737621,77.311662,"New Tehsil-Loni, Ghaziabad-UPPCB",1,
+delhi_delhi_dwarka-sector-8-delhi-dpcc,"Dwarka-Sector 8, Delhi - DPCC ",Delhi,Delhi,28.5710274,77.0719006,"Dwarka-Sector 8, Delhi - DPCC ",2,6931
+delhi_delhi_north-campus-du-delhi-iitm,"North Campus, DU, Delhi - IITM",Delhi,Delhi,28.689924,77.214261,"North Campus, DU, Delhi - IITM",1,
+delhi_delhi_chhawla-delhi-dpcc,"Chhawla, Delhi-DPCC",Delhi,Delhi,28.553573,76.993845,"Chhawla, Delhi-DPCC",1,
+delhi_delhi_badarpur-delhi-dpcc,"Badarpur, Delhi-DPCC",Delhi,Delhi,28.513305,77.32634,"Badarpur, Delhi-DPCC",1,
+haryana_faridabad_new-industrial-town-faridabad-hspcb,"New Industrial Town, Faridabad - HSPCB",Faridabad,Haryana,28.39072,77.30059,"New Industrial Town, Faridabad - HSPCB",2,10920
+delhi_delhi_ashok-vihar-delhi-dpcc,"Ashok Vihar, Delhi - DPCC",Delhi,Delhi,28.695381,77.181665,"Ashok Vihar, Delhi - DPCC",2,8917
