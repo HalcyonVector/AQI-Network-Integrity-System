@@ -12,7 +12,7 @@ granules were 4 days old on 2026-10-12 but 7 days old on 2026-10-16), so any sin
 "N days ago" date silently writes nothing whenever the lag grows. Files are one per
 observation date and overwritten, so re-processing is idempotent.
 
-Requires a registered Earth Engine Cloud project. See README.md "Component: Satellite
+Requires a registered Earth Engine Cloud project. See docs/PIPELINE.md "Component: Satellite
 AOD". Set GEE_PROJECT in .env, plus EITHER a service account:
     GEE_SERVICE_ACCOUNT=your-sa@your-project.iam.gserviceaccount.com
     GEE_SERVICE_ACCOUNT_KEY_PATH=path/to/key.json
@@ -75,7 +75,7 @@ def init_earth_engine(logger: logging.Logger):
     project = os.environ.get("GEE_PROJECT")
 
     if not project:
-        raise RuntimeError("GEE_PROJECT must be set in .env. See README.md 'Component: Satellite AOD'.")
+        raise RuntimeError("GEE_PROJECT must be set in .env. See docs/PIPELINE.md 'Component: Satellite AOD'.")
 
     if service_account and key_path:
         credentials = ee.ServiceAccountCredentials(service_account, key_path)

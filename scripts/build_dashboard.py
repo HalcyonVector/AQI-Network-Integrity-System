@@ -607,8 +607,10 @@ stations have none. Of those {n_audited}, {n_flag} carry a flag, which needs jus
 "hours flagged" is the share of a station&rsquo;s reported hours inside such an episode, and is a few percent even in the worst cities.</div>
 
 <div class="sub-h">Stations that drifted against their neighbours</div>{dh.drift_watchlist_html(audit, master)}
-<div class="note">Confirmed means the slope survived the multiple-testing correction and was large enough to matter. A station can drift because it was moved,
-recalibrated or re-sited, which the data cannot tell apart from a failing sensor.</div>
+<div class="note">Confirmed means the slope survived the multiple-testing correction and was large enough to matter. The shift is the straight-line change over that
+year&rsquo;s days, so there is no single start date to give. Cleared means the station was audited in a later year and was not drifting; unresolved means it
+is still drifting in the latest year or has no later data. A station can drift because it was moved, recalibrated or re-sited, which the data cannot tell
+apart from a failing sensor.</div>
 </section>"""
     seasons = f"""<section class="card" id="seasons"><h2>Delhi, ten burning seasons</h2>
 <div class="sub-h">Delhi in each burning season</div><div class="scroll">{dh.season_multiples_svg(delhi, fires, season_years)}</div>
@@ -731,7 +733,7 @@ station <i>follows the same day-to-day pattern as its peers</i>. Treat every row
 <div class="sub-h">Recent scheduled runs</div>{ex.run_log_html(LOGS_DIR)}
 <details class="how"><summary>How to read this page</summary>
 <p><b>Sub-index vs concentration.</b> The CPCB feed reports AQI sub-indices; 100 for PM2.5 equals 60 &micro;g/m&sup3;. Charts in &micro;g/m&sup3; come from OpenAQ.</p>
-<p><b>Flags are leads, not verdicts.</b> Every statistical result here is exploratory with a few weeks of data; the README lists each limit and every retraction.</p>
+<p><b>Flags are leads, not verdicts.</b> Every statistical result here is exploratory with a few weeks of data; the README lists the limits and docs/PIPELINE.md every retraction.</p>
 <p><b>Nothing here is a source attribution.</b> The stubble panels show association with fire exposure, not the share of pollution caused by it.</p></details>
 </section>"""
     body = f"""

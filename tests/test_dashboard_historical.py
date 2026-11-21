@@ -55,4 +55,14 @@ def test_season_multiples_and_drift_watchlist():
     assert "not available" in dh.season_multiples_svg(None, None, [2019])
     wl = dh.drift_watchlist_html(_audit(), _master())
     assert "Alpha &lt;b&gt;" in wl and "2024, 2025" in wl and "Beta" not in wl
+    assert "unresolved: still drifting in 2025" in wl and "over 2025" in wl
     assert "No station" in dh.drift_watchlist_html(_audit().assign(drifting=False), _master())
+
+
+def test_drift_status_is_cleared_when_later_years_are_clean_and_unresolved_without_data():
+    a = pd.DataFrame({"station_id": ["a", "a", "b", "c"], "year": [2022, 2023, 2022, 2023], "level": ["flag", "ok", "flag", "ok"],
+                      "drifting": [True, False, True, False], "trend_log_per_day": [0.02, 0.0, -0.03, 0.0], "trend_days": [300, 300, 200, 200]})
+    m = pd.DataFrame({"cpcb_id": ["a", "b", "c"], "name": ["A", "B", "C"], "city": ["X"] * 3})
+    wl = dh.drift_watchlist_html(a, m)
+    assert "cleared: not drifting since" in wl and "unresolved: no later data to check" in wl
+    assert "+" in wl and "-" in wl  # drift can go either way

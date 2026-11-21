@@ -5,3 +5,5 @@ earthengine-api>=1.0
 cdsapi>=0.7
 xarray>=2024.1
 netCDF4>=1.6
+scipy>=1.11
+pyarrow>=15

@@ -13,7 +13,7 @@ product months later. So data pulled by this script is normally PRELIMINARY -- t
 the first live run: a 7-day-old date came back expver 0005.) Differences between
 ERA5T and final are usually small, but don't assume they're zero.
 
-Requires a Copernicus CDS account. See README.md "Component: ERA5 wind" for account
+Requires a Copernicus CDS account. See docs/PIPELINE.md "Component: ERA5 wind" for account
 setup and -- important -- you must manually accept the ERA5 dataset's Terms of Use
 on its CDS page before the API will serve you any data; this can't be done via the
 API itself. Then set in .env:
@@ -92,7 +92,7 @@ def build_client():
     key = os.environ.get("CDSAPI_KEY")
     if not (url and key):
         raise RuntimeError(
-            "CDSAPI_URL and CDSAPI_KEY must be set in .env. See README.md 'Component: ERA5 wind' for setup, "
+            "CDSAPI_URL and CDSAPI_KEY must be set in .env. See docs/PIPELINE.md 'Component: ERA5 wind' for setup, "
             "including accepting the dataset's Terms of Use on the CDS website (required, can't be done via API)."
         )
     return cdsapi.Client(url=url, key=key)

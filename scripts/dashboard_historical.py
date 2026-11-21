@@ -160,10 +160,25 @@ def drift_watchlist_html(audit: pd.DataFrame | None, master: pd.DataFrame | None
     d = audit[audit["drifting"].astype(bool)]
     if d.empty:
         return NA.format("No station showed confirmed drift against its neighbours.")
-    g = d.groupby("station_id").agg(years=("year", lambda s: ", ".join(str(int(y)) for y in sorted(s))), n=("year", "nunique"),
-                                    rate=("trend_log_per_day", "median")).reset_index().sort_values(["n", "rate"], ascending=[False, False]).head(top)
-    g = g.merge(master[["cpcb_id", "name", "city"]], left_on="station_id", right_on="cpcb_id", how="left")
-    rows = "".join(f'<tr><td>{_esc(r.name)}<span class="muted"> {_esc(r.city)}</span></td><td class="n">{r.n}</td><td>{_esc(r.years)}</td>'
-                   f'<td class="n">{(math.exp(r.rate) - 1) * 100:+.1f}% a day</td></tr>' for r in g.itertuples())
-    return ('<div class="scroll"><table class="tbl"><thead><tr><th>Station</th><th class="n">Years drifting</th><th>Which years</th><th class="n">Typical drift vs neighbours</th></tr></thead>'
+    last_year = int(audit["year"].max())
+    if "trend_days" not in d:
+        d = d.assign(trend_days=365)
+    d = d.assign(shift=lambda x: np.expm1(x["trend_log_per_day"] * (x["trend_days"].fillna(365) - 1)))
+    rows_out = []
+    for sid, g in d.groupby("station_id"):
+        worst = g.loc[g["shift"].abs().idxmax()]  # the year with the largest total shift
+        y_last = int(g["year"].max())
+        later = audit[(audit["station_id"] == sid) & (audit["year"] > y_last) & audit["level"].isin(["ok", "watch", "flag"])]
+        if y_last == last_year:
+            status = f"unresolved: still drifting in {last_year}"
+        elif len(later):  # y_last is the last drifting year, so every later audited year was clean
+            status = "cleared: not drifting since"
+        else:
+            status = "unresolved: no later data to check"
+        rows_out.append((sid, ", ".join(str(int(y)) for y in sorted(g["year"])), len(g), float(worst["shift"]), int(worst["year"]), status))
+    out = pd.DataFrame(rows_out, columns=["station_id", "years", "n", "shift", "shift_year", "status"]).sort_values(["n", "shift"], key=lambda c: c.abs() if c.name == "shift" else c, ascending=False).head(top)
+    out = out.merge(master[["cpcb_id", "name", "city"]], left_on="station_id", right_on="cpcb_id", how="left")
+    rows = "".join(f'<tr><td>{_esc(r.name)}<span class="muted"> {_esc(r.city)}</span></td><td>{_esc(r.years)}</td>'
+                   f'<td class="n">{r.shift * 100:+.0f}% over {r.shift_year}</td><td>{_esc(r.status)}</td></tr>' for r in out.itertuples())
+    return ('<div class="scroll"><table class="tbl"><thead><tr><th>Station</th><th>Years drifting</th><th class="n">Largest shift vs neighbours</th><th>Status</th></tr></thead>'
             f"<tbody>{rows}</tbody></table></div>")

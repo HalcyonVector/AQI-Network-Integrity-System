@@ -2,7 +2,7 @@
 Pull CPCB station readings for the NCR from OpenAQ's open archive, as a second
 source alongside the data.gov.in feed (which has been unreachable since ~26 Sep 2026
 and, per a cross-check, appears to carry AQI sub-index values rather than
-concentrations -- see README). OpenAQ's archive has true concentrations at ~15-minute
+concentrations -- see docs/PIPELINE.md). OpenAQ's archive has true concentrations at ~15-minute
 resolution, plus station-level met variables (wind, humidity).
 
 Usage:

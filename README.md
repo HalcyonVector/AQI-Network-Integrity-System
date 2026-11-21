@@ -1,711 +1,287 @@
-# NCR AQI Network Integrity System
+# AQI NIS: Is the Air-Quality Monitoring Network Telling the Truth?
 
-> **What it's for:** check whether Delhi NCR's air-quality monitoring network is telling the truth, using data health, station checks, satellite and fire evidence.
+A data-integrity audit of India's continuous air-quality monitoring network, starting from Delhi NCR. The question is simple and the answer is not: when a station reports PM2.5, can the number be trusted? Every few hours the pipeline pulls the official CPCB station feed, a second copy of the same stations from OpenAQ, NASA FIRMS fire detections, satellite aerosol optical depth and ERA5 weather, cleans and joins them on station and hour, and asks of each station whether it agrees with its neighbours, with the satellite and with itself over time. It tracks which days of data are missing and from which source, fills gaps from neighbours with an error it has measured, and tests whether the autumn pollution spikes track stubble-burning smoke arriving on the wind once rain is accounted for. A 2015 to 2025 backfill of the whole national network (about 139 million 15-minute records, 545 stations by 2025) runs the same checks over a decade. The dashboard is the way to explore all of it: every flag sits next to the caveat that limits it.
+
+Built with Python, pandas, SciPy and xarray on public data (CPCB via data.gov.in and a yearly republication, OpenAQ, NASA FIRMS, MODIS MAIAC through Earth Engine, ERA5 from Copernicus), published as a static page on GitHub Pages and refreshed by a scheduled run on a Windows machine.
+
+> **What it's for:** to see at a glance which sources are fresh, which stations to distrust and why, how much the gaps matter, and whether a fire-smoke story survives a rain check, instead of taking a dashboard's PM2.5 numbers on faith.
 
 **Live dashboard:** [halcyonvector.github.io/AQI-Network-Integrity-System](https://halcyonvector.github.io/AQI-Network-Integrity-System/) (rebuilt after every scheduled data pull)
 
-![Dashboard: source health, stations flagged and the data-flow tracker](docs/screenshots/overview.png)
+![Overview tab: the data-health banner, the tab bar and the live network by city, map and station ranking](docs/screenshots/overview.png)
 
-Layered system over Delhi NCR's CAAQMS network (Delhi, Noida, Gurugram, Ghaziabad,
-Faridabad) that will eventually:
+![India tab: completeness by state and month, and the 2025 station integrity map with the city league](docs/screenshots/india.png)
 
-1. Flag stations whose reported PM2.5 drifts from a satellite-AOD-based independent estimate.
-2. Fill gaps in reported data using that same satellite-based estimate.
-3. Cross-check stations against wind-conditioned neighbor consistency to catch faults
-   during nighttime/cloud cover when satellite can't see.
-4. Attribute PM2.5 spikes to regional stubble-burning transport (NASA FIRMS fire data +
-   wind vectors) versus local sources.
+<sub>Screenshots were captured from the built page in late November 2026.</sub>
 
-All data pipelines are built: CPCB station data (data.gov.in feed, plus
-OpenAQ's archive as a second source), NASA FIRMS fire detections, satellite AOD sampling,
-and ERA5 wind. The modeling layers (drift detection,
-gap-filling, neighbor-consistency, stubble-burning attribution) and dashboard are
-not started.
+---
 
-## Component: CPCB fetch script
+## Disclaimer
 
-`scripts/fetch_cpcb.py` pulls hourly PM2.5, PM10, NO2, SO2, CO, O3 for CAAQMS stations
-in the five NCR cities from data.gov.in's "Real time Air Quality Index from various
-locations" API (sourced from CPCB), and appends one row per station per timestamp to a
-dated CSV in `data/raw/`.
+**This is an exploratory analysis project, not an official air-quality index, a health advisory or a fault report on any named station.** A flag means "have someone look", not "this station is broken": a station beside a road or a kiln legitimately differs from its neighbours. Every statistical result rests on weeks to a few years of data, several thresholds are judgement calls (named constants at the top of each script), and the stubble analysis shows association with fire exposure, never the share of pollution caused by burning. For health decisions use CPCB and your state pollution control board. See Honest Limitations for the specifics.
 
-### Setup
+---
 
-1. Register for a free API key at [data.gov.in](https://www.data.gov.in) (Register ->
-   confirm email), then open the
-   [Real time Air Quality Index](https://www.data.gov.in/catalog/real-time-air-quality-index)
-   catalog entry -> **API** tab -> **Generate API Key**.
-2. Copy `.env.example` to `.env` and paste your key into `CPCB_API_KEY`.
-3. `python -m pip install -r requirements.txt` (or `requirements-dev.txt` to also get
-   pytest for the test suite)
+## Findings
 
-### Run manually
+What the data showed, with the dates behind each number (the live pipeline reruns these daily, so the dashboard has the latest):
+
+- **The official feed is not in the units you would assume.** The data.gov.in CPCB feed reports AQI sub-indices (0 to 500), not concentrations: a PM2.5 value of 100 means 60 µg/m³, India's 24-hour limit. This was an assumption at first and was checked against OpenAQ's true concentrations for the same stations before any analysis relied on it (`scripts/validate_feed_units.py`).
+- **The feed cannot be backfilled, and has holes.** It serves only the current snapshot. 22 days between 17 Sep and 4 Nov 2026 have no file, mostly CPCB's own outage from 26 Sep to 12 Oct. OpenAQ's archive covers the same stations in concentrations but is itself missing 24 to 26 Oct. The dashboard names each hole instead of smoothing it.
+- **Station health, NCR, 21 Nov 2026:** of 61 stations with a median of 1,320 hours, 47 agree with their neighbours, 12 are flagged and 2 are on watch. Flatlines are the clearest evidence and need no statistics: 8 stations repeated one exact value for 6 or more hours (23 episodes, 251 hours in all). JNU read exactly 1.00 µg/m³ for 8 hours while its neighbours read 33.
+- **A flag that was wrong, and retracted.** An early version also flagged five stations as unusually noisy. Residual noise correlated with how far a station's neighbours were (Spearman +0.44, p = 0.0004) and all five were isolated stations, predicted worse by construction. Noise is now judged against what the station's isolation predicts, and none of the five is noisy.
+- **A plausible physical idea the data rejected.** Predicting a station only from upwind neighbours is worse than using all of them: on the 28,398 station-hours where the upwind rule applied, error was 0.352 against 0.308 (log units), or 42% against 36% typical error. The rule stays in the code and tests so it can be re-checked with a finer wind source.
+- **Gap-filling from neighbours beats holding the last value for gaps of 6 hours or more.** Mean absolute error in µg/m³ (typical level about 110): 6 h gap 24.0 against 32.6, 12 h gap 28.0 against 41.1, 24 h gap 25.3 against 49.9. At 3 hours, holding the last value is better (25.3 against 30.1). "Same hour yesterday" is worse at every length. The filled series (`pm25_hourly_filled.csv`, 91,938 station-hours since 16 Sep) is 85.5% observed, 3.4% neighbour-filled and 10.8% still missing, and labels every value's provenance.
+- **The satellite follows the city, not the station.** MODIS MAIAC AOD tracks Delhi's day-to-day PM2.5 (Spearman +0.67 over 36 days) but cannot tell stations apart on the same day, so it can only check whether a station follows its peers' day-to-day pattern. Six of 61 stations are flagged on that test (best q = 0.001), as leads for a human to look at.
+- **The stubble signal was mostly rain.** Delhi's daily PM2.5 stepped from 12 to 31 µg/m³ (27 to 29 Sep) to 52 to 69 µg/m³ from 30 Sep, the day fire smoke began arriving, with a rank correlation of 0.79 against smoke exposure that survived controls for boundary-layer height and temperature. Then hourly rainfall showed 26 and 27 Sep were the wet days and 30 Sep the first dry one. On rain-free days only (n = 10 then) the correlation fell to 0.61 (p = 0.066). The real test was fixed in advance: 925 hPa exposure, lag 0, rain-free days, boundary-layer height and temperature controlled, run once, needing at least 20 rain-free days. There are now 27 such days with PM2.5, and the test has not been run.
+- **The national network grew twenty-fold.** Stations reporting PM2.5: 30 in 2015, 81 in 2017, 197 in 2019, 388 in 2022, 545 in 2025. The 19.3 million clean station-hours (stuck-sensor runs remove about 0.7% in 2025; no reading fell outside the physical range) make a ten-season record, but a season before 2018 rests on 5 to 7 Delhi stations against about 35 since.
+- **National audit, 2025:** 543 stations reported, but only 240 have a neighbour within 25 km and could be checked at all; 117 of those carry a flag, though the share of hours flagged is at most 2.7% in any of the 30 cities with at least three auditable stations. Three stations show confirmed drift against their neighbours across the eleven years (Punjabi Bagh in Delhi in 2017, RVCE-Mailasandra in Bengaluru in 2022, Vijay Nagar Scheme-78 in Indore in 2025).
+- **Delhi's October-November mean PM2.5 ranged from 142 µg/m³ (2022) to 210 µg/m³ (2016)** across the ten seasons, while regional fire detections (Suomi NPP) fell from 102,980 in 2021 to 14,864 in 2025. These are descriptive, with no rain or wind control.
+- **Weather history is blocked.** Repeating the stubble test on past seasons needs ERA5 winds and rain from the Copernicus Data Store, which rejected every request this project made in November 2026 with "maximum number queued requests reached", during the period of ECMWF's service protection measures (announced 22 Oct 2026). The cause for this account is not confirmed. The public ERA5 mirror is laid out as one whole-globe hour per file, which would mean hundreds of GB for the winds alone, and the Open-Meteo history API has no 925 hPa winds.
+
+---
+
+## Features
+
+### Dashboard
+
+- **Seven tabs, no JavaScript:** Overview (the network now, by city, with map and ranking), Fires (Delhi PM2.5 against regional fire exposure and the weather controls), Stations (neighbour-consistency health and the satellite check), Data (source freshness, completeness, every station by day), India (the 2015 to 2025 audit), Seasons (ten burning seasons) and Pipeline (recent runs, what is next). A hidden radio input per tab selects its panel.
+- **Findings next to their caveats.** Each chart carries a note saying what it does not show, and a result the analysis has not produced is shown as "not run yet" instead of being omitted.
+- **One static HTML file with inline SVG,** rebuilt after every data pull and deployed by a GitHub Actions workflow.
+
+### Source health
+
+- Per-source tracker of the last 30 days (file present, missing, not yet expected), with each source's normal publication lag, so "6 days old" is correct for ERA5 and an alarm for FIRMS.
+- Status labels OK, GAPS, STALE and DOWN, and a log of scheduled runs flagging failed steps and interrupted runs, including a push that did not reach GitHub.
+
+### Station checks
+
+- **Neighbour consistency:** each station's hourly PM2.5 is predicted leave-one-out from up to six neighbours within 25 km, in log space with a per-site offset. Residuals are tested for stuck sensors, sustained departures, unusual noise (adjusted for isolation) and slow drift (Kendall trend, Benjamini-Hochberg correction, effect-size floors).
+- **Satellite consistency:** a station is compared with the satellite's day-to-day pattern against the network's median, and only flagged if it survives multiple-testing correction.
+- **Gap-filling:** neighbour prediction with a measured error, falling back to labelled gaps when no neighbour reports.
+
+### Stubble transport analysis
+
+- A screening-level forward-trajectory model: each VIIRS fire detection releases a parcel advected up to 72 hours on 925 hPa ERA5 winds, and a hit is a parcel passing within 60 km of Delhi. The daily exposure index is the radiative-power-weighted hits per day, with fires already within 60 km excluded as local.
+- Permutation and circular-shift tests (which respect autocorrelation), partial correlation on boundary-layer height and temperature, and a rain-free restriction fixed before the data arrived.
+
+### 2015 to 2025 backfill
+
+- **Bronze to gold in `historical/`:** yearly CPCB station files, a station master table with stable IDs, a cleaned station-hour layer reusing the live QC rules, exports of daily fire counts, Delhi daily PM2.5 and completeness by state and month, and the national audit with a city league and drift watchlist.
+- **Repairs itself:** a step in every daily run finds days missing between a source's first and newest file and re-requests exactly those, so a laptop that was off for a week heals on the next run.
+
+### Automation
+
+- A Windows scheduled task at 12:00 and 19:00 fetches, analyses, commits and pushes in two stages, so a slow weather request can never block publishing the fast data.
+
+---
+
+## Data Source
+
+| Source | Type | API Key? | What It Provides |
+|--------|------|----------|-------------------|
+| [CPCB real-time AQI via data.gov.in](https://www.data.gov.in/catalog/real-time-air-quality-index-various-locations) | REST (JSON) | Yes | Current AQI sub-indices per NCR station (the live feed). Only the current snapshot, no history. Rejects cloud IP addresses |
+| [CPCB yearly station files (Vonter/india-cpcb-aqi)](https://github.com/Vonter/india-cpcb-aqi) | Parquet releases | No | 15-minute concentrations and station meteorology for 2009 to 2025, republished from CPCB's data repository. ODbL 1.0 |
+| [OpenAQ](https://docs.openaq.org) | S3 archive and REST | Yes | Hourly concentrations from the same stations, used to validate units and to cover feed gaps |
+| [NASA FIRMS](https://firms.modaps.eosdis.nasa.gov) | REST (CSV) | Yes | VIIRS active-fire detections: live (near-real-time) and the 2015 to 2025 standard-processing archive |
+| [MODIS MAIAC AOD](https://developers.google.com/earth-engine/datasets/catalog/MODIS_061_MCD19A2_GRANULES) | Google Earth Engine | Yes (Cloud project) | Aerosol optical depth sampled at each station |
+| [ERA5, Copernicus Data Store](https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels) | NetCDF through `cdsapi` | Yes | 10 m and 925 hPa winds, boundary-layer height, temperature and rain |
+
+---
+
+## Tech Stack
+
+| Layer | Technology | Details |
+|-------|-----------|---------|
+| **Language** | Python 3.11+ | Developed on 3.14 |
+| **Data handling** | pandas, NumPy, xarray, netCDF4, PyArrow | CSV per source and date, Parquet for the national backfill |
+| **Statistics** | SciPy | Spearman, Kendall, Theil-Sen, permutation and circular-shift tests, Benjamini-Hochberg |
+| **Fetching** | requests, cdsapi, earthengine-api, GitHub CLI | Trailing-window, self-healing fetchers; per-date overwrite files |
+| **Dashboard** | Hand-built HTML and inline SVG | No JavaScript, no external assets, HTML-escaped data |
+| **Testing** | pytest | Unit tests on synthetic and real-shaped data |
+| **Hosting** | GitHub Pages and GitHub Actions | `pages.yml` deploys `dashboard/` on every push that touches it |
+| **Scheduling** | Windows Task Scheduler | `scripts/run_and_push.ps1` at 12:00 and 19:00 from a residential connection |
+
+---
+
+## Prerequisites
+
+- **Python 3.11+**
+- **A residential internet connection** for the data.gov.in feed, which refuses cloud and datacentre addresses
+- **API keys and accounts:** a CPCB key from data.gov.in, a NASA FIRMS map key, an OpenAQ key, a Google Earth Engine Cloud project, and a Copernicus CDS account with the ERA5 terms accepted. Setup for each is in [docs/PIPELINE.md](docs/PIPELINE.md)
+- **GitHub CLI (`gh`)** only for the 2015 to 2025 backfill download
+
+---
+
+## Quick Start
+
+```bash
+pip install -r requirements.txt
+cp .env.example .env      # then fill in the keys
+```
+
+Run the pipeline once, in the order the scheduled run uses:
 
 ```bash
 python scripts/fetch_cpcb.py
+python scripts/fetch_openaq.py
+python scripts/fetch_firms.py
+python scripts/fetch_aod.py
+python scripts/backfill_missing.py
+python scripts/convert_feed.py
+python scripts/analyze_neighbor_consistency.py
+python scripts/build_filled_series.py
+python scripts/analyze_station_bias.py
+python scripts/analyze_stubble_transport.py
+python scripts/build_dashboard.py
 ```
 
-Appends to `data/raw/cpcb_ncr_YYYY-MM-DD.csv`. Logs go to `logs/fetch_YYYY-MM-DD.log`.
+Open `dashboard/index.html` in a browser. The ERA5 fetch (`scripts/fetch_era5_wind.py`) queues on Copernicus for hours, so the scheduled run puts it last.
+
+### The 2015 to 2025 backfill
+
+```bash
+python historical/fetch_cpcb_history.py     # 11 yearly files, about 3.9 GB
+python historical/fetch_firms_history.py    # fire archive, minutes
+python historical/build_station_table.py    # station master with stable IDs
+python historical/build_silver.py           # clean hourly PM2.5 and PM10
+python historical/build_gold.py             # fire, Delhi and completeness tables
+python historical/national_audit.py         # neighbour and drift audit, city league
+```
+
+The large Parquet and weather files live in `data/historical/`, which git ignores. Only the small summaries in `data/processed/historical/` are committed.
+
+### Scheduling (Windows)
+
+```bash
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts/run_and_push.ps1
+```
+
+Point Task Scheduler at that command for 12:00 and 19:00, with a 6 hour execution limit. The script commits and pushes the fast data first and the weather-dependent results second.
 
 ### Tests
 
 ```bash
-python -m pytest tests/ -v
+python -m pytest -q
 ```
 
-`tests/` covers both fetch scripts (`test_fetch_cpcb.py`, `test_fetch_firms.py`).
+---
 
-The CPCB tests cover the reshape/pivot logic against edge cases actually seen in the
-live feed: duplicate (station, pollutant, timestamp) records CPCB occasionally emits,
-stations with a null/blank name, non-numeric pollutant values or coordinates, and the
-CSV append path (schema-mismatch guard, no duplicate headers). One test pins a real
-bug found while hardening this: an earlier pivot implementation using
-`pivot_table(dropna=False)` silently exploded 61 real NCR stations into 915 rows by
-cross-joining every distinct state/city value in the dataset against every station.
+## Project Structure
 
-The FIRMS tests cover the "200 OK with a plain-text error body" gotcha (see below),
-multi-source combination/tagging, and the same CSV-append guards as CPCB.
+```
+AQI NIS/
+├── README.md
+├── requirements.txt, requirements-dev.txt, .env.example
+├── .github/workflows/pages.yml        # Deploys dashboard/ to GitHub Pages
+├── dashboard/index.html               # The built page (generated, committed)
+├── docs/
+│   ├── PIPELINE.md                    # Per-source setup and the long analysis write-ups
+│   └── screenshots/                   # README images
+│
+├── scripts/
+│   ├── fetch_cpcb.py, fetch_openaq.py, fetch_firms.py, fetch_aod.py, fetch_era5_wind.py
+│   ├── backfill_missing.py            # Re-requests days missing between a source's first and newest file
+│   ├── convert_feed.py, aqi_units.py  # Feed AQI sub-indices to concentrations
+│   ├── qc.py                          # Range and stuck-sensor checks shared by live and history
+│   ├── analyze_neighbor_consistency.py, analyze_station_bias.py, analyze_stubble_transport.py
+│   ├── build_filled_series.py         # Gap-filled hourly PM2.5 with provenance
+│   ├── windfield.py, datewin.py       # Wind interpolation and trailing-window helpers
+│   ├── build_dashboard.py, dashboard_extras.py, dashboard_historical.py
+│   └── run_and_push.ps1               # The scheduled driver
+│
+├── historical/                        # The 2015 to 2025 backfill
+│   ├── fetch_cpcb_history.py, fetch_firms_history.py, fetch_era5_history.py
+│   ├── station_master.py, build_station_table.py
+│   ├── build_silver.py, build_gold.py
+│   └── national_audit.py
+│
+├── data/
+│   ├── raw/                           # One file per source and date (committed)
+│   ├── processed/                     # Analysis outputs (committed)
+│   │   └── historical/                # Small national summaries (committed)
+│   ├── reference/                     # Station mapping
+│   └── historical/                    # Large Parquet and weather files (git-ignored)
+│
+└── tests/                             # pytest suites for every module above
+```
 
-### IMPORTANT: run from a residential connection, and the User-Agent header matters
+---
 
-This endpoint timed out on every request from a cloud sandbox (consistent with
-datacenter IPs being blocked, same pattern as the Grid Sentinel project's data pulls),
-so keep running this from a home machine.
+## Architecture
 
-Separately, we also found that **authenticated requests silently hang** (no response,
-not even an error) unless the request carries a browser-like `User-Agent` header:
-Python's default `requests`/`urllib` UA gets stuck server-side with no response at all,
-while an identical request with a Chrome-style UA returns instantly. `fetch_cpcb.py`
-already sets this header, but if you fork the request logic elsewhere, carry it over.
+```
+  CPCB feed (data.gov.in)   OpenAQ archive   NASA FIRMS   MODIS AOD (Earth Engine)   ERA5 (Copernicus)
+          │                      │               │                  │                       │
+          └──────────┬───────────┴───────┬───────┴─────────┬────────┘                       │
+                     ▼                   ▼                 ▼                                │
+              data/raw/<source>_<date>.csv   (trailing window, overwritten per date)        │
+                     │                                                                      │
+        backfill_missing.py fills any day missing inside a source's range                   │
+                     ▼                                                                      │
+   convert_feed ► analyze_neighbor_consistency ► build_filled_series ► analyze_station_bias │
+                     ▼                                                                      │
+        analyze_stubble_transport ◄──────────────────────────────────────── winds, rain ◄──┘
+                     ▼
+              build_dashboard.py ──► dashboard/index.html ──► git push ──► GitHub Pages
+```
 
-### Daily automation (Windows Task Scheduler)
+How a result gets built:
 
-`scripts/run_and_push.ps1` is the daily driver. Registered as scheduled task
-**`AQI-NIS-CPCB-Fetch`**, triggering at **12:00 and 19:00** (matching Grid Sentinel's schedule), plus
-`StartWhenAvailable` so a missed slot runs when the machine is next on. In order, each step isolated
-so one failing never stops the others:
+1. **Fetch:** each source re-processes a short trailing window, so a missed run heals itself. Each date is its own overwritten file.
+2. **Heal:** `backfill_missing.py` fills days missing between a source's first and newest file. The CPCB feed cannot be healed, because it never serves history.
+3. **Convert and clean:** feed sub-indices become concentrations; range and stuck-sensor checks remove implausible hours.
+4. **Check:** neighbour consistency, satellite consistency and the gap-fill backtest run on the cleaned hourly series.
+5. **Attribute:** fire detections are advected on ERA5 winds and compared with Delhi PM2.5 under the pre-registered protocol.
+6. **Publish:** the dashboard is rebuilt, committed and pushed in two stages, so slow weather requests never block the fast data. A push that is rejected is rebased and retried, and a failure is logged.
 
-1. Fetches: CPCB feed, OpenAQ, FIRMS, AOD, ERA5 (each re-processes a trailing window and self-heals).
-2. Derived: neighbour consistency, gap-filled series, satellite consistency, stubble transport, dashboard.
-3. Commits `data/raw`, `data/processed`, `data/reference` and `dashboard/` and pushes.
+The national backfill reuses the same QC and neighbour-consistency code. The only step it skips is the wind-conditioned predictor, which the live data showed does not help.
 
-It exits non-zero if any step failed, and names which ones in `logs/run_and_push_YYYY-MM-DD.log`.
+---
 
-**Verified:** the scheduler fires on its own (runs observed at the 12:00 and 19:00 marks on this
-machine from 17 Sep onward, including through the CPCB outage, when it kept committing the other
-sources). Triggering the task with `schtasks /run` *from an automated session* reported success but
-launched nothing, a session-isolation artefact of that tool, not a problem with the real trigger.
-Runs on days the machine was off are simply missing, which is why every fetcher re-processes a window.
-
-### Data schema
-
-One row per station per hourly timestamp:
-
-| column | meaning |
-|---|---|
-| `fetched_at_utc` | when this script pulled the record |
-| `country`, `state`, `city`, `station` | station identity/location tag from CPCB |
-| `latitude`, `longitude` | station coordinates |
-| `last_update` | CPCB's reported observation timestamp |
-| `PM2.5`, `PM10`, `NO2`, `SO2`, `CO`, `OZONE` | **CPCB AQI sub-index values (0–500), NOT concentrations** (validated, see below) |
-
-> **These are not µg/m³ (validated).** An earlier README called them concentrations (an assumption); a
-> one-station check suggested otherwise, and `scripts/validate_feed_units.py` now tests it properly: ~800
-> feed readings per pollutant across ~60 stations (17–25 Sep, before the outage) against OpenAQ's true
-> concentrations. Each column is the **CPCB AQI sub-index of the standard averaging window**:
->
-> | column | what it is | match to the sub-index of OpenAQ's concentration (mean error; within ±5 points) |
-> |---|---|---|
-> | NO2 | 24 h mean | 0.6 pts; 99.5% |
-> | SO2 | 24 h mean | 0.4 pts; 100% |
-> | CO | **current** 8 h mean (not the 24 h max) | 1.9 pts; 94% |
-> | PM10 | 24 h mean | 2.9 pts; 85% |
-> | OZONE | current 8 h mean | 4.8 pts; 72% |
-> | PM2.5 | 24 h mean | 6.7 pts; 65% |
->
-> As raw concentrations they miss badly (PM2.5: 50 µg/m³ mean error; feed median 93 vs true 52). Spearman
-> correlations with the sub-index are 0.97–0.998. PM2.5's larger point error is expected: its table is
-> steepest (1.67 points per µg/m³), so small differences in how CPCB and OpenAQ average the same data show up.
->
-> **Converting back:** the tables are monotone, so `scripts/convert_feed.py` inverts them
-> (`data/processed/feed_concentrations.csv`). Recovered concentrations match OpenAQ to a **median relative
-> error of 1.4–3.2%** for PM2.5, PM10, NO2, SO2 and CO; **ozone is worse (median 9.6%, 90th percentile
-> 30%); treat it with care.** What comes back is a **daily-scale average, never an hourly value**
-> (24 h mean, or current 8 h mean for ozone/CO). Readings at the ceiling (index 500) are censored: only a
-> lower bound. This is what makes the 13 Delhi stations that exist *only* in the feed, and any dates OpenAQ
-> has not published, usable for daily-scale analysis.
-
-## Component: NASA FIRMS fire detections
-
-`scripts/fetch_firms.py` pulls active-fire detections over Punjab, Haryana, Delhi NCR,
-and western/central Uttar Pradesh, the stubble-burning source belt, not just the 5
-monitored cities, for the regional-transport side of spike attribution (component 4).
-Writes one row per fire detection to `data/raw/firms_acq_YYYY-MM-DD.csv`, **one file per
-acquisition date**, merged (union, de-duplicated) on every run.
-
-### Setup
-
-1. Get a free key at [FIRMS Map Key](https://firms.modaps.eosdis.nasa.gov/api/map_key/),
-   just an email address, arrives immediately, no approval wait.
-2. Add it to `.env` as `FIRMS_MAP_KEY`.
-
-### Run manually
+## Testing
 
 ```bash
-python scripts/fetch_firms.py                                    # latest 5 days (the API maximum)
-python scripts/fetch_firms.py --start 2026-09-16 --end 2026-10-16   # backfill a range
+python -m pytest -q
 ```
 
-### Why per-acquisition-date files with a 5-day window
-The first design fetched only the last 24 h and appended to a file named for the *fetch*
-date. Any day the machine was off became a hole: when checked on 2026-10-16, **seven days
-had zero detections** (17 Sep, 22 Sep, 1–2 Oct, 9–10 Oct, 13 Oct), and the backfill then
-recovered 147, 117, 244, 246 and 120 detections on the peak-burning days among them. Even
-"covered" days were short by 10–27 detections, since a 24 h pull misses what falls between
-runs. Any analysis on the old data would have been silently and badly biased. Now each run
-pulls 5 days and merges into per-date files, so gaps self-heal and re-runs only ever *add*
-detections.
-
-### Sensor choice
-
-Pulls both `VIIRS_NOAA20_NRT` and `VIIRS_NOAA21_NRT` (375m resolution, fine enough to
-catch individual agricultural fires, unlike MODIS's 1km) for full daily coverage across
-their differing overpass times. Deliberately **not** using `VIIRS_SNPP_NRT`: FIRMS
-announced on 2026-09-17 that Suomi NPP product delivery ceases **2026-11-01**, squarely
-inside this year's stubble-burning season (peaks Oct–Nov), so a pipeline built on it
-would have broken exactly when it mattered. If you see NOAA-20/21 get deprecated later,
-re-check the source list at the [Area API docs](https://firms.modaps.eosdis.nasa.gov/api/area/)
-before swapping sensors.
-
-### A real gotcha this API has
-
-FIRMS returns **HTTP 200 with a plain-text error message** (not CSV) for a bad key,
-an exceeded quota, or a malformed request, `raise_for_status()` doesn't catch this.
-`fetch_firms.py` detects it by checking whether the response body actually parses as
-CSV before handing it to pandas.
-
-### Data schema
-
-One row per fire detection:
-
-| column | meaning |
-|---|---|
-| `fetched_at_utc` | when this script pulled the record |
-| `source` | which satellite/sensor combo (`VIIRS_NOAA20_NRT` / `VIIRS_NOAA21_NRT`) |
-| `latitude`, `longitude` | detection location |
-| `acq_date`, `acq_time` | satellite acquisition date/time (UTC) |
-| `confidence` | FIRMS confidence flag (nominal/low/high) |
-| `frp` | fire radiative power (MW), rough intensity proxy |
-| `bright_ti4`, `bright_ti5`, `scan`, `track`, `satellite`, `instrument`, `version`, `daynight` | passed through as-is from FIRMS |
-
-## Component: Satellite AOD (Google Earth Engine)
-
-`scripts/fetch_aod.py` samples MODIS MAIAC Aerosol Optical Depth (`MODIS/061/MCD19A2_GRANULES`,
-1km resolution) at each CPCB station's exact coordinates, the independent satellite
-estimate that components 1 (drift detection) and 2 (gap-filling) compare reported
-PM2.5 against. Reads station coordinates from the most recent `data/raw/cpcb_ncr_*.csv`,
-so run `fetch_cpcb.py` at least once first.
-
-### Setup (all through your own Google account, not something this script can do for you)
-
-1. Go to the [Earth Engine registration page](https://console.cloud.google.com/earth-engine),
-   create or pick a Google Cloud project, and register it for Earth Engine (noncommercial
-   plan is free and fine for this volume).
-2. Add `GEE_PROJECT=your-gcp-project-id` to `.env`.
-3. Authenticate, **either**:
-
-   **a) Your own Google login (what this repo currently uses).** Run once:
-   ```bash
-   python -c "import ee; ee.Authenticate(auth_mode='localhost')"
-   ```
-   Sign in and approve every screen; the token is saved locally and reused by the
-   scheduler with no prompt. Use `localhost` mode, **not** `notebook` mode, notebook
-   tokens expire after a week, which would break the daily run. If the sign-in listener
-   crashes with `KeyError: 'code'` (a stray browser request, e.g. Chrome's side
-   traffic), paste the printed URL into a different browser (Edge) instead.
-
-   **b) A service account key**, if your org allows it: IAM & Admin -> Service
-   Accounts -> create one -> Keys -> Add key -> JSON, save under `keys/`
-   (gitignored), and set `GEE_SERVICE_ACCOUNT` and `GEE_SERVICE_ACCOUNT_KEY_PATH` in
-   `.env`. Newer Google Cloud organizations block this by default
-   (`iam.disableServiceAccountKeyCreation`: "Service account key creation is
-   disabled"), which is why (a) exists.
-
-### Run manually
-
-```bash
-python scripts/fetch_aod.py               # re-processes the trailing window (3..14 days ago)
-python scripts/fetch_aod.py --date 2026-09-15      # or one specific date
-```
-
-Writes `data/raw/aod_ncr_YYYY-MM-DD.csv`, **one file per observation date, overwritten on
-re-run** (so backfills and repeated runs never duplicate rows). Validated 2026-09-26 →
-2026-10-08: 26–28 Sep were almost fully cloud-masked (0–2 of 62 stations valid), 29 Sep
-had 54, and 30 Sep onward 61–62 of 62.
-
-### Cloud/quality masking
-
-Only pixels with `AOD_QA` bits 0-2 == 1 (clear, not cloudy/shadow/water) AND bits
-8-11 == 0 (best quality) are kept; everything else comes back as `NaN` rather than a
-misleading raw value. The mask is applied to each granule with its own QA band
-*before* granules are averaged (compositing first would let a QA pixel from one
-satellite pass filter an AOD value from another). Every station always gets a row.
-Live check, 62 stations: 51 valid on 2026-09-20, 54 on 09-22, 32 on 09-24 (hazier
-day). On a cloudy day, expect a lot of NaN rows, that's the satellite genuinely
-being blind, which is exactly the condition component 3 (wind-conditioned neighbor
-consistency) exists to cover instead.
-
-Bug caught during the first live run: Earth Engine's `sampleRegions` silently
-**drops** points whose pixel is masked instead of returning nulls, so the first
-version returned 1 row for 62 stations. `complete_with_all_stations()` left-joins
-back onto the full station list; a regression test pins this.
-
-### Data schema
-
-One row per station per date:
-
-| column | meaning |
-|---|---|
-| `fetched_at_utc` | when this script pulled the record |
-| `date` | the satellite observation date (not the CPCB reading date) |
-| `station`, `city` | matches the CPCB station naming exactly, for joining |
-| `aod_047`, `aod_055` | AOD at 0.47µm / 0.55µm, scaled; `NaN` if cloud/quality-masked |
-
-## Component: ERA5 wind (Copernicus Climate Data Store)
-
-`scripts/fetch_era5_wind.py` pulls 3-hourly ERA5 10m wind vectors (u/v components,
-derived speed and "blowing-from" direction) over the same Punjab/Haryana/NCR/western-UP
-belt as the FIRMS pull, the wind data component 3 (neighbor consistency) and
-component 4 (stubble-burning transport attribution) both need.
-
-### Setup (all through your own account, not something this script can do for you)
-
-1. Register at [cds.climate.copernicus.eu](https://cds.climate.copernicus.eu), then
-   get your Personal Access Token from your [profile page](https://cds.climate.copernicus.eu/profile).
-2. **Manually accept the Terms of Use** on the
-   [ERA5 hourly single levels dataset page](https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels)
-   (bottom of the download form). The API silently rejects requests until you do
-   this, it can't be done through the API itself.
-3. Add to `.env`:
-   ```
-   CDSAPI_URL=https://cds.climate.copernicus.eu/api
-   CDSAPI_KEY=your-uid:your-api-key
-   ```
-   (Confirmed live with `cdsapi` 0.7.7: the bare personal access token from your
-   profile page, a 36-character UUID, no colon, works as-is; no `UID:` prefix.)
-
-### Run manually
-
-```bash
-python scripts/fetch_era5_wind.py                    # re-processes the trailing window (5..12 days ago)
-python scripts/fetch_era5_wind.py --date 2026-09-01
-```
-
-Writes `data/raw/era5_wind_YYYY-MM-DD.csv`, **one file per observation date, overwritten on
-re-run**. **Requests can queue on CDS's
-compute backend**, this is normal, not a bug; the client blocks and polls until
-ready by default. First run may take a while.
-
-### Why a trailing window (and what "ERA5T" means), and NetCDF instead of GRIB
-
-ERA5 is published about 5 days behind real time as **ERA5T** (preliminary); the final
-product replaces it months later. The default window starts 5 days back, where data
-reliably exists, but it is *preliminary*: the `expver` column marks each row (`0005` = ERA5T,
-revisable; `0001` = final). Confirmed on the first live run, a 7-day-old date came
-back `0005`. Differences from final are usually small but not zero. When reading the
-CSV, use `dtype={"expver": str}` or pandas will turn `0005` into the integer `5`.
-
-Requested as NetCDF, not GRIB: GRIB parsing needs the `cfgrib` package, which in turn
-needs the native ecCodes C library, confirmed by testing that it has no working
-pip-installable path on Windows (`cfgrib` imports fine, then fails at runtime with
-`Cannot find the ecCodes library`). NetCDF sidesteps this entirely since `netCDF4`
-ships its own binaries.
-
-### Data schema
-
-One row per grid point per 3-hourly timestamp:
-
-| column | meaning |
-|---|---|
-| `fetched_at_utc` | when this script pulled the record |
-| `time` | ERA5 timestamp (UTC) |
-| `latitude`, `longitude` | ERA5 grid point (not station-aligned, this is a coarser reanalysis grid, ~0.25°) |
-| `u10_ms`, `v10_ms` | raw 10m wind components (m/s) |
-| `expver` | `0005` = preliminary ERA5T (revisable), `0001` = final ERA5 |
-| `wind_speed_ms` | derived magnitude |
-| `wind_from_deg` | derived direction wind is blowing *from*, meteorological convention (0=N, 90=E) |
-| `blh_m` | boundary-layer height (m): how deep the mixed layer is. The confounder the first stubble pass could not control for |
-| `t2m_k` | 2 m temperature (K): a proxy for post-monsoon cooling that arrives with the burning season |
-| `u925_ms`, `v925_ms` | wind at 925 hPa (~750 m): the transport-layer wind used for fire trajectories |
-
-Precipitation is a separate file, `data/raw/era5_precip_YYYY-MM-DD.csv` (hourly, area mean and max over a ~130 km box
-around Delhi, in mm; ERA5 labels each hour with its END). It is fetched best-effort and never blocks the wind data.
-
-## Component: OpenAQ archive (CPCB station concentrations)
-
-`scripts/fetch_openaq.py` reads CPCB station data from [OpenAQ](https://openaq.org)'s
-open S3 archive. It exists because the data.gov.in API went down around 26 Sep 2026,
-and because it is a *better* source in its own right: true concentrations (µg/m³)
-rather than the AQI sub-index values the data.gov.in feed appears to carry (see the
-warning under the CPCB data schema), at ~15-minute resolution (aggregated here to
-hourly), plus the stations' own wind and humidity sensors.
-
-### Setup
-1. Get a free API key at [explore.openaq.org](https://explore.openaq.org) (account
-   settings) and add `OPENAQ_API_KEY=` to `.env`. It is only used **once** to build
-   the station mapping (and on `--refresh-map`); the daily files are read from the
-   public S3 archive with no credentials.
-
-### Run
-```bash
-python scripts/fetch_openaq.py                                   # last 10 days (idempotent)
-python scripts/fetch_openaq.py --start 2026-09-26 --end 2026-10-07   # backfill a range
-python scripts/fetch_openaq.py --refresh-map                     # rebuild station mapping
-```
-
-### Output
-`data/raw/openaq_hourly_YYYY-MM-DD.csv`, **one file per observation date**, overwritten
-on re-run (unlike the other pulls, which append per fetch date), so backfills and the
-daily run's overlapping 10-day window never duplicate rows. Long format:
-
-| column | meaning |
-|---|---|
-| `hour_start_ist` | start of the hour, IST (ISO 8601, +05:30) |
-| `station` | our CPCB-feed station name, so it joins to `cpcb_ncr_*.csv` |
-| `openaq_location_id` | OpenAQ's ID for that station |
-| `parameter`, `units`, `value` | hourly mean; wind direction uses a circular mean |
-| `n_obs` | 15-minute samples behind that hour (≤4), low values mean a patchy hour |
-
-Parameters: `pm25`, `pm10`, `no2`, `so2`, `co`, `o3`, `no`, `nox`, `relativehumidity`,
-`temperature`, `wind_speed`, `wind_direction`. **No QC is applied**, single-station
-hourly PM2.5 spikes of 500–670 µg/m³ appear in the data and were left in.
-
-### Station mapping
-`data/reference/openaq_station_map.csv` (committed) maps our station names to OpenAQ
-location IDs: 60 of our 64 known stations. Matched by coordinates within 300 m, else by
-identical name. **Unmatched on purpose:** `Pusa, Delhi - IITM`, `Pusa_IMD`,
-`Aya Nagar, Delhi - IITM`, `North Campus, DU, Delhi - IITM`, the nearest active OpenAQ
-location for each is a *different* station 2–3 km away, and a wrong match would silently
-corrupt every downstream comparison.
-
-### Things that bit during the first live run
-- **Provider tags:** OpenAQ files most DPCC/UPPCB stations (JNU, Govindpuram, Wave City,
-  …) under provider `N/A`, not `CPCB`. A `CPCB`-only filter silently dropped 10 real
-  stations (50/64 matched; fixed → 60/64). Low-cost sensor networks (AirGradient,
-  Clarity) are excluded so one near a station can't be matched in its place.
-- **Stale duplicates:** OpenAQ keeps dead duplicate locations (e.g. DTU has an ID that
-  last reported in 2018 alongside the live one), so only locations reporting in the last
-  90 days are considered.
-- **Encoding:** the archive's `units` column contains a raw `0xB5` byte ("µ"), so files
-  are decoded as latin-1, not UTF-8.
-- **The gas units in the `units` column are wrong.** OpenAQ labels NO₂, SO₂ and CO "ppb", but the numbers
-  are CPCB's native units: **NO₂ and SO₂ in µg/m³, CO in mg/m³.** Found by the feed validation: the feed's
-  NO₂/SO₂ sub-indices match OpenAQ's values only with *no* unit conversion (24.5 → 30.6 and 9.75 → 12.2 vs
-  feed medians 31 and 12; applying ×1.88 / ×2.62 gives 58 and 32). Earlier text here that NO₂ at "23 ppb
-  is plausible" was wrong for that reason. PM and ozone are labelled correctly (µg/m³). Do not trust the
-  `units` string for NO₂, SO₂ or CO.
-
-### Coverage and freshness
-The archive **stalled 7–12 Oct 2026 and then back-filled those days about a week later**
-(on 2026-10-16 it held data through 12 Oct, up from 7 Oct on 12 Oct). Upstream publication
-here is late *and* retroactive, so the script re-processes the last 10 days every run
-instead of fetching "yesterday"; days not yet published just log a warning and are picked
-up on a later run. Backfilled: 2026-09-26 → 2026-10-12 (the whole data.gov.in outage up to
-12 Oct). The 13 new Delhi DPCC stations that appeared in the data.gov.in feed after the
-outage are **not in OpenAQ** (unmatched), so for them only the feed exists.
-
-## Data-quality layer (`scripts/qc.py`)
-
-Detects **stuck sensors**, hourly PM values that repeat *exactly* for ≥ 6 hours (hourly values average
-four 15-minute readings, so that is not a plausible measurement), and removes those hours before the
-satellite-consistency and stubble analyses; neighbour-based analyses blank them for any station used as a
-reference but still inspect them on the station itself. Real examples: JNU read exactly 1.00 µg/m³ for
-8 h while its neighbours read 33; Vikas Sadan sat at 102 for 19 h while they read 52–83.
-
-**Measured impact is small, and the README used to oversell it:** 111 of 21,303 station-hours (0.5%) are
-stuck, and removing them barely changes neighbour predictions (MAE 0.3296 → 0.3299), because a *median*
-over neighbours shrugs off one bad station. It matters for non-robust consumers (a mean over neighbours is
-badly corrupted, tested) and so a stuck value does not sit inside a station's own daily means.
-
-## Gap-filled hourly PM2.5 (`scripts/build_filled_series.py`)
-
-`data/processed/pm25_hourly_filled.csv`: a cleaned hourly PM2.5 series per station where **every value
-says what it is** (`source`): `observed`, `neighbour_fill` (an estimate), `stuck_replaced`,
-`stuck_removed`, or `unfilled`. Observed values are never modified. Only what the backtest validated is
-filled: **interior gaps of at most 24 hours**, from the neighbour median, each carrying
-`expected_abs_error_pct` (~24%, from the backtest). Leading/trailing blanks (a station not yet reporting,
-or offline) are not gaps and stay blank. Stuck hours longer than 24 h (Vikas Sadan's 37-hour run) are
-removed rather than replaced.
-
-First real run: 21,192 measured hours → 22,388 usable (+5.6%); 1,173 estimated; 111 stuck hours handled.
-**Not covered:** a network-wide outage (nobody to estimate from). The satellite tracks the city's day-to-day
-PM2.5 but not stations, so only a regional daily estimate is conceivable there, and it is not validated.
-
-## Dashboard (`scripts/build_dashboard.py` → `dashboard/index.html`)
-
-A self-contained static page (no server, no JavaScript, no external requests; inline SVG charts), rebuilt
-by the daily run. It opens with **pipeline health** because this project's worst problems were silent
-holes. Each source shows **OK** (fresh), **GAPS** (fresh but days missing behind it, an earlier version
-showed the CPCB feed green beside 18 missing days, which is exactly the lie this state exists to prevent),
-**STALE**, or **DOWN**, each judged against that source's own normal publication lag. Below that: Delhi
-PM2.5 against fire exposure, station health, and agreement with the satellite, each next to its caveat.
-Station names and reasons are HTML-escaped. Chart geometry is checked in tests (axis direction, bounds,
-bar proportions) rather than by eye.
-
-## Analysis: station vs satellite consistency (component 1, first pass)
-
-`scripts/analyze_station_bias.py` joins ground PM2.5 (OpenAQ, averaged over the 10:00–14:00
-IST satellite-overpass window, ≥3 hours required) to AOD at each station and looks for
-stations that disagree with the satellite. Writes to `data/processed/`.
-
-### What the first real data (2026-09-29 → 10-07, 9 usable days) showed
-
-| question | result |
-|---|---|
-| Across stations **within a day**, do PM2.5 and AOD agree? | **No**, median Spearman ρ = **0.03** (daily values −0.07 … 0.46) |
-| Does AOD track the **city's day-to-day** PM2.5? | **Yes**, ρ = **0.68** (n = 9 days) |
-| Does a typical station follow its **own** AOD pixel over days? | **Yes**, median ρ = **0.62** (IQR 0.32–0.75, 51 stations) |
-| Spatial variability within a day | AOD CV 0.27 vs PM2.5 CV 0.48 |
-
-So the satellite carries signal **in time, not across the city**: PM2.5 differences between
-stations are dominated by local sources a 1 km column measurement can't see, but regional
-haze moves everything together from day to day and AOD follows that.
-
-### Two detectors, one of them gated off
-1. **Cross-sectional bias** (per-day robust fit, station residuals): written first, and the
-   built-in gate correctly switched it **off** (needs median ρ ≥ 0.3; got 0.03). Kept
-   because it will start working if/when the spatial signal improves, and because the gate
-   is what stops it from flagging noise. Its residuals are *not* evidence of faults:
-   Cantonment Area and IGNOU Maidan Garhi read ~5σ low every single day, but they are
-   green south-Delhi sites, location, not malfunction, and the satellite can't tell.
-2. **Temporal decoupling** (the one the data supports): each station's day-to-day ρ with
-   its own AOD vs the network median, Fisher-z one-sided test, **Benjamini–Hochberg FDR
-   control** across stations.
-
-### Result: nothing flagged, and that is the honest answer
-No station is significantly decoupled. Lowest raw p-values: Sector-51 Gurugram (ρ −0.32),
-Indirapuram (−0.23), Sanjay Nagar (−0.17), Sector-62 Noida (−0.13), Vasundhara (−0.13),
-IHBAS (−0.19), but with 8–9 days each, **q = 0.23** for all of them, i.e. entirely
-consistent with chance across 51 comparisons. They are labelled "watch", not flagged. The
-detector needs roughly 3–4 weeks of paired days before it can say anything about one station.
-
-### Update 2026-10-16 (13 dates with data, 556 paired station-days)
-Cross-sectional ρ rose only to 0.13 (still gated off); the temporal network median is 0.60.
-The *same* stations keep ranking lowest, and their q-values fell as days accrued:
-Sector-51 Gurugram ρ −0.34 (11 days, q = 0.10), IHBAS ρ −0.43 (9 days, q = 0.10), Sanjay
-Nagar −0.29 (q = 0.125), Indirapuram −0.24 (q = 0.126), but none is below the 0.10 line, so
-still **nothing is flagged**. Caution for whoever acts on this later: re-running the test as
-data accumulates and flagging the first time q dips under 0.10 inflates false positives
-(sequential testing). Fix a window (e.g. 4 weeks) and a threshold in advance instead.
-The binding constraint is paired AOD days: Earth Engine's MCD19A2 currently ends 2026-10-09.
-
-### Caveats worth keeping in mind
-- A flag means "investigate", never "faulty": a station beside a road, kiln or construction
-  site legitimately decouples from a regional satellite signal.
-- Drift proper (a slow ramp) needs weeks of history; `trend_z_per_day` is exploratory.
-- 26–28 Sep were cloud-blind, so the usable window is 29 Sep → 7 Oct (OpenAQ's archive
-  ends 7 Oct; the data.gov.in feed is down). New data cannot accumulate until one resumes.
-- Residuals use ground **concentrations** (OpenAQ). Do not run this on the data.gov.in feed
-  columns, they appear to be AQI sub-indices (see the warning under the CPCB schema).
-
-## Outage timeline (data.gov.in CPCB API)
-| date | event |
-|---|---|
-| 2026-09-25 | last good pull; 62 stations |
-| 2026-09-26 | first HTTP 500s from the API |
-| by 2026-10-11 | `api.data.gov.in:443` refuses all connections (confirmed from India, Europe, US, Singapore via check-host.net, so not an ISP issue) |
-| 2026-10-13 | back; schema unchanged, but **75–76 stations** instead of 62 (13 new DPCC stations, `Pusa_IMD` gone) |
-
-**The 2026-09-26 → 2026-10-12 window is permanently missing from the data.gov.in feed**
-(it serves only the current snapshot). OpenAQ covers that window for 60 of the original
-stations. After the recovery the scheduler resumed on its own, with no intervention.
-
-## Analysis: stubble-burning transport (component 4)
-
-`scripts/analyze_stubble_transport.py` is a **screening-level** forward-trajectory model: each VIIRS fire
-detection (low-confidence dropped) releases an air parcel advected up to 72 h on ERA5 winds; a "hit" is a
-parcel passing within 60 km of Delhi. The daily stubble-exposure index is the FRP-weighted hits arriving per
-IST day (fires already within 60 km, 254 of them, are local burning and excluded). It is compared with
-Delhi's daily mean PM2.5 from OpenAQ concentrations.
-
-**It does not, and cannot, say "X% of Delhi's PM2.5 is from stubble".** That needs a calibrated
-dispersion/chemistry model we do not have.
-
-### The headline: the apparent stubble signal is largely a rain effect
-
-Three passes, each informed by the last (so they are **not independent tests**, a forking-paths caveat that
-applies to everything below):
-
-**Pass 1 (10 m winds).** Delhi PM2.5 stepped from 12–31 µg/m³ (27–29 Sep) to 52–69 µg/m³ from 30 Sep, the
-day fire parcels began arriving. Rank correlation with exposure looked strong (ρ 0.74–0.85), but it was one
-regime change, fragile to an arbitrary wind-speed factor (gone at ×2.0), and uncontrolled for the weather.
-
-**Pass 2 (better weather, pre-registered).** Added the confounders: boundary-layer height and temperature
-from ERA5, and replaced the arbitrary speed factor with 925 hPa winds (they average 3.6 m/s vs 2.0 m/s at
-10 m, confirming 10 m understates transport). Primary test fixed *before* looking at results with these
-variables: 925 hPa exposure, lag 0, controlling boundary-layer height and temperature. Result: ρ = 0.79,
-**unchanged by the controls** (partial 0.787), the wind-aware index beats a wind-blind fire count (0.63), and
-the circular-shift p reaches its floor (1/13 = 0.077), i.e. as strong as 13 days can show. The seasonal
-explanation also failed on its own terms: on the dirty days the boundary layer got *deeper* (1,341 → 1,622 m)
-and temperature *rose* (297.6 → 302 K), the opposite of cooling and stagnation.
-
-**Pass 3 (rain), this changes the conclusion.** Hourly ERA5 precipitation around Delhi:
-
-| IST day | 26 Sep | 27 Sep | 28 Sep | 29 Sep | 30 Sep → 5 Oct | 6–10 Oct |
-|---|---|---|---|---|---|---|
-| rain (area-mean mm) | **9.1** | **3.6** | 0.9 | 0.03 | 0.00 | 0.0–0.6 |
-| Delhi PM2.5 (µg/m³) | 15 | 12 | 19 | 32 | 52–63 | 52–69 |
-
-**The clean days were the rainy days, and the "step" on 30 Sep is the first fully dry day.** Rain scrubbing
-the air and then stopping explains the step with no stubble required. Restricting to rain-free days
-(30 Sep → 10 Oct, n = 10), the association falls from 0.79 to **ρ = 0.61 (p = 0.066)**: still positive, but
-weaker and not significant.
-
-**Fair summary:** the headline step is mostly a rain effect. Within the dry period there is a moderate,
-not-yet-significant positive association between fire exposure and PM2.5. Stubble contributing is plausible
-and not established, and this data cannot give a magnitude.
-
-### What would settle it (fixed in advance, to avoid trying variants until one works)
-- **Primary test:** 925 hPa exposure, lag 0, **rain-free days only**, controlling boundary-layer height and
-  temperature; secondary: exposed days only.
-- **Sample size:** the circular-shift test (which respects autocorrelation) cannot go below p ≈ 1/n, so it needs
-  **at least ~20 rain-free days** to have room to reach p < 0.05. Today there are 10. October–November is both
-  peak burning and dry, so it should arrive within weeks.
-- **Do not** re-run daily and act the first time p dips under 0.05 (sequential testing inflates false positives).
-
-### Limits
-- The control is rank-*linear* partial correlation: if exposure and PM share a *nonlinear* dependence on a
-  control, residual confounding survives (pinned by a test). With ~13 days there is no room for a more
-  flexible control.
-- No vertical mixing, deposition or plume rise; a single regional receptor; ERA5T is preliminary; precipitation
-  is an area mean over a ~130 km box, so local showers are smoothed.
-- The analysis window is bounded by the wind record (parcels need up to 72 h of wind after launch, so the first
-  usable day is 72 h after the record begins and the last must end inside it; enforced by `valid_exposure_days`).
-- A 2 mm threshold, or a different washout length than 2 days, would change which days count as wet. These were
-  fixed up front (1 mm; day plus 2 days after), not tuned.
-
-## Analysis: neighbour consistency, station health, and gap-fill (components 3 and 2)
-
-`scripts/analyze_neighbor_consistency.py` needs **no satellite**, so it works at night and under
-cloud. Each station's hourly PM2.5 is predicted *leave-one-out* (its own reading is never an
-input) from its up-to-6 nearest neighbours within 25 km, in log space, with a persistent per-site
-offset removed. 61 stations, 408 hours (26 Sep → 12 Oct), every station has ≥3 neighbours.
-
-### 1. Does conditioning on wind help? **No, it hurts.**
-Predicting from only *upwind* neighbours (bearing within ±60° of the ERA5 wind-from direction,
-wind ≥ 1.5 m/s; it applied in 42% of station-hours) vs. from all neighbours:
-
-| regime | all neighbours (median) | inverse-distance mean | upwind only |
-|---|---|---|---|
-| all hours | 0.334 | 0.332 | 0.356 |
-| hours the upwind rule applied | 0.308 | 0.307 | **0.358** |
-
-(MAE in log units; lower is better.) Per station, upwind-only was better for only **9 of 60**,
-median change −0.037 log, Wilcoxon p < 0.001, significantly *worse*. Likely reasons (not tested):
-ERA5 10 m wind at 0.25° is a crude proxy for the transport that matters over a few km, and
-restricting to upwind neighbours leaves 2–3 stations instead of 6, so the median gets noisier.
-**Don't use upwind conditioning here;** the plain neighbour median is as good as any variant. A
-plausible physical idea that the data says no to, kept in the code and tests so it can be
-re-checked when a finer wind source or denser network exists.
-
-### 2. Station health: 3 flagged (all stuck sensors), 1 on watch (of 61)
-Flatlines are the clearest and need no statistics, a stuck sensor repeating one value:
-
-| station | stuck at | for | neighbours meanwhile |
-|---|---|---|---|
-| Vikas Sadan, Gurugram | 102 µg/m³ | 19 h, 11 h and 21 h (7–9 Oct) | 52–83 |
-| Vikas Sadan, Gurugram | 112 µg/m³ | 8 h (4 Oct) | 30 |
-| Vikas Sadan, Gurugram | 55.8 µg/m³ | 37 h (9–11 Oct) | 53 |
-| JNU, Delhi | **1.00** µg/m³ | 8 h (29 Sep) | 33 |
-| Sector 11, Faridabad | 53.6 µg/m³ | 7 h (12 Oct) | 22 |
-
-**On watch:** IHBAS Dilshad Garden, whose daily residual vs its neighbours falls steadily from
-+0.91 to −0.59 log (a ~4.5× change) over 17 days, p = 0.009 on its own after the autocorrelation
-correction but q = 0.28 across the network, so *not confirmed*.
-
-**An earlier version also flagged five stations as "unusually noisy" (Govindpuram, NSIT Dwarka,
-Sector 30, Sector-51, Vikas Sadan). That was an artefact and is retracted.** Residual noise
-correlates with how far a station's neighbours are (Spearman +0.44, p = 0.0004), and all five were
-isolated stations, neighbours 9–12.5 km away on average vs a 5.4 km network median, which are
-predicted worse *by construction*. Noise is now judged against what the station's isolation
-predicts (robust log-log fit across stations); once adjusted, none of the five is noisy.
-
-**Cross-check with the satellite analysis:** IHBAS is also one of the two stations right at the
-threshold in the satellite-decoupling test (ρ −0.43, q ≈ 0.10). Two reference signals (satellite,
-neighbours) pointing at the same station is worth a human look, though both use the same ground
-PM2.5, so it is not independent confirmation of the *ground* data, and a station beside a road or
-kiln would produce exactly this too. (An earlier draft of this README also claimed Sector-51
-Gurugram was picked out by both methods; that rested on the retracted noise flag and no longer
-holds.)
-
-### How the flag rules got to 3 (what the first runs taught)
-The first version flagged **14 of 61**, too many to be a fault list, and even after the first
-round of fixes, 5 of the 8 remaining flags were still artefacts (item 5). Fixing it was a sequence
-of real problems, each pinned by a test:
-1. Significance ≠ importance: a −0.003 log/day trend (0.3%/day) was "significant". Now needs
-   ≥ 0.02 log/day.
-2. "Unusually noisy" fired on ordinary variation in a uniform network. Now also needs ≥ 1.5× the
-   typical noise.
-3. The trend test assumed independent days, but daily residuals are autocorrelated. Adjusted by
-   effective sample size. Measured honestly: false positives on random-walk-like series fall from
-   ~60% to ~35%, **better, still well above 5%**. So drift alone is a *flag* only if the total
-   change is ≥ 0.5 log (~65%, a judgement call, not tuned); smaller, or merely large-but-not-FDR-
-   significant (≥ ln 2, p < 0.05 alone), is a *watch*.
-4. A smooth drift was being double-counted as "noisy" and as a sustained departure. Noise and
-   episodes are now measured around each station's own robust trend.
-5. **"Noisy" was measuring isolation, not behaviour** (see above). Found only by asking why the five
-   flagged stations had anything in common. Lesson: when several flags share a trait, test whether the
-   trait is the cause before believing the flags.
-
-### 3. Gap-fill backtest (component 2, single-station gaps)
-Mask a block of hours at one station, fill it, compare with the truth (MAE in µg/m³, scored only
-where all three methods can produce a value; typical level 44–53 µg/m³):
-
-| gap length | neighbours | persistence (last value) | same hour yesterday |
-|---|---|---|---|
-| 3 h | 13.6 | **13.2** | 22.6 |
-| 6 h | **12.4** | 16.7 | 19.5 |
-| 12 h | **11.0** | 18.1 | 19.1 |
-| 24 h | **9.9** | 18.9 | 19.6 |
-
-Neighbours beat persistence by 26–47% for gaps of 6 h or more and beat "yesterday" everywhere;
-at 3 h, simply holding the last value is as good. Typical error is roughly 20–25% of the level.
-(Error appears to fall with block length partly because longer blocks need 24 h of contiguous
-data and so land in calmer, lower-PM periods.)
-
-**What this does *not* cover:** a *network-wide* outage like 26 Sep → 12 Oct on the data.gov.in
-feed, when no neighbours report. There the only independent signal is the satellite, which (see
-the satellite analysis) tracks the *city's* day-to-day PM2.5 (ρ 0.68) but not stations
-individually, so a regional daily estimate is feasible, a per-station fill is not.
-
-### Limits
-- 17 days of data; the real test is a longer record. All thresholds above are judgement calls and
-  are named constants at the top of the script.
-- Flatline hours are *detected* here but not yet *removed* from the other analyses (satellite
-  consistency, stubble). One station's stuck hours slightly contaminate its daily means there.
-
-## Reachability check (2026-09-17, from the same machine this pipeline runs on)
-
-| Source | Status |
-|---|---|
-| `earthengine.googleapis.com` | Reachable (fast response) |
-| `cds.climate.copernicus.eu` | Reachable (fast response) |
-| `firms.modaps.eosdis.nasa.gov` | Reachable (fast response) |
-
-None of these showed the CPCB endpoint's blocking/hanging behavior. Worth re-checking
-once real auth'd calls are wired up, since a plain TCP/TLS reachability check doesn't
-rule out an API-layer restriction the way CPCB's User-Agent gate did.
-
-## Status of the four components
-
-| # | component | state |
-|---|---|---|
-| 1 | Flag stations drifting from the satellite estimate | **First pass built** (see Analysis). Nothing flaggable yet, needs ~3–4 weeks of paired days. |
-| 2 | Gap-fill missing station data | **Built.** Neighbour-based fill beats persistence for gaps ≥ 6 h (26–47% lower error); `pm25_hourly_filled.csv` labels every value's provenance. Network-wide outages are not covered (satellite only gives a regional daily estimate, unvalidated). |
-| 3 | Neighbour consistency (for when the satellite is blind) | **Built.** Found 5 stuck-sensor episodes at 3 stations, plus 1 watch (an earlier "noisy" flag was an isolation artefact and was retracted). Wind conditioning was tested and *rejected*, it makes predictions worse. |
-| 4 | Stubble-burning transport attribution | **Built, and humbled by a rain check.** The apparent step was largely rain stopping; on rain-free days ρ = 0.61 (p = 0.066, n = 10). Needs ~20+ dry days (Oct–Nov). |
-
-Dashboard: **built** (see the Dashboard section); rebuilt by every daily run.
+**Pipeline and analysis:** fetch-window and self-healing logic, the unit conversion round trip, the stuck-sensor rule (including a test that one stuck neighbour corrupts a mean but not a median), the leave-one-out predictor, the drift trend test and the multiple-testing correction, the isolation-adjusted noise rule that retracted five false flags, the gap-fill backtest against its baselines, and the stubble protocol's rain-free restriction, circular-shift test and valid-day window.
+
+**Dashboard:** every panel renders from missing and malformed inputs, all data-derived text is HTML-escaped, the page contains no script and no external address except the footer's source and project links, the tab bar selects panels without JavaScript and leaves out empty tabs, and each footer link opens in a new tab.
+
+**Backfill:** the station matching rules (coordinates, then name, one match per source), the 15-minute to hourly conversion including the IST offset, the range and flatline cleaning, the audit on a synthetic network with a stuck station and an isolated one, and the request planning for ERA5 and FIRMS.
+
+The dashboard's appearance is checked by building the page and viewing it in a browser rather than by unit tests.
+
+---
+
+## Honest Limitations
+
+- **Short live record.** The NCR analyses rest on about nine weeks of data (16 Sep onward). Thresholds are judgement calls, kept as named constants, and every flag is a lead.
+- **The stubble test has not been run.** It is pre-registered to run once, and sequential testing would inflate false positives. Until it is, nothing here says how much of Delhi's PM2.5 comes from burning, and the screening model cannot give a magnitude in any case: it has no vertical mixing, deposition or plume rise and uses a single receptor.
+- **The historical stubble replication is blocked** by the Copernicus queue. No wind-free substitute is shown, because that would not be the pre-registered test.
+- **Most stations cannot be audited.** The neighbour test needs another station within 25 km, which about half of the national network lacks, so a clean league table is not the same as clean data.
+- **"Flagged" is a low bar.** A flag needs one stuck-sensor run or one sustained departure. Hours flagged (a few percent at most) is the better measure of how much of a station's record is affected.
+- **Thin early years.** 2015 to 2017 have 30 to 81 stations nationally and 5 to 7 in Delhi, so a season then is not comparable with one from 2020.
+- **No station coordinates in the yearly CPCB files.** Coordinates come from OpenAQ by exact station name; 56 of 559 historical stations did not match and cannot be placed on the map. 30 stations in the live feed have no history at all (recent or renamed).
+- **The India map has no outline.** It plots stations on a latitude and longitude grid; a simplified boundary would need a file this project does not yet carry.
+- **A drift has no start date.** The audit fits a straight line over a year, so it reports the year and the size of the shift, not when it began, and cannot tell a re-siting or recalibration from a failing sensor.
+- **OpenAQ and the feed disagree in places.** OpenAQ's archive is missing days the feed has and the other way round; the filled series prefers observed values and labels the rest.
+- **ERA5T is preliminary** for the newest days, and precipitation is an area mean over a box of about 130 km, so local showers are smoothed.
+- **One sensor for fires across all seasons.** The replication would use Suomi NPP alone for consistency, and the large fall in detections from 2021 to 2025 is a real change the test has to survive, not something it can adjust for.
+- **The live feed needs a residential connection** and a machine that is on. Days missed from the feed itself are unrecoverable, although OpenAQ and the yearly files cover most of them for PM2.5.
+- **Tabs cannot be linked to.** Switching panels without JavaScript means the page always opens on Overview.
+
+---
+
+## Suggested Future Features
+
+- Run the pre-registered stubble test once the dry-day target is confirmed, then repeat it unchanged on each past season once ERA5 winds and rain can be fetched, and show the per-season forest plot.
+- Report failing share per station-day as well as per station-hour, to match the usual way of counting an outage.
+- Draw an India outline under the integrity map, and place the stations that did not match by name.
+- Add a 24 to 72 hour PM2.5 forecast against a persistence baseline, only if it can be scored honestly.
+- Alert on a station newly stuck, not just list it.
+- Extend the live pipeline beyond NCR using the station master already built.
 
 ---
 

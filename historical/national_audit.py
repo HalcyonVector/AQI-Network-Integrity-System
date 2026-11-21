@@ -123,7 +123,7 @@ def main() -> int:
               f"ok {int((h['level'] == 'ok').sum())}, no neighbours/too few hours {int((h['level'] == 'none').sum())}", flush=True)
     new = pd.concat(parts, ignore_index=True)
     cols = ["station_id", "year", "n_hours", "hours_in_year", "level", "failing_share", "flatline_hours", "anomaly_hours", "trend_log_per_day",
-            "trend_q", "drifting", "resid_sigma_log", "mean_neighbor_km", "reason"]
+            "trend_q", "trend_days", "drifting", "resid_sigma_log", "mean_neighbor_km", "reason"]
     new = new[[c for c in cols if c in new.columns]]
     if out_path.exists():  # keep years from earlier runs
         old = pd.read_csv(out_path)
