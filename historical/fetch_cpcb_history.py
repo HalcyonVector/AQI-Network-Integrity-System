@@ -12,12 +12,15 @@ Existing files are skipped, so the script can be re-run after an interruption. N
 import argparse
 import subprocess
 import sys
+import time
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT_DIR = ROOT / "data" / "historical" / "bronze" / "cpcb"
 REPO = "Vonter/india-cpcb-aqi"
 DEFAULT_YEARS = list(range(2015, 2026))
+RETRIES = 4
+RETRY_WAIT_SECS = 60
 
 
 def asset_name(year: int) -> str:
@@ -44,8 +47,15 @@ def main() -> int:
         part = OUT_DIR / (asset_name(year) + ".part")
         part.unlink(missing_ok=True)
         cmd = ["gh", "release", "download", str(year), "--repo", REPO, "--pattern", asset_name(year), "--output", str(part)]
-        print(f"downloading {asset_name(year)}", flush=True)
-        if subprocess.run(cmd).returncode != 0 or not part.exists():
+        ok = False
+        for attempt in range(1, RETRIES + 1):  # a dropped connection should cost a pause, not the whole run
+            print(f"downloading {asset_name(year)} (attempt {attempt}/{RETRIES})", flush=True)
+            part.unlink(missing_ok=True)
+            if subprocess.run(cmd).returncode == 0 and part.exists():
+                ok = True
+                break
+            time.sleep(RETRY_WAIT_SECS * attempt)
+        if not ok:
             failed += 1
             print(f"  failed: {year}", flush=True)
             continue
