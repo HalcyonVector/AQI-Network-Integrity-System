@@ -77,6 +77,14 @@ def test_firms_chunks_cover_each_month_in_5_day_pieces_and_sources_start_in_thei
     assert ("VIIRS_SNPP_SP", 2016) not in fh.missing_jobs([2016], tmp_path)
 
 
+def test_cpcb_history_skips_finished_years_only(tmp_path):
+    import fetch_cpcb_history as fc
+
+    (tmp_path / fc.asset_name(2016)).write_text("x")
+    (tmp_path / (fc.asset_name(2017) + ".part")).write_text("x")  # interrupted: must be fetched again
+    assert fc.missing_years([2015, 2016, 2017], tmp_path) == [2015, 2017]
+
+
 def test_missing_jobs_skip_existing_and_go_newest_first(tmp_path):
     eh.out_path("single", 2025, 10, tmp_path).write_text("x")
     jobs = eh.missing_jobs([2024, 2025], [10], tmp_path)
