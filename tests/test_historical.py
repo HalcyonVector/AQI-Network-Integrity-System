@@ -65,6 +65,18 @@ def test_era5_requests_mirror_the_live_pipeline():
         eh.build_request("nope", 2019, 10)
 
 
+def test_firms_chunks_cover_each_month_in_5_day_pieces_and_sources_start_in_their_year(tmp_path):
+    import fetch_firms_history as fh
+
+    chunks = fh.month_chunks(2019, [10, 11])
+    assert chunks[0] == ("2019-10-01", 5) and chunks[-1] == ("2019-11-26", 5)
+    assert sum(d for _, d in chunks) == 61 and len(chunks) == 13
+    jobs = fh.missing_jobs([2016, 2018], tmp_path)
+    assert ("VIIRS_NOAA20_SP", 2016) not in jobs and ("VIIRS_NOAA20_SP", 2018) in jobs and ("VIIRS_SNPP_SP", 2016) in jobs
+    fh.out_path("VIIRS_SNPP_SP", 2016, tmp_path).write_text("x")
+    assert ("VIIRS_SNPP_SP", 2016) not in fh.missing_jobs([2016], tmp_path)
+
+
 def test_missing_jobs_skip_existing_and_go_newest_first(tmp_path):
     eh.out_path("single", 2025, 10, tmp_path).write_text("x")
     jobs = eh.missing_jobs([2024, 2025], [10], tmp_path)
