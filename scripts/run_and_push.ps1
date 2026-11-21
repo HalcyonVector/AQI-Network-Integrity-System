@@ -73,6 +73,8 @@ function Commit-And-Push($what) {
 foreach ($step in @(
     @("fetch_cpcb", "cpcb"),
     @("fetch_openaq", "openaq"),
+    @("fetch_openaq_india", "openaq-india"),
+    @("analyze_national_live", "national"),
     @("fetch_firms", "firms"),
     @("fetch_aod", "aod"),
     @("backfill_missing", "backfill"),

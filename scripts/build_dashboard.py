@@ -26,6 +26,7 @@ import pandas as pd
 
 import dashboard_extras as ex
 import dashboard_historical as dh
+import dashboard_national as dn
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 RAW_DIR = PROJECT_ROOT / "data" / "raw"
@@ -629,6 +630,7 @@ TAB_DEFS = [  # (id, label, hint, accent, icon path, section keys)
     ("fires", "Fires", "and weather", "#dfb277", "M12 3c1 4 5 5 5 10a5 5 0 0 1-10 0c0-2 1-3 2-4 0 2 1 3 2 3 0-3-1-5 1-9z", ["fires"]),
     ("stations", "Stations", "Health, satellite", "#d9897c", "M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3zM9 12l2 2 4-4", ["health", "sat"]),
     ("data", "Data", "Flow, gaps", "#7fb2d6", "M4 19V5M4 19h16M8 15l3-4 3 2 5-6", ["flow", "quality", "heat"]),
+    ("indialive", "India live", "National network", "#7fb2d6", "M12 3a7 7 0 0 1 7 7c0 5-7 11-7 11S5 15 5 10a7 7 0 0 1 7-7zM12 8v4", ["indialive"]),
     ("india", "India", "2015 to 2025", "#a3d2b8", "M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2zM9 4v14M15 6v14", ["india"]),
     ("seasons", "Seasons", "Ten years of Delhi", "#b7a6e0", "M3 17l5-6 4 3 5-8 4 5", ["seasons"]),
     ("pipeline", "Pipeline", "Runs, what is next", "#8ea3a5", "M4 8h13l-3-3M20 16H7l3 3", ["ops"]),
@@ -687,6 +689,12 @@ def render(today: date, raw_dir: Path = RAW_DIR, proc_dir: Path = PROC_DIR) -> s
         sat_scatter = ex.scatter_svg(list(j2["aod"]), list(j2["pm25_delhi"]), list(j2["date"]), "Network-mean satellite AOD (550 nm)", "Delhi PM2.5 (ug/m3)")
 
     history_india, history_seasons = history_html(proc_dir)
+    nat_dir = proc_dir / "national"
+    nat_status = pd.read_csv(nat_dir / "station_status.csv") if (nat_dir / "station_status.csv").exists() else None
+    nat_daily = pd.read_csv(nat_dir / "national_daily.csv") if (nat_dir / "national_daily.csv").exists() else None
+    nat_cities = pd.read_csv(nat_dir / "city_latest.csv") if (nat_dir / "city_latest.csv").exists() else None
+    nat_qc = pd.read_csv(nat_dir / "qc_summary.csv") if (nat_dir / "qc_summary.csv").exists() else None
+    sec_indialive = dn.national_html(dn.read_snapshot(raw_dir), nat_status, nat_daily, nat_cities, nat_qc)
     sec_flow = f"""<section class="card" id="flow"><h2>Is the data flowing?</h2>
 <div class="scroll">{health_html(health, today)}</div>
 <div class="note"><b>OK</b> = as fresh as that source normally is. <b>GAPS</b> = fresh, but days are missing behind it. <b>STALE / DOWN</b> = nothing new
@@ -746,7 +754,7 @@ station <i>follows the same day-to-day pattern as its peers</i>. Treat every row
 </header>
 {banner}
 
-{tabs_html({"flow": sec_flow, "now": sec_now, "fires": sec_fires, "heat": sec_heat, "quality": sec_quality, "health": sec_health, "sat": sec_sat, "ops": sec_ops, "india": history_india, "seasons": history_seasons})}
+{tabs_html({"flow": sec_flow, "now": sec_now, "fires": sec_fires, "heat": sec_heat, "quality": sec_quality, "health": sec_health, "sat": sec_sat, "ops": sec_ops, "india": history_india, "indialive": sec_indialive, "seasons": history_seasons})}
 
 {footer_html()}
 """
