@@ -77,6 +77,22 @@ def test_firms_chunks_cover_each_month_in_5_day_pieces_and_sources_start_in_thei
     assert ("VIIRS_SNPP_SP", 2016) not in fh.missing_jobs([2016], tmp_path)
 
 
+def test_hist_stations_and_coordinate_attach(tmp_path):
+    import build_station_table as bt
+
+    col = bt.PM25
+    for year, pm in ((2018, [None, None]), (2019, [10.0, 20.0])):
+        pd.DataFrame({"Station ID": ["s1", "s1"], "State": ["Delhi"] * 2, "City": ["Delhi"] * 2,
+                      "Station Name": ["Bawana, Delhi - DPCC"] * 2, col: pm}).to_parquet(tmp_path / f"cpcb-air-quality-{year}.parquet")
+    st = bt.hist_stations(tmp_path)
+    row = st.iloc[0]
+    assert len(st) == 1 and row["first_year"] == 2019 and row["years_with_pm25"] == 1 and row["pm25_records"] == 2
+    locs = pd.DataFrame({"id": [7, 8], "name": ["bawana, delhi - dpcc ", "Bawana, Delhi - DPCC"], "provider": ["CPCB", "AirGradient"],
+                         "lat": [28.77, 1.0], "lon": [77.05, 1.0]})
+    got = bt.attach_coordinates(st, locs).iloc[0]
+    assert got["latitude"] == 28.77 and got["openaq_id"] == 7  # government provider, name matched ignoring case and spaces
+
+
 def test_cpcb_history_skips_finished_years_only(tmp_path):
     import fetch_cpcb_history as fc
 
