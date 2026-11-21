@@ -9,3 +9,6 @@ keys/
 *-key.json
 *service-account*.json
 ROADMAP.md
+HISTORICAL_SPEC.md
+# large historical backfill (bronze/silver/gold Parquet): rebuilt from public sources, never committed
+data/historical/
