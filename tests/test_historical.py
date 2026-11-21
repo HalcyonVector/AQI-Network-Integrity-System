@@ -54,15 +54,22 @@ def test_duplicate_full_names_get_distinct_ids():
 
 
 def test_era5_requests_mirror_the_live_pipeline():
-    ds, single = eh.build_request("single", 2019, 11)
+    ds, single = eh.build_request("single", 11, [2019, 2020])
     assert ds == eh.live.DATASET and len(single["day"]) == 30 and single["area"] == eh.live.AREA
-    assert single["variable"] == eh.live.VARIABLES and single["time"] == eh.live.HOURS
-    ds, pr = eh.build_request("pressure", 2020, 2)
+    assert single["variable"] == eh.live.VARIABLES and single["time"] == eh.live.HOURS and single["year"] == ["2019", "2020"]
+    ds, pr = eh.build_request("pressure", 2, [2020])
     assert ds == eh.live.PRESSURE_DATASET and len(pr["day"]) == 29 and pr["pressure_level"] == [eh.live.PRESSURE_LEVEL]
-    _, rain = eh.build_request("precip", 2019, 10)
+    assert len(eh.build_request("pressure", 2, [2019, 2020])[1]["day"]) == 28  # only days that exist in every year
+    _, rain = eh.build_request("precip", 10, [2019])
     assert rain["area"] == eh.live.PRECIP_AREA and len(rain["time"]) == 24 and len(rain["day"]) == 31
     with pytest.raises(ValueError):
-        eh.build_request("nope", 2019, 10)
+        eh.build_request("nope", 10, [2019])
+
+
+def test_whole_history_is_six_requests_inside_the_field_limit():
+    jobs = eh.plan(eh.DEFAULT_YEARS, eh.DEFAULT_MONTHS, len(eh.DEFAULT_YEARS), Path("/nonexistent"))
+    assert len(jobs) == 6 and {k for k, _, _ in jobs} == set(eh.KINDS)
+    assert max(eh.field_count(eh.build_request(k, m, ys)[1]) for k, m, ys in jobs) < 120_000  # CDS per-request limit
 
 
 def test_firms_chunks_cover_each_month_in_5_day_pieces_and_sources_start_in_their_year(tmp_path):
@@ -101,8 +108,9 @@ def test_cpcb_history_skips_finished_years_only(tmp_path):
     assert fc.missing_years([2015, 2016, 2017], tmp_path) == [2015, 2017]
 
 
-def test_missing_jobs_skip_existing_and_go_newest_first(tmp_path):
-    eh.out_path("single", 2025, 10, tmp_path).write_text("x")
-    jobs = eh.missing_jobs([2024, 2025], [10], tmp_path)
-    assert ("single", 2025, 10) not in jobs and len(jobs) == 5
-    assert jobs[0][1] == 2025 and jobs[-1][1] == 2024
+def test_plan_skips_existing_files_and_can_split_years(tmp_path):
+    eh.out_path("single", 10, [2024, 2025], tmp_path).write_text("x")
+    jobs = eh.plan([2024, 2025], [10], 2, tmp_path)
+    assert ("single", 10, [2024, 2025]) not in jobs and len(jobs) == 2
+    split = eh.plan([2022, 2023, 2024, 2025], [10], 2, tmp_path)
+    assert len(split) == 5 and split[0][2] == [2024, 2025] and split[-1][2] == [2022, 2023]  # newest years first
