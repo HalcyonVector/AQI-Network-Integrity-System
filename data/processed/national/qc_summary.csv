@@ -1,0 +1,3 @@
+parameter,hours_raw,removed_range,removed_flatline,hours_clean
+pm25,491450,282,5087,486081
+pm10,491230,5,3753,487472

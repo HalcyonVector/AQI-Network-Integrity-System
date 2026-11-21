@@ -1,0 +1,455 @@
+openaq_id,last_hour,hours_audit_window,completeness,latest_day,pm25_latest_day,level,failing_share,drifting,reason,name,city,state,latitude,longitude
+5408,2026-11-18 23:00:00,602,0.8361111111111111,2026-11-18,37.01304347826087,flag,0.03415559772296015,False,sustained departure from neighbours x1 (18 h),"Secretariat, Amaravati - APPCB",Amaravati,Andhra Pradesh,16.5150833,80.5181667
+358456,2026-11-18 23:00:00,585,0.8125,2026-11-18,,none,,False,insufficient hours (0 < 72),"Gulzarpet, Anantapur - APPCB",Anantapur,Andhra Pradesh,14.675885999999998,77.593027
+3409372,2026-11-18 23:00:00,574,0.7972222222222223,2026-11-18,32.245,none,,False,insufficient hours (0 < 72),"Gangineni Cheruvu, Chittoor - APPCB",Chittoor,Andhra Pradesh,13.20488,79.097889
+3409400,2026-11-18 23:00:00,529,0.7347222222222223,2026-11-18,38.9125,none,,False,insufficient hours (0 < 72),"Yerramukkapalli, Kadapa - APPCB",Kadapa,Andhra Pradesh,14.465051999999998,78.824187
+3409492,2026-11-18 23:00:00,581,0.8069444444444445,2026-11-18,42.377272727272725,ok,0.0,False,consistent with neighbours,"HB Colony, Vijayawada - APPCB",Vijayawada,Andhra Pradesh,16.536107,80.594233
+3409493,2026-11-18 23:00:00,602,0.8361111111111111,2026-11-18,58.54583333333333,ok,0.0,False,consistent with neighbours,"Rajiv Gandhi Park, Vijayawada - APPCB",Vijayawada,Andhra Pradesh,16.509717,80.612222
+3409518,2026-11-18 23:00:00,592,0.8222222222222222,2026-11-18,196.99166666666667,ok,0.0,False,consistent with neighbours,"Rajiv Nagar, Vijayawada - APPCB",Vijayawada,Andhra Pradesh,16.554731,80.64911
+5628,2026-11-18 23:00:00,495,0.6875,2026-11-18,82.39166666666667,none,,False,insufficient hours (0 < 72),"GVM Corporation, Visakhapatnam - APPCB",Visakhapatnam,Andhra Pradesh,17.722682,83.308197
+223146,2026-11-17 23:00:00,565,0.7847222222222222,2026-11-18,,none,,False,insufficient hours (0 < 72),"Naharlagun, Naharlagun - APSPCB",Naharlagun,Arunachal Pradesh,27.103358,93.679645
+3409376,2026-11-18 23:00:00,614,0.8527777777777777,2026-11-18,84.25833333333334,none,,False,insufficient hours (0 < 72),"Central Academy for SFS, Byrnihat - PCBA",Byrnihat,Assam,26.071318,91.87488
+3409360,2026-11-18 23:00:00,437,0.6069444444444444,2026-11-18,20.166666666666668,none,,False,insufficient hours (0 < 72),"IITG, Guwahati - PCBA",Guwahati,Assam,26.202863600000004,91.70046436
+3409390,2026-11-18 23:00:00,570,0.7916666666666666,2026-11-18,,none,,False,insufficient hours (0 < 72),"LGBI Airport, Guwahati - PCBA",Guwahati,Assam,26.10887,91.589544
+3409411,2026-11-18 23:00:00,554,0.7694444444444445,2026-11-18,35.32083333333333,none,,False,insufficient hours (0 < 72),"Christianpatty, Nagaon - PCBA",Nagaon,Assam,26.349082,92.68449
+3409375,2026-11-18 23:00:00,550,0.7638888888888888,2026-11-18,28.375,none,,False,insufficient hours (0 < 72),"Bata Chowk, Nalbari - PCBA",Nalbari,Assam,26.446912,91.439057
+3409391,2026-11-18 23:00:00,604,0.8388888888888889,2026-11-18,33.8125,none,,False,insufficient hours (0 < 72),"Tarapur, Silchar - PCBA",Silchar,Assam,24.82827,92.79525
+363601,2026-11-18 23:00:00,591,0.8208333333333333,2026-11-18,,none,,False,insufficient hours (0 < 72),"Girls College, Sivasagar - PCBA",Sivasagar,Assam,26.987634000000003,94.636574
+270775,2026-11-18 23:00:00,607,0.8430555555555556,2026-11-18,57.425000000000004,none,,False,insufficient hours (0 < 72),"Kharahiya Basti, Araria - BSPCB",Araria,Bihar,26.146529,87.454184
+270774,2026-11-18 20:00:00,414,0.575,2026-11-18,71.22631578947369,none,,False,insufficient hours (0 < 72),"New DM Office, Arrah - BSPCB",Arrah,Bihar,25.5626095,84.663264
+304956,2026-11-18 23:00:00,606,0.8416666666666667,2026-11-18,59.856521739130436,none,,False,insufficient hours (0 < 72),"Gurdeo Nagar, Aurangabad - BSPCB",Aurangabad,Bihar,24.75746,84.366208
+3409460,2026-11-18 23:00:00,577,0.8013888888888889,2026-11-18,76.37083333333334,none,,False,insufficient hours (0 < 72),"MIDC Chilkalthana, Aurangabad - MPCB",Aurangabad,Bihar,19.87562,75.38731
+5642,2026-11-18 23:00:00,593,0.8236111111111111,2026-11-18,22.170833333333334,none,,False,insufficient hours (0 < 72),"More Chowk Waluj, Aurangabad - MPCB",Aurangabad,Bihar,19.8389439,75.244448
+3409461,2026-11-18 23:00:00,596,0.8277777777777777,2026-11-18,56.4625,none,,False,insufficient hours (0 < 72),"Rachnakar Colony, Aurangabad - MPCB",Aurangabad,Bihar,19.863756,75.321188
+229728,2026-11-18 23:00:00,574,0.7972222222222223,2026-11-18,82.53750000000001,none,,False,insufficient hours (0 < 72),"Kamalnath Nagar, Bettiah - BSPCB",Bettiah,Bihar,26.80365,84.51954
+270723,2026-11-18 23:00:00,572,0.7944444444444444,2026-11-18,58.231578947368426,none,,False,insufficient hours (0 < 72),"DM Office_Kachari Chowk, Bhagalpur - BSPCB",Bhagalpur,Bihar,25.251013,86.989001
+270721,2026-11-18 23:00:00,608,0.8444444444444444,2026-11-18,46.84583333333333,none,,False,insufficient hours (0 < 72),"Mayaganj, Bhagalpur - BSPCB",Bhagalpur,Bihar,25.265194,87.012947
+229985,2026-11-18 23:00:00,465,0.6458333333333334,2026-11-18,51.654999999999994,none,,False,insufficient hours (0 < 72),"D M Colony, Bihar Sharif - BSPCB",Bihar Sharif,Bihar,25.204762,85.51496
+270729,2026-11-18 23:00:00,483,0.6708333333333333,2026-11-18,59.4375,none,,False,insufficient hours (0 < 72),"Darshan Nagar, Chhapra - BSPCB",Chhapra,Bihar,25.7808257,84.7446768
+6551004,2026-11-18 23:00:00,559,0.7763888888888889,2026-11-18,54.94583333333333,none,,False,insufficient hours (0 < 72),"Town Hall - Lal Bagh, Darbhanga - BSPCB",Darbhanga,Bihar,26.15146,85.89341999999999
+5559,2026-11-18 23:00:00,478,0.6638888888888889,2026-11-18,73.40416666666667,none,,False,insufficient hours (0 < 72),"Collectorate, Gaya - BSPCB",Gaya,Bihar,24.7955,84.9994
+270724,2026-11-18 23:00:00,583,0.8097222222222222,2026-11-18,53.11666666666667,none,,False,insufficient hours (0 < 72),"Kareemganj, Gaya - BSPCB",Gaya,Bihar,24.792403,84.992416
+7494,2026-11-18 23:00:00,617,0.8569444444444444,2026-11-18,49.96521739130435,none,,False,insufficient hours (0 < 72),"SFTI Kusdihra, Gaya - BSPCB",Gaya,Bihar,24.762518,84.982348
+10645,2026-11-18 23:00:00,619,0.8597222222222223,2026-11-18,96.96249999999999,flag,0.029079159935379646,False,sustained departure from neighbours x1 (18 h),"Industrial Area, Hajipur - BSPCB",Hajipur,Bihar,25.697189,85.2459
+270720,2026-11-18 23:00:00,561,0.7791666666666667,2026-11-18,33.75833333333333,none,,False,insufficient hours (0 < 72),"Mirchaibari, Katihar - BSPCB",Katihar,Bihar,25.560083,87.553265
+270727,2026-11-18 23:00:00,531,0.7375,2026-11-18,24.087500000000002,none,,False,insufficient hours (0 < 72),"SDM Office_Khagra, Kishanganj - BSPCB",Kishanganj,Bihar,26.0881305,87.93840336
+270737,2026-11-18 23:00:00,589,0.8180555555555555,2026-11-18,58.395833333333336,none,,False,insufficient hours (0 < 72),"Forest Rest House, Manguraha - BSPCB",Manguraha,Bihar,27.307773,84.529114
+229731,2026-11-18 19:00:00,553,0.7680555555555556,2026-11-18,63.675,none,,False,insufficient hours (0 < 72),"Gandak Colony, Motihari - BSPCB",Motihari,Bihar,26.63086,84.90051
+270704,2026-11-18 23:00:00,576,0.8,2026-11-18,29.28333333333333,none,,False,insufficient hours (0 < 72),"Town Hall, Munger - BSPCB",Munger,Bihar,25.376776,86.471523
+10823,2026-11-18 23:00:00,614,0.8527777777777777,2026-11-18,79.5625,none,,False,insufficient hours (0 < 72),"Buddha Colony, Muzaffarpur - BSPCB",Muzaffarpur,Bihar,26.11442,85.39813
+229987,2026-11-18 23:00:00,356,0.49444444444444446,2026-11-18,,none,,False,insufficient hours (0 < 72),"MIT-Daudpur Kothi, Muzaffarpur - BSPCB",Muzaffarpur,Bihar,26.1403345,85.3650192
+5594,2026-11-18 13:00:00,361,0.5013888888888889,2026-11-18,,none,,False,insufficient hours (0 < 72),"Muzaffarpur Collectorate, Muzaffarpur - BSPCB",Muzaffarpur,Bihar,26.1209,85.3647
+7495,2026-11-18 23:00:00,609,0.8458333333333333,2026-11-18,84.3125,ok,0.0,False,consistent with neighbours,"DRM Office Danapur, Patna - BSPCB",Patna,Bihar,25.586562,85.043586
+10630,2026-11-18 23:00:00,505,0.7013888888888888,2026-11-18,119.76666666666667,ok,0.0,False,consistent with neighbours,"Govt. High School Shikarpur, Patna - BSPCB",Patna,Bihar,25.592539,85.227158
+5652,2026-11-18 23:00:00,533,0.7402777777777778,2026-11-18,62.958333333333336,ok,0.0,False,consistent with neighbours,"IGSC Planetarium Complex, Patna - BSPCB",Patna,Bihar,25.5941,85.1376
+10670,2026-11-18 23:00:00,557,0.7736111111111111,2026-11-18,72.96249999999999,ok,0.0,False,consistent with neighbours,"Muradpur, Patna - BSPCB",Patna,Bihar,25.619651,85.147382
+10599,2026-11-18 23:00:00,608,0.8444444444444444,2026-11-18,97.97916666666667,flag,0.019736842105263157,False,sustained departure from neighbours x1 (12 h),"Rajbansi Nagar, Patna - BSPCB",Patna,Bihar,25.599486,85.113666
+10697,2026-11-18 23:00:00,574,0.7972222222222223,2026-11-18,,watch,0.0,False,"watch: large apparent drift vs neighbours (-0.043 log/day = -65% over 25 days; p=0.006, q=0.11: not confirmed after multiple-testing correction)","Samanpura, Patna - BSPCB",Patna,Bihar,25.596727,85.085624
+270725,2026-11-18 23:00:00,540,0.75,2026-11-18,,none,,False,insufficient hours (0 < 72),"Mariam Nagar, Purnia - BSPCB",Purnia,Bihar,25.765657,87.466829
+270730,2026-11-18 23:00:00,538,0.7472222222222222,2026-11-18,,none,,False,insufficient hours (0 < 72),"Dangi Tola, Rajgir - BSPCB",Rajgir,Bihar,25.0328,85.41948000000001
+270728,2026-11-18 11:00:00,494,0.6861111111111111,2026-11-18,,none,,False,insufficient hours (0 < 72),"Police Line, Saharsa - BSPCB",Saharsa,Bihar,25.892357,86.590325
+301391,2026-11-18 23:00:00,495,0.6875,2026-11-18,21.727272727272727,none,,False,insufficient hours (0 < 72),"DM Office_Kasipur, Samastipur - BSPCB",Samastipur,Bihar,25.859655,85.77944000000001
+270703,2026-11-18 23:00:00,570,0.7916666666666666,2026-11-18,24.212500000000002,none,,False,insufficient hours (0 < 72),"Dada Peer, Sasaram - BSPCB",Sasaram,Bihar,24.952822,84.00239599999999
+270726,2026-11-18 23:00:00,558,0.775,2026-11-18,74.67916666666666,none,,False,insufficient hours (0 < 72),"Chitragupta Nagar, Siwan - BSPCB",Siwan,Bihar,26.2271665,84.35704270000001
+233415,2026-11-18 23:00:00,449,0.6236111111111111,2026-11-18,29.7,ok,0.0,False,consistent with neighbours,"Sector 22, Chandigarh - CPCC",Chandigarh,Chandigarh,30.735567,76.77571400000001
+10914,2026-11-18 23:00:00,591,0.8208333333333333,2026-11-18,33.604166666666664,ok,0.0,False,consistent with neighbours,"Sector-25, Chandigarh - CPCC",Chandigarh,Chandigarh,30.751462,76.762879
+278418,2026-11-18 23:00:00,367,0.5097222222222222,2026-11-18,24.145833333333332,ok,0.0,False,consistent with neighbours,"Sector-53, Chandigarh - CPCC",Chandigarh,Chandigarh,30.719859000000003,76.738637
+3409368,2026-11-18 23:00:00,603,0.8375,2026-11-18,22.195652173913043,none,,False,insufficient hours (0 < 72),"32Bungalows, Bhilai - CECB",Bhilai,Chhattisgarh,21.194815,81.31477
+270708,2026-11-18 23:00:00,502,0.6972222222222222,2026-11-18,18.491666666666667,none,,False,insufficient hours (0 < 72),"Civic Center, Bhilai - Bhilai Steel Plant",Bhilai,Chhattisgarh,21.185571,81.343175
+3409367,2026-11-18 23:00:00,602,0.8361111111111111,2026-11-18,26.02916666666667,ok,0.0,False,consistent with neighbours,"Hathkhoj, Bhilai - CECB",Bhilai,Chhattisgarh,21.224231,81.40835
+3409396,2026-11-18 23:00:00,583,0.8097222222222222,2026-11-18,26.462500000000002,none,,False,insufficient hours (0 < 72),"Nawapara SECL Colony, Chhal - CECB",Chhal,Chhattisgarh,22.118125,83.140608
+3409365,2026-11-18 23:00:00,600,0.8333333333333334,2026-11-18,17.441666666666666,none,,False,insufficient hours (0 < 72),"Rampur, Korba - CECB",Korba,Chhattisgarh,22.368195,82.746431
+3409366,2026-11-18 23:00:00,548,0.7611111111111111,2026-11-18,22.625,none,,False,insufficient hours (0 < 72),"Urja Nagar, Korba - CECB",Korba,Chhattisgarh,22.348441,82.549611
+3409397,2026-11-18 23:00:00,566,0.7861111111111111,2026-11-18,27.429166666666664,none,,False,insufficient hours (0 < 72),"OP Jindal School, Kunjemura - CECB",Kunjemura,Chhattisgarh,22.12665,83.483212
+3409398,2026-11-18 23:00:00,512,0.7111111111111111,2026-11-18,,none,,False,insufficient hours (0 < 72),"Govt. Higher Secondary School, Milupara - CECB",Milupara,Chhattisgarh,22.1910172,83.5197009
+3409361,2026-11-18 23:00:00,501,0.6958333333333333,2026-11-18,43.45416666666667,ok,0.0,False,consistent with neighbours,"AIIMS, Raipur - CECB",Raipur,Chhattisgarh,21.258815,81.578979
+3409364,2026-11-18 23:00:00,562,0.7805555555555556,2026-11-18,18.066666666666666,ok,0.0,False,consistent with neighbours,"Bhatagaon New ISBT, Raipur - CECB",Raipur,Chhattisgarh,21.219665,81.630094
+3409363,2026-11-18 23:00:00,523,0.7263888888888889,2026-11-18,34.425000000000004,flag,0.10191082802547771,False,sustained departure from neighbours x2 (32 h),"Krishak Nagar, Raipur - CECB",Raipur,Chhattisgarh,21.237755,81.705301
+3409362,2026-11-18 23:00:00,552,0.7666666666666667,2026-11-18,33.0,ok,0.0,False,consistent with neighbours,"Siltara Phase-II, Raipur - CECB",Raipur,Chhattisgarh,21.371751,81.664929
+3409399,2026-11-18 23:00:00,588,0.8166666666666667,2026-11-18,38.125,ok,0.0,False,consistent with neighbours,"OP Jindal Industrial Park, Tumidih - CECB",Tumidih,Chhattisgarh,22.06631475,83.33820077
+6932,2026-11-18 23:00:00,602,0.8361111111111111,2026-11-18,126.04166666666667,ok,0.0,False,consistent with neighbours,"Alipur, Delhi - DPCC",Delhi,Delhi,28.815329,77.15301
+8917,2026-11-18 23:00:00,599,0.8319444444444445,2026-11-18,115.70833333333333,ok,0.0,False,consistent with neighbours,"Ashok Vihar, Delhi - DPCC",Delhi,Delhi,28.695381,77.181665
+8472,2026-11-18 23:00:00,614,0.8527777777777777,2026-11-18,157.79166666666666,ok,0.0,False,consistent with neighbours,"Bawana, Delhi - DPCC",Delhi,Delhi,28.7762,77.051074
+11603,2026-11-18 23:00:00,602,0.8361111111111111,2026-11-18,152.64583333333334,ok,0.0,False,consistent with neighbours,"Chandni Chowk, Delhi - IITM",Delhi,Delhi,28.656756,77.227234
+6934,2026-11-18 23:00:00,614,0.8527777777777777,2026-11-18,91.08333333333333,ok,0.0,False,consistent with neighbours,"Dr. Karni Singh Shooting Range, Delhi - DPCC",Delhi,Delhi,28.498571,77.26484
+6931,2026-11-18 23:00:00,609,0.8458333333333333,2026-11-18,107.70833333333333,ok,0.0,False,consistent with neighbours,"Dwarka-Sector 8, Delhi - DPCC ",Delhi,Delhi,28.5710274,77.0719006
+5650,2026-11-18 23:00:00,607,0.8430555555555556,2026-11-18,85.10416666666667,ok,0.0,False,consistent with neighbours,"IGI Airport (T3), Delhi - IMD",Delhi,Delhi,28.5627763,77.1180053
+8235,2026-11-18 23:00:00,610,0.8472222222222222,2026-11-18,141.11249999999998,ok,0.0,False,consistent with neighbours,"Jahangirpuri, Delhi - DPCC",Delhi,Delhi,28.73282,77.170633
+6957,2026-11-18 23:00:00,564,0.7833333333333333,2026-11-18,94.375,ok,0.0,False,consistent with neighbours,"Jawaharlal Nehru Stadium, Delhi - DPCC",Delhi,Delhi,28.58028,77.233829
+6929,2026-11-18 23:00:00,607,0.8430555555555556,2026-11-18,84.41666666666667,flag,0.02,False,sustained departure from neighbours x1 (12 h),"Major Dhyan Chand National Stadium, Delhi - DPCC",Delhi,Delhi,28.611281,77.237738
+10486,2026-11-18 23:00:00,593,0.8236111111111111,2026-11-18,151.75,ok,0.0,False,consistent with neighbours,"Mundka, Delhi - DPCC",Delhi,Delhi,28.684678,77.076574
+5622,2026-11-18 23:00:00,491,0.6819444444444445,2026-11-18,,ok,0.0,False,consistent with neighbours,"NSIT Dwarka, Delhi - CPCB",Delhi,Delhi,28.60909,77.0325413
+10488,2026-11-18 23:00:00,581,0.8069444444444445,2026-11-18,100.66666666666667,ok,0.0,False,consistent with neighbours,"Najafgarh, Delhi - DPCC",Delhi,Delhi,28.570173,76.933762
+10485,2026-11-18 23:00:00,618,0.8583333333333333,2026-11-18,119.3,ok,0.0,False,consistent with neighbours,"Narela, Delhi - DPCC",Delhi,Delhi,28.822836,77.101981
+8365,2026-11-18 23:00:00,608,0.8444444444444444,2026-11-18,120.08333333333333,ok,0.0,False,consistent with neighbours,"Nehru Nagar, Delhi - DPCC",Delhi,Delhi,28.56789,77.250515
+5610,2026-11-18 23:00:00,606,0.8416666666666667,2026-11-18,159.94166666666666,ok,0.0,False,consistent with neighbours,"North Campus, DU, Delhi - IMD",Delhi,Delhi,28.6573814,77.1585447
+8239,2026-11-18 23:00:00,610,0.8472222222222222,2026-11-18,91.95833333333333,ok,0.0,False,consistent with neighbours,"Okhla Phase-2, Delhi - DPCC",Delhi,Delhi,28.530785,77.271255
+6960,2026-11-18 23:00:00,612,0.85,2026-11-18,96.79166666666667,ok,0.0,False,consistent with neighbours,"Patparganj, Delhi - DPCC",Delhi,Delhi,28.623748,77.287205
+50,2026-11-18 23:00:00,589,0.8180555555555555,2026-11-18,145.91304347826087,ok,0.0,False,consistent with neighbours,"Punjabi Bagh, Delhi - DPCC",Delhi,Delhi,28.674045,77.131023
+5404,2026-11-18 23:00:00,599,0.8319444444444445,2026-11-18,172.86249999999998,ok,0.0,False,consistent with neighbours,"Pusa, Delhi - DPCC",Delhi,Delhi,28.639645,77.146262
+17,2026-11-18 23:00:00,592,0.8222222222222222,2026-11-18,100.61666666666667,ok,0.0,False,consistent with neighbours,"R K Puram, Delhi - DPCC",Delhi,Delhi,28.563262,77.186937
+10831,2026-11-18 23:00:00,612,0.85,2026-11-18,127.79166666666667,ok,0.0,False,consistent with neighbours,"Rohini, Delhi - DPCC",Delhi,Delhi,28.732528,77.11992
+5586,2026-11-18 23:00:00,611,0.8486111111111111,2026-11-18,160.19166666666666,flag,0.019736842105263157,False,sustained departure from neighbours x1 (12 h),"Sirifort, Delhi - CPCB",Delhi,Delhi,28.5504249,77.2159377
+8475,2026-11-18 23:00:00,598,0.8305555555555556,2026-11-18,111.33333333333333,ok,0.0,False,consistent with neighbours,"Sonia Vihar, Delhi - DPCC",Delhi,Delhi,28.710508,77.249485
+10484,2026-11-18 23:00:00,605,0.8402777777777778,2026-11-18,87.25,ok,0.0,False,consistent with neighbours,"Sri Aurobindo Marg, Delhi - DPCC",Delhi,Delhi,28.531346,77.190156
+6938,2026-11-18 23:00:00,586,0.8138888888888889,2026-11-18,151.00833333333333,ok,0.0,False,consistent with neighbours,"Vivek Vihar, Delhi - DPCC",Delhi,Delhi,28.672342,77.31526
+8915,2026-11-18 23:00:00,595,0.8263888888888888,2026-11-18,,ok,0.0,False,consistent with neighbours,"Wazirpur, Delhi - DPCC",Delhi,Delhi,28.699793,77.165453
+227536,2026-11-18 23:00:00,537,0.7458333333333333,2026-11-18,48.10833333333333,ok,0.0,False,consistent with neighbours,"Chandkheda, Ahmedabad - IITM",Ahmedabad,Gujarat,23.107969,72.574648
+227534,2026-11-18 23:00:00,618,0.8583333333333333,2026-11-18,53.75,ok,0.0,False,consistent with neighbours,"Gyaspur, Ahmedabad - IITM",Ahmedabad,Gujarat,22.977134,72.553024
+5631,2026-11-18 20:00:00,593,0.8236111111111111,2026-11-18,60.68095238095238,ok,0.0,False,consistent with neighbours,"Maninagar, Ahmedabad - GPCB",Ahmedabad,Gujarat,23.002657,72.591912
+301387,2026-11-18 23:00:00,614,0.8527777777777777,2026-11-18,42.55416666666667,ok,0.0,False,consistent with neighbours,"Raikhad, Ahmedabad - IITM",Ahmedabad,Gujarat,23.020509,72.579261
+227533,2026-11-18 23:00:00,572,0.7944444444444444,2026-11-18,47.86666666666667,ok,0.0,False,consistent with neighbours,"Rakhial, Ahmedabad - IITM",Ahmedabad,Gujarat,23.016834,72.625775
+228303,2026-11-18 23:00:00,604,0.8388888888888889,2026-11-18,57.229166666666664,ok,0.0,False,consistent with neighbours,"SAC ISRO Bopal, Ahmedabad - IITM",Ahmedabad,Gujarat,23.041137,72.456691
+228300,2026-11-18 23:00:00,618,0.8583333333333333,2026-11-18,42.579166666666666,ok,0.0,False,consistent with neighbours,"SAC ISRO Satellite, Ahmedabad - IITM",Ahmedabad,Gujarat,23.023389,72.515201
+228297,2026-11-18 23:00:00,602,0.8361111111111111,2026-11-18,51.291666666666664,ok,0.0,False,consistent with neighbours,"SVPI Airport Hansol, Ahmedabad - IITM",Ahmedabad,Gujarat,23.076793,72.627874
+6962,2026-11-18 23:00:00,575,0.7986111111111112,2026-11-18,87.47083333333335,none,,False,insufficient hours (0 < 72),"GIDC, Ankleshwar - GPCB",Ankleshwar,Gujarat,21.613267,73.010555
+3409336,2026-11-18 23:00:00,566,0.7861111111111111,2026-11-18,32.94166666666667,ok,0.0,False,consistent with neighbours,"GIFT City, Gandhinagar - IITM",Gandhinagar,Gujarat,23.163798,72.677768
+228301,2026-11-18 23:00:00,619,0.8597222222222223,2026-11-18,45.78333333333333,ok,0.0,False,consistent with neighbours,"IIPHG Lekawada, Gandhinagar - IITM",Gandhinagar,Gujarat,23.243639,72.68994
+6937,2026-11-18 23:00:00,524,0.7277777777777777,2026-11-18,77.8125,flag,0.05343511450381679,False,sustained departure from neighbours x1 (28 h),"Sector-10, Gandhinagar - GPCB",Gandhinagar,Gujarat,23.221714,72.654328
+8171,2026-11-18 23:00:00,20,0.027777777777777776,2026-11-18,,none,,,,"GIDC, Nandesari - Nandesari Ind. Association",Nandesari,Gujarat,22.410802,73.097923
+3409371,2026-11-18 23:00:00,595,0.8263888888888888,2026-11-18,66.88333333333334,none,,False,insufficient hours (0 < 72),"Science Center, Surat - SMC",Surat,Gujarat,21.170046,72.795405
+6968,2026-11-18 23:00:00,515,0.7152777777777778,2026-11-18,,none,,False,insufficient hours (0 < 72),"Phase-1 GIDC, Vapi - GPCB",Vapi,Gujarat,20.362421,72.918013
+6942,2026-11-18 23:00:00,568,0.7888888888888889,2026-11-18,63.25454545454545,ok,0.0,False,consistent with neighbours,"Phase-4 GIDC, Vatva - GPCB",Vatva,Gujarat,22.969611,72.6435
+6964,2026-11-18 23:00:00,600,0.8333333333333334,2026-11-18,63.262499999999996,none,,False,insufficient hours (0 < 72),"Patti Mehar, Ambala - HSPCB",Ambala,Haryana,30.379589,76.778328
+6936,2026-11-18 23:00:00,572,0.7944444444444444,2026-11-18,110.39166666666667,ok,0.0,False,consistent with neighbours,"Arya Nagar, Bahadurgarh - HSPCB",Bahadurgarh,Haryana,28.6701,76.9254
+6972,2026-11-18 22:00:00,536,0.7444444444444445,2026-11-18,188.8,ok,0.0,False,consistent with neighbours,"Nathu Colony, Ballabgarh - HSPCB",Ballabgarh,Haryana,28.3419248,77.319699
+6944,2026-11-18 23:00:00,597,0.8291666666666667,2026-11-18,125.89999999999999,none,,False,insufficient hours (0 < 72),"H.B. Colony, Bhiwani - HSPCB",Bhiwani,Haryana,28.806223,76.141105
+10725,2026-11-18 23:00:00,600,0.8333333333333334,2026-11-18,93.01304347826088,none,,False,insufficient hours (0 < 72),"Mini Secretariat, Charkhi Dadri - HSPCB",Charkhi Dadri,Haryana,28.593883,76.270653
+6949,2026-11-18 23:00:00,575,0.7986111111111112,2026-11-18,96.90833333333335,ok,0.0,False,consistent with neighbours,"Municipal Corporation Office, Dharuhera -  HSPCB",Dharuhera,Haryana,28.2068,76.7997
+10920,2026-11-18 23:00:00,547,0.7597222222222222,2026-11-18,164.98095238095237,ok,0.0,False,consistent with neighbours,"New Industrial Town, Faridabad - HSPCB",Faridabad,Haryana,28.39072,77.30059
+10908,2026-11-18 23:00:00,572,0.7944444444444444,2026-11-18,81.8,ok,0.0,False,consistent with neighbours,"Sector 11, Faridabad - HSPCB",Faridabad,Haryana,28.376058,77.315741
+10820,2026-11-18 23:00:00,561,0.7791666666666667,2026-11-18,143.81666666666666,flag,0.0,False,unusually noisy vs neighbours (x2.4 what is expected for its isolation),"Sector 30, Faridabad - HSPCB",Faridabad,Haryana,28.4417,77.3217
+6969,2026-11-18 23:00:00,523,0.7263888888888889,2026-11-18,,none,,False,insufficient hours (0 < 72),"Huda Sector, Fatehabad - HSPCB",Fatehabad,Haryana,29.503664,75.467934
+10921,2026-11-18 23:00:00,606,0.8416666666666667,2026-11-18,117.62916666666666,ok,0.0,False,consistent with neighbours,"NISE Gwal Pahari, Gurugram - IMD",Gurugram,Haryana,28.422681,77.148944
+10825,2026-11-18 23:00:00,611,0.8486111111111111,2026-11-18,122.00416666666666,ok,0.0,False,consistent with neighbours,"Sector-51, Gurugram - HSPCB",Gurugram,Haryana,28.4227,77.0667
+10900,2026-11-18 23:00:00,606,0.8416666666666667,2026-11-18,112.31304347826087,ok,0.0,False,consistent with neighbours,"Teri Gram, Gurugram - HSPCB",Gurugram,Haryana,28.4275,77.1465
+301,2026-11-18 23:00:00,493,0.6847222222222222,2026-11-18,,ok,0.0,False,consistent with neighbours,"Vikas Sadan, Gurugram - HSPCB",Gurugram,Haryana,28.4501238,77.0263051
+6935,2026-11-18 23:00:00,504,0.7,2026-11-18,121.99583333333334,none,,False,insufficient hours (0 < 72),"Urban Estate-II, Hisar - HSPCB",Hisar,Haryana,29.14056,75.744941
+6963,2026-11-18 23:00:00,530,0.7361111111111112,2026-11-18,82.99583333333334,none,,False,insufficient hours (0 < 72),"Police Lines, Jind - HSPCB",Jind,Haryana,29.307814,76.337619
+6971,2026-11-18 23:00:00,562,0.7805555555555556,2026-11-18,128.875,none,,False,insufficient hours (0 < 72),"Rishi Nagar, Kaithal - HSPCB",Kaithal,Haryana,29.8006,76.4155
+10910,2026-11-18 23:00:00,575,0.7986111111111112,2026-11-18,71.3875,none,,False,insufficient hours (0 < 72),"Sector-12, Karnal - HSPCB",Karnal,Haryana,29.6953,77.0027
+7282,2026-11-18 23:00:00,547,0.7597222222222222,2026-11-18,81.75,none,,False,insufficient hours (0 < 72),"Sector-7, Kurukshetra - HSPCB",Kurukshetra ,Haryana,29.966942,76.875879
+6953,2026-11-18 23:00:00,575,0.7986111111111112,2026-11-18,,ok,0.0,False,consistent with neighbours,"Sector-2 IMT, Manesar - HSPCB",Manesar,Haryana,28.360699,76.93609
+6970,2026-11-18 23:00:00,586,0.8138888888888889,2026-11-18,86.72916666666667,none,,False,insufficient hours (0 < 72),"Shastri Nagar, Narnaul - HSPCB",Narnaul,Haryana,28.060249,76.113115
+7280,2026-11-18 23:00:00,573,0.7958333333333333,2026-11-18,30.317391304347826,none,,False,insufficient hours (0 < 72),"Shyam Nagar, Palwal - HSPCB",Palwal ,Haryana,28.1485564,77.3320667
+2583,2026-11-18 23:00:00,545,0.7569444444444444,2026-11-18,41.550000000000004,watch,0.0,False,"watch: large apparent drift vs neighbours (+0.117 log/day = +186% over 10 days; p=0.025, q=0.22: not confirmed after multiple-testing correction)","Sector-6, Panchkula - HSPCB ",Panchkula,Haryana,30.7057778,76.8531805555555
+6958,2026-11-18 23:00:00,580,0.8055555555555556,2026-11-18,54.85,none,,False,insufficient hours (0 < 72),"Sector-18, Panipat - HSPCB",Panipat,Haryana,29.435587,76.975531
+6952,2026-11-18 23:00:00,572,0.7944444444444444,2026-11-18,98.65833333333335,none,,False,insufficient hours (0 < 72),"F-Block, Sirsa - HSPCB",Sirsa,Haryana,29.5364,75.0158
+6951,2026-11-18 23:00:00,612,0.85,2026-11-18,74.54166666666667,none,,False,insufficient hours (0 < 72),"Murthal, Sonipat - HSPCB",Sonipat,Haryana,29.0272,77.0621
+6930,2026-11-18 23:00:00,579,0.8041666666666667,2026-11-18,89.5086956521739,none,,False,insufficient hours (0 < 72),"Gobind Pura, Yamuna Nagar - HSPCB",Yamuna Nagar,Haryana,30.1480566,77.2893471
+301389,2026-11-18 23:00:00,552,0.7666666666666667,2026-11-18,,ok,0.0,False,consistent with neighbours,"HIMUDA Complex Phase-1, Baddi - HPPCB",Baddi,Himachal Pradesh,30.943887,76.801991
+3409415,2026-11-18 23:00:00,177,0.24583333333333332,2026-11-18,,none,,False,insufficient hours (0 < 72),"Sardar Patel Nagar, Dhanbad - JSPCB",Dhanbad,Jharkhand,23.80569,86.44268000000001
+10537,2026-11-17 14:00:00,522,0.725,2026-11-18,,none,,False,insufficient hours (0 < 72),"Vidayagiri, Bagalkot - KSPCB",Bagalkot,Karnataka,16.172806,75.659694
+358665,2026-11-18 17:00:00,366,0.5083333333333333,2026-11-18,,none,,False,insufficient hours (0 < 72),"Ramteerth Nagar, Belgaum - KSPCB",Belgaum,Karnataka,15.888653,74.541751
+5548,2026-11-18 23:00:00,619,0.8597222222222223,2026-11-18,40.416666666666664,ok,0.0,False,consistent with neighbours,"BTM Layout, Bengaluru - CPCB",Bengaluru,Karnataka,12.9135218,77.5950804
+3409312,2026-10-11 16:00:00,0,0.0,2026-11-18,,none,,,,"BWSSB Kadabesanahalli, Bengaluru - CPCB",Bengaluru,Karnataka,12.9352049,77.6814488
+6974,2026-11-18 23:00:00,610,0.8472222222222222,2026-11-18,38.46818181818182,ok,0.0,False,consistent with neighbours,"Bapuji Nagar, Bengaluru - KSPCB",Bengaluru,Karnataka,12.951913,77.539784
+6984,2026-11-18 23:00:00,536,0.7444444444444445,2026-11-18,46.76666666666667,ok,0.0,False,consistent with neighbours,"Hebbal, Bengaluru - KSPCB",Bengaluru,Karnataka,13.029152,77.585901
+6983,2026-11-18 23:00:00,587,0.8152777777777778,2026-11-18,42.016666666666666,ok,0.0,False,consistent with neighbours,"Hombegowda Nagar, Bengaluru - KSPCB",Bengaluru,Karnataka,12.938539,77.5901
+6973,2026-11-18 23:00:00,580,0.8055555555555556,2026-11-18,64.22916666666667,ok,0.0,False,consistent with neighbours,"Jayanagar 5th Block, Bengaluru - KSPCB",Bengaluru,Karnataka,12.920984,77.584908
+3409434,2026-11-13 06:00:00,152,0.2111111111111111,2026-11-18,,ok,0.0,False,consistent with neighbours,"Jigani, Bengaluru - KSPCB",Bengaluru,Karnataka,12.7816279,77.6299145
+3409388,2026-11-18 23:00:00,121,0.16805555555555557,2026-11-18,39.595,ok,0.0,False,consistent with neighbours,"Kasturi Nagar, Bengaluru - KSPCB",Bengaluru,Karnataka,13.003872,77.664217
+5607,2026-11-18 23:00:00,493,0.6847222222222222,2026-11-18,40.95,ok,0.0,False,consistent with neighbours,"Peenya, Bengaluru - CPCB",Bengaluru,Karnataka,13.0270199,77.494094
+3409385,2026-11-18 23:00:00,43,0.059722222222222225,2026-11-18,,none,,,,"RVCE-Mailasandra, Bengaluru - KSPCB",Bengaluru,Karnataka,12.921418,77.502466
+3409393,2026-10-05 17:00:00,0,0.0,2026-11-18,,none,,,,"Shivapura_Peenya, Bengaluru - KSPCB",Bengaluru,Karnataka,13.0246342,77.5080115
+6975,2026-11-18 23:00:00,543,0.7541666666666667,2026-11-18,59.88095238095238,ok,0.0,False,consistent with neighbours,"Silk Board, Bengaluru - KSPCB",Bengaluru,Karnataka,12.917348,77.622813
+8153,2026-11-18 23:00:00,548,0.7611111111111111,2026-11-18,18.962500000000002,none,,False,insufficient hours (0 < 72),"Urban, Chamarajanagar - KSPCB",Chamarajanagar,Karnataka,11.55358,76.55521
+6954,2026-11-18 23:00:00,510,0.7083333333333334,2026-11-18,,none,,False,insufficient hours (0 < 72),"Chikkaballapur Rural, Chikkaballapur - KSPCB",Chikkaballapur,Karnataka,13.428828,77.731418
+10902,2026-11-18 23:00:00,475,0.6597222222222222,2026-11-18,19.625,none,,False,insufficient hours (0 < 72),"Kalyana Nagara, Chikkamagaluru - KSPCB",Chikkamagaluru,Karnataka,13.328028,75.797056
+60657,2026-11-18 23:00:00,406,0.5638888888888889,2026-11-18,,none,,False,insufficient hours (0 < 72),"Devaraj Urs Badavane, Davanagere - KSPCB",Davanagere,Karnataka,14.4758,75.9052
+3409359,2026-11-18 23:00:00,495,0.6875,2026-11-18,35.43043478260869,none,,False,insufficient hours (0 < 72),"Kalabhavan, Dharwad - KSPCB",Dharwad,Karnataka,15.459706,75.008381
+44515,2026-11-18 23:00:00,395,0.5486111111111112,2026-11-18,39.237500000000004,none,,False,insufficient hours (0 < 72),"Panchal Nagar, Gadag - KSPCB",Gadag,Karnataka,15.411456,75.638133
+3409335,2026-11-13 16:00:00,125,0.1736111111111111,2026-11-18,,none,,False,insufficient hours (0 < 72),"B.Katihalli, Hassan - KSPCB",Hassan,Karnataka,13.008556,76.125258
+3409334,2026-11-09 10:00:00,161,0.22361111111111112,2026-11-18,,none,,False,insufficient hours (0 < 72),"Ashwini Nagar, Haveri - KSPCB",Haveri,Karnataka,14.7918,75.3896
+3409387,2026-11-18 23:00:00,612,0.85,2026-11-18,24.833333333333332,none,,False,insufficient hours (0 < 72),"Lingaraj Nagar, Hubballi - KSPCB",Hubballi,Karnataka,15.3714823,75.1160168
+6955,2026-11-17 22:00:00,154,0.21388888888888888,2026-11-18,,none,,False,insufficient hours (0 < 72),"Lal Bahadur Shastri Nagar, Kalaburagi - KSPCB",Kalaburagi,Karnataka,17.321993,76.822628
+3409386,2026-11-18 23:00:00,599,0.8319444444444445,2026-11-18,17.325,none,,False,insufficient hours (0 < 72),"Mahatma Basaveswar Colony, Kalaburgi - KSPCB",Kalaburagi,Karnataka,17.336318,76.847397
+3409497,2026-11-18 23:00:00,416,0.5777777777777777,2026-11-18,47.36363636363637,none,,False,insufficient hours (0 < 72),"KHB Colony, Karwar - KSPCB",Karwar,Karnataka,14.816666,74.141003
+60656,2026-11-18 23:00:00,368,0.5111111111111111,2026-11-18,24.724999999999998,none,,False,insufficient hours (0 < 72),"Tamaka Ind. Area, Kolar - KSPCB",Kolar,Karnataka,13.1276288,78.1570122
+12041,2026-11-18 23:00:00,408,0.5666666666666667,2026-11-18,29.4875,none,,False,insufficient hours (0 < 72),"Diwator Nagar, Koppal - KSPCB",Koppal,Karnataka,15.34763,76.181767
+11582,2026-11-18 17:00:00,601,0.8347222222222223,2026-11-18,,none,,False,insufficient hours (0 < 72),"Stuart Hill, Madikeri - KSPCB",Madikeri,Karnataka,12.415911,75.73505
+44513,2026-11-18 23:00:00,516,0.7166666666666667,2026-11-18,39.904545454545456,none,,False,insufficient hours (0 < 72),"Kadri, Mangalore - KSPCB",Mangalore,Karnataka,12.88925,74.853
+7289,2026-11-18 23:00:00,558,0.775,2026-11-18,48.15833333333333,none,,False,insufficient hours (0 < 72),"Hebbal 1st Stage, Mysuru - KSPCB",Mysuru,Karnataka,12.21041,76.37376
+12043,2026-11-18 23:00:00,527,0.7319444444444444,2026-11-18,40.824999999999996,none,,False,insufficient hours (0 < 72),"Haji Colony, Raichur - KSPCB",Raichur,Karnataka,16.208139,77.348417
+10909,2026-11-18 23:00:00,602,0.8361111111111111,2026-11-18,55.13333333333333,none,,False,insufficient hours (0 < 72),"Vijay Nagar, Ramanagara - KSPCB",Ramanagara,Karnataka,12.733409,77.298051
+11577,2026-11-18 23:00:00,618,0.8583333333333333,2026-11-18,24.629166666666666,none,,False,insufficient hours (0 < 72),"Vinoba Nagara, Shivamogga - KSPCB",Shivamogga,Karnataka,13.94,75.555917
+3409389,2026-11-18 11:00:00,215,0.2986111111111111,2026-11-18,,none,,False,insufficient hours (0 < 72),"Thimmalapura, Tumakuru - KSPCB",Tumakuru,Karnataka,13.377516,77.09907199999999
+220353,2026-11-18 23:00:00,533,0.7402777777777778,2026-11-18,36.44166666666667,none,,False,insufficient hours (0 < 72),"Brahmagiri, Udupi - KSPCB",Udupi,Karnataka,13.34194,74.74694
+8035,2026-11-13 09:00:00,471,0.6541666666666667,2026-11-18,,none,,False,insufficient hours (0 < 72),"Ibrahimpur, Vijayapura - KSPCB",Vijayapura,Karnataka,16.802639,75.722694
+301670,2026-11-18 23:00:00,583,0.8097222222222222,2026-11-18,61.849999999999994,none,,False,insufficient hours (0 < 72),"Collector Office, Yadgir - KSPCB",Yadgir,Karnataka,16.7602,77.1428
+6966,2026-11-18 23:00:00,459,0.6375,2026-11-18,17.400000000000002,none,,False,insufficient hours (0 < 72),"Udyogamandal, Eloor - Kerala PCB",Eloor,Kerala,10.073232,76.302765
+10747,2026-11-18 23:00:00,459,0.6375,2026-11-18,32.25217391304348,none,,False,insufficient hours (0 < 72),"Thavakkara, Kannur - Kerala PCB",Kannur,Kerala,11.875,75.3732
+10915,2026-09-28 13:00:00,0,0.0,2026-11-18,,none,,,,"Polayathode, Kollam - Kerala PCB",Kollam,Kerala,8.8787,76.6073
+8190,2026-11-18 23:00:00,570,0.7916666666666666,2026-11-18,31.978947368421053,none,,False,insufficient hours (0 < 72),"Kariavattom, Thiruvananthapuram - Kerala PCB",Thiruvananthapuram,Kerala,8.5637,76.8865
+5646,2026-11-18 23:00:00,574,0.7972222222222223,2026-11-18,18.079166666666666,none,,False,insufficient hours (0 < 72),"Plammoodu, Thiruvananthapuram - Kerala PCB",Thiruvananthapuram,Kerala,8.5149093,76.9435879
+3409413,2026-11-18 23:00:00,563,0.7819444444444444,2026-11-18,55.333333333333336,ok,0.0,False,consistent with neighbours,"Idgah Hills, Bhopal - MPPCB",Bhopal,Madhya Pradesh,23.264759,77.381568
+361378,2026-11-18 23:00:00,535,0.7430555555555556,2026-11-18,80.58333333333333,ok,0.0,False,consistent with neighbours,"Paryavaran Parisar, Bhopal - MPPCB",Bhopal,Madhya Pradesh,23.210494,77.425409
+10913,2026-11-18 23:00:00,614,0.8527777777777777,2026-11-18,73.87083333333334,ok,0.0,False,consistent with neighbours,"T T Nagar, Bhopal - MPPCB",Bhopal,Madhya Pradesh,23.233584,77.400574
+6961,2026-11-18 23:00:00,556,0.7722222222222223,2026-11-18,60.104166666666664,none,,False,insufficient hours (0 < 72),"Shrivastav Colony, Damoh - MPPCB",Damoh,Madhya Pradesh,23.81748678,79.446246
+5667,2026-11-18 23:00:00,604,0.8388888888888889,2026-11-18,57.24583333333334,none,,False,insufficient hours (0 < 72),"Bhopal Chauraha, Dewas - MPPCB",Dewas,Madhya Pradesh,22.9682591,76.064118
+10907,2026-11-18 23:00:00,576,0.8,2026-11-18,95.07916666666667,none,,False,insufficient hours (0 < 72),"City Center, Gwalior - MPPCB",Gwalior,Madhya Pradesh,26.203442,78.193251
+3409374,2026-11-18 23:00:00,612,0.85,2026-11-18,112.86666666666667,none,,False,insufficient hours (0 < 72),"Deen Dayal Nagar, Gwalior - MPPCB",Gwalior,Madhya Pradesh,26.259242,78.216432
+3409369,2026-11-18 23:00:00,590,0.8194444444444444,2026-11-18,105.34583333333335,none,,False,insufficient hours (0 < 72),"Maharaj Bada, Gwalior - MPPCB",Gwalior,Madhya Pradesh,26.200388,78.14771400000001
+3409501,2026-11-18 23:00:00,123,0.17083333333333334,2026-11-18,77.52916666666667,ok,0.0,False,consistent with neighbours,"Airport Area, Indore - IMC",Indore,Madhya Pradesh,22.7289,75.8076
+7292,2026-11-18 23:00:00,538,0.7472222222222222,2026-11-18,43.15833333333333,none,,False,insufficient hours (0 < 72),"Chhoti Gwaltoli, Indore - MPPCB",Indore,Madhya Pradesh,22.431,75.5213
+3409500,2026-11-18 23:00:00,581,0.8069444444444445,2026-11-18,33.26521739130435,none,,False,insufficient hours (0 < 72),"Maguda Nagar, Indore - IMC",Indore,Madhya Pradesh,22.7524,75.8872
+3409498,2026-11-18 23:00:00,582,0.8083333333333333,2026-11-18,34.30416666666667,ok,0.0,False,consistent with neighbours,"Residency Area, Indore - IMC",Indore,Madhya Pradesh,22.7084,75.8815
+3409489,2026-11-18 23:00:00,495,0.6875,2026-11-18,,none,,False,insufficient hours (0 < 72),"Gupteshwar, Jabalpur - JMC",Jabalpur,Madhya Pradesh,23.142888,79.916147
+10911,2026-11-18 23:00:00,583,0.8097222222222222,2026-11-18,72.03750000000001,none,,False,insufficient hours (0 < 72),"Marhatal, Jabalpur - MPPCB",Jabalpur,Madhya Pradesh,23.168606,79.932247
+3409488,2026-11-18 23:00:00,613,0.8513888888888889,2026-11-18,93.3125,none,,False,insufficient hours (0 < 72),"Suhagi, Jabalpur - JMC",Jabalpur,Madhya Pradesh,23.218135,79.95777
+8245,2026-11-18 23:00:00,558,0.775,2026-11-18,70.2625,none,,False,insufficient hours (0 < 72),"Gole Bazar, Katni - MPPCB",Katni,Madhya Pradesh,23.50016,80.23284
+10917,2026-11-18 23:00:00,567,0.7875,2026-11-18,22.405555555555555,none,,False,insufficient hours (0 < 72),"Sahilara, Maihar - KJS Cements",Maihar,Madhya Pradesh,24.2613009,80.7231783
+5632,2026-11-18 23:00:00,588,0.8166666666666667,2026-11-18,68.79523809523809,ok,0.0,False,consistent with neighbours,"Sector-D Industrial Area, Mandideep - MPPCB",Mandideep,Madhya Pradesh,23.10844,77.511428
+5603,2026-11-18 23:00:00,619,0.8597222222222223,2026-11-18,82.8875,none,,False,insufficient hours (0 < 72),"Sector-2 Industrial Area, Pithampur - MPPCB",Pithampur,Madhya Pradesh,22.624758,75.675238
+6933,2026-11-18 23:00:00,610,0.8472222222222222,2026-11-18,43.824999999999996,none,,False,insufficient hours (0 < 72),"Shasthri Nagar, Ratlam - IPCA Lab",Ratlam,Madhya Pradesh,23.331731,75.045981
+3409370,2026-11-18 23:00:00,584,0.8111111111111111,2026-11-18,73.82916666666667,none,,False,insufficient hours (0 < 72),"Civil Lines, Sagar - MPPCB",Sagar,Madhya Pradesh,23.838586,78.759431
+7979,2026-11-18 22:00:00,368,0.5111111111111111,2026-11-18,,none,,False,insufficient hours (0 < 72),"Deen Dayal Nagar, Sagar - MPPCB",Sagar,Madhya Pradesh,23.8640158,78.80289321
+6443,2026-11-18 23:00:00,619,0.8597222222222223,2026-11-18,30.016666666666666,none,,False,insufficient hours (0 < 72),"Bandhavgar Colony, Satna - Birla Cement",Satna,Madhya Pradesh,24.58434363,80.8549414
+3409457,2026-11-18 23:00:00,587,0.8152777777777778,2026-11-18,59.55416666666667,none,,False,insufficient hours (0 < 72),"Tarakpur, Ahmednagar - MPCB",Ahmednagar,Maharashtra,19.10122,74.73339
+3409456,2026-11-18 23:00:00,610,0.8472222222222222,2026-11-18,33.74166666666667,none,,False,insufficient hours (0 < 72),"Ramdaspeth, Akola - MPCB",Akola,Maharashtra,20.719516,77.000253
+3409458,2026-11-18 23:00:00,606,0.8416666666666667,2026-11-18,34.375,none,,False,insufficient hours (0 < 72),"Shivneri Colony, Amravati - MPCB",Amravati,Maharashtra,20.9402359,77.7895248
+3409470,2026-11-18 23:00:00,577,0.8013888888888889,2026-11-18,60.22083333333333,ok,0.0,False,consistent with neighbours,"Katrap, Badlapur - MPCB",Badlapur,Maharashtra,19.16485,73.23409
+3409476,2026-11-18 23:00:00,608,0.8444444444444444,2026-11-18,31.145833333333332,ok,0.0,False,consistent with neighbours,"CBD Belapur, Belapur - MPCB",Belapur,Maharashtra,19.0243902,73.0406721
+3409485,2026-11-18 23:00:00,584,0.8111111111111111,2026-11-18,51.01739130434783,ok,0.0,False,consistent with neighbours,"Gokul Nagar, Bhiwandi - MPCB",Bhiwandi,Maharashtra,19.309073,73.057223
+3409481,2026-11-18 23:00:00,615,0.8541666666666666,2026-11-18,42.877272727272725,none,,False,insufficient hours (0 < 72),"Khaira, Boisar - MPCB",Boisar,Maharashtra,19.786089,72.757971
+3409317,2026-11-18 23:00:00,615,0.8541666666666666,2026-11-18,53.487500000000004,none,,False,insufficient hours (0 < 72),"Chauhan Colony, Chandrapur - MPCB",Chandrapur,Maharashtra,19.9629,79.298714
+5565,2026-11-18 23:00:00,524,0.7277777777777777,2026-11-18,83.3,none,,False,insufficient hours (0 < 72),"MIDC Khutala, Chandrapur - MPCB",Chandrapur,Maharashtra,19.9775302,79.2337086
+3409473,2026-11-18 23:00:00,547,0.7597222222222222,2026-11-18,80.59545454545454,none,,False,insufficient hours (0 < 72),"Deopur, Dhule - MPCB",Dhule,Maharashtra,20.918946,74.776388
+3409462,2026-11-18 23:00:00,584,0.8111111111111111,2026-11-18,53.80869565217391,none,,False,insufficient hours (0 < 72),"Prabhat Colony, Jalgaon - MPCB",Jalgaon,Maharashtra,21.001264,75.565602
+3409463,2026-11-18 23:00:00,499,0.6930555555555555,2026-11-18,57.84166666666667,none,,False,insufficient hours (0 < 72),"Old MIDC, Jalna - MPCB",Jalna,Maharashtra,19.854616,75.905894
+7752,2026-11-18 23:00:00,528,0.7333333333333333,2026-11-18,48.72083333333333,ok,0.0,False,consistent with neighbours,"Khadakpada, Kalyan - MPCB",Kalyan,Maharashtra,19.25292,73.142019
+3409440,2026-11-18 23:00:00,569,0.7902777777777777,2026-11-18,54.1,none,,False,insufficient hours (0 < 72),"Shivaji University, Kolhapur - MPCB",Kolhapur,Maharashtra,16.6870449,74.2505872
+3409441,2026-11-18 23:00:00,458,0.6361111111111111,2026-11-18,,none,,False,insufficient hours (0 < 72),"Sinchan Bhavan, Kolhapur - MPCB",Kolhapur,Maharashtra,16.7143745,74.2426398
+3409452,2026-11-18 23:00:00,581,0.8069444444444445,2026-11-18,52.35454545454545,none,,False,insufficient hours (0 < 72),"Sawe Wadi, Latur - MPCB",Latur,Maharashtra,18.39963,76.57452
+3409455,2026-11-18 23:00:00,601,0.8347222222222223,2026-11-18,77.64166666666667,none,,False,insufficient hours (0 < 72),"Kamble Tarf Birwadi, Mahad - MPCB",Mahad,Maharashtra,18.1023399,73.4783687
+3409474,2026-11-18 23:00:00,574,0.7972222222222223,2026-11-18,71.97500000000001,none,,False,insufficient hours (0 < 72),"Mahesh Nagar, Malegaon - MPCB",Malegaon,Maharashtra,20.555712,74.529236
+3409478,2026-11-18 23:00:00,588,0.8166666666666667,2026-11-18,70.41666666666667,ok,0.0,False,consistent with neighbours,"Bhayandar West, Mira-Bhayandar - MPCB",Mira-Bhayandar,Maharashtra,19.296481,72.840923
+3409482,2026-11-18 23:00:00,493,0.6847222222222222,2026-11-18,68.67083333333333,ok,0.0,False,consistent with neighbours,"Bandra Kurla Complex, Mumbai - IITM",Mumbai,Maharashtra,19.0627,72.84614
+6965,2026-11-18 23:00:00,571,0.7930555555555555,2026-11-18,46.416666666666664,ok,0.0,False,consistent with neighbours,"Borivali East, Mumbai - IITM",Mumbai,Maharashtra,19.23241,72.86895
+3409510,2026-11-18 23:00:00,610,0.8472222222222222,2026-11-18,67.28333333333333,ok,0.0,False,consistent with neighbours,"Byculla, Mumbai - BMC",Mumbai,Maharashtra,18.9767,72.838
+12024,2026-11-18 23:00:00,594,0.825,2026-11-18,72.92916666666666,ok,0.0,False,consistent with neighbours,"Chakala-Andheri East, Mumbai - IITM",Mumbai,Maharashtra,19.11074,72.86084
+3409483,2026-11-18 23:00:00,614,0.8527777777777777,2026-11-18,74.76666666666667,ok,0.0,False,consistent with neighbours,"Chembur, Mumbai - MPCB",Mumbai,Maharashtra,19.0364585,72.8954371
+6948,2026-10-10 20:00:00,0,0.0,2026-11-18,,none,,,,"Chhatrapati Shivaji Intl. Airport (T2), Mumbai - MPCB",Mumbai,Maharashtra,19.10078,72.87462
+6927,2026-11-18 23:00:00,611,0.8486111111111111,2026-11-18,46.475,flag,0.060556464811783964,False,sustained departure from neighbours x1 (37 h),"Colaba, Mumbai - MPCB",Mumbai,Maharashtra,18.91,72.82
+3409329,2026-11-18 23:00:00,606,0.8416666666666667,2026-11-18,98.02499999999999,ok,0.0,False,consistent with neighbours,"Deonar, Mumbai - IITM",Mumbai,Maharashtra,19.04946,72.923
+3409514,2026-11-18 23:00:00,525,0.7291666666666666,2026-11-18,65.7,ok,0.0,False,consistent with neighbours,"Ghatkopar, Mumbai - BMC",Mumbai,Maharashtra,19.083694,72.920967
+3409512,2026-11-18 23:00:00,525,0.7291666666666666,2026-11-18,69.45,flag,0.047619047619047616,False,sustained departure from neighbours x1 (25 h),"Kandivali West, Mumbai - BMC",Mumbai,Maharashtra,19.215859,72.831718
+3409486,2026-11-18 23:00:00,601,0.8347222222222223,2026-11-18,67.6375,ok,0.0,False,consistent with neighbours,"Kherwadi_Bandra East, Mumbai - MPCB",Mumbai,Maharashtra,19.0632143,72.8456324
+12039,2026-11-18 23:00:00,586,0.8138888888888889,2026-11-18,72.08333333333333,ok,0.0,False,consistent with neighbours,"Khindipada-Bhandup West, Mumbai - IITM",Mumbai,Maharashtra,19.164394,72.928297
+6945,2026-11-18 23:00:00,575,0.7986111111111112,2026-11-18,63.699999999999996,ok,0.0,False,consistent with neighbours,"Kurla, Mumbai - MPCB",Mumbai,Maharashtra,19.0863,72.8888
+11611,2026-11-18 23:00:00,607,0.8430555555555556,2026-11-18,75.24166666666666,ok,0.0,False,consistent with neighbours,"Malad West, Mumbai - IITM",Mumbai,Maharashtra,19.19709,72.82204
+3409479,2026-11-18 23:00:00,541,0.7513888888888889,2026-11-18,,ok,0.0,False,consistent with neighbours,"Mindspace-Malad West, Mumbai - MPCB",Mumbai,Maharashtra,19.1878657,72.8304069
+12040,2026-11-18 23:00:00,597,0.8291666666666667,2026-11-18,72.99583333333332,ok,0.0,False,consistent with neighbours,"Mulund West, Mumbai - MPCB",Mumbai,Maharashtra,19.175,72.9419
+6956,2026-11-18 23:00:00,522,0.725,2026-11-18,,ok,0.0,False,consistent with neighbours,"Powai, Mumbai - MPCB",Mumbai,Maharashtra,19.1375,72.915056
+3409513,2026-11-18 23:00:00,618,0.8583333333333333,2026-11-18,70.66250000000001,ok,0.0,False,consistent with neighbours,"Sewri, Mumbai - BMC",Mumbai,Maharashtra,19.000084,72.85673
+3409511,2026-11-18 23:00:00,599,0.8319444444444445,2026-11-18,69.34166666666667,ok,0.0,False,consistent with neighbours,"Shivaji Nagar, Mumbai - BMC",Mumbai,Maharashtra,19.060498,72.923356
+6959,2026-11-18 23:00:00,571,0.7930555555555555,2026-11-18,52.87083333333334,ok,0.0,False,consistent with neighbours,"Siddharth Nagar-Worli, Mumbai - IITM",Mumbai,Maharashtra,19.000083,72.813993
+6967,2026-11-18 23:00:00,591,0.8208333333333333,2026-11-18,41.83888888888889,ok,0.0,False,consistent with neighbours,"Sion, Mumbai - MPCB",Mumbai,Maharashtra,19.047,72.8746
+3409323,2026-11-18 23:00:00,566,0.7861111111111111,2026-11-18,60.425000000000004,ok,0.0,False,consistent with neighbours,"Worli, Mumbai - MPCB",Mumbai,Maharashtra,18.9936162,72.8128113
+3409464,2026-11-18 23:00:00,589,0.8180555555555555,2026-11-18,79.16666666666667,ok,0.0,False,consistent with neighbours,"Ambazari, Nagpur - MPCB",Nagpur,Maharashtra,21.121801,79.04952
+3409468,2026-11-18 23:00:00,599,0.8319444444444445,2026-11-18,75.6875,ok,0.0,False,consistent with neighbours,"Mahal, Nagpur - MPCB",Nagpur,Maharashtra,21.14472,79.107595
+5621,2026-11-18 23:00:00,613,0.8513888888888889,2026-11-18,84.2,ok,0.0,False,consistent with neighbours,"Opp GPO Civil Lines, Nagpur - MPCB",Nagpur,Maharashtra,21.152875,79.0517531
+3409465,2026-11-18 23:00:00,599,0.8319444444444445,2026-11-18,81.875,ok,0.0,False,consistent with neighbours,"Ram Nagar, Nagpur - MPCB",Nagpur,Maharashtra,21.143383,79.048912
+3409467,2026-11-18 23:00:00,546,0.7583333333333333,2026-11-18,62.27916666666667,none,,False,insufficient hours (0 < 72),"Sneh Nagar, Nanded - MPCB",Nanded,Maharashtra,19.173852,77.296291
+5592,2026-11-18 23:00:00,607,0.8430555555555556,2026-11-18,68.53750000000001,ok,0.0,False,consistent with neighbours,"Gangapur Road, Nashik - MPCB",Nashik,Maharashtra,20.0073285,73.7762427
+3409454,2026-11-18 23:00:00,615,0.8541666666666666,2026-11-18,65.91666666666667,ok,0.0,False,consistent with neighbours,"Hirawadi, Nashik - MPCB",Nashik,Maharashtra,20.021503,73.813844
+3409453,2026-11-18 23:00:00,612,0.85,2026-11-18,71.6875,ok,0.0,False,consistent with neighbours,"MIDC Ambad, Nashik - MPCB",Nashik,Maharashtra,19.95022,73.73148
+3409451,2026-11-18 23:00:00,581,0.8069444444444445,2026-11-18,81.48695652173913,ok,0.0,False,consistent with neighbours,"Pandav Nagari, Nashik - MPCB",Nashik,Maharashtra,19.9591346,73.7788008
+3409477,2026-11-18 23:00:00,526,0.7305555555555555,2026-11-18,,ok,0.0,False,consistent with neighbours,"Kopripada-Vashi, Navi Mumbai - MPCB",Navi Mumbai,Maharashtra,19.090337,73.014232
+6943,2026-11-18 23:00:00,537,0.7458333333333333,2026-11-18,40.11666666666667,ok,0.0,False,consistent with neighbours,"Mahape, Navi Mumbai - MPCB",Navi Mumbai,Maharashtra,19.1135051,73.008978
+3409487,2026-11-18 23:00:00,602,0.8361111111111111,2026-11-18,59.57083333333333,ok,0.0,False,consistent with neighbours,"Sanpada, Navi Mumbai - MPCB",Navi Mumbai,Maharashtra,19.0575752,73.0151367
+3409471,2026-11-18 23:00:00,583,0.8097222222222222,2026-11-18,43.4125,ok,0.0,False,consistent with neighbours,"Sector-2E Kalamboli, Navi Mumbai - MPCB",Navi Mumbai,Maharashtra,19.02579,73.10297
+3409475,2026-11-18 23:00:00,550,0.7638888888888888,2026-11-18,57.6875,ok,0.0,False,consistent with neighbours,"Tondare-Taloja, Navi Mumbai - MPCB",Navi Mumbai,Maharashtra,19.063,73.1209
+3409466,2026-11-18 23:00:00,616,0.8555555555555555,2026-11-18,54.291666666666664,none,,False,insufficient hours (0 < 72),"Masoom Colony, Parbhani - MPCB",Parbhani,Maharashtra,19.265594,76.761463
+3409435,2026-11-18 23:00:00,539,0.7486111111111111,2026-11-18,,ok,0.0,False,consistent with neighbours,"Gavalinagar, Pimpri Chinchwad - MPCB",Pimpri-Chinchwad,Maharashtra,18.63673,73.82487
+3409436,2026-11-18 23:00:00,463,0.6430555555555556,2026-11-18,65.35000000000001,flag,0.0,False,unusually noisy vs neighbours (x2.8 what is expected for its isolation),"Park Street Wakad, Pimpri Chinchwad - MPCB",Pimpri-Chinchwad,Maharashtra,18.59051,73.77946
+3409528,2026-11-18 23:00:00,599,0.8319444444444445,2026-11-18,90.2375,ok,0.0,False,consistent with neighbours,"Savta Mali Nagar, Pimpri-Chinchwad - IITM",Pimpri-Chinchwad,Maharashtra,18.614767,73.799516
+3409437,2026-11-18 23:00:00,534,0.7416666666666667,2026-11-18,79.10000000000001,ok,0.0,False,consistent with neighbours,"Thergaon, Pimpri Chinchwad - MPCB",Pimpri-Chinchwad,Maharashtra,18.616318,73.765797
+3409331,2026-11-18 23:00:00,550,0.7638888888888888,2026-11-18,108.7090909090909,ok,0.0,False,consistent with neighbours,"Bhosari, Pune - IITM",Pune,Maharashtra,18.640051,73.848956
+3409523,2026-11-18 23:00:00,617,0.8569444444444444,2026-11-18,107.94166666666666,ok,0.0,False,consistent with neighbours,"Bhumkar Nagar, Pune - IITM",Pune,Maharashtra,18.60577,73.749976
+60658,2026-11-18 23:00:00,582,0.8083333333333333,2026-11-18,124.1277777777778,ok,0.0,False,consistent with neighbours,"Hadapsar, Pune - IITM",Pune,Maharashtra,18.501793,73.927532
+3409438,2026-11-18 23:00:00,590,0.8194444444444444,2026-11-18,55.975,flag,0.02037351443123939,False,sustained departure from neighbours x1 (12 h),"Katraj Dairy, Pune - MPCB",Pune,Maharashtra,18.45445,73.854155
+11609,2026-11-18 23:00:00,603,0.8375,2026-11-18,88.02083333333333,ok,0.0,False,consistent with neighbours,"Mhada Colony, Pune - IITM",Pune,Maharashtra,18.57304,73.927715
+3409526,2026-11-18 23:00:00,584,0.8111111111111111,2026-11-18,89.41304347826087,ok,0.0,False,consistent with neighbours,"Panchawati_Pashan, Pune - IITM",Pune,Maharashtra,18.536457,73.805454
+11613,2026-11-18 23:00:00,592,0.8222222222222222,2026-11-18,94.22083333333335,ok,0.0,False,consistent with neighbours,"Revenue Colony-Shivajinagar, Pune - IITM",Pune,Maharashtra,18.530085,73.849598
+3409439,2026-11-18 23:00:00,572,0.7944444444444444,2026-11-18,71.07777777777778,flag,0.055944055944055944,False,sustained departure from neighbours x2 (32 h),"Savitribai Phule Pune University, Pune - MPCB",Pune,Maharashtra,18.547056,73.826908
+11610,2026-11-18 23:00:00,573,0.7958333333333333,2026-11-18,90.83749999999999,ok,0.0,False,consistent with neighbours,"Transport Nagar-Nigdi, Pune - IITM",Pune,Maharashtra,18.664282,73.763966
+3409446,2026-11-18 23:00:00,551,0.7652777777777777,2026-11-18,50.58095238095238,none,,False,insufficient hours (0 < 72),"Vijay Nagar, Sangli - MPCB",Sangli,Maharashtra,16.843813,74.615091
+3409449,2026-11-18 23:00:00,560,0.7777777777777778,2026-11-18,59.96190476190476,none,,False,insufficient hours (0 < 72),"Dnyaneshwar Nagar, Solapur - MPCB",Solapur,Maharashtra,17.6336264,75.9132495
+3409448,2026-11-18 23:00:00,607,0.8430555555555556,2026-11-18,32.125,none,,False,insufficient hours (0 < 72),"Ratandeep Housing Society, Solapur - MPCB",Solapur,Maharashtra,17.65439,75.90649
+2596,2026-11-18 23:00:00,350,0.4861111111111111,2026-11-18,33.833333333333336,none,,False,insufficient hours (0 < 72),"Solapur, Solapur - MPCB",Solapur,Maharashtra,17.6599188,75.9063906
+3409469,2026-11-18 23:00:00,602,0.8361111111111111,2026-11-18,70.72083333333333,ok,0.0,False,consistent with neighbours,"Kasarvadavali, Thane - MPCB",Thane,Maharashtra,19.26777,72.97182
+3409472,2026-11-18 23:00:00,545,0.7569444444444444,2026-11-18,74.02499999999999,ok,0.0,False,consistent with neighbours,"Upvan Fort, Thane - MPCB",Thane,Maharashtra,19.222279,72.957979
+3409484,2026-11-18 23:00:00,588,0.8166666666666667,2026-11-18,63.62083333333334,ok,0.0,False,consistent with neighbours,"Sidhi Vinayak Nagar, Ulhasnagar - MPCB",Ulhasnagar,Maharashtra,19.235581,73.159121
+3409480,2026-11-18 23:00:00,544,0.7555555555555555,2026-11-18,54.19166666666666,none,,False,insufficient hours (0 < 72),"Bolinj, Virar - MPCB",Virar,Maharashtra,19.445821,72.7988231
+7880,2026-11-18 13:00:00,203,0.28194444444444444,2026-11-18,,none,,False,insufficient hours (0 < 72),"Sikulpuikawn, Aizawl - Mizoram PCB",Aizawl,Mizoram,23.7176342,92.7192841
+3409504,2026-11-18 23:00:00,604,0.8388888888888889,2026-11-18,55.76666666666667,none,,False,insufficient hours (0 < 72),"Hakimapada, Angul - OSPCB",Angul,Odisha,20.832874,85.104082
+3409502,2026-11-18 23:00:00,607,0.8430555555555556,2026-11-18,57.59166666666667,none,,False,insufficient hours (0 < 72),"Kalidaspur, Balasore - OSPCB",Balasore,Odisha,21.51161,86.89088
+3409503,2026-11-18 23:00:00,605,0.8402777777777778,2026-11-18,55.74583333333334,none,,False,insufficient hours (0 < 72),"Forest Office, Barbil - OSPCB",Barbil,Odisha,22.1166054,85.3945546
+3409377,2026-11-18 23:00:00,598,0.8305555555555556,2026-11-18,75.50833333333334,none,,False,insufficient hours (0 < 72),"Meher Colony, Baripada - OSPCB",Baripada,Odisha,21.941841,86.728318
+3409505,2026-11-18 23:00:00,603,0.8375,2026-11-18,58.62083333333334,none,,False,insufficient hours (0 < 72),"Lingraj Mandir, Bhubaneswar - OSPCB",Bhubaneswar,Odisha,20.24079,85.836784
+3409508,2026-11-18 23:00:00,547,0.7597222222222222,2026-11-18,40.300000000000004,none,,False,insufficient hours (0 < 72),"Patia, Bhubaneswar - OSPCB",Bhubaneswar,Odisha,20.34652,85.8163
+3409380,2026-11-18 23:00:00,553,0.7680555555555556,2026-11-18,95.16086956521738,none,,False,insufficient hours (0 < 72),"Tata Township, Bileipada - OSPCB",Bileipada,Odisha,22.06156703,85.47409613
+5608,2026-11-18 23:00:00,501,0.6958333333333333,2026-11-18,21.256521739130438,none,,False,insufficient hours (0 < 72),"GM Office, Brajrajnagar - OSPCB",Brajrajnagar,Odisha,21.8004996,83.8396977
+3409507,2026-11-18 23:00:00,601,0.8347222222222223,2026-11-18,50.354166666666664,none,,False,insufficient hours (0 < 72),"Ferro Chrome Colony, Byasanagar - OSPCB",Byasanagar,Odisha,20.94185,86.1151
+3409506,2026-11-18 23:00:00,596,0.8277777777777777,2026-11-18,52.425000000000004,none,,False,insufficient hours (0 < 72),"CDA Area, Cuttack - OSPCB",Cuttack,Odisha,20.48891,85.84768
+3409378,2026-11-18 23:00:00,588,0.8166666666666667,2026-11-18,40.166666666666664,none,,False,insufficient hours (0 < 72),"Jagamohanpur, Keonjhar - OSPCB",Keonjhar,Odisha,21.6439,85.599355
+3409381,2026-11-18 23:00:00,575,0.7986111111111112,2026-11-18,47.75833333333333,none,,False,insufficient hours (0 < 72),"Dabuna, Nayagarh - OSPCB",Nayagarh,Odisha,21.847279,85.416905
+3409379,2026-11-18 23:00:00,523,0.7263888888888889,2026-11-18,50.74166666666667,none,,False,insufficient hours (0 < 72),"Divisional Forest Office, Rairangpur - OSPCB",Rairangpur,Odisha,22.265816,86.174829
+3409394,2026-11-18 23:00:00,608,0.8444444444444444,2026-11-18,45.05833333333334,none,,False,insufficient hours (0 < 72),"Fertilizer Township, Rourkela - OSPCB",Rourkela,Odisha,22.18972222,84.86277778
+3409382,2026-11-17 10:00:00,566,0.7861111111111111,2026-11-18,,none,,False,insufficient hours (0 < 72),"Raghunathpali, Rourkela - OSPCB",Rourkela,Odisha,22.220833,84.809444
+3409395,2026-11-18 23:00:00,295,0.4097222222222222,2026-11-18,19.470833333333335,none,,False,insufficient hours (0 < 72),"Sector-2, Rourkela - OSPCB",Rourkela,Odisha,22.245,84.88111111
+3409383,2026-11-18 23:00:00,608,0.8444444444444444,2026-11-18,81.30416666666666,none,,False,insufficient hours (0 < 72),"OMC Colony, Suakati - OSPCB",Suakati,Odisha,21.606865,85.510538
+5566,2026-11-18 23:00:00,466,0.6472222222222223,2026-11-18,73.1125,none,,False,insufficient hours (0 < 72),"Talcher Coalfields,Talcher - OSPCB",Talcher,Odisha,20.9360711,85.1707021
+3409384,2026-11-18 23:00:00,483,0.6708333333333333,2026-11-18,50.17916666666667,none,,False,insufficient hours (0 < 72),"Barsua Iron Ore Mines, Tensa - OSPCB",Tensa,Odisha,21.869985,85.167016
+60659,2026-11-18 23:00:00,595,0.8263888888888888,2026-11-18,65.85833333333333,none,,False,insufficient hours (0 < 72),"Jawahar Nagar, Puducherry - PPCC",Puducherry,Puducherry,11.9309,79.8027
+5551,2026-11-18 23:00:00,597,0.8291666666666667,2026-11-18,78.65833333333333,none,,False,insufficient hours (0 < 72),"Golden Temple, Amritsar - PPCB",Amritsar,Punjab,31.62,74.876512
+6939,2026-11-18 23:00:00,333,0.4625,2026-11-18,66.90416666666667,none,,False,insufficient hours (0 < 72),"Hardev Nagar, Bathinda - PPCB",Bathinda,Punjab,30.233011,74.907758
+5542,2026-11-18 23:00:00,524,0.7277777777777777,2026-11-18,73.60833333333333,none,,False,insufficient hours (0 < 72),"Civil Line, Jalandhar - PPCB",Jalandhar,Punjab,31.321907,75.578914
+6940,2026-11-18 23:00:00,612,0.85,2026-11-18,105.48333333333333,none,,False,insufficient hours (0 < 72),"Kalal Majra, Khanna - PPCB",Khanna,Punjab,30.736056,76.209694
+5569,2026-11-18 23:00:00,614,0.8527777777777777,2026-11-18,83.7375,none,,False,insufficient hours (0 < 72),"Punjab Agricultural University, Ludhiana - PPCB",Ludhiana,Punjab,30.9028,75.8086
+5625,2026-11-18 23:00:00,580,0.8055555555555556,2026-11-18,51.9,none,,False,insufficient hours (0 < 72),"RIMT University, Mandi Gobindgarh - PPCB",Mandi Gobindgarh,Punjab,30.649961,76.331442
+5544,2026-11-18 23:00:00,587,0.8152777777777778,2026-11-18,51.0625,none,,False,insufficient hours (0 < 72),"Model Town, Patiala - PPCB",Patiala,Punjab,30.349388,76.366642
+6442,2026-11-18 23:00:00,370,0.5138888888888888,2026-11-18,24.045833333333334,none,,False,insufficient hours (0 < 72),"Ratanpura, Rupnagar - Ambuja Cements",Rupnagar,Punjab,31.0325454,76.5623046
+5576,2026-11-18 23:00:00,592,0.8222222222222222,2026-11-18,76.00833333333334,none,,False,insufficient hours (0 < 72),"Moti Doongri, Alwar - RSPCB",Alwar,Rajasthan,27.554793,76.611536
+3409416,2026-11-18 23:00:00,594,0.825,2026-11-18,69.79583333333333,none,,False,insufficient hours (0 < 72),"Rati Talai, Banswara - RSPCB",Banswara,Rajasthan,23.55519,74.44001
+3409447,2026-11-18 23:00:00,588,0.8166666666666667,2026-11-18,76.46818181818182,none,,False,insufficient hours (0 < 72),"Bamboliya, Baran - RSPCB",Baran,Rajasthan,25.106006,76.469948
+3409419,2026-11-18 23:00:00,604,0.8388888888888889,2026-11-18,29.416666666666668,none,,False,insufficient hours (0 < 72),"Railway Colony, Barmer - RSPCB",Barmer,Rajasthan,25.747299,71.393989
+3409402,2026-11-18 23:00:00,618,0.8583333333333333,2026-11-18,68.64999999999999,none,,False,insufficient hours (0 < 72),"Krishna Nagar, Bharatpur - RSPCB",Bharatpur,Rajasthan,27.215415000000004,77.50873
+3409442,2026-11-18 23:00:00,598,0.8305555555555556,2026-11-18,68.37391304347825,none,,False,insufficient hours (0 < 72),"Pratap Nagar, Bhilwara - RSPCB",Bhilwara,Rajasthan,25.339605,74.618883
+5588,2026-11-18 23:00:00,601,0.8347222222222223,2026-11-18,157.46666666666667,ok,0.0,False,consistent with neighbours,"RIICO Ind. Area III, Bhiwadi - RSPCB",Bhiwadi,Rajasthan,28.194909,76.862296
+3409519,2026-11-18 23:00:00,586,0.8138888888888889,2026-11-18,109.54583333333333,ok,0.0,False,consistent with neighbours,"Vasundhara Nagar_UIT, Bhiwadi - RSPCB",Bhiwadi,Rajasthan,28.207266,76.829265
+3409403,2026-11-18 23:00:00,617,0.8569444444444444,2026-11-18,70.66666666666667,none,,False,insufficient hours (0 < 72),"MM Ground, Bikaner - RSPCB",Bikaner,Rajasthan,28.018792,73.29265799999999
+3409443,2026-11-18 23:00:00,615,0.8541666666666666,2026-11-18,89.14166666666667,none,,False,insufficient hours (0 < 72),"New Colony, Bundi - RSPCB",Bundi,Rajasthan,25.435774,75.644272
+3409417,2026-11-18 23:00:00,614,0.8527777777777777,2026-11-18,75.75833333333334,none,,False,insufficient hours (0 < 72),"Shastri Nagar, Chittorgarh - RSPCB",Chittorgarh,Rajasthan,24.892047,74.623527
+3409404,2026-11-18 23:00:00,601,0.8347222222222223,2026-11-18,57.824999999999996,none,,False,insufficient hours (0 < 72),"Subash Chowk, Churu - RSPCB",Churu,Rajasthan,28.296139,74.96169599999999
+3409418,2026-11-18 23:00:00,616,0.8555555555555555,2026-11-18,41.53333333333333,none,,False,insufficient hours (0 < 72),"Khatikan Mohalla, Dausa - RSPCB",Dausa,Rajasthan,26.895552,76.334753
+3409405,2026-11-18 23:00:00,607,0.8430555555555556,2026-11-18,66.34583333333333,none,,False,insufficient hours (0 < 72),"Raja Ganj, Dholpur - RSPCB",Dholpur,Rajasthan,26.699557,77.898881
+3409494,2026-11-18 23:00:00,606,0.8416666666666667,2026-11-18,38.041666666666664,none,,False,insufficient hours (0 < 72),"Bhoiwada, Dungarpur - RSPCB",Dungarpur,Rajasthan,23.837789,73.714926
+3409420,2026-11-18 23:00:00,613,0.8513888888888889,2026-11-18,90.375,none,,False,insufficient hours (0 < 72),"Housing Board, Hanumangarh - RSPCB",Hanumangarh,Rajasthan,29.61075,74.283608
+5635,2026-11-18 23:00:00,583,0.8097222222222222,2026-11-18,47.65833333333333,ok,0.0,False,consistent with neighbours,"Adarsh Nagar, Jaipur - RSPCB",Jaipur,Rajasthan,26.902909,75.836858
+3409430,2026-11-18 23:00:00,594,0.825,2026-11-18,65.04166666666667,ok,0.0,False,consistent with neighbours,"Mansarovar Sector-12, Jaipur - RSPCB",Jaipur,Rajasthan,26.843698,75.766894
+5633,2026-11-18 23:00:00,603,0.8375,2026-11-18,59.4375,ok,0.0,False,consistent with neighbours,"Police Commissionerate, Jaipur - RSPCB",Jaipur,Rajasthan,26.9164092,75.7994901
+3409433,2026-11-18 23:00:00,598,0.8305555555555556,2026-11-18,60.09166666666667,ok,0.0,False,consistent with neighbours,"RIICO Sitapura, Jaipur - RSPCB",Jaipur,Rajasthan,26.786682,75.827928
+3409432,2026-11-18 23:00:00,556,0.7722222222222223,2026-11-18,52.45416666666667,ok,0.0,False,consistent with neighbours,"Sector-2 Murlipura, Jaipur - RSPCB",Jaipur,Rajasthan,26.960669,75.771817
+5612,2026-11-18 23:00:00,568,0.7888888888888889,2026-11-18,66.48333333333333,ok,0.0,False,consistent with neighbours,"Shastri Nagar, Jaipur - RSPCB",Jaipur,Rajasthan,26.9502929,75.730943
+3409444,2026-11-18 23:00:00,612,0.85,2026-11-18,34.166666666666664,none,,False,insufficient hours (0 < 72),"Sadar Bazar, Jaisalmer - RSPCB",Jaisalmer,Rajasthan,26.912329,70.909168
+3409495,2026-11-18 23:00:00,611,0.8486111111111111,2026-11-18,52.958333333333336,none,,False,insufficient hours (0 < 72),"Mudtra Sili, Jalore - RSPCB",Jalore,Rajasthan,25.344694,72.626208
+3409429,2026-11-18 23:00:00,608,0.8444444444444444,2026-11-18,82.60416666666667,none,,False,insufficient hours (0 < 72),"Rajlaxmi Nagar, Jhalawar - RSPCB",Jhalawar,Rajasthan,24.588397,76.172782
+3409422,2026-11-18 23:00:00,619,0.8597222222222223,2026-11-18,59.2875,none,,False,insufficient hours (0 < 72),"Indra Nagar, Jhunjhunu - RSPCB",Jhunjhunu,Rajasthan,28.108988,75.386577
+5587,2026-11-18 23:00:00,613,0.8513888888888889,2026-11-18,53.36666666666667,ok,0.0,False,consistent with neighbours,"Collectorate, Jodhpur - RSPCB",Jodhpur,Rajasthan,26.268249,73.0193853
+3409431,2026-11-18 23:00:00,614,0.8527777777777777,2026-11-18,54.65416666666667,ok,0.0,False,consistent with neighbours,"Digari Kalan, Jodhpur - RSPCB",Jodhpur,Rajasthan,26.29581,73.08228299999999
+3409425,2026-11-18 23:00:00,608,0.8444444444444444,2026-11-18,54.55217391304348,ok,0.0,False,consistent with neighbours,"Jhalamand, Jodhpur - RSPCB",Jodhpur,Rajasthan,26.215415000000004,73.07015600000001
+3409445,2026-11-18 23:00:00,617,0.8569444444444444,2026-11-18,43.699999999999996,ok,0.0,False,consistent with neighbours,"Mandor, Jodhpur - RSPCB",Jodhpur,Rajasthan,26.358805,73.047444
+3409401,2026-11-18 23:00:00,611,0.8486111111111111,2026-11-18,51.9625,ok,0.0,False,consistent with neighbours,"Samrat Ashok Udhyan, Jodhpur - RSPCB",Jodhpur,Rajasthan,26.253384000000004,72.97657099999999
+3409428,2026-11-18 23:00:00,527,0.7319444444444444,2026-11-18,38.695238095238096,none,,False,insufficient hours (0 < 72),"Satyawati Vihar, Karauli - RSPCB",Karauli,Rajasthan,26.506177,77.025989
+3409412,2026-11-18 23:00:00,613,0.8513888888888889,2026-11-18,70.97826086956522,none,,False,insufficient hours (0 < 72),"Dhanmandi, Kota - RSPCB",Kota,Rajasthan,25.16409,75.858137
+3409406,2026-11-18 23:00:00,611,0.8486111111111111,2026-11-18,75.59130434782608,none,,False,insufficient hours (0 < 72),"Nayapura, Kota - RSPCB",Kota,Rajasthan,25.196024,75.85566800000001
+5636,2026-11-18 23:00:00,541,0.7513888888888889,2026-11-18,95.35263157894737,none,,False,insufficient hours (0 < 72),"Shrinath Puram, Kota - RSPCB",Kota,Rajasthan,25.14389,75.821256
+3409450,2026-11-18 23:00:00,615,0.8541666666666666,2026-11-18,51.4375,none,,False,insufficient hours (0 < 72),"Karni Colony, Nagaur - RSPCB",Nagaur,Rajasthan,27.213494,73.734444
+5638,2026-11-18 23:00:00,548,0.7611111111111111,2026-11-18,70.41,none,,False,insufficient hours (0 < 72),"Indira Colony Vistar, Pali - RSPCB",Pali,Rajasthan,25.771061,73.340227
+3409426,2026-11-18 23:00:00,610,0.8472222222222222,2026-11-18,47.612500000000004,none,,False,insufficient hours (0 < 72),"Pragati Nagar, Pratapgarh - RSPCB",Pratapgarh,Rajasthan,24.041198,74.780702
+3409423,2026-11-18 23:00:00,617,0.8569444444444444,2026-11-18,45.30416666666667,none,,False,insufficient hours (0 < 72),"Dhoinda, Rajsamand - RSPCB",Rajsamand,Rajasthan,25.03636,73.88350200000001
+3409421,2026-11-18 23:00:00,601,0.8347222222222223,2026-11-18,53.55833333333334,none,,False,insufficient hours (0 < 72),"Sahu Nagar, Sawai Madhopur - RSPCB",Sawai Madhopur,Rajasthan,26.031443,76.35932700000001
+3409427,2026-11-18 23:00:00,593,0.8236111111111111,2026-11-18,55.9625,none,,False,insufficient hours (0 < 72),"Radhakishan Pura, Sikar - RSPCB",Sikar,Rajasthan,27.608912,75.153302
+3409410,2026-11-18 23:00:00,615,0.8541666666666666,2026-11-18,31.054166666666664,none,,False,insufficient hours (0 < 72),"Vedhaynath Colony, Sirohi - RSPCB",Sirohi,Rajasthan,24.885261,72.857549
+3409424,2026-11-18 23:00:00,603,0.8375,2026-11-18,42.675000000000004,none,,False,insufficient hours (0 < 72),"Old City, Sri Ganganagar - RSPCB",Sri Ganganagar,Rajasthan,29.931624,73.864511
+3409407,2026-11-18 23:00:00,548,0.7611111111111111,2026-11-18,108.55416666666667,none,,False,insufficient hours (0 < 72),"Shastri Nagar, Tonk - RSPCB",Tonk,Rajasthan,26.159933,75.780517
+5585,2026-11-18 23:00:00,600,0.8333333333333334,2026-11-18,77.41250000000001,none,,False,insufficient hours (0 < 72),"Ashok Nagar, Udaipur - RSPCB",Udaipur,Rajasthan,24.5886166,73.6321397
+3409340,2026-11-18 23:00:00,453,0.6291666666666667,2026-11-18,30.583333333333332,none,,False,insufficient hours (0 < 72),"Zero Point GICI, Gangtok - SSPCB",Gangtok,Sikkim,27.33853,88.614099
+11581,2026-11-18 23:00:00,615,0.8541666666666666,2026-11-18,79.8875,ok,0.0,False,consistent with neighbours,"Arumbakkam, Chennai - TNPCB",Chennai,Tamil Nadu,13.0664,80.2112
+11579,2026-11-18 23:00:00,601,0.8347222222222223,2026-11-18,82.6125,ok,0.0,False,consistent with neighbours,"Kodungaiyur, Chennai - TNPCB",Chennai,Tamil Nadu,13.1278,80.2642
+10780,2026-11-18 23:00:00,583,0.8097222222222222,2026-11-18,65.99166666666666,ok,0.0,False,consistent with neighbours,"Manali Village, Chennai - TNPCB",Chennai,Tamil Nadu,13.1662,80.2584
+2586,2026-11-18 23:00:00,514,0.7138888888888889,2026-11-18,83.69583333333334,ok,0.0,False,consistent with neighbours,"Manali, Chennai - CPCB",Chennai,Tamil Nadu,13.164544,80.26285
+12046,2026-11-18 23:00:00,595,0.8263888888888888,2026-11-18,81.22916666666667,ok,0.0,False,consistent with neighbours,"Perungudi, Chennai - TNPCB",Chennai,Tamil Nadu,12.9533,80.2357
+11578,2026-11-18 23:00:00,591,0.8208333333333333,2026-11-18,,ok,0.0,False,consistent with neighbours,"Royapuram, Chennai - TNPCB",Chennai,Tamil Nadu,13.1036,80.2909
+5655,2026-11-18 23:00:00,364,0.5055555555555555,2026-11-18,37.445,watch,0.0,False,"watch: large apparent drift vs neighbours (-0.128 log/day = -83% over 15 days; p=0.035, q=0.23: not confirmed after multiple-testing correction)","Velachery Res. Area, Chennai - CPCB",Chennai,Tamil Nadu,13.0052189,80.2398125
+8914,2026-11-18 15:00:00,311,0.43194444444444446,2026-11-18,,none,,False,insufficient hours (0 < 72),"SIDCO Kurichi, Coimbatore - TNPCB",Coimbatore,Tamil Nadu,10.942451,76.978996
+3409354,2026-11-18 16:00:00,14,0.019444444444444445,2026-11-18,,none,,,,"Kudikadu, Cuddalore - TNPCB",Cuddalore,Tamil Nadu,11.6829898,79.7532099
+45008,2026-11-18 23:00:00,530,0.7361111111111112,2026-11-18,129.38333333333333,none,,False,insufficient hours (0 < 72),"Anthoni Pillai Nagar, Gummidipoondi - TNPCB",Gummidipoondi,Tamil Nadu,13.4127,80.1081
+3409527,2026-10-15 13:00:00,0,0.0,2026-11-18,,none,,,,"SIPCOT Industrial Park, Perundurai - TNPCB",Perundurai,Tamil Nadu,11.258242,77.552761
+5599,2026-11-18 23:00:00,510,0.7083333333333334,2026-11-18,32.92,ok,0.0,False,consistent with neighbours,"Bollaram Industrial Area, Hyderabad - TSPCB",Hyderabad,Telangana,17.540891,78.358528
+5623,2026-11-18 23:00:00,602,0.8361111111111111,2026-11-18,46.24347826086956,flag,0.019933554817275746,False,sustained departure from neighbours x1 (12 h),"Central University, Hyderabad - TSPCB",Hyderabad,Telangana,17.460103,78.334361
+344103,2026-11-18 23:00:00,434,0.6027777777777777,2026-11-18,38.34583333333333,ok,0.0,False,consistent with neighbours,"ECIL Kapra, Hyderabad - TSPCB",Hyderabad,Telangana,17.470431,78.566959
+5645,2026-11-18 23:00:00,612,0.85,2026-11-18,50.74583333333334,ok,0.0,False,consistent with neighbours,"ICRISAT Patancheru, Hyderabad - TSPCB",Hyderabad,Telangana,17.5184,78.278777
+5624,2026-11-18 23:00:00,507,0.7041666666666667,2026-11-18,65.79565217391304,ok,0.0,False,consistent with neighbours,"IDA Pashamylaram, Hyderabad - TSPCB",Hyderabad,Telangana,17.5316895,78.218939
+344144,2026-11-18 23:00:00,581,0.8069444444444445,2026-11-18,29.8625,ok,0.0,False,consistent with neighbours,"IITH Kandi, Hyderabad - TSPCB",Hyderabad,Telangana,17.585704999999997,78.126199
+346258,2026-11-18 16:00:00,553,0.7680555555555556,2026-11-18,,ok,0.0,False,consistent with neighbours,"Kokapet, Hyderabad - TSPCB",Hyderabad,Telangana,17.393559,78.33919399999999
+344104,2026-11-18 23:00:00,610,0.8472222222222222,2026-11-18,25.1875,ok,0.0,False,consistent with neighbours,"Kompally Municipal Office, Hyderabad - TSPCB",Hyderabad,Telangana,17.544898999999997,78.486949
+344142,2026-11-18 23:00:00,594,0.825,2026-11-18,37.90416666666666,ok,0.0,False,consistent with neighbours,"Nacharam_TSIIC IALA, Hyderabad - TSPCB",Hyderabad,Telangana,17.429398,78.569354
+352465,2026-11-18 23:00:00,569,0.7902777777777777,2026-11-18,36.165217391304346,ok,0.0,False,consistent with neighbours,"New Malakpet, Hyderabad - TSPCB",Hyderabad,Telangana,17.37206,78.50864
+346257,2026-11-18 23:00:00,619,0.8597222222222223,2026-11-18,23.1125,ok,0.0,False,consistent with neighbours,"Ramachandrapuram, Hyderabad - TSPCB",Hyderabad,Telangana,17.528544,78.28619499999999
+344140,2026-11-18 23:00:00,608,0.8444444444444444,2026-11-18,33.94583333333333,ok,0.0,False,consistent with neighbours,"Somajiguda, Hyderabad - TSPCB",Hyderabad,Telangana,17.417094,78.457437
+407,2026-11-18 23:00:00,591,0.8208333333333333,2026-11-18,62.56666666666666,ok,0.0,False,consistent with neighbours,"Zoo Park, Hyderabad - TSPCB",Hyderabad,Telangana,17.349694,78.451437
+301390,2026-11-18 23:00:00,572,0.7944444444444444,2026-11-18,71.89166666666667,none,,False,insufficient hours (0 < 72),"Bardowali, Agartala - Tripura SPCB",Agartala,Tripura,23.8175497,91.2726974
+227535,2026-11-18 23:00:00,612,0.85,2026-11-18,56.70416666666667,flag,0.0,True,"drifting vs neighbours (+0.037 log/day = +162% over 27 days, q=0.07)","Manoharpur, Agra - UPPCB",Agra,Uttar Pradesh,27.23711,78.01935999999999
+278159,2026-11-18 23:00:00,619,0.8597222222222223,2026-11-18,38.704166666666666,ok,0.0,False,consistent with neighbours,"Rohta, Agra - UPPCB",Agra,Uttar Pradesh,27.106972,78.000111
+860,2026-11-18 23:00:00,532,0.7388888888888889,2026-11-18,,watch,0.0,False,"watch: large apparent drift vs neighbours (+0.029 log/day = +103% over 25 days; p=0.007, q=0.13: not confirmed after multiple-testing correction)","Sanjay Palace, Agra - UPPCB",Agra,Uttar Pradesh,27.19865833,78.00598056
+227931,2026-11-18 23:00:00,604,0.8388888888888889,2026-11-18,42.3125,ok,0.0,False,consistent with neighbours,"Sector-3B Avas Vikas Colony, Agra - UPPCB",Agra,Uttar Pradesh,27.19412,77.96236999999999
+228352,2026-11-18 23:00:00,619,0.8597222222222223,2026-11-18,35.612500000000004,ok,0.0,False,consistent with neighbours,"Shastripuram, Agra - UPPCB",Agra,Uttar Pradesh,27.19862,77.92066
+301388,2026-11-18 23:00:00,540,0.75,2026-11-18,99.1375,ok,0.0,False,consistent with neighbours,"Sardar Patel Inter College, Baghpat - UPPCB",Baghpat,Uttar Pradesh,28.964949,77.278761
+358467,2026-11-18 23:00:00,611,0.8486111111111111,2026-11-18,32.358333333333334,none,,False,insufficient hours (0 < 72),"Civil Lines, Bareilly - UPPCB",Bareilly,Uttar Pradesh,28.359581,79.414455
+346438,2026-11-18 23:00:00,528,0.7333333333333333,2026-11-18,30.604761904761908,none,,False,insufficient hours (0 < 72),"Rajendra Nagar, Bareilly - UPPCB",Bareilly,Uttar Pradesh,28.38910936,79.42963708
+6985,2026-11-18 23:00:00,610,0.8472222222222222,2026-11-18,90.14166666666667,none,,False,insufficient hours (0 < 72),"Yamunapuram, Bulandshahr - UPPCB",Bulandshahr,Uttar Pradesh,28.406963,77.849831
+229729,2026-11-18 23:00:00,497,0.6902777777777778,2026-11-18,58.53333333333334,none,,False,insufficient hours (0 < 72),"Nagla Bhau, Firozabad - UPPCB",Firozabad,Uttar Pradesh,27.168897,78.37696
+330021,2026-11-18 23:00:00,508,0.7055555555555556,2026-11-18,50.166666666666664,none,,False,insufficient hours (0 < 72),"Vibhab Nagar, Firozabad - UPPCB",Firozabad,Uttar Pradesh,27.1594,78.3953
+6924,2026-11-18 23:00:00,593,0.8236111111111111,2026-11-18,85.95,ok,0.0,False,consistent with neighbours,"Indirapuram, Ghaziabad - UPPCB",Ghaziabad,Uttar Pradesh,28.646233,77.358075
+7005,2026-11-18 23:00:00,592,0.8222222222222222,2026-11-18,100.37916666666666,ok,0.0,False,consistent with neighbours,"Loni, Ghaziabad - UPPCB",Ghaziabad,Uttar Pradesh,28.757294,77.278792
+10919,2026-11-18 23:00:00,602,0.8361111111111111,2026-11-18,79.3875,ok,0.0,False,consistent with neighbours,"Sanjay Nagar, Ghaziabad - UPPCB",Ghaziabad,Uttar Pradesh,28.685382,77.453839
+5665,2026-11-18 23:00:00,528,0.7333333333333333,2026-11-18,121.4375,ok,0.0,False,consistent with neighbours,"Vasundhara, Ghaziabad - UPPCB",Ghaziabad,Uttar Pradesh,28.6603346,77.3572563
+228840,2026-11-18 23:00:00,612,0.85,2026-11-18,73.17083333333333,none,,False,insufficient hours (0 < 72),"Madan Mohan Malaviya University of Technology, Gorakhpur - UPPCB",Gorakhpur,Uttar Pradesh,26.730136,83.433859
+6986,2026-11-18 23:00:00,578,0.8027777777777778,2026-11-18,129.81666666666666,ok,0.0,False,consistent with neighbours,"Knowledge Park - III, Greater Noida - UPPCB",Greater Noida,Uttar Pradesh,28.47272,77.482
+8319,2026-11-18 23:00:00,582,0.8083333333333333,2026-11-18,40.266666666666666,none,,False,insufficient hours (0 < 72),"Anand Vihar, Hapur - UPPCB",Hapur,Uttar Pradesh,28.725645,77.749675
+278671,2026-11-18 23:00:00,572,0.7944444444444444,2026-11-18,57.68421052631579,none,,False,insufficient hours (0 < 72),"Shivaji Nagar, Jhansi - UPPCB",Jhansi,Uttar Pradesh,25.4547,78.6039
+234568,2026-11-18 23:00:00,579,0.8041666666666667,2026-11-18,49.76315789473684,none,,False,insufficient hours (0 < 72),"FTI Kidwai Nagar, Kanpur - UPPCB",Kanpur,Uttar Pradesh,26.428282,80.327067
+229252,2026-11-18 23:00:00,571,0.7930555555555555,2026-11-18,46.666666666666664,none,,False,insufficient hours (0 < 72),"NSI Kalyanpur, Kanpur - UPPCB",Kanpur,Uttar Pradesh,26.509954,80.249612
+5662,2026-11-18 23:00:00,605,0.8402777777777778,2026-11-18,82.02916666666667,none,,False,insufficient hours (0 < 72),"Nehru Nagar, Kanpur - UPPCB",Kanpur,Uttar Pradesh,26.4703136,80.3229863
+346439,2026-11-18 23:00:00,586,0.8138888888888889,2026-11-18,87.925,none,,False,insufficient hours (0 < 72),"Kalindi Kunj, Khurja - UPPCB",Khurja,Uttar Pradesh,28.2348927,77.8683002
+227386,2026-11-18 23:00:00,542,0.7527777777777778,2026-11-18,58.92857142857143,ok,0.0,False,consistent with neighbours,"B R Ambedkar University, Lucknow - UPPCB",Lucknow,Uttar Pradesh,26.766433000000003,80.927299
+7140,2026-11-18 23:00:00,599,0.8319444444444445,2026-11-18,73.55416666666666,ok,0.0,False,consistent with neighbours,"Gomti Nagar, Lucknow - UPPCB",Lucknow,Uttar Pradesh,26.86812,81.005119
+229404,2026-11-18 23:00:00,599,0.8319444444444445,2026-11-18,27.53333333333333,ok,0.0,False,consistent with neighbours,"Kukrail Picnic Spot-1, Lucknow - UPPCB",Lucknow,Uttar Pradesh,26.90723,80.98579000000001
+5659,2026-11-18 23:00:00,578,0.8027777777777778,2026-11-18,89.58333333333333,ok,0.0,False,consistent with neighbours,"Lalbagh, Lucknow - CPCB",Lucknow,Uttar Pradesh,26.8458805,80.9365541
+2456,2026-11-18 23:00:00,600,0.8333333333333334,2026-11-18,75.65833333333333,flag,0.044444444444444446,False,sustained departure from neighbours x1 (26 h),"Talkatora District Industries Center, Lucknow - CPCB",Lucknow,Uttar Pradesh,26.83399722,80.8917361
+7833,2026-11-18 23:00:00,472,0.6555555555555556,2026-11-18,96.02083333333333,none,,False,insufficient hours (0 < 72),"Ganga Nagar, Meerut - UPPCB",Meerut,Uttar Pradesh,28.999264,77.7590354
+6976,2026-11-18 19:00:00,554,0.7694444444444445,2026-11-18,49.26315789473684,none,,False,insufficient hours (0 < 72),"Jai Bhim Nagar, Meerut - UPPCB",Meerut,Uttar Pradesh,28.9535882,77.7622941
+7720,2026-11-18 23:00:00,607,0.8430555555555556,2026-11-18,87.28333333333335,none,,False,insufficient hours (0 < 72),"Pallavpuram Phase 2, Meerut - UPPCB",Meerut,Uttar Pradesh,29.06351,77.709723
+270771,2026-11-18 23:00:00,445,0.6180555555555556,2026-11-18,47.75555555555556,ok,0.0,False,consistent with neighbours,"Buddhi Vihar, Moradabad - UPPCB",Moradabad,Uttar Pradesh,28.83526,78.7446
+270877,2026-11-18 23:00:00,577,0.8013888888888889,2026-11-18,64.25,flag,0.022530329289428077,False,sustained departure from neighbours x1 (13 h),"Eco Herbal Park, Moradabad - UPPCB",Moradabad,Uttar Pradesh,28.840739000000003,78.69753100000001
+270697,2026-11-18 23:00:00,592,0.8222222222222222,2026-11-18,47.82916666666667,ok,0.0,False,consistent with neighbours,"Employment Office, Moradabad - UPPCB",Moradabad,Uttar Pradesh,28.88528,78.7388
+270777,2026-11-18 23:00:00,616,0.8555555555555555,2026-11-18,30.866666666666664,ok,0.0,False,consistent with neighbours,"Jigar Colony, Moradabad - UPPCB",Moradabad,Uttar Pradesh,28.856664,78.772638
+352777,2026-11-18 07:00:00,595,0.8263888888888888,2026-11-18,,ok,0.0,False,consistent with neighbours,"Kashiram Nagar, Moradabad - UPPCB",Moradabad,Uttar Pradesh,28.849399,78.742362
+353715,2026-11-18 23:00:00,618,0.8583333333333333,2026-11-18,51.87083333333334,ok,0.0,False,consistent with neighbours,"Transport Nagar, Moradabad - UPPCB",Moradabad,Uttar Pradesh,28.802625,78.75372800000001
+6923,2026-11-18 23:00:00,597,0.8291666666666667,2026-11-18,81.22500000000001,none,,False,insufficient hours (0 < 72),"New Mandi, Muzaffarnagar - UPPCB",Muzaffarnagar,Uttar Pradesh,29.4723508,77.7194031
+6980,2026-11-18 23:00:00,615,0.8541666666666666,2026-11-18,69.69583333333334,ok,0.0,False,consistent with neighbours,"Sector-1, Noida - UPPCB",Noida,Uttar Pradesh,28.589247,77.321962
+6988,2026-11-18 23:00:00,603,0.8375,2026-11-18,82.05416666666666,ok,0.0,False,consistent with neighbours,"Sector-116, Noida - UPPCB",Noida,Uttar Pradesh,28.56923,77.393848
+227384,2026-11-18 23:00:00,594,0.825,2026-11-18,50.88260869565217,none,,False,insufficient hours (0 < 72),"Jhunsi, Prayagraj - UPPCB",Prayagraj,Uttar Pradesh,25.425602,81.917152
+227387,2026-11-18 23:00:00,532,0.7388888888888889,2026-11-18,55.05833333333334,none,,False,insufficient hours (0 < 72),"Motilal Nehru NIT, Prayagraj - UPPCB",Prayagraj,Uttar Pradesh,25.494,81.863
+233416,2026-11-18 23:00:00,608,0.8444444444444444,2026-11-18,43.4375,none,,False,insufficient hours (0 < 72),"Nagar Nigam, Prayagraj - UPPCB",Prayagraj,Uttar Pradesh,25.44919916,81.82735986
+5590,2026-11-18 23:00:00,501,0.6958333333333333,2026-11-18,81.42916666666666,ok,0.0,False,consistent with neighbours,"Ardhali Bazar, Varanasi - UPPCB",Varanasi,Uttar Pradesh,25.3505986,82.9083074
+228403,2026-11-18 23:00:00,617,0.8569444444444444,2026-11-18,91.84166666666665,ok,0.0,False,consistent with neighbours,"Bhelupur, Varanasi - UPPCB",Varanasi,Uttar Pradesh,25.301778,82.996789
+228397,2026-11-18 23:00:00,613,0.8513888888888889,2026-11-18,65.48333333333333,ok,0.0,False,consistent with neighbours,"IESD Banaras Hindu University, Varanasi - UPPCB",Varanasi,Uttar Pradesh,25.262326,82.995408
+229195,2026-11-18 16:00:00,584,0.8111111111111111,2026-11-18,,ok,0.0,False,consistent with neighbours,"Maldahiya, Varanasi - UPPCB",Varanasi,Uttar Pradesh,25.32393,82.99687
+233414,2026-11-18 23:00:00,607,0.8430555555555556,2026-11-18,46.275,none,,False,insufficient hours (0 < 72),"Omex Eternity, Vrindavan - UPPCB",Vrindavan,Uttar Pradesh,27.571409000000003,77.655757
+317035,2026-11-18 23:00:00,606,0.8416666666666667,2026-11-18,31.695833333333336,none,,False,insufficient hours (0 < 72),"Doon University, Dehradun - UKPCB",Dehradun,Uttarakhand,30.269444,78.044167
+3409409,2026-11-18 11:00:00,246,0.3416666666666667,2026-11-18,,none,,False,insufficient hours (0 < 72),"Govt. Girls Inter College, Kashipur - UKPCB",Kashipur,Uttarakhand,29.2124114,78.96117530000001
+3409408,2026-11-18 23:00:00,592,0.8222222222222222,2026-11-18,40.25833333333333,none,,False,insufficient hours (0 < 72),"Shivaji Nagar, Rishikesh - UKPCB",Rishikesh,Uttarakhand,30.075911,78.2859547
+5602,2026-11-18 23:00:00,618,0.8583333333333333,2026-11-18,49.18333333333334,flag,0.0,True,"drifting vs neighbours (-0.033 log/day = -49% over 21 days, q=0.00)","Asansol Court Area, Asansol - WBPCB",Asansol,West Bengal,23.685297,86.945968
+3409521,2026-11-18 23:00:00,546,0.7583333333333333,2026-11-18,,flag,0.0,True,"drifting vs neighbours (+0.029 log/day = +80% over 21 days, q=0.02)","Evelyn Lodge, Asansol - WBPCB",Asansol,West Bengal,23.697936,86.944395
+3409522,2026-11-18 23:00:00,604,0.8388888888888889,2026-11-18,59.15833333333333,ok,0.0,False,consistent with neighbours,"Mahabir Colliery, Asansol - WBPCB",Asansol,West Bengal,23.618183,87.105718
+3409525,2026-11-18 23:00:00,560,0.7777777777777778,2026-11-18,43.92083333333333,ok,0.0,False,consistent with neighbours,"Trivenidevi Bhalotia College, Asansol - WBPCB",Asansol,West Bengal,23.616515,87.119133
+3409509,2026-11-18 23:00:00,600,0.8333333333333334,2026-11-18,58.125,ok,0.0,False,consistent with neighbours,"SVSPA Campus, Barrackpore - WBPCB",Barrackpore,West Bengal,22.7605581,88.3617589
+3409529,2026-11-18 23:00:00,612,0.85,2026-11-18,55.699999999999996,ok,0.0,False,consistent with neighbours,"Mahishkapur Road_B-Zone, Durgapur - WBPCB",Durgapur,West Bengal,23.567923,87.306843
+3409520,2026-11-18 23:00:00,588,0.8166666666666667,2026-11-18,40.875,none,,False,insufficient hours (0 < 72),"PCBL Residential Complex, Durgapur - WBPCB",Durgapur,West Bengal,23.508764,87.35444
+6946,2026-11-18 23:00:00,592,0.8222222222222222,2026-11-18,59.43333333333334,ok,0.0,False,consistent with neighbours,"Belur Math, Howrah - WBPCB",Howrah,West Bengal,22.629801,88.352017
+3409524,2026-11-18 23:00:00,619,0.8597222222222223,2026-11-18,45.520833333333336,ok,0.0,False,consistent with neighbours,"Botanical Garden, Howrah - WBPCB",Howrah,West Bengal,22.554954,88.292568
+3409530,2026-11-18 23:00:00,609,0.8458333333333333,2026-11-18,43.30833333333334,ok,0.0,False,consistent with neighbours,"Dasnagar, Howrah - WBPCB",Howrah,West Bengal,22.6025571,88.3105664
+10844,2026-11-18 23:00:00,615,0.8541666666666666,2026-11-18,53.762499999999996,ok,0.0,False,consistent with neighbours,"Ghusuri, Howrah - WBPCB",Howrah,West Bengal,22.611968,88.347422
+5614,2026-11-18 23:00:00,615,0.8541666666666666,2026-11-18,52.65416666666667,ok,0.0,False,consistent with neighbours,"Padmapukur, Howrah - WBPCB",Howrah,West Bengal,22.5687319,88.2797276
+10918,2026-11-18 23:00:00,616,0.8555555555555555,2026-11-18,53.699999999999996,ok,0.0,False,consistent with neighbours,"Ballygunge, Kolkata - WBPCB",Kolkata,West Bengal,22.5367507,88.3638022
+10851,2026-11-18 23:00:00,597,0.8291666666666667,2026-11-18,27.545833333333334,ok,0.0,False,consistent with neighbours,"Bidhannagar, Kolkata - WBPCB",Kolkata,West Bengal,22.58157048,88.41002457
+6981,2026-11-18 23:00:00,609,0.8458333333333333,2026-11-18,54.800000000000004,ok,0.0,False,consistent with neighbours,"Fort William, Kolkata - WBPCB",Kolkata,West Bengal,22.55664,88.342674
+6950,2026-11-18 23:00:00,618,0.8583333333333333,2026-11-18,56.1,ok,0.0,False,consistent with neighbours,"Jadavpur, Kolkata - WBPCB",Kolkata,West Bengal,22.49929,88.36917
+3409320,2026-11-18 23:00:00,608,0.8444444444444444,2026-11-18,38.550000000000004,ok,0.0,False,consistent with neighbours,"Rabindra Bharati University, Kolkata - WBPCB",Kolkata,West Bengal,22.627875,88.3804
+10904,2026-11-18 23:00:00,618,0.8583333333333333,2026-11-18,40.829166666666666,ok,0.0,False,consistent with neighbours,"Rabindra Sarobar, Kolkata - WBPCB",Kolkata,West Bengal,22.51106,88.35142
+10633,2026-11-18 23:00:00,603,0.8375,2026-11-18,56.199999999999996,ok,0.0,False,consistent with neighbours,"Victoria, Kolkata - WBPCB",Kolkata,West Bengal,22.5448082,88.3403691
+5648,2026-11-18 23:00:00,612,0.85,2026-11-18,34.083333333333336,none,,False,insufficient hours (0 < 72),"Ward-32 Bapupara, Siliguri - WBPCB",Siliguri,West Bengal,26.6883049,88.412668
