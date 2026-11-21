@@ -128,7 +128,7 @@ def test_render_has_all_sections_and_flags_an_unhealthy_source(tmp_path):
 def test_tabs_select_panels_without_javascript_and_skip_empty_ones():
     secs = {"now": "<section>A</section>", "fires": "<section>B</section>", "india": "", "seasons": ""}
     out = bd.tabs_html(secs)
-    assert out.count('type="radio"') == 2 and out.count(" checked") == 1 and 't-overview" aria-label="Overview" checked' in out
+    assert out.count('type="radio"') == 2 and out.count(" checked") == 1 and 't-overview" aria-label="NCR now" checked' in out
     assert 'for="t-overview"' in out and 'id="p-fires"' in out and "t-india" not in out  # empty tabs are left out
     assert "<script" not in out and "onclick" not in out
     css = bd.tabs_css()

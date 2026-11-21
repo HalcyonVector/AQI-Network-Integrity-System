@@ -35,6 +35,7 @@ What the data showed, with the dates behind each number (the live pipeline rerun
 - **The satellite follows the city, not the station.** MODIS MAIAC AOD tracks Delhi's day-to-day PM2.5 (Spearman +0.67 over 36 days) but cannot tell stations apart on the same day, so it can only check whether a station follows its peers' day-to-day pattern. Six of 61 stations are flagged on that test (best q = 0.001), as leads for a human to look at.
 - **The stubble signal was mostly rain.** Delhi's daily PM2.5 stepped from 12 to 31 µg/m³ (27 to 29 Sep) to 52 to 69 µg/m³ from 30 Sep, the day fire smoke began arriving, with a rank correlation of 0.79 against smoke exposure that survived controls for boundary-layer height and temperature. Then hourly rainfall showed 26 and 27 Sep were the wet days and 30 Sep the first dry one. On rain-free days only (n = 10 then) the correlation fell to 0.61 (p = 0.066). The real test was fixed in advance: 925 hPa exposure, lag 0, rain-free days, boundary-layer height and temperature controlled, run once, needing at least 20 rain-free days. There are now 27 such days with PM2.5, and the test has not been run.
 - **The national network grew twenty-fold.** Stations reporting PM2.5: 30 in 2015, 81 in 2017, 197 in 2019, 388 in 2022, 545 in 2025. The 19.3 million clean station-hours (stuck-sensor runs remove about 0.7% in 2025; no reading fell outside the physical range) make a ten-season record, but a season before 2018 rests on 5 to 7 Delhi stations against about 35 since.
+- **The live national record, 23 Sep to 18 Nov 2026:** 454 CPCB stations with hourly PM2.5, of which 198 have a neighbour within 25 km and agree with it, 19 are flagged and 4 are on watch; 233 cannot be checked. Cleaning removed 282 out-of-range and 5,087 stuck-sensor hours of 491,450 (1.1%). The national median station-day mean ran from 20 to 93 µg/m³ over the 49 days with data.
 - **National audit, 2025:** 543 stations reported, but only 240 have a neighbour within 25 km and could be checked at all; 117 of those carry a flag, though the share of hours flagged is at most 2.7% in any of the 30 cities with at least three auditable stations. Three stations show confirmed drift against their neighbours across the eleven years (Punjabi Bagh in Delhi in 2017, RVCE-Mailasandra in Bengaluru in 2022, Vijay Nagar Scheme-78 in Indore in 2025).
 - **Delhi's October-November mean PM2.5 ranged from 142 µg/m³ (2022) to 210 µg/m³ (2016)** across the ten seasons, while regional fire detections (Suomi NPP) fell from 102,980 in 2021 to 14,864 in 2025. These are descriptive, with no rain or wind control.
 - **Weather history is blocked.** Repeating the stubble test on past seasons needs ERA5 winds and rain from the Copernicus Data Store, which rejected every request this project made in November 2026 with "maximum number queued requests reached", during the period of ECMWF's service protection measures (announced 22 Oct 2026). The cause for this account is not confirmed. The public ERA5 mirror is laid out as one whole-globe hour per file, which would mean hundreds of GB for the winds alone, and the Open-Meteo history API has no 925 hPa winds.
@@ -45,7 +46,7 @@ What the data showed, with the dates behind each number (the live pipeline rerun
 
 ### Dashboard
 
-- **Seven tabs, no JavaScript:** Overview (the network now, by city, with map and ranking), Fires (Delhi PM2.5 against regional fire exposure and the weather controls), Stations (neighbour-consistency health and the satellite check), Data (source freshness, completeness, every station by day), India (the 2015 to 2025 audit), Seasons (ten burning seasons) and Pipeline (recent runs, what is next). A hidden radio input per tab selects its panel.
+- **Eight tabs, no JavaScript, India first:** India live (every station in the national feed on a map, the national daily level, the highest cities, neighbour-check health), India history (the 2015 to 2025 audit), then the Delhi NCR deep dive: NCR now (by city, map and ranking), NCR fires (Delhi PM2.5 against regional fire exposure and the weather controls), NCR stations (neighbour-consistency health and the satellite check), Data (source freshness, completeness, every station by day), Delhi seasons (ten burning seasons) and Pipeline (recent runs, what is next). A hidden radio input per tab selects its panel.
 - **Findings next to their caveats.** Each chart carries a note saying what it does not show, and a result the analysis has not produced is shown as "not run yet" instead of being omitted.
 - **One static HTML file with inline SVG,** rebuilt after every data pull and deployed by a GitHub Actions workflow.
 
@@ -80,9 +81,9 @@ What the data showed, with the dates behind each number (the live pipeline rerun
 
 | Source | Type | API Key? | What It Provides |
 |--------|------|----------|-------------------|
-| [CPCB real-time AQI via data.gov.in](https://www.data.gov.in/catalog/real-time-air-quality-index-various-locations) | REST (JSON) | Yes | Current AQI sub-indices per NCR station (the live feed). Only the current snapshot, no history. Rejects cloud IP addresses |
+| [CPCB real-time AQI via data.gov.in](https://www.data.gov.in/catalog/real-time-air-quality-index-various-locations) | REST (JSON) | Yes | Current AQI sub-indices for every station in India (the live feed; PM2.5 and PM10 are kept nationally, all pollutants for NCR). Only the current snapshot, no history. Rejects cloud IP addresses |
 | [CPCB yearly station files (Vonter/india-cpcb-aqi)](https://github.com/Vonter/india-cpcb-aqi) | Parquet releases | No | 15-minute concentrations and station meteorology for 2009 to 2025, republished from CPCB's data repository. ODbL 1.0 |
-| [OpenAQ](https://docs.openaq.org) | S3 archive and REST | Yes | Hourly concentrations from the same stations, used to validate units and to cover feed gaps |
+| [OpenAQ](https://docs.openaq.org) | S3 archive and REST | Yes | Hourly concentrations from the same stations, used to validate units, to cover feed gaps, and as the live national hourly record (about 500 stations, published roughly a week late) |
 | [NASA FIRMS](https://firms.modaps.eosdis.nasa.gov) | REST (CSV) | Yes | VIIRS active-fire detections: live (near-real-time) and the 2015 to 2025 standard-processing archive |
 | [MODIS MAIAC AOD](https://developers.google.com/earth-engine/datasets/catalog/MODIS_061_MCD19A2_GRANULES) | Google Earth Engine | Yes (Cloud project) | Aerosol optical depth sampled at each station |
 | [ERA5, Copernicus Data Store](https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels) | NetCDF through `cdsapi` | Yes | 10 m and 925 hPa winds, boundary-layer height, temperature and rain |
@@ -180,7 +181,7 @@ AQI NIS/
 │   └── screenshots/                   # README images
 │
 ├── scripts/
-│   ├── fetch_cpcb.py, fetch_openaq.py, fetch_firms.py, fetch_aod.py, fetch_era5_wind.py
+│   ├── fetch_cpcb.py (national and NCR files), fetch_openaq.py, fetch_openaq_india.py, analyze_national_live.py, fetch_firms.py, fetch_aod.py, fetch_era5_wind.py
 │   ├── backfill_missing.py            # Re-requests days missing between a source's first and newest file
 │   ├── convert_feed.py, aqi_units.py  # Feed AQI sub-indices to concentrations
 │   ├── qc.py                          # Range and stuck-sensor checks shared by live and history
@@ -257,6 +258,7 @@ The dashboard's appearance is checked by building the page and viewing it in a b
 
 ## Honest Limitations
 
+- **The live national record is one source and a week late.** It rests on OpenAQ alone (no second feed to cross-check against), about 233 of 454 stations have no neighbour within 25 km and cannot be checked, and its latest full day trails the present by about a week. The NCR analyses are deeper: two sources, weather, satellite and fire evidence.
 - **Short live record.** The NCR analyses rest on about nine weeks of data (16 Sep onward). Thresholds are judgement calls, kept as named constants, and every flag is a lead.
 - **The stubble test has not been run.** It is pre-registered to run once, and sequential testing would inflate false positives. Until it is, nothing here says how much of Delhi's PM2.5 comes from burning, and the screening model cannot give a magnitude in any case: it has no vertical mixing, deposition or plume rise and uses a single receptor.
 - **The historical stubble replication is blocked** by the Copernicus queue. No wind-free substitute is shown, because that would not be the pre-registered test.
@@ -281,7 +283,7 @@ The dashboard's appearance is checked by building the page and viewing it in a b
 - Draw an India outline under the integrity map, and place the stations that did not match by name.
 - Add a 24 to 72 hour PM2.5 forecast against a persistence baseline, only if it can be scored honestly.
 - Alert on a station newly stuck, not just list it.
-- Extend the live pipeline beyond NCR using the station master already built.
+- Bring the weather, satellite and fire analyses to other regions, starting with the Indo-Gangetic plain.
 
 ---
 

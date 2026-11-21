@@ -53,7 +53,7 @@ LICENSE_URL = REPO_URL + "/blob/master/README.md#license"
 # addresses the page carries.
 # (name, url, what it provides)
 FOOTER_DATA = [
-    ("CPCB real-time AQI via data.gov.in", "https://www.data.gov.in/catalog/real-time-air-quality-index-various-locations", "Hourly AQI sub-indices per NCR station (the live feed)."),
+    ("CPCB real-time AQI via data.gov.in", "https://www.data.gov.in/catalog/real-time-air-quality-index-various-locations", "Hourly AQI sub-indices for every station in India (the live feed), plus the NCR-only file."),
     ("CPCB yearly station files (Vonter/india-cpcb-aqi, ODbL)", "https://github.com/Vonter/india-cpcb-aqi", "15-minute station records for 2015 to 2025, republished from CPCB&rsquo;s data repository."),
     ("OpenAQ", "https://docs.openaq.org", "Hourly PM2.5 concentrations from the same stations, in &micro;g/m&sup3;."),
     ("NASA FIRMS", "https://firms.modaps.eosdis.nasa.gov", "Satellite active-fire detections and their radiative power, live and the 2015 to 2025 archive."),
@@ -80,8 +80,8 @@ def footer_html() -> str:
     refs = "".join(f"<li>{_a(u, html.escape(n))}</li>" for n, u in FOOTER_REFS)
     return (
         '<footer class="foot"><div class="foot-grid">'
-        '<div><h3>About</h3><p>Checks whether the NCR air-quality monitoring network can be trusted: data health, station drift, '
-        'gap filling and fire evidence. It is exploratory analysis of a few weeks of data, not an official AQI or a health advisory. '
+        '<div><h3>About</h3><p>Checks whether India&rsquo;s air-quality monitoring network can be trusted: data health, station drift and neighbour checks nationally, '
+        'with Delhi NCR as a deeper case that adds gap filling, weather, satellite and fire evidence. It is exploratory analysis,  not an official AQI or a health advisory. '
         f'{_a(REPO_URL, "Source code")}.</p></div>'
         f"<div><h3>Data</h3><ul>{data}</ul></div>"
         f"<div><h3>References</h3><ul>{refs}</ul></div></div>"
@@ -344,7 +344,7 @@ def hero_stats(today: date, raw_dir: Path = RAW_DIR, proc_dir: Path = PROC_DIR, 
     stats = [(f"{ok}/{len(health)}", "sources healthy", "OK = fresh and no missing days")]
 
     stations = "-"
-    feeds = sorted(glob.glob(str(raw_dir / "cpcb_ncr_*.csv")))
+    feeds = sorted(glob.glob(str(raw_dir / "cpcb_india_*.csv"))) or sorted(glob.glob(str(raw_dir / "cpcb_ncr_*.csv")))
     if feeds:
         try:
             stations = str(pd.read_csv(feeds[-1], usecols=["station"])["station"].nunique())
@@ -360,10 +360,12 @@ def hero_stats(today: date, raw_dir: Path = RAW_DIR, proc_dir: Path = PROC_DIR, 
     stats.append((pm, "Delhi PM2.5", pm_sub))
 
     flagged, sub = "-", "station health not available"
-    h = _read("neighbor_station_health.csv", proc_dir)
+    h = _read("national/station_status.csv", proc_dir)
+    if h is None or "level" not in h:
+        h = _read("neighbor_station_health.csv", proc_dir)
     if h is not None and "level" in h:
         flagged = str(int((h["level"] == "flag").sum()))
-        sub = f'{int((h["level"] == "watch").sum())} on watch &middot; of {len(h)} stations'
+        sub = f'{int((h["level"] == "watch").sum())} on watch &middot; of {int(h["level"].isin(["ok", "watch", "flag"]).sum())} checkable'
     stats.append((flagged, "stations flagged", sub))
     return stats
 
@@ -626,13 +628,13 @@ Those come from Copernicus, whose queue has not accepted the requests so far. No
 
 
 TAB_DEFS = [  # (id, label, hint, accent, icon path, section keys)
-    ("overview", "Overview", "Network now", "#6fbfb2", "M3 12h4l3-8 4 16 3-8h4", ["now"]),
-    ("fires", "Fires", "and weather", "#dfb277", "M12 3c1 4 5 5 5 10a5 5 0 0 1-10 0c0-2 1-3 2-4 0 2 1 3 2 3 0-3-1-5 1-9z", ["fires"]),
-    ("stations", "Stations", "Health, satellite", "#d9897c", "M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3zM9 12l2 2 4-4", ["health", "sat"]),
-    ("data", "Data", "Flow, gaps", "#7fb2d6", "M4 19V5M4 19h16M8 15l3-4 3 2 5-6", ["flow", "quality", "heat"]),
     ("indialive", "India live", "National network", "#7fb2d6", "M12 3a7 7 0 0 1 7 7c0 5-7 11-7 11S5 15 5 10a7 7 0 0 1 7-7zM12 8v4", ["indialive"]),
-    ("india", "India", "2015 to 2025", "#a3d2b8", "M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2zM9 4v14M15 6v14", ["india"]),
-    ("seasons", "Seasons", "Ten years of Delhi", "#b7a6e0", "M3 17l5-6 4 3 5-8 4 5", ["seasons"]),
+    ("india", "India history", "2015 to 2025", "#a3d2b8", "M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2zM9 4v14M15 6v14", ["india"]),
+    ("overview", "NCR now", "Delhi region", "#6fbfb2", "M3 12h4l3-8 4 16 3-8h4", ["now"]),
+    ("fires", "NCR fires", "and weather", "#dfb277", "M12 3c1 4 5 5 5 10a5 5 0 0 1-10 0c0-2 1-3 2-4 0 2 1 3 2 3 0-3-1-5 1-9z", ["fires"]),
+    ("stations", "NCR stations", "Health, satellite", "#d9897c", "M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3zM9 12l2 2 4-4", ["health", "sat"]),
+    ("data", "Data", "Flow, gaps", "#7fb2d6", "M4 19V5M4 19h16M8 15l3-4 3 2 5-6", ["flow", "quality", "heat"]),
+    ("seasons", "Delhi seasons", "Ten years", "#b7a6e0", "M3 17l5-6 4 3 5-8 4 5", ["seasons"]),
     ("pipeline", "Pipeline", "Runs, what is next", "#8ea3a5", "M4 8h13l-3-3M20 16H7l3 3", ["ops"]),
 ]
 
@@ -747,8 +749,8 @@ station <i>follows the same day-to-day pattern as its peers</i>. Treat every row
     body = f"""
 <header class="hero">
 <div class="brand">{LOGO_SVG}<b class="brand-n">AQI NIS</b></div>
-<h1>NCR air-quality network integrity</h1>
-<p class="sub">Is the monitoring network telling the truth? Data health, station checks, satellite and fire evidence.</p>
+<h1>India air-quality network integrity</h1>
+<p class="sub">Can India&rsquo;s monitoring stations be trusted? National data health and neighbour checks, with Delhi NCR as the deep dive: weather, satellite and fire evidence.</p>
 <div class="stamp">Generated {today.isoformat()} &middot; static page, no tracking</div>
 <div class="tiles">{tiles}</div>
 </header>
@@ -760,7 +762,7 @@ station <i>follows the same day-to-day pattern as its peers</i>. Treat every row
 """
     return (f'<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
             f'<link rel="icon" href="{FAVICON}">'
-            f"<title>NCR AQI network integrity</title><style>{CSS}{tabs_css()}</style></head><body><main>{body}</main></body></html>")
+            f"<title>India AQI network integrity</title><style>{CSS}{tabs_css()}</style></head><body><main>{body}</main></body></html>")
 
 
 def main() -> int:
