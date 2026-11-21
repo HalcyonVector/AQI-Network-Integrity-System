@@ -223,9 +223,43 @@ def filter_and_reshape(records: list[dict], logger: logging.Logger) -> pd.DataFr
     return wide
 
 
-def append_to_csv(df: pd.DataFrame, logger: logging.Logger) -> Path:
+NATIONAL_POLLUTANTS = ("PM2.5", "PM10")  # keeps the national file small enough to track in git
+NATIONAL_COLUMNS = ["fetched_at_utc", "state", "city", "station", "last_update", "latitude", "longitude", "PM10", "PM2.5"]
+
+
+def national_snapshot(records: list[dict], logger: logging.Logger) -> pd.DataFrame:
+    """Every station in India, PM2.5 and PM10 only, one row per station (sub-index values as published)."""
+    if not records:
+        return pd.DataFrame(columns=NATIONAL_COLUMNS)
+    df = pd.DataFrame.from_records(records)
+    need = {"state", "city", "station", "pollutant_id", "avg_value", "last_update"}
+    if need - set(df.columns):
+        raise ValueError(f"Unexpected API schema, missing columns: {need - set(df.columns)}")
+    df = df[df["pollutant_id"].isin(NATIONAL_POLLUTANTS) & df["station"].notna() & (df["station"].str.strip() != "")].copy()
+    if df.empty:
+        return pd.DataFrame(columns=NATIONAL_COLUMNS)
+    for col in ("avg_value", "latitude", "longitude"):
+        if col in df.columns:
+            df[col] = pd.to_numeric(df[col], errors="coerce")
+        else:
+            df[col] = pd.NA
+    df = df.drop_duplicates(subset=["state", "city", "station", "last_update", "pollutant_id"], keep="first")
+    keys = ["state", "city", "station", "last_update"]
+    coords = df.drop_duplicates(subset=keys)[keys + ["latitude", "longitude"]]
+    wide = df.pivot_table(index=keys, columns="pollutant_id", values="avg_value", aggfunc="first").reset_index()
+    wide.columns.name = None
+    wide = coords.merge(wide, on=keys, how="left")  # pivot drops all-NaN stations; coords holds every one
+    for pollutant in NATIONAL_POLLUTANTS:
+        if pollutant not in wide.columns:
+            wide[pollutant] = pd.NA
+    wide.insert(0, "fetched_at_utc", datetime.now(timezone.utc).isoformat(timespec="seconds"))
+    logger.info("National snapshot: %d stations in %d states", wide["station"].nunique(), wide["state"].nunique())
+    return wide[NATIONAL_COLUMNS]
+
+
+def append_to_csv(df: pd.DataFrame, logger: logging.Logger, prefix: str = "cpcb_ncr") -> Path:
     RAW_DATA_DIR.mkdir(parents=True, exist_ok=True)
-    out_path = RAW_DATA_DIR / f"cpcb_ncr_{datetime.now():%Y-%m-%d}.csv"
+    out_path = RAW_DATA_DIR / f"{prefix}_{datetime.now():%Y-%m-%d}.csv"
 
     write_header = not out_path.exists()
     if not write_header:
@@ -259,6 +293,13 @@ def main() -> int:
         return 1
 
     logger.info("Fetched %d total records from data.gov.in", len(records))
+
+    try:  # the national file is an addition: never let it stop the NCR file being written
+        national = national_snapshot(records, logger)
+        if not national.empty:
+            append_to_csv(national, logger, prefix="cpcb_india")
+    except Exception as exc:  # noqa: BLE001
+        logger.error("National snapshot skipped: %s", exc)
 
     df = filter_and_reshape(records, logger)
     if df.empty:

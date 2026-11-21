@@ -184,3 +184,17 @@ def test_redact_secrets_hides_api_key_in_exception_text():
 
 def test_redact_secrets_leaves_text_without_a_key_unchanged():
     assert fetch_cpcb.redact_secrets("Read timed out.") == "Read timed out."
+
+
+def test_national_snapshot_keeps_all_states_pm_only_one_row_per_station(logger):
+    recs = [
+        make_record(city="Pune", station="A", pollutant_id="PM2.5", avg_value="40") | {"state": "Maharashtra"},
+        make_record(city="Pune", station="A", pollutant_id="PM10", avg_value="90") | {"state": "Maharashtra"},
+        make_record(city="Pune", station="A", pollutant_id="NO2", avg_value="9") | {"state": "Maharashtra"},
+        make_record(city="Delhi", station="B", pollutant_id="PM2.5", avg_value="x") | {"state": "Delhi"},
+    ]
+    out = fetch_cpcb.national_snapshot(recs, logger)
+    assert sorted(out["station"]) == ["A", "B"] and list(out.columns) == fetch_cpcb.NATIONAL_COLUMNS
+    a = out[out["station"] == "A"].iloc[0]
+    assert a["PM2.5"] == 40 and a["PM10"] == 90
+    assert fetch_cpcb.national_snapshot([], logger).empty
