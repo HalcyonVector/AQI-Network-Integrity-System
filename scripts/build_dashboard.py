@@ -548,6 +548,16 @@ main{max-width:1040px}
 .foot-bar b{color:var(--fg);font-weight:600}.foot-bar a:first-of-type{margin-left:auto}
 @media (max-width:760px){.foot{padding:20px 16px 14px}.foot-grid{grid-template-columns:1fr;gap:22px}.foot-bar a:first-of-type{margin-left:0}}
 @media (max-width:760px){.hero{padding:30px 22px 22px}.card{padding:20px 16px 14px}}
+.tabs{margin-top:18px}
+.tabin{position:absolute;opacity:0;pointer-events:none}
+.tabbar{display:flex;gap:6px;overflow-x:auto;padding:6px;border:1px solid var(--edge);border-radius:18px;background:rgba(14,26,30,.82);position:sticky;top:8px;z-index:5;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);scrollbar-width:none}
+.tabbar::-webkit-scrollbar{display:none}
+.tabbar label{flex:1 0 auto;display:flex;align-items:center;gap:9px;padding:10px 13px;border-radius:13px;cursor:pointer;color:var(--muted);border:1px solid transparent;white-space:nowrap;transition:background .15s,color .15s}
+.tabbar label:hover{color:var(--fg);background:rgba(255,255,255,.04)}
+.tabbar svg{width:18px;height:18px;flex:0 0 auto;fill:none;stroke:var(--c);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;opacity:.7}
+.tabbar b{display:block;font:600 13px/1.2 var(--sans)}.tabbar small{display:block;font:500 11px/1.3 var(--sans);opacity:.7}
+.panel{display:none}.panel>.card:first-child{margin-top:14px}
+@media (max-width:760px){.tabbar{top:4px}.tabbar label{padding:9px 12px}.tabbar small{display:none}}
 .tbl{width:100%;border-collapse:collapse;font-size:13px;min-width:520px}
 .tbl th{text-align:left;font:600 10.5px/1.3 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:6px 10px 8px;border-bottom:1px solid var(--edge)}
 .tbl td{padding:8px 10px;border-bottom:1px solid rgba(255,255,255,.05)}.tbl tr:last-child td{border-bottom:0}
@@ -558,8 +568,8 @@ main{max-width:1040px}
 """
 
 
-def history_html(proc_dir: Path = PROC_DIR) -> str:
-    """The 2015-2025 section: backfill health, completeness, national audit, league, seasons and drift."""
+def history_html(proc_dir: Path = PROC_DIR) -> tuple[str, str]:
+    """The 2015-2025 panels: (network audit, seasons). Empty strings when the backfill has not been run here."""
     master = _read("historical/station_master.csv", proc_dir)
     audit = _read("historical/station_year_audit.csv", proc_dir)
     league = _read("historical/city_league.csv", proc_dir)
@@ -568,7 +578,7 @@ def history_html(proc_dir: Path = PROC_DIR) -> str:
     delhi = _read("historical/delhi_pm25_daily.csv", proc_dir)
     fires = _read("historical/fire_daily.csv", proc_dir)
     if all(x is None for x in (master, audit, league, qc, comp, delhi, fires)):
-        return ""  # the backfill has not been run on this machine: show nothing rather than a page of "not available"
+        return "", ""  # the backfill has not been run on this machine: show nothing rather than a page of "not available"
     local = proc_dir.parent / "historical"
     count = lambda sub, pat: len(list((local / sub).glob(pat))) if (local / sub).exists() else 0  # noqa: E731
     sources = [("CPCB station files, 15-minute", count("bronze/cpcb", "cpcb-air-quality-*.parquet"), 11, "One file per year, 2015 to 2025, from the CPCB data repository."),
@@ -580,8 +590,7 @@ def history_html(proc_dir: Path = PROC_DIR) -> str:
     n_audited = int(audit[audit["year"] == hy]["level"].isin(["ok", "watch", "flag"]).sum()) if hy else 0
     n_total = int((audit["year"] == hy).sum()) if hy else 0
     n_flag = int((audit[audit["year"] == hy]["level"] == "flag").sum()) if hy else 0
-    return f"""
-<section class="card" id="history"><h2>2015 to 2025: the longer record</h2>
+    india = f"""<section class="card" id="india"><h2>India, 2015 to 2025: the station network</h2>
 <p class="muted" style="margin-top:-6px">A pan-India backfill of the CPCB station network, run through the same cleaning and neighbour checks as the live data.</p>
 <div class="sub-h">Backfill health</div>{dh.backfill_html(qc, sources)}
 <div class="note">Early years are thin: there were few continuous stations before 2018, so a season before then rests on 5 to 7 Delhi stations. Station counts are
@@ -597,18 +606,54 @@ Only {n_audited} of the {n_total} stations reporting in {hy} could be checked at
 stations have none. Of those {n_audited}, {n_flag} carry a flag, which needs just one stuck-sensor run or one sustained departure, so most flags are brief:
 "hours flagged" is the share of a station&rsquo;s reported hours inside such an episode, and is a few percent even in the worst cities.</div>
 
-<div class="sub-h">Delhi in each burning season</div><div class="scroll">{dh.season_multiples_svg(delhi, fires, season_years)}</div>
-<div class="note">Descriptive only. These panels do not control for rain or wind, so a season with more fires and higher PM2.5 shows nothing about cause.
-Fire detections fall from about 100,000 a season around 2021 to under 15,000 in 2025 in this region.</div>
-
 <div class="sub-h">Stations that drifted against their neighbours</div>{dh.drift_watchlist_html(audit, master)}
 <div class="note">Confirmed means the slope survived the multiple-testing correction and was large enough to matter. A station can drift because it was moved,
 recalibrated or re-sited, which the data cannot tell apart from a failing sensor.</div>
+</section>"""
+    seasons = f"""<section class="card" id="seasons"><h2>Delhi, ten burning seasons</h2>
+<div class="sub-h">Delhi in each burning season</div><div class="scroll">{dh.season_multiples_svg(delhi, fires, season_years)}</div>
+<div class="note">Descriptive only. These panels do not control for rain or wind, so a season with more fires and higher PM2.5 shows nothing about cause.
+Fire detections fall from about 100,000 a season around 2021 to under 15,000 in 2025 in this region.</div>
 
 <div class="sub-h">Does the stubble signal repeat across seasons?</div>
 <div class="note warn"><b>Not run yet.</b> The pre-registered test is applied to each season unchanged, once, and needs the 925 hPa winds and the rain record for those seasons.
 Those come from Copernicus, whose queue has not accepted the requests so far. No result is shown here until it can be produced the same way as in 2026.</div>
 </section>"""
+    return india, seasons
+
+
+TAB_DEFS = [  # (id, label, hint, accent, icon path, section keys)
+    ("overview", "Overview", "Network now", "#6fbfb2", "M3 12h4l3-8 4 16 3-8h4", ["now"]),
+    ("fires", "Fires", "and weather", "#dfb277", "M12 3c1 4 5 5 5 10a5 5 0 0 1-10 0c0-2 1-3 2-4 0 2 1 3 2 3 0-3-1-5 1-9z", ["fires"]),
+    ("stations", "Stations", "Health, satellite", "#d9897c", "M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3zM9 12l2 2 4-4", ["health", "sat"]),
+    ("data", "Data", "Flow, gaps", "#7fb2d6", "M4 19V5M4 19h16M8 15l3-4 3 2 5-6", ["flow", "quality", "heat"]),
+    ("india", "India", "2015 to 2025", "#a3d2b8", "M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2zM9 4v14M15 6v14", ["india"]),
+    ("seasons", "Seasons", "Ten years of Delhi", "#b7a6e0", "M3 17l5-6 4 3 5-8 4 5", ["seasons"]),
+    ("pipeline", "Pipeline", "Runs, what is next", "#8ea3a5", "M4 8h13l-3-3M20 16H7l3 3", ["ops"]),
+]
+
+
+def tabs_css() -> str:
+    """Rules for the CSS-only tabs: a hidden radio per tab selects its panel and highlights its label (no JavaScript)."""
+    out = []
+    for tid, *_ in TAB_DEFS:
+        out.append(f"#t-{tid}:checked ~ #p-{tid}{{display:block}}")
+        out.append(f"#t-{tid}:checked ~ .tabbar label[for=t-{tid}]{{background:color-mix(in srgb,var(--c) 15%,transparent);border-color:color-mix(in srgb,var(--c) 42%,transparent);color:var(--fg)}}")
+        out.append(f"#t-{tid}:checked ~ .tabbar label[for=t-{tid}] svg{{opacity:1}}")
+        out.append(f"#t-{tid}:focus-visible ~ .tabbar label[for=t-{tid}]{{outline:2px solid var(--c);outline-offset:2px}}")
+    return "\n".join(out)
+
+
+def tabs_html(sections: dict[str, str]) -> str:
+    """The tab bar and its panels. A tab whose sections are all empty (for example the history before the backfill has run) is left out."""
+    tabs = [(t, "".join(sections.get(k, "") for k in t[5])) for t in TAB_DEFS]
+    tabs = [(t, body) for t, body in tabs if body.strip()]
+    inputs = "".join(f'<input class="tabin" type="radio" name="tab" id="t-{t[0]}" aria-label="{html.escape(t[1])}"{" checked" if i == 0 else ""}>' for i, (t, _) in enumerate(tabs))
+    labels = "".join(
+        f'<label for="t-{t[0]}" style="--c:{t[3]}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="{t[4]}"/></svg>'
+        f'<span><b>{html.escape(t[1])}</b><small>{html.escape(t[2])}</small></span></label>' for t, _ in tabs)
+    panels = "".join(f'<div class="panel" id="p-{t[0]}">{body}</div>' for t, body in tabs)
+    return f'<div class="tabs">{inputs}<nav class="tabbar" aria-label="Dashboard sections">{labels}</nav>{panels}</div>'
 
 
 def render(today: date, raw_dir: Path = RAW_DIR, proc_dir: Path = PROC_DIR) -> str:
@@ -639,34 +684,19 @@ def render(today: date, raw_dir: Path = RAW_DIR, proc_dir: Path = PROC_DIR) -> s
         j2 = aod[aod["n"] >= 10].merge(stubble_daily[["date", "pm25_delhi"]].dropna(), on="date")
         sat_scatter = ex.scatter_svg(list(j2["aod"]), list(j2["pm25_delhi"]), list(j2["date"]), "Network-mean satellite AOD (550 nm)", "Delhi PM2.5 (ug/m3)")
 
-    history = history_html(proc_dir)
-    nav = "".join(f'<a href="#{a}">{t}</a>' for a, t in [("flow", "Data flow"), ("now", "Right now"), ("fires", "Fires and weather"), ("heat", "Heatmap"),
-                  ("quality", "Completeness"), ("health", "Station health"), ("sat", "Satellite"), ("history", "2015 to 2025"), ("ops", "Pipeline")])
-    body = f"""
-<header class="hero">
-<div class="brand">{LOGO_SVG}<b class="brand-n">AQI NIS</b></div>
-<h1>NCR air-quality network integrity</h1>
-<p class="sub">Is the monitoring network telling the truth? Data health, station checks, satellite and fire evidence.</p>
-<div class="stamp">Generated {today.isoformat()} &middot; static page, no tracking</div>
-<div class="tiles">{tiles}</div>
-</header>
-<nav class="nav">{nav}</nav>
-{banner}
-
-<section class="card" id="flow"><h2>Is the data flowing?</h2>
+    history_india, history_seasons = history_html(proc_dir)
+    sec_flow = f"""<section class="card" id="flow"><h2>Is the data flowing?</h2>
 <div class="scroll">{health_html(health, today)}</div>
 <div class="note"><b>OK</b> = as fresh as that source normally is. <b>GAPS</b> = fresh, but days are missing behind it. <b>STALE / DOWN</b> = nothing new
 for longer than usual. A gap in the CPCB feed cannot be recovered from that feed (it serves only the current snapshot); OpenAQ may cover some of it.</div>
-</section>
-
-<section class="card" id="now"><h2>The network right now</h2>
+</section>"""
+    sec_now = f"""<section class="card" id="now"><h2>The network right now</h2>
 <div class="sub-h">By city</div>{ex.city_cards_html(feed)}
 <div class="split" style="margin-top:22px"><div><div class="sub-h">Station map</div>{ex.station_map_svg(feed, health_df)}</div>
 <div><div class="sub-h">Highest and lowest stations</div>{ex.ranking_html(feed)}</div></div>
 <div class="note">Colours are the CPCB AQI category of each station&rsquo;s PM2.5 <i>sub-index</i> in the newest feed snapshot (not a concentration). Rings mark stations the health check flagged or put on watch.</div>
-</section>
-
-<section class="card" id="fires"><h2>Delhi PM2.5, fires and weather</h2>
+</section>"""
+    sec_fires = f"""<section class="card" id="fires"><h2>Delhi PM2.5, fires and weather</h2>
 <div class="sub-h">Delhi PM2.5 and regional fire exposure</div>
 <div class="scroll">{stubble_html(stubble_daily)}</div>
 <div class="note warn"><b>Read with care.</b> Delhi PM2.5 stepped up the same day regional fire plumes started arriving, but the days before were
@@ -676,47 +706,51 @@ yet (see the counter below). Suggestive, not established, and <b>not</b> a share
 <div class="sub-h">How close is the real test?</div>{ex.dry_day_counter(stubble_daily)}
 <div class="sub-h">Regional fire activity</div><div class="scroll">{fire_chart}</div>
 <div class="sub-h">Delhi weather (the controls)</div>{ex.weather_html(stubble_daily)}
-</section>
-
-<section class="card" id="heat"><h2>Every station, every day</h2>
+</section>"""
+    sec_heat = f"""<section class="card" id="heat"><h2>Every station, every day</h2>
 <div class="scroll">{ex.heatmap_svg(filled)}</div>
 <div class="note">Daily mean PM2.5 from the gap-filled series, stations sorted from highest to lowest overall. A uniform band is a station that matches its neighbours; a block of empty cells is an outage; one odd row is worth a look.</div>
-</section>
-
-<section class="card" id="quality"><h2>Data completeness and daily rhythm</h2>
+</section>"""
+    sec_quality = f"""<section class="card" id="quality"><h2>Data completeness and daily rhythm</h2>
 <div class="scroll">{ex.completeness_html(filled)}</div>
 <div class="sub-h">Typical day: network-mean PM2.5 by hour (IST)</div><div class="scroll">{diurnal_chart}</div>
-</section>
-
-<section class="card" id="health"><h2>Station health (neighbour consistency)</h2>
+</section>"""
+    sec_health = f"""<section class="card" id="health"><h2>Station health (neighbour consistency)</h2>
 <div class="scroll">{stations_html(health_df)}</div>
 <div class="note">A flag means "have someone look", not "faulty". A station beside a road or kiln legitimately differs from its neighbours. Flatlines
 (a sensor repeating one exact value for hours) are the clearest evidence; drift needs weeks of data to confirm.</div>
-</section>
-
-<section class="card" id="sat"><h2>Agreement with the satellite</h2>
+</section>"""
+    sec_sat = f"""<section class="card" id="sat"><h2>Agreement with the satellite</h2>
 <div class="scroll">{decoupling_html(_read("station_temporal_decoupling.csv", proc_dir))}</div>
 <div class="sub-h">Satellite AOD against Delhi PM2.5, day by day</div><div class="scroll">{sat_scatter}</div>
 <div class="note">The satellite tracks the city's day-to-day PM2.5 but not differences between stations on the same day, so it can only check whether a
 station <i>follows the same day-to-day pattern as its peers</i>. Treat every row as a lead: a result counts only if it survives the multiple-testing correction.</div>
-</section>
-
-{history}
-
-<section class="card" id="ops"><h2>Pipeline and what&rsquo;s next</h2>
+</section>"""
+    sec_ops = f"""<section class="card" id="ops"><h2>Pipeline and what&rsquo;s next</h2>
 <div class="sub-h">Coming up</div>{ex.countdown_html(today)}
 <div class="sub-h">Recent scheduled runs</div>{ex.run_log_html(LOGS_DIR)}
 <details class="how"><summary>How to read this page</summary>
 <p><b>Sub-index vs concentration.</b> The CPCB feed reports AQI sub-indices; 100 for PM2.5 equals 60 &micro;g/m&sup3;. Charts in &micro;g/m&sup3; come from OpenAQ.</p>
 <p><b>Flags are leads, not verdicts.</b> Every statistical result here is exploratory with a few weeks of data; the README lists each limit and every retraction.</p>
 <p><b>Nothing here is a source attribution.</b> The stubble panels show association with fire exposure, not the share of pollution caused by it.</p></details>
-</section>
+</section>"""
+    body = f"""
+<header class="hero">
+<div class="brand">{LOGO_SVG}<b class="brand-n">AQI NIS</b></div>
+<h1>NCR air-quality network integrity</h1>
+<p class="sub">Is the monitoring network telling the truth? Data health, station checks, satellite and fire evidence.</p>
+<div class="stamp">Generated {today.isoformat()} &middot; static page, no tracking</div>
+<div class="tiles">{tiles}</div>
+</header>
+{banner}
+
+{tabs_html({"flow": sec_flow, "now": sec_now, "fires": sec_fires, "heat": sec_heat, "quality": sec_quality, "health": sec_health, "sat": sec_sat, "ops": sec_ops, "india": history_india, "seasons": history_seasons})}
 
 {footer_html()}
 """
     return (f'<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
             f'<link rel="icon" href="{FAVICON}">'
-            f"<title>NCR AQI network integrity</title><style>{CSS}</style></head><body><main>{body}</main></body></html>")
+            f"<title>NCR AQI network integrity</title><style>{CSS}{tabs_css()}</style></head><body><main>{body}</main></body></html>")
 
 
 def main() -> int:

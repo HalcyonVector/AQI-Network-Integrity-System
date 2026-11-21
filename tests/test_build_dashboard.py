@@ -125,6 +125,22 @@ def test_render_has_all_sections_and_flags_an_unhealthy_source(tmp_path):
     assert 'src="http' not in page and "@import" not in page
 
 
+def test_tabs_select_panels_without_javascript_and_skip_empty_ones():
+    secs = {"now": "<section>A</section>", "fires": "<section>B</section>", "india": "", "seasons": ""}
+    out = bd.tabs_html(secs)
+    assert out.count('type="radio"') == 2 and out.count(" checked") == 1 and 't-overview" aria-label="Overview" checked' in out
+    assert 'for="t-overview"' in out and 'id="p-fires"' in out and "t-india" not in out  # empty tabs are left out
+    assert "<script" not in out and "onclick" not in out
+    css = bd.tabs_css()
+    assert "#t-overview:checked ~ #p-overview{display:block}" in css and "#t-seasons:focus-visible" in css
+
+
+def test_page_is_tabbed_and_default_tab_is_overview(tmp_path):
+    page = bd.render(date(2026, 10, 16), tmp_path, tmp_path)
+    assert page.count('class="tabin"') >= 5 and 'id="t-overview"' in page and "checked" in page
+    assert 'class="nav"' not in page  # the old anchor pills are gone
+
+
 def test_render_works_with_every_input_missing(tmp_path):
     page = bd.render(TODAY, tmp_path, tmp_path)
     assert "NO DATA" in page and "not available" in page

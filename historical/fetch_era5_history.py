@@ -104,9 +104,17 @@ def main() -> int:
     ap.add_argument("--years", type=int, nargs="+", default=DEFAULT_YEARS)
     ap.add_argument("--months", type=int, nargs="+", default=DEFAULT_MONTHS)
     ap.add_argument("--years-per-request", type=int, default=len(DEFAULT_YEARS))
+    ap.add_argument("--kinds", nargs="+", choices=KINDS, default=list(KINDS), help="only these kinds, e.g. --kinds pressure")
+    ap.add_argument("--max-requests", type=int, help="make at most this many requests (CDS asks for gentle, sequential use)")
+    ap.add_argument("--no-retry", action="store_true", help="if a request is rejected, stop instead of waiting and trying again")
     ap.add_argument("--dry-run", action="store_true")
     args = ap.parse_args()
-    todo = plan(args.years, args.months, args.years_per_request)
+    todo = [j for j in plan(args.years, args.months, args.years_per_request) if j[0] in args.kinds]
+    if args.max_requests:
+        todo = todo[: args.max_requests]
+    global QUEUE_RETRIES
+    if args.no_retry:
+        QUEUE_RETRIES = 1
     print(f"{len(todo)} request(s) to make")
     if args.dry_run:
         for k, m, ys in todo:
