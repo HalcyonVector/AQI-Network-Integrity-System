@@ -6,8 +6,10 @@ history is directly comparable with 2026. Files go to data/historical/era5/ (nev
 CDS queues every request for hours and limits how many run per dataset, so a request per month and year
 (66 of them) would take days one after another. Instead each request covers ALL the requested years for
 one month and one kind of data (a few thousand fields, well inside the per-request limit), which makes
-the whole history 6 requests (3 kinds x October and November). They are submitted together and each is
-saved as soon as it is ready. Files that already exist are skipped, so the script can be re-run.
+the whole history 6 requests (3 kinds x October and November). CDS also allows only a few queued requests
+per dataset and asks for sequential use, so they run one after another per dataset (the single-levels and
+pressure-levels queues side by side), retrying when the queue is full. Each file is saved as soon as it is
+ready, and files that already exist are skipped, so the script can be re-run.
 
     python historical/fetch_era5_history.py --dry-run
     python historical/fetch_era5_history.py
@@ -21,6 +23,7 @@ import calendar
 import shutil
 import sys
 import tempfile
+import time
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
@@ -33,6 +36,8 @@ OUT_DIR = ROOT / "data" / "historical" / "era5"
 KINDS = ("single", "pressure", "precip")
 DEFAULT_YEARS = list(range(2015, 2026))
 DEFAULT_MONTHS = [10, 11]  # the burning season; add 9 and 12 as baselines
+QUEUE_RETRIES = 40
+QUEUE_WAIT_SECS = 600
 
 
 def out_path(kind: str, month: int, years: list[int], out_dir: Path = OUT_DIR) -> Path:
@@ -73,15 +78,25 @@ def plan(years: list[int], months: list[int], years_per_request: int, out_dir: P
 def fetch_one(client, kind: str, month: int, years: list[int]) -> bool:
     dataset, request = build_request(kind, month, years)
     tmp = Path(tempfile.gettempdir()) / f"era5_hist_{kind}_{month:02d}_{min(years)}-{max(years)}.nc"
-    print(f"requesting {kind} month {month:02d} years {min(years)}-{max(years)} ({field_count(request)} fields; queues for hours)", flush=True)
-    try:
-        client.retrieve(dataset, request).download(str(tmp))
-        shutil.move(str(tmp), out_path(kind, month, years))
-        print(f"  saved {out_path(kind, month, years).name}", flush=True)
-        return True
-    except Exception as exc:  # one failed request must not stop the others
-        print(f"  failed {kind} {month:02d}: {exc}", flush=True)
-        return False
+    for attempt in range(1, QUEUE_RETRIES + 1):
+        print(f"requesting {kind} month {month:02d} years {min(years)}-{max(years)} ({field_count(request)} fields; queues for hours)", flush=True)
+        try:
+            client.retrieve(dataset, request).download(str(tmp))
+            shutil.move(str(tmp), out_path(kind, month, years))
+            print(f"  saved {out_path(kind, month, years).name}", flush=True)
+            return True
+        except Exception as exc:  # one failed request must not stop the others
+            # CDS allows only a few queued requests per dataset (the daily run uses one too): wait and retry
+            full = "queued requests" in str(exc) or "400 Client Error" in str(exc)
+            print(f"  {kind} {month:02d} not accepted or failed (attempt {attempt}/{QUEUE_RETRIES}): {exc}", flush=True)
+            if not full or attempt == QUEUE_RETRIES:
+                return False
+            time.sleep(QUEUE_WAIT_SECS)
+    return False
+
+
+def fetch_sequence(client, jobs: list[tuple[str, int, list[int]]]) -> list[bool]:
+    return [fetch_one(client, *j) for j in jobs]
 
 
 def main() -> int:
@@ -104,8 +119,13 @@ def main() -> int:
     load_dotenv(ROOT / ".env")
     client = live.build_client()
     OUT_DIR.mkdir(parents=True, exist_ok=True)
-    with ThreadPoolExecutor(max_workers=len(todo)) as pool:  # all submitted at once, so they queue side by side
-        results = list(pool.map(lambda j: fetch_one(client, *j), todo))
+    # CDS wants requests sequentially per dataset, so one worker per dataset: the single-levels and the
+    # pressure-levels queues then run side by side
+    by_dataset: dict[str, list[tuple[str, int, list[int]]]] = {}
+    for job in todo:
+        by_dataset.setdefault(build_request(*job)[0], []).append(job)
+    with ThreadPoolExecutor(max_workers=len(by_dataset)) as pool:
+        results = [r for seq in pool.map(lambda jobs: fetch_sequence(client, jobs), by_dataset.values()) for r in seq]
     return 0 if all(results) else 1
 
 
