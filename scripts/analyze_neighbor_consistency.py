@@ -317,11 +317,14 @@ def classify_station(r: pd.Series, noisy_cut: float) -> tuple[str, str]:
     return "consistent with neighbours", "ok"
 
 
-def station_health(pm: pd.DataFrame, pred_knn: np.ndarray, neighbors: dict | None = None) -> pd.DataFrame:
+def station_health(pm: pd.DataFrame, pred_knn: np.ndarray, neighbors: dict | None = None, return_masks: bool = False):
+    """Per-station health table. With return_masks=True returns (table, masks) where masks is a boolean frame on pm's index and columns:
+    True for each hour inside a stuck-sensor run or a sustained departure from neighbours, the hours that the two *_hours columns count."""
     logp = np.log(pm.to_numpy(float))
     corrected, offsets = offset_corrected(logp, pred_knn)
     resid = logp - corrected
     rows = []
+    masks = np.zeros(pm.shape, dtype=bool)
     for j, station in enumerate(pm.columns):
         r = resid[:, j]
         n = int(np.isfinite(r).sum())
@@ -340,6 +343,8 @@ def station_health(pm: pd.DataFrame, pred_knn: np.ndarray, neighbors: dict | Non
         rolled = pd.Series(z).rolling(ANOMALY_ROLL_HOURS, min_periods=ANOMALY_ROLL_HOURS - 2).median().to_numpy()
         episodes = [(s, ln) for s, ln in run_lengths(np.nan_to_num(np.abs(rolled), nan=0.0) >= ANOMALY_Z) if ln >= ANOMALY_MIN_HOURS]
         flats = flatline_runs(pm.iloc[:, j].to_numpy(float))
+        for start, length in episodes + list(flats):
+            masks[start:start + length, j] = True
         daily = pd.Series(r, index=pm.index).groupby(pm.index.date).agg(["median", "count"])
         daily = daily[daily["count"] >= 12]["median"]
         slope = p = p_raw = np.nan
@@ -371,7 +376,8 @@ def station_health(pm: pd.DataFrame, pred_knn: np.ndarray, neighbors: dict | Non
     df["flag"] = df["level"] == "flag"
     df["watch"] = df["level"] == "watch"
     order = {"flag": 0, "watch": 1, "ok": 2, "none": 3}
-    return df.sort_values(["level", "anomaly_hours"], key=lambda c: c.map(order) if c.name == "level" else -c.fillna(0)).reset_index(drop=True)
+    out = df.sort_values(["level", "anomaly_hours"], key=lambda c: c.map(order) if c.name == "level" else -c.fillna(0)).reset_index(drop=True)
+    return (out, pd.DataFrame(masks, index=pm.index, columns=pm.columns)) if return_masks else out
 
 
 # ---------------------------------------------------------------- gap-fill backtest

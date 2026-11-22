@@ -132,11 +132,14 @@ def league_html(league: pd.DataFrame | None, year: int, min_audited: int = 3, to
     d = league[(league["year"] == year) & (league["stations_audited"] >= min_audited)].sort_values("failing_share", ascending=False).head(top)
     if d.empty:
         return NA.format(f"No city had at least {min_audited} auditable stations in {year}.")
+    days = "failing_day_share" in d.columns and d["failing_day_share"].notna().any()
+    day_cell = lambda r: (f'<td class="n">{r.failing_day_share * 100:.1f}%</td>' if days and pd.notna(r.failing_day_share) else ('<td class="n">-</td>' if days else ""))  # noqa: E731
     rows = "".join(
         f'<tr><td>{_esc(r.city)}<span class="muted"> {_esc(r.state)}</span></td><td class="n">{int(r.stations_audited)} of {int(r.stations)}</td>'
-        f'<td class="n">{r.failing_share * 100:.1f}%</td><td class="n">{int(r.flagged)}</td><td class="n">{int(r.drifting)}</td>'
+        f'<td class="n">{r.failing_share * 100:.1f}%</td>{day_cell(r)}<td class="n">{int(r.flagged)}</td><td class="n">{int(r.drifting)}</td>'
         f'<td class="n">{r.outage_share * 100:.0f}%</td></tr>' for r in d.itertuples())
-    return ('<div class="scroll"><table class="tbl"><thead><tr><th>City</th><th class="n">Stations audited</th><th class="n">Hours flagged</th>'
+    day_head = '<th class="n">Days flagged</th>' if days else ""
+    return ('<div class="scroll"><table class="tbl"><thead><tr><th>City</th><th class="n">Stations audited</th><th class="n">Hours flagged</th>' + day_head +
             '<th class="n">Stations flagged</th><th class="n">Drifting</th><th class="n">Hours missing</th></tr></thead>'
             f"<tbody>{rows}</tbody></table></div>")
 

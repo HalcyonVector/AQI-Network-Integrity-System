@@ -611,7 +611,7 @@ shown on every table so that a quiet year is not mistaken for a clean one.</div>
 <div class="note warn"><b>Read with care.</b> A flag means "have someone look", not "faulty": a station beside a road or kiln legitimately differs from its neighbours.
 Only {n_audited} of the {n_total} stations reporting in {hy} could be checked at all, because the test compares each station with others within 25 km and many
 stations have none. Of those {n_audited}, {n_flag} carry a flag, which needs just one stuck-sensor run or one sustained departure, so most flags are brief:
-"hours flagged" is the share of a station&rsquo;s reported hours inside such an episode, and is a few percent even in the worst cities.</div>
+"hours flagged" is the share of a station&rsquo;s reported hours inside such an episode, and is a few percent even in the worst cities. "Days flagged" counts days instead: a day fails when at least 6 of its hours sit inside such an episode, as a share of the days the station reported anything. The two agree closely (in 2025, 0.5% of station-days against 0.4% of station-hours), because most episodes are short.</div>
 
 <div class="sub-h">Stations that drifted against their neighbours</div>{dh.drift_watchlist_html(audit, master)}
 <div class="note">Confirmed means the slope survived the multiple-testing correction and was large enough to matter. The shift is the straight-line change over that

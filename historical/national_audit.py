@@ -59,8 +59,21 @@ def fast_theilslopes(y, x=None, *args, **kwargs):
 _theilslopes = nc.stats.theilslopes
 
 
-def audit_year(pm: pd.DataFrame, coords: pd.DataFrame) -> pd.DataFrame:
-    """Health table for one year. `coords` has station, latitude, longitude."""
+FAIL_HOURS_PER_DAY = 6  # a station-day fails when at least this many of its hours sit inside a stuck run or a sustained departure (the flatline minimum)
+
+
+def station_days(pm: pd.DataFrame, masks: pd.DataFrame) -> pd.DataFrame:
+    """Per station: days with any reading, and days that fail. Both are IST calendar days of the matrix's own index."""
+    day = pm.index.normalize()
+    reporting = pm.notna().groupby(day).sum() > 0
+    failing = masks.reindex(columns=pm.columns, fill_value=False).groupby(day).sum() >= FAIL_HOURS_PER_DAY
+    out = pd.DataFrame({"reporting_days": reporting.sum(), "failing_days": (failing & reporting).sum()})
+    out.index.name = "station"
+    return out.reset_index()
+
+
+def audit_year(pm: pd.DataFrame, coords: pd.DataFrame, with_days: bool = False) -> pd.DataFrame:
+    """Health table for one year. `coords` has station, latitude, longitude. With_days adds reporting_days and failing_days per station."""
     keep = pm.columns[pm.notna().sum() >= nc.MIN_HOURS_PER_STATION]
     pm = pm[keep]
     stations = list(pm.columns)
@@ -68,8 +81,10 @@ def audit_year(pm: pd.DataFrame, coords: pd.DataFrame) -> pd.DataFrame:
     nan = np.full(pm.shape, np.nan)
     pred = nc.predict_all(np.log(pm.to_numpy(float)), neighbors, nan, nan)["knn_median"]
     with patch.object(nc.stats, "theilslopes", fast_theilslopes):
-        health = nc.station_health(pm, pred, neighbors)
+        health, masks = nc.station_health(pm, pred, neighbors, return_masks=True)
     health["hours_in_year"] = len(pm)
+    if with_days:
+        health = health.merge(station_days(pm, masks), on="station", how="left")
     return health
 
 
@@ -90,6 +105,8 @@ def city_league(station_year: pd.DataFrame, master: pd.DataFrame) -> pd.DataFram
         rows.append({
             "city": city, "state": state, "year": year, "stations": len(g), "stations_audited": len(audited),
             "failing_share": float(audited["failing_share"].mean()) if len(audited) else np.nan,
+            "failing_day_share": (float(audited["failing_days"].sum() / audited["reporting_days"].sum())
+                                  if "failing_days" in audited and audited["reporting_days"].fillna(0).sum() > 0 else np.nan),
             "flagged": int((g["level"] == "flag").sum()),
             "drifting": int(g["drifting"].sum()),
             "outage_share": float(1 - g["n_hours"].sum() / g["hours_in_year"].sum()) if g["hours_in_year"].sum() else np.nan,
@@ -113,7 +130,7 @@ def main() -> int:
     parts = []
     for y in years:
         silver = pd.read_parquet(SILVER / f"pm_hourly_{y}.parquet", columns=["station_id", "hour_start_ist", "pm25"]).dropna(subset=["pm25"])
-        h = audit_year(pm_matrix(silver, y), coords)
+        h = audit_year(pm_matrix(silver, y), coords, with_days=True)
         h = h.rename(columns={"station": "station_id"})
         h["year"] = y
         h["failing_share"] = failing_share(h)
@@ -122,7 +139,7 @@ def main() -> int:
         print(f"{y}: {len(h)} stations audited; flag {int((h['level'] == 'flag').sum())}, watch {int((h['level'] == 'watch').sum())}, "
               f"ok {int((h['level'] == 'ok').sum())}, no neighbours/too few hours {int((h['level'] == 'none').sum())}", flush=True)
     new = pd.concat(parts, ignore_index=True)
-    cols = ["station_id", "year", "n_hours", "hours_in_year", "level", "failing_share", "flatline_hours", "anomaly_hours", "trend_log_per_day",
+    cols = ["station_id", "year", "n_hours", "hours_in_year", "reporting_days", "failing_days", "level", "failing_share", "flatline_hours", "anomaly_hours", "trend_log_per_day",
             "trend_q", "trend_days", "drifting", "resid_sigma_log", "mean_neighbor_km", "reason"]
     new = new[[c for c in cols if c in new.columns]]
     if out_path.exists():  # keep years from earlier runs

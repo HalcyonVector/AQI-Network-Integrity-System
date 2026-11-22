@@ -183,3 +183,31 @@ def test_plan_skips_existing_files_and_can_split_years(tmp_path):
     assert ("single", 10, [2024, 2025]) not in jobs and len(jobs) == 2
     split = eh.plan([2022, 2023, 2024, 2025], [10], 2, tmp_path)
     assert len(split) == 5 and split[0][2] == [2024, 2025] and split[-1][2] == [2022, 2023]  # newest years first
+
+
+def test_station_days_counts_failing_days_from_the_hourly_mask():
+    import national_audit as na
+    idx = pd.date_range("2026-01-01", periods=72, freq="h")
+    pm = pd.DataFrame({"a": np.arange(72, dtype=float) + 10, "b": np.arange(72, dtype=float) + 10}, index=idx)
+    pm.loc[idx[48:], "b"] = np.nan  # b reports on two days only
+    masks = pd.DataFrame(False, index=idx, columns=["a", "b"])
+    masks.iloc[3:10, 0] = True       # 7 flagged hours on day 1: fails
+    masks.iloc[26:29, 0] = True      # 3 flagged hours on day 2: does not fail
+    masks.iloc[30:40, 1] = True      # b: 10 hours on day 2: fails
+    out = na.station_days(pm, masks).set_index("station")
+    assert out.loc["a", "reporting_days"] == 3 and out.loc["a", "failing_days"] == 1
+    assert out.loc["b", "reporting_days"] == 2 and out.loc["b", "failing_days"] == 1
+
+
+def test_station_health_masks_cover_the_flatline_hours():
+    import analyze_neighbor_consistency as nc
+    rng = np.random.default_rng(3)
+    idx = pd.date_range("2026-01-01", periods=24 * 12, freq="h")
+    base = np.exp(rng.normal(4, 0.3, len(idx)))
+    pm = pd.DataFrame({c: base * np.exp(rng.normal(0, 0.05, len(idx))) for c in "abcd"}, index=idx)
+    pm.loc[idx[100:120], "a"] = 55.0  # 20 stuck hours
+    pred = np.log(pm.drop(columns="a").median(axis=1).to_numpy())[:, None].repeat(4, axis=1)
+    health, masks = nc.station_health(pm, pred, return_masks=True)
+    a = health.set_index("station").loc["a"]
+    assert a["flatline_hours"] >= 20 and masks["a"].iloc[100:120].all() and masks["a"].sum() >= a["flatline_hours"]
+    assert masks.shape == pm.shape
