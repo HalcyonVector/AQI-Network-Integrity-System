@@ -77,6 +77,8 @@ foreach ($step in @(
     @("analyze_national_live", "national"),
     @("fetch_firms", "firms"),
     @("fetch_aod", "aod"),
+    @("fetch_aod_india", "aod-india"),
+    @("analyze_national_satellite", "national-satellite"),
     @("backfill_missing", "backfill"),
     @("convert_feed", "feed-conversion"),
     @("analyze_neighbor_consistency", "neighbours"),

@@ -107,12 +107,12 @@ def load_station_points(logger: logging.Logger) -> pd.DataFrame:
     return stations
 
 
-def sample_aod(ee_module, stations: pd.DataFrame, date: datetime, logger: logging.Logger) -> pd.DataFrame:
+def sample_aod(ee_module, stations: pd.DataFrame, date: datetime, logger: logging.Logger, bounds=None) -> pd.DataFrame:
     ee = ee_module
     date_str = date.strftime("%Y-%m-%d")
     next_day_str = (date + timedelta(days=1)).strftime("%Y-%m-%d")
 
-    region = ee.Geometry.Rectangle(list(NCR_BOUNDS))
+    region = ee.Geometry.Rectangle(list(bounds or NCR_BOUNDS))
     collection = ee.ImageCollection(AOD_COLLECTION).filterDate(date_str, next_day_str).filterBounds(region)
 
     count = collection.size().getInfo()

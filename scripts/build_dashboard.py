@@ -634,7 +634,7 @@ TAB_DEFS = [  # (id, label, hint, accent, icon path, section keys)
     ("india", "India history", "2015 to 2025, seasons", "#a3d2b8", "M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2zM9 4v14M15 6v14", ["india", "seasons"]),
     ("overview", "NCR now", "Delhi region", "#6fbfb2", "M3 12h4l3-8 4 16 3-8h4", ["now"]),
     ("fires", "NCR fires", "and weather", "#dfb277", "M12 3c1 4 5 5 5 10a5 5 0 0 1-10 0c0-2 1-3 2-4 0 2 1 3 2 3 0-3-1-5 1-9z", ["fires"]),
-    ("stations", "NCR stations", "Health, satellite", "#d9897c", "M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3zM9 12l2 2 4-4", ["health", "sat"]),
+    ("stations", "Stations", "Health, all India", "#d9897c", "M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3zM9 12l2 2 4-4", ["natstations", "natsat", "health", "sat"]),
     ("data", "Data and pipeline", "Flow, gaps, runs", "#7fb2d6", "M4 19V5M4 19h16M8 15l3-4 3 2 5-6", ["flow", "quality", "heat", "ops"]),
 ]
 
@@ -756,7 +756,7 @@ station <i>follows the same day-to-day pattern as its peers</i>. Treat every row
 </header>
 {banner}
 
-{tabs_html({"flow": sec_flow, "now": sec_now, "fires": sec_fires, "heat": sec_heat, "quality": sec_quality, "health": sec_health, "sat": sec_sat, "ops": sec_ops, "india": history_india, "indialive": sec_indialive, "seasons": history_seasons})}
+{tabs_html({"flow": sec_flow, "now": sec_now, "fires": sec_fires, "heat": sec_heat, "quality": sec_quality, "health": sec_health, "sat": sec_sat, "ops": sec_ops, "india": history_india, "indialive": sec_indialive, "natstations": dn.national_stations_html(nat_status), "natsat": dn.national_satellite_html(_read("national/satellite_station.csv", proc_dir), _read("national/satellite_groups.csv", proc_dir)), "seasons": history_seasons})}
 
 {footer_html()}
 """

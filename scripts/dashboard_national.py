@@ -158,6 +158,43 @@ def flagged_list_html(status: pd.DataFrame | None, top: int = 8) -> str:
             f"<tbody>{rows}</tbody></table></div>")
 
 
+def state_summary_html(status: pd.DataFrame | None) -> str:
+    """One row per state: stations in the record, how many could be checked, flagged, on watch, and the mean share of hours flagged."""
+    if status is None or status.empty:
+        return NA.format("Station health not available.")
+    d = status.dropna(subset=["state"]).assign(failing_share=lambda x: x["failing_share"] if "failing_share" in x else np.nan)
+    g = d.groupby("state").agg(stations=("openaq_id", "count"), checkable=("level", lambda v: int(v.isin(["ok", "watch", "flag"]).sum())),
+                               flagged=("level", lambda v: int((v == "flag").sum())), watch=("level", lambda v: int((v == "watch").sum())),
+                               share=("failing_share", "mean"), completeness=("completeness", "mean")).reset_index()
+    g = g.sort_values(["flagged", "stations"], ascending=False)
+    rows = "".join(
+        f'<tr><td>{_esc(r.state)}</td><td class="n">{r.stations}</td><td class="n">{r.checkable}</td><td class="n">{r.flagged}</td><td class="n">{r.watch}</td>'
+        f'<td class="n">{"-" if pd.isna(r.share) else f"{r.share * 100:.1f}%"}</td><td class="n">{r.completeness * 100:.0f}%</td></tr>' for r in g.itertuples())
+    return ('<div class="scroll"><table class="tbl"><thead><tr><th>State</th><th class="n">Stations</th><th class="n">Checkable</th><th class="n">Flagged</th><th class="n">Watch</th>'
+            '<th class="n">Hours flagged</th><th class="n">Hours reported</th></tr></thead>'
+            f"<tbody>{rows}</tbody></table></div>")
+
+
+def stations_by_state_html(status: pd.DataFrame | None) -> str:
+    """Every flagged or watched station, one collapsible group per state (CSS-free: native details elements)."""
+    if status is None or status.empty:
+        return ""
+    st = status.assign(**{c: status[c] if c in status else (0.0 if c == "failing_share" else "") for c in ("failing_share", "reason", "city", "name")})
+    st["failing_share"] = st["failing_share"].fillna(0.0)
+    d = st[st["level"].isin(["flag", "watch"])].dropna(subset=["state"])
+    if d.empty:
+        return NA.format("No station is flagged or on watch.")
+    out = []
+    for state, g in sorted(d.groupby("state"), key=lambda kv: -len(kv[1])):
+        rows = "".join(
+            f'<tr><td>{_esc(r.name)}<span class="muted">{_esc(r.city)}</span><div class="why">{_esc(str(r.reason)[:110])}</div></td>'
+            f'<td class="n">{r.failing_share * 100:.0f}%</td><td>{dh.LEVEL_LABEL[r.level].split(" (")[0] if r.level in ("watch", "flag") else ""}</td></tr>'
+            for r in g.sort_values("failing_share", ascending=False).itertuples())
+        out.append(f'<details class="how"><summary>{_esc(state)}: {len(g)} station(s)</summary><div class="scroll"><table class="tbl"><thead><tr>'
+                   f'<th>Station and reason</th><th class="n">Hours flagged</th><th>Level</th></tr></thead><tbody>{rows}</tbody></table></div></details>')
+    return "".join(out)
+
+
 def level_counts_html(status: pd.DataFrame | None) -> str:
     if status is None or status.empty:
         return ""
@@ -191,9 +228,45 @@ latest full day is {latest or "not yet known"}.{removed}</div></div></div>
 <div class="note">Median of station-day means (a day needs at least 18 hours); hover a point for the station count. The line breaks where no day was
 available instead of bridging it: the archive has holes and publishes late.</div>
 
-<div class="sub-h">Station health, last {audit_days} days</div>{level_counts_html(status)}
-<div class="split" style="margin-top:14px"><div>{health_map_svg(status)}</div><div><div class="sub-h">Flagged or on watch</div>{flagged_list_html(status)}</div></div>
-<div class="note warn"><b>Read with care.</b> The map above shows the feed&rsquo;s PM2.5 sub-index converted back to a concentration; it is capped at 500 on the
-index scale (about 500 ug/m3), so very high values are lower bounds. A flag means &ldquo;have someone look&rdquo;, not &ldquo;faulty&rdquo;. Stations with no
-neighbour within 25 km cannot be checked and are shown in grey.</div>
+<div class="note warn"><b>Read with care.</b> The map shows the feed&rsquo;s PM2.5 sub-index converted back to a concentration; it is capped at 500 on the index scale
+(about 500 ug/m3), so very high values are lower bounds. Station health is on the Stations tab.</div>
+</section>"""
+
+
+def national_stations_html(status: pd.DataFrame | None, audit_days: int = 30) -> str:
+    """Station integrity for every station in the national hourly record: counts, map, state table and the flagged list by state."""
+    if status is None or status.empty:
+        return ""
+    return f"""<section class="card" id="natstations"><h2>Station health, all India (last {audit_days} days)</h2>
+<p class="muted" style="margin-top:-6px">Each station&rsquo;s hourly PM2.5 is compared with up to six stations within 25 km, and checked for stuck runs and drift.</p>
+{level_counts_html(status)}
+<div class="split" style="margin-top:14px"><div>{health_map_svg(status)}</div><div><div class="sub-h">By state</div>{state_summary_html(status)}</div></div>
+<div class="sub-h">Flagged or on watch, by state</div>{stations_by_state_html(status)}
+<div class="note warn"><b>Read with care.</b> A flag means &ldquo;have someone look&rdquo;, not &ldquo;faulty&rdquo;: a station beside a road or kiln legitimately differs from its
+neighbours. Stations with no neighbour within 25 km cannot be checked and are shown in grey. The satellite check below covers Delhi NCR only.</div>
+</section>"""
+
+
+def national_satellite_html(stations: pd.DataFrame | None, groups: pd.DataFrame | None) -> str:
+    """Regional satellite check: a table of regions with their signal strength, and the stations flagged or on watch."""
+    if stations is None or groups is None or stations.empty or groups.empty:
+        return ""
+    g = groups.sort_values(["flagged", "tested"], ascending=False)
+    rows = "".join(
+        f'<tr><td>{_esc(r.region)}<span class="muted">region</span></td><td class="n">{int(r.tested)}</td><td class="n">{r.median_days:.0f}</td>'
+        f'<td class="n">{r.median_rho:+.2f}</td><td class="n">{"off: weak signal" if r.gated else int(r.flagged)}</td></tr>' for r in g.itertuples())
+    d = stations[stations["flag"] | stations["reason"].str.startswith("watch")].sort_values("p_low").head(12)
+    lst = "".join(
+        f'<tr><td>{_esc(r.name)}<span class="muted">{_esc(r.region)}</span></td><td class="n">{r.rho:+.2f}</td><td class="n">{r.q_global:.3f}</td>'
+        f'<td>{"flagged" if r.flag else "watch"}</td></tr>' for r in d.itertuples())
+    flagged = int(stations["flag"].sum())
+    return f"""<section class="card" id="natsat"><h2>Agreement with the satellite, all India</h2>
+<p class="muted" style="margin-top:-6px">Does each station&rsquo;s PM2.5 follow MODIS aerosol optical depth, day to day, like the stations near it?</p>
+<div class="split"><div><div class="sub-h">Regions tested</div><div class="scroll"><table class="tbl"><thead><tr><th>Region</th><th class="n">Stations</th><th class="n">Days</th>
+<th class="n">Typical correlation</th><th class="n">Flagged</th></tr></thead><tbody>{rows}</tbody></table></div></div>
+<div><div class="sub-h">Flagged or on watch</div>{('<div class="scroll"><table class="tbl"><thead><tr><th>Station</th><th class="n">Correlation</th><th class="n">q</th><th>Level</th></tr></thead><tbody>' + lst + '</tbody></table></div>') if lst else NA.format("No station is flagged or on watch.")}</div></div>
+<div class="note">{len(stations)} stations tested in {len(groups)} regions, {flagged} flagged. Stations are compared only with others within about 150 km, and a region where the
+satellite does not track PM2.5 at all is switched off rather than flagged. The correction for multiple testing runs across the whole country.</div>
+<div class="note warn"><b>Read with care.</b> Satellite aerosol is a column measurement and PM2.5 a point reading at the surface; cloud and monsoon cut the number of usable days.
+A flag means the station follows the satellite less than its neighbours, which can be a local source as easily as a sensor fault.</div>
 </section>"""

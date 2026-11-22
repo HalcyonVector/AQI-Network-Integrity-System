@@ -1,0 +1,325 @@
+n_days,rho,network_median_rho,z,p_low,q_value,flag,reason,group,q_global,openaq_id,name,city,region
+8,-0.286,0.036,-0.695,0.243,0.731,False,no flag: this region's stations do not track the satellite,9,0.9262588235294118,6974,"Bapuji Nagar, Bengaluru - KSPCB",Bengaluru,Bengaluru
+11,-0.055,0.036,-0.241,0.405,0.731,False,no flag: this region's stations do not track the satellite,9,0.9440956937799043,6954,"Chikkaballapur Rural, Chikkaballapur - KSPCB",Chikkaballapur,Bengaluru
+8,-0.048,0.036,-0.176,0.43,0.731,False,no flag: this region's stations do not track the satellite,9,0.9440956937799043,6973,"Jayanagar 5th Block, Bengaluru - KSPCB",Bengaluru,Bengaluru
+8,0.119,0.036,0.177,0.57,0.731,False,no flag: this region's stations do not track the satellite,9,0.9440956937799043,5607,"Peenya, Bengaluru - CPCB",Bengaluru,Bengaluru
+10,0.146,0.036,0.278,0.609,0.731,False,no flag: this region's stations do not track the satellite,9,0.9440956937799043,5548,"BTM Layout, Bengaluru - CPCB",Bengaluru,Bengaluru
+9,0.367,0.036,0.806,0.79,0.79,False,no flag: this region's stations do not track the satellite,9,0.9658867924528303,60656,"Tamaka Ind. Area, Kolar - KSPCB",Kolar,Bengaluru
+40,-0.252,0.062,-1.832,0.033,0.742,False,no flag: this region's stations do not track the satellite,11,0.5091428571428571,6968,"Phase-1 GIDC, Vapi - GPCB",Vapi,Mumbai
+28,-0.304,0.062,-1.776,0.038,0.742,False,no flag: this region's stations do not track the satellite,11,0.549391304347826,3409487,"Sanpada, Navi Mumbai - MPCB",Navi Mumbai,Mumbai
+19,-0.346,0.062,-1.595,0.055,0.742,False,no flag: this region's stations do not track the satellite,11,0.66,3409331,"Bhosari, Pune - IITM",Pune,Mumbai
+32,-0.238,0.062,-1.551,0.06,0.742,False,no flag: this region's stations do not track the satellite,11,0.6703448275862068,3409485,"Gokul Nagar, Bhiwandi - MPCB",Bhiwandi,Mumbai
+38,-0.177,0.062,-1.346,0.089,0.742,False,no flag: this region's stations do not track the satellite,11,0.756,3409484,"Sidhi Vinayak Nagar, Ulhasnagar - MPCB",Ulhasnagar,Mumbai
+40,-0.161,0.062,-1.291,0.098,0.742,False,no flag: this region's stations do not track the satellite,11,0.756,3409480,"Bolinj, Virar - MPCB",Virar,Mumbai
+22,-0.159,0.062,-0.914,0.18,0.742,False,no flag: this region's stations do not track the satellite,11,0.868153846153846,3409528,"Savta Mali Nagar, Pimpri-Chinchwad - IITM",Pimpri-Chinchwad,Mumbai
+37,-0.103,0.062,-0.912,0.181,0.742,False,no flag: this region's stations do not track the satellite,11,0.868153846153846,3409511,"Shivaji Nagar, Mumbai - BMC",Mumbai,Mumbai
+31,-0.113,0.062,-0.879,0.19,0.742,False,no flag: this region's stations do not track the satellite,11,0.868153846153846,3409475,"Tondare-Taloja, Navi Mumbai - MPCB",Navi Mumbai,Mumbai
+32,-0.104,0.062,-0.849,0.198,0.742,False,no flag: this region's stations do not track the satellite,11,0.868153846153846,3409438,"Katraj Dairy, Pune - MPCB",Pune,Mumbai
+31,-0.106,0.062,-0.84,0.2,0.742,False,no flag: this region's stations do not track the satellite,11,0.868153846153846,3409483,"Chembur, Mumbai - MPCB",Mumbai,Mumbai
+19,-0.153,0.062,-0.815,0.207,0.742,False,no flag: this region's stations do not track the satellite,11,0.868153846153846,3409436,"Park Street Wakad, Pimpri Chinchwad - MPCB",Pimpri-Chinchwad,Mumbai
+32,-0.098,0.062,-0.817,0.207,0.742,False,no flag: this region's stations do not track the satellite,11,0.868153846153846,3409479,"Mindspace-Malad West, Mumbai - MPCB",Mumbai,Mumbai
+22,-0.135,0.062,-0.814,0.208,0.742,False,no flag: this region's stations do not track the satellite,11,0.868153846153846,3409455,"Kamble Tarf Birwadi, Mahad - MPCB",Mahad,Mumbai
+22,-0.077,0.062,-0.575,0.283,0.915,False,no flag: this region's stations do not track the satellite,11,0.9440956937799043,3409435,"Gavalinagar, Pimpri Chinchwad - MPCB",Pimpri-Chinchwad,Mumbai
+34,-0.025,0.062,-0.458,0.323,0.915,False,no flag: this region's stations do not track the satellite,11,0.9440956937799043,3409469,"Kasarvadavali, Thane - MPCB",Thane,Mumbai
+28,-0.027,0.062,-0.42,0.337,0.915,False,no flag: this region's stations do not track the satellite,11,0.9440956937799043,3409476,"CBD Belapur, Belapur - MPCB",Belapur,Mumbai
+29,-0.014,0.062,-0.368,0.356,0.915,False,no flag: this region's stations do not track the satellite,11,0.9440956937799043,3409451,"Pandav Nagari, Nashik - MPCB",Nashik,Mumbai
+28,-0.008,0.062,-0.33,0.371,0.915,False,no flag: this region's stations do not track the satellite,11,0.9440956937799043,3409471,"Sector-2E Kalamboli, Navi Mumbai - MPCB",Navi Mumbai,Mumbai
+32,0.0,0.062,-0.316,0.376,0.915,False,no flag: this region's stations do not track the satellite,11,0.9440956937799043,3409453,"MIDC Ambad, Nashik - MPCB",Nashik,Mumbai
+30,0.032,0.062,-0.147,0.442,0.915,False,no flag: this region's stations do not track the satellite,11,0.9440956937799043,3409482,"Bandra Kurla Complex, Mumbai - IITM",Mumbai,Mumbai
+29,0.033,0.062,-0.14,0.444,0.915,False,no flag: this region's stations do not track the satellite,11,0.9440956937799043,3409470,"Katrap, Badlapur - MPCB",Badlapur,Mumbai
+10,0.006,0.062,-0.14,0.444,0.915,False,no flag: this region's stations do not track the satellite,11,0.9440956937799043,3409478,"Bhayandar West, Mira-Bhayandar - MPCB",Mira-Bhayandar,Mumbai
+20,0.033,0.062,-0.113,0.455,0.915,False,no flag: this region's stations do not track the satellite,11,0.9440956937799043,6927,"Colaba, Mumbai - MPCB",Mumbai,Mumbai
+24,0.053,0.062,-0.039,0.484,0.915,False,no flag: this region's stations do not track the satellite,11,0.9440956937799043,11609,"Mhada Colony, Pune - IITM",Pune,Mumbai
+18,0.071,0.062,0.033,0.513,0.915,False,no flag: this region's stations do not track the satellite,11,0.9440956937799043,3409437,"Thergaon, Pimpri Chinchwad - MPCB",Pimpri-Chinchwad,Mumbai
+28,0.076,0.062,0.066,0.526,0.915,False,no flag: this region's stations do not track the satellite,11,0.9440956937799043,60658,"Hadapsar, Pune - IITM",Pune,Mumbai
+32,0.079,0.062,0.084,0.534,0.915,False,no flag: this region's stations do not track the satellite,11,0.9440956937799043,3409472,"Upvan Fort, Thane - MPCB",Thane,Mumbai
+31,0.082,0.062,0.099,0.539,0.915,False,no flag: this region's stations do not track the satellite,11,0.9440956937799043,6967,"Sion, Mumbai - MPCB",Mumbai,Mumbai
+33,0.094,0.062,0.164,0.565,0.915,False,no flag: this region's stations do not track the satellite,11,0.9440956937799043,3409454,"Hirawadi, Nashik - MPCB",Nashik,Mumbai
+26,0.109,0.062,0.214,0.585,0.915,False,no flag: this region's stations do not track the satellite,11,0.9440956937799043,3409514,"Ghatkopar, Mumbai - BMC",Mumbai,Mumbai
+37,0.126,0.062,0.354,0.638,0.915,False,no flag: this region's stations do not track the satellite,11,0.9484615384615386,3409481,"Khaira, Boisar - MPCB",Boisar,Mumbai
+33,0.131,0.062,0.358,0.64,0.915,False,no flag: this region's stations do not track the satellite,11,0.9484615384615386,7752,"Khadakpada, Kalyan - MPCB",Kalyan,Mumbai
+27,0.143,0.062,0.38,0.648,0.915,False,no flag: this region's stations do not track the satellite,11,0.9484615384615386,3409526,"Panchawati_Pashan, Pune - IITM",Pune,Mumbai
+32,0.154,0.062,0.474,0.682,0.915,False,no flag: this region's stations do not track the satellite,11,0.9484615384615386,12024,"Chakala-Andheri East, Mumbai - IITM",Mumbai,Mumbai
+34,0.154,0.062,0.491,0.688,0.915,False,no flag: this region's stations do not track the satellite,11,0.9485617021276594,3409512,"Kandivali West, Mumbai - BMC",Mumbai,Mumbai
+25,0.208,0.062,0.657,0.745,0.915,False,no flag: this region's stations do not track the satellite,11,0.9645801526717557,3409439,"Savitribai Phule Pune University, Pune - MPCB",Pune,Mumbai
+21,0.234,0.062,0.704,0.759,0.915,False,no flag: this region's stations do not track the satellite,11,0.9645801526717557,3409523,"Bhumkar Nagar, Pune - IITM",Pune,Mumbai
+37,0.191,0.062,0.722,0.765,0.915,False,no flag: this region's stations do not track the satellite,11,0.9645801526717557,5592,"Gangapur Road, Nashik - MPCB",Nashik,Mumbai
+23,0.234,0.062,0.742,0.771,0.915,False,no flag: this region's stations do not track the satellite,11,0.9645801526717557,12040,"Mulund West, Mumbai - MPCB",Mumbai,Mumbai
+36,0.201,0.062,0.764,0.778,0.915,False,no flag: this region's stations do not track the satellite,11,0.9645801526717557,3409329,"Deonar, Mumbai - IITM",Mumbai,Mumbai
+33,0.209,0.062,0.772,0.78,0.915,False,no flag: this region's stations do not track the satellite,11,0.9645801526717557,11613,"Revenue Colony-Shivajinagar, Pune - IITM",Pune,Mumbai
+33,0.223,0.062,0.848,0.802,0.915,False,no flag: this region's stations do not track the satellite,11,0.9659776951672863,3409486,"Kherwadi_Bandra East, Mumbai - MPCB",Mumbai,Mumbai
+20,0.29,0.062,0.92,0.821,0.915,False,no flag: this region's stations do not track the satellite,11,0.9743478260869564,11610,"Transport Nagar-Nigdi, Pune - IITM",Pune,Mumbai
+30,0.247,0.062,0.93,0.824,0.915,False,no flag: this region's stations do not track the satellite,11,0.9743478260869564,6945,"Kurla, Mumbai - MPCB",Mumbai,Mumbai
+9,0.494,0.062,1.106,0.866,0.93,False,no flag: this region's stations do not track the satellite,11,0.9776445993031359,3409510,"Byculla, Mumbai - BMC",Mumbai,Mumbai
+26,0.322,0.062,1.231,0.891,0.93,False,no flag: this region's stations do not track the satellite,11,0.9862297297297299,3409477,"Kopripada-Vashi, Navi Mumbai - MPCB",Navi Mumbai,Mumbai
+21,0.36,0.062,1.258,0.896,0.93,False,no flag: this region's stations do not track the satellite,11,0.9862297297297299,11611,"Malad West, Mumbai - IITM",Mumbai,Mumbai
+31,0.321,0.062,1.35,0.912,0.93,False,no flag: this region's stations do not track the satellite,11,0.9915704697986577,6943,"Mahape, Navi Mumbai - MPCB",Navi Mumbai,Mumbai
+30,0.624,0.062,3.285,0.999,0.999,False,no flag: this region's stations do not track the satellite,11,0.999,6965,"Borivali East, Mumbai - IITM",Mumbai,Mumbai
+24,-0.32,0.166,-2.16,0.015,0.123,False,no flag: this region's stations do not track the satellite,12,0.3702857142857143,3409461,"Rachnakar Colony, Aurangabad - MPCB",Aurangabad,Aurangabad
+22,-0.082,0.166,-1.028,0.152,0.608,False,no flag: this region's stations do not track the satellite,12,0.868153846153846,5642,"More Chowk Waluj, Aurangabad - MPCB",Aurangabad,Aurangabad
+19,0.094,0.166,-0.278,0.39,0.866,False,no flag: this region's stations do not track the satellite,12,0.9440956937799043,3409457,"Tarakpur, Ahmednagar - MPCB",Ahmednagar,Aurangabad
+27,0.14,0.166,-0.126,0.45,0.866,False,no flag: this region's stations do not track the satellite,12,0.9440956937799043,3409460,"MIDC Chilkalthana, Aurangabad - MPCB",Aurangabad,Aurangabad
+19,0.193,0.166,0.104,0.541,0.866,False,no flag: this region's stations do not track the satellite,12,0.9440956937799043,3409474,"Mahesh Nagar, Malegaon - MPCB",Malegaon,Aurangabad
+25,0.318,0.166,0.717,0.763,0.951,False,no flag: this region's stations do not track the satellite,12,0.9645801526717557,3409463,"Old MIDC, Jalna - MPCB",Jalna,Aurangabad
+27,0.457,0.166,1.503,0.934,0.951,False,no flag: this region's stations do not track the satellite,12,0.9921836065573771,3409473,"Deopur, Dhule - MPCB",Dhule,Aurangabad
+26,0.489,0.166,1.657,0.951,0.951,False,no flag: this region's stations do not track the satellite,12,0.999,3409462,"Prabhat Colony, Jalgaon - MPCB",Jalgaon,Aurangabad
+25,-0.359,0.08,-2.018,0.022,0.213,False,no flag: this region's stations do not track the satellite,18,0.414,344142,"Nacharam_TSIIC IALA, Hyderabad - TSPCB",Hyderabad,Hyderabad
+21,-0.346,0.08,-1.765,0.039,0.213,False,no flag: this region's stations do not track the satellite,18,0.549391304347826,344104,"Kompally Municipal Office, Hyderabad - TSPCB",Hyderabad,Hyderabad
+21,-0.136,0.08,-0.869,0.193,0.532,False,no flag: this region's stations do not track the satellite,18,0.868153846153846,5624,"IDA Pashamylaram, Hyderabad - TSPCB",Hyderabad,Hyderabad
+23,-0.125,0.08,-0.865,0.194,0.532,False,no flag: this region's stations do not track the satellite,18,0.868153846153846,346257,"Ramachandrapuram, Hyderabad - TSPCB",Hyderabad,Hyderabad
+32,0.021,0.08,-0.3,0.382,0.709,False,no flag: this region's stations do not track the satellite,18,0.9440956937799043,344144,"IITH Kandi, Hyderabad - TSPCB",Hyderabad,Hyderabad
+22,0.08,0.08,0.0,0.5,0.709,False,no flag: this region's stations do not track the satellite,18,0.9440956937799043,5645,"ICRISAT Patancheru, Hyderabad - TSPCB",Hyderabad,Hyderabad
+22,0.084,0.08,0.019,0.507,0.709,False,no flag: this region's stations do not track the satellite,18,0.9440956937799043,352465,"New Malakpet, Hyderabad - TSPCB",Hyderabad,Hyderabad
+23,0.089,0.08,0.04,0.516,0.709,False,no flag: this region's stations do not track the satellite,18,0.9440956937799043,344103,"ECIL Kapra, Hyderabad - TSPCB",Hyderabad,Hyderabad
+16,0.376,0.08,1.075,0.859,0.986,False,no flag: this region's stations do not track the satellite,18,0.9765314685314685,5623,"Central University, Hyderabad - TSPCB",Hyderabad,Hyderabad
+22,0.487,0.08,1.862,0.969,0.986,False,no flag: this region's stations do not track the satellite,18,0.999,5599,"Bollaram Industrial Area, Hyderabad - TSPCB",Hyderabad,Hyderabad
+18,0.593,0.08,2.204,0.986,0.986,False,no flag: this region's stations do not track the satellite,18,0.999,407,"Zoo Park, Hyderabad - TSPCB",Hyderabad,Hyderabad
+27,0.018,0.211,-0.905,0.183,0.619,False,no flag: this region's stations do not track the satellite,22,0.868153846153846,6939,"Hardev Nagar, Bathinda - PPCB",Bathinda,Bathinda
+37,0.065,0.211,-0.819,0.206,0.619,False,no flag: this region's stations do not track the satellite,22,0.868153846153846,6952,"F-Block, Sirsa - HSPCB",Sirsa,Bathinda
+40,0.156,0.211,-0.325,0.373,0.745,False,no flag: this region's stations do not track the satellite,22,0.9440956937799043,6969,"Huda Sector, Fatehabad - HSPCB",Fatehabad,Bathinda
+36,0.266,0.211,0.314,0.623,0.922,False,no flag: this region's stations do not track the satellite,22,0.9484615384615386,6935,"Urban Estate-II, Hisar - HSPCB",Hisar,Bathinda
+43,0.325,0.211,0.732,0.768,0.922,False,no flag: this region's stations do not track the satellite,22,0.9645801526717557,3409424,"Old City, Sri Ganganagar - RSPCB",Sri Ganganagar,Bathinda
+31,0.536,0.211,1.921,0.973,0.973,False,no flag: this region's stations do not track the satellite,22,0.999,3409420,"Housing Board, Hanumangarh - RSPCB",Hanumangarh,Bathinda
+39,0.011,0.25,-1.384,0.083,0.911,False,no flag: this region's stations do not track the satellite,25,0.756,2583,"Sector-6, Panchkula - HSPCB ",Panchkula,Chandigarh
+28,0.024,0.25,-1.089,0.138,0.911,False,no flag: this region's stations do not track the satellite,25,0.843622641509434,6958,"Sector-18, Panipat - HSPCB",Panipat,Chandigarh
+29,0.082,0.25,-0.831,0.203,0.911,False,no flag: this region's stations do not track the satellite,25,0.868153846153846,6442,"Ratanpura, Rupnagar - Ambuja Cements",Rupnagar,Chandigarh
+28,0.12,0.25,-0.635,0.263,0.911,False,no flag: this region's stations do not track the satellite,25,0.9363956043956044,6971,"Rishi Nagar, Kaithal - HSPCB",Kaithal,Chandigarh
+35,0.178,0.25,-0.402,0.344,0.911,False,no flag: this region's stations do not track the satellite,25,0.9440956937799043,5625,"RIMT University, Mandi Gobindgarh - PPCB",Mandi Gobindgarh,Chandigarh
+32,0.189,0.25,-0.325,0.373,0.911,False,no flag: this region's stations do not track the satellite,25,0.9440956937799043,10910,"Sector-12, Karnal - HSPCB",Karnal,Chandigarh
+32,0.215,0.25,-0.185,0.427,0.911,False,no flag: this region's stations do not track the satellite,25,0.9440956937799043,7282,"Sector-7, Kurukshetra - HSPCB",Kurukshetra ,Chandigarh
+26,0.236,0.25,-0.067,0.473,0.911,False,no flag: this region's stations do not track the satellite,25,0.9440956937799043,6930,"Gobind Pura, Yamuna Nagar - HSPCB",Yamuna Nagar,Chandigarh
+32,0.264,0.25,0.076,0.53,0.911,False,no flag: this region's stations do not track the satellite,25,0.9440956937799043,6964,"Patti Mehar, Ambala - HSPCB",Ambala,Chandigarh
+37,0.317,0.25,0.406,0.658,0.911,False,no flag: this region's stations do not track the satellite,25,0.9484615384615386,301389,"HIMUDA Complex Phase-1, Baddi - HPPCB",Baddi,Chandigarh
+35,0.331,0.25,0.476,0.683,0.911,False,no flag: this region's stations do not track the satellite,25,0.9484615384615386,6940,"Kalal Majra, Khanna - PPCB",Khanna,Chandigarh
+29,0.34,0.25,0.477,0.683,0.911,False,no flag: this region's stations do not track the satellite,25,0.9484615384615386,278418,"Sector-53, Chandigarh - CPCC",Chandigarh,Chandigarh
+36,0.424,0.25,1.072,0.858,0.975,False,no flag: this region's stations do not track the satellite,25,0.9765314685314685,6963,"Police Lines, Jind - HSPCB",Jind,Chandigarh
+34,0.528,0.25,1.747,0.96,0.975,False,no flag: this region's stations do not track the satellite,25,0.999,233415,"Sector 22, Chandigarh - CPCC",Chandigarh,Chandigarh
+36,0.539,0.25,1.885,0.97,0.975,False,no flag: this region's stations do not track the satellite,25,0.999,10914,"Sector-25, Chandigarh - CPCC",Chandigarh,Chandigarh
+34,0.556,0.25,1.957,0.975,0.975,False,no flag: this region's stations do not track the satellite,25,0.999,5544,"Model Town, Patiala - PPCB",Patiala,Chandigarh
+31,0.282,0.541,-1.574,0.058,0.447,False,tracks the satellite like its peers,26,0.6703448275862068,3409418,"Khatikan Mohalla, Dausa - RSPCB",Dausa,Jaipur
+32,0.328,0.541,-1.345,0.089,0.447,False,tracks the satellite like its peers,26,0.756,5635,"Adarsh Nagar, Jaipur - RSPCB",Jaipur,Jaipur
+28,0.439,0.541,-0.635,0.263,0.827,False,tracks the satellite like its peers,26,0.9363956043956044,3409407,"Shastri Nagar, Tonk - RSPCB",Tonk,Jaipur
+39,0.511,0.541,-0.237,0.406,0.827,False,tracks the satellite like its peers,26,0.9440956937799043,3409421,"Sahu Nagar, Sawai Madhopur - RSPCB",Sawai Madhopur,Jaipur
+35,0.53,0.541,-0.083,0.467,0.827,False,tracks the satellite like its peers,26,0.9440956937799043,3409428,"Satyawati Vihar, Karauli - RSPCB",Karauli,Jaipur
+40,0.552,0.541,0.091,0.536,0.827,False,tracks the satellite like its peers,26,0.9440956937799043,5633,"Police Commissionerate, Jaipur - RSPCB",Jaipur,Jaipur
+35,0.567,0.541,0.199,0.579,0.827,False,tracks the satellite like its peers,26,0.9440956937799043,3409433,"RIICO Sitapura, Jaipur - RSPCB",Jaipur,Jaipur
+37,0.599,0.541,0.475,0.683,0.853,False,tracks the satellite like its peers,26,0.9484615384615386,5612,"Shastri Nagar, Jaipur - RSPCB",Jaipur,Jaipur
+36,0.661,0.541,1.028,0.848,0.931,False,tracks the satellite like its peers,26,0.9754468085106381,3409432,"Sector-2 Murlipura, Jaipur - RSPCB",Jaipur,Jaipur
+36,0.706,0.541,1.485,0.931,0.931,False,tracks the satellite like its peers,26,0.9921836065573771,3409430,"Mansarovar Sector-12, Jaipur - RSPCB",Jaipur,Jaipur
+36,-0.082,0.54,-3.716,0.0,0.001,True,PM2.5 decoupled from the satellite vs regional peers,28,0.0,278671,"Shivaji Nagar, Jhansi - UPPCB",Jhansi,Agra
+37,0.048,0.54,-3.058,0.001,0.008,True,PM2.5 decoupled from the satellite vs regional peers,28,0.081,233414,"Omex Eternity, Vrindavan - UPPCB",Vrindavan,Agra
+32,0.257,0.54,-1.73,0.042,0.195,False,"watch: looks decoupled, not significant across the country",28,0.55728,3409405,"Raja Ganj, Dholpur - RSPCB",Dholpur,Agra
+42,0.334,0.54,-1.512,0.065,0.229,False,tracks the satellite like its peers,28,0.6793548387096775,227931,"Sector-3B Avas Vikas Colony, Agra - UPPCB",Agra,Agra
+39,0.349,0.54,-1.358,0.087,0.244,False,tracks the satellite like its peers,28,0.756,278159,"Rohta, Agra - UPPCB",Agra,Agra
+39,0.445,0.54,-0.71,0.239,0.557,False,tracks the satellite like its peers,28,0.9218571428571428,228352,"Shastripuram, Agra - UPPCB",Agra,Agra
+31,0.529,0.54,-0.072,0.471,0.894,False,tracks the satellite like its peers,28,0.9440956937799043,330021,"Vibhab Nagar, Firozabad - UPPCB",Firozabad,Agra
+35,0.55,0.54,0.079,0.531,0.894,False,tracks the satellite like its peers,28,0.9440956937799043,3409369,"Maharaj Bada, Gwalior - MPPCB",Gwalior,Agra
+38,0.563,0.54,0.188,0.575,0.894,False,tracks the satellite like its peers,28,0.9440956937799043,860,"Sanjay Palace, Agra - UPPCB",Agra,Agra
+32,0.695,0.54,1.289,0.901,0.997,False,tracks the satellite like its peers,28,0.9862297297297299,10907,"City Center, Gwalior - MPPCB",Gwalior,Agra
+28,0.758,0.54,1.829,0.966,0.997,False,tracks the satellite like its peers,28,0.999,229729,"Nagla Bhau, Firozabad - UPPCB",Firozabad,Agra
+36,0.775,0.54,2.32,0.99,0.997,False,tracks the satellite like its peers,28,0.999,3409374,"Deen Dayal Nagar, Gwalior - MPPCB",Gwalior,Agra
+30,0.819,0.54,2.696,0.996,0.997,False,tracks the satellite like its peers,28,0.999,3409402,"Krishna Nagar, Bharatpur - RSPCB",Bharatpur,Agra
+36,0.805,0.54,2.764,0.997,0.997,False,tracks the satellite like its peers,28,0.999,227535,"Manoharpur, Agra - UPPCB",Agra,Agra
+28,0.091,0.38,-1.456,0.073,0.655,False,tracks the satellite like its peers,29,0.7167272727272727,346438,"Rajendra Nagar, Bareilly - UPPCB",Bareilly,Moradabad
+33,0.262,0.38,-0.678,0.249,0.72,False,tracks the satellite like its peers,29,0.9273103448275862,352777,"Kashiram Nagar, Moradabad - UPPCB",Moradabad,Moradabad
+26,0.354,0.38,-0.137,0.446,0.72,False,tracks the satellite like its peers,29,0.9440956937799043,358467,"Civil Lines, Bareilly - UPPCB",Bareilly,Moradabad
+35,0.362,0.38,-0.108,0.457,0.72,False,tracks the satellite like its peers,29,0.9440956937799043,270697,"Employment Office, Moradabad - UPPCB",Moradabad,Moradabad
+33,0.38,0.38,0.0,0.5,0.72,False,tracks the satellite like its peers,29,0.9440956937799043,270877,"Eco Herbal Park, Moradabad - UPPCB",Moradabad,Moradabad
+34,0.402,0.38,0.141,0.556,0.72,False,tracks the satellite like its peers,29,0.9440956937799043,270777,"Jigar Colony, Moradabad - UPPCB",Moradabad,Moradabad
+33,0.404,0.38,0.15,0.56,0.72,False,tracks the satellite like its peers,29,0.9440956937799043,353715,"Transport Nagar, Moradabad - UPPCB",Moradabad,Moradabad
+12,0.545,0.38,0.601,0.726,0.758,False,tracks the satellite like its peers,29,0.9645801526717557,3409409,"Govt. Girls Inter College, Kashipur - UKPCB",Kashipur,Moradabad
+16,0.541,0.38,0.701,0.758,0.758,False,tracks the satellite like its peers,29,0.9645801526717557,270771,"Buddhi Vihar, Moradabad - UPPCB",Moradabad,Moradabad
+30,0.094,0.663,-3.454,0.0,0.008,True,PM2.5 decoupled from the satellite vs regional peers,30,0.0,301,"Vikas Sadan, Gurugram - HSPCB",Gurugram,Delhi
+36,-0.005,0.663,-4.354,0.0,0.0,True,PM2.5 decoupled from the satellite vs regional peers,30,0.0,7280,"Shyam Nagar, Palwal - HSPCB",Palwal ,Delhi
+37,0.346,0.663,-2.406,0.008,0.159,False,"watch: looks decoupled, not significant across the country",30,0.28800000000000003,10919,"Sanjay Nagar, Ghaziabad - UPPCB",Ghaziabad,Delhi
+34,0.363,0.663,-2.2,0.014,0.164,False,"watch: looks decoupled, not significant across the country",30,0.3702857142857143,6923,"New Mandi, Muzaffarnagar - UPPCB",Muzaffarnagar,Delhi
+30,0.335,0.663,-2.208,0.014,0.164,False,"watch: looks decoupled, not significant across the country",30,0.3702857142857143,8319,"Anand Vihar, Hapur - UPPCB",Hapur,Delhi
+33,0.378,0.663,-2.073,0.019,0.167,False,"watch: looks decoupled, not significant across the country",30,0.4104,6972,"Nathu Colony, Ballabgarh - HSPCB",Ballabgarh,Delhi
+29,0.364,0.663,-2.006,0.022,0.167,False,"watch: looks decoupled, not significant across the country",30,0.414,10908,"Sector 11, Faridabad - HSPCB",Faridabad,Delhi
+40,0.422,0.663,-2.001,0.023,0.167,False,"watch: looks decoupled, not significant across the country",30,0.414,10725,"Mini Secretariat, Charkhi Dadri - HSPCB",Charkhi Dadri,Delhi
+45,0.46,0.663,-1.844,0.033,0.214,False,"watch: looks decoupled, not significant across the country",30,0.5091428571428571,6944,"H.B. Colony, Bhiwani - HSPCB",Bhiwani,Delhi
+35,0.461,0.663,-1.602,0.055,0.322,False,tracks the satellite like its peers,30,0.66,6924,"Indirapuram, Ghaziabad - UPPCB",Ghaziabad,Delhi
+32,0.461,0.663,-1.526,0.064,0.341,False,tracks the satellite like its peers,30,0.6793548387096775,5622,"NSIT Dwarka, Delhi - CPCB",Delhi,Delhi
+37,0.487,0.663,-1.47,0.071,0.348,False,tracks the satellite like its peers,30,0.7167272727272727,6985,"Yamunapuram, Bulandshahr - UPPCB",Bulandshahr,Delhi
+31,0.504,0.663,-1.219,0.111,0.498,False,tracks the satellite like its peers,30,0.7789787234042553,10920,"New Industrial Town, Faridabad - HSPCB",Faridabad,Delhi
+32,0.514,0.663,-1.171,0.121,0.498,False,tracks the satellite like its peers,30,0.7913076923076924,7833,"Ganga Nagar, Meerut - UPPCB",Meerut,Delhi
+34,0.523,0.663,-1.142,0.127,0.498,False,tracks the satellite like its peers,30,0.7913076923076924,10820,"Sector 30, Faridabad - HSPCB",Faridabad,Delhi
+37,0.543,0.663,-1.047,0.148,0.544,False,tracks the satellite like its peers,30,0.868153846153846,10825,"Sector-51, Gurugram - HSPCB",Gurugram,Delhi
+41,0.558,0.663,-0.98,0.164,0.547,False,tracks the satellite like its peers,30,0.868153846153846,6951,"Murthal, Sonipat - HSPCB",Sonipat,Delhi
+37,0.553,0.663,-0.967,0.167,0.547,False,tracks the satellite like its peers,30,0.868153846153846,301388,"Sardar Patel Inter College, Baghpat - UPPCB",Baghpat,Delhi
+37,0.574,0.663,-0.797,0.213,0.661,False,tracks the satellite like its peers,30,0.8735696202531645,7720,"Pallavpuram Phase 2, Meerut - UPPCB",Meerut,Delhi
+35,0.58,0.663,-0.73,0.233,0.686,False,tracks the satellite like its peers,30,0.9095421686746988,6976,"Jai Bhim Nagar, Meerut - UPPCB",Meerut,Delhi
+36,0.606,0.663,-0.521,0.301,0.846,False,tracks the satellite like its peers,30,0.9440956937799043,5665,"Vasundhara, Ghaziabad - UPPCB",Ghaziabad,Delhi
+36,0.612,0.663,-0.465,0.321,0.86,False,tracks the satellite like its peers,30,0.9440956937799043,6936,"Arya Nagar, Bahadurgarh - HSPCB",Bahadurgarh,Delhi
+35,0.618,0.663,-0.412,0.34,0.872,False,tracks the satellite like its peers,30,0.9440956937799043,10484,"Sri Aurobindo Marg, Delhi - DPCC",Delhi,Delhi
+37,0.624,0.663,-0.365,0.358,0.872,False,tracks the satellite like its peers,30,0.9440956937799043,10921,"NISE Gwal Pahari, Gurugram - IMD",Gurugram,Delhi
+38,0.629,0.663,-0.333,0.37,0.872,False,tracks the satellite like its peers,30,0.9440956937799043,346439,"Kalindi Kunj, Khurja - UPPCB",Khurja,Delhi
+37,0.644,0.663,-0.181,0.428,0.96,False,tracks the satellite like its peers,30,0.9440956937799043,6949,"Municipal Corporation Office, Dharuhera -  HSPCB",Dharuhera,Delhi
+39,0.649,0.663,-0.144,0.443,0.96,False,tracks the satellite like its peers,30,0.9440956937799043,17,"R K Puram, Delhi - DPCC",Delhi,Delhi
+41,0.655,0.663,-0.085,0.466,0.96,False,tracks the satellite like its peers,30,0.9440956937799043,6931,"Dwarka-Sector 8, Delhi - DPCC ",Delhi,Delhi
+40,0.659,0.663,-0.041,0.484,0.96,False,tracks the satellite like its peers,30,0.9440956937799043,10900,"Teri Gram, Gurugram - HSPCB",Gurugram,Delhi
+41,0.663,0.663,0.0,0.5,0.96,False,tracks the satellite like its peers,30,0.9440956937799043,10488,"Najafgarh, Delhi - DPCC",Delhi,Delhi
+31,0.686,0.663,0.207,0.582,0.96,False,tracks the satellite like its peers,30,0.9440956937799043,3409519,"Vasundhara Nagar_UIT, Bhiwadi - RSPCB",Bhiwadi,Delhi
+39,0.684,0.663,0.213,0.584,0.96,False,tracks the satellite like its peers,30,0.9440956937799043,8235,"Jahangirpuri, Delhi - DPCC",Delhi,Delhi
+37,0.687,0.663,0.243,0.596,0.96,False,tracks the satellite like its peers,30,0.9440956937799043,8365,"Nehru Nagar, Delhi - DPCC",Delhi,Delhi
+35,0.691,0.663,0.271,0.607,0.96,False,tracks the satellite like its peers,30,0.9440956937799043,8917,"Ashok Vihar, Delhi - DPCC",Delhi,Delhi
+38,0.69,0.663,0.275,0.608,0.96,False,tracks the satellite like its peers,30,0.9440956937799043,6986,"Knowledge Park - III, Greater Noida - UPPCB",Greater Noida,Delhi
+37,0.698,0.663,0.353,0.638,0.96,False,tracks the satellite like its peers,30,0.9484615384615386,5586,"Sirifort, Delhi - CPCB",Delhi,Delhi
+39,0.7,0.663,0.389,0.651,0.96,False,tracks the satellite like its peers,30,0.9484615384615386,6957,"Jawaharlal Nehru Stadium, Delhi - DPCC",Delhi,Delhi
+37,0.701,0.663,0.391,0.652,0.96,False,tracks the satellite like its peers,30,0.9484615384615386,6953,"Sector-2 IMT, Manesar - HSPCB",Manesar,Delhi
+35,0.704,0.663,0.404,0.657,0.96,False,tracks the satellite like its peers,30,0.9484615384615386,5650,"IGI Airport (T3), Delhi - IMD",Delhi,Delhi
+37,0.706,0.663,0.439,0.67,0.96,False,tracks the satellite like its peers,30,0.9484615384615386,6929,"Major Dhyan Chand National Stadium, Delhi - DPCC",Delhi,Delhi
+40,0.705,0.663,0.449,0.673,0.96,False,tracks the satellite like its peers,30,0.9484615384615386,8915,"Wazirpur, Delhi - DPCC",Delhi,Delhi
+40,0.708,0.663,0.481,0.685,0.96,False,tracks the satellite like its peers,30,0.9484615384615386,5588,"RIICO Ind. Area III, Bhiwadi - RSPCB",Bhiwadi,Delhi
+37,0.718,0.663,0.579,0.719,0.96,False,tracks the satellite like its peers,30,0.9645801526717557,6988,"Sector-116, Noida - UPPCB",Noida,Delhi
+35,0.72,0.663,0.587,0.721,0.96,False,tracks the satellite like its peers,30,0.9645801526717557,6980,"Sector-1, Noida - UPPCB",Noida,Delhi
+37,0.735,0.663,0.771,0.78,0.96,False,tracks the satellite like its peers,30,0.9645801526717557,8239,"Okhla Phase-2, Delhi - DPCC",Delhi,Delhi
+35,0.738,0.663,0.784,0.784,0.96,False,tracks the satellite like its peers,30,0.9658403041825095,6934,"Dr. Karni Singh Shooting Range, Delhi - DPCC",Delhi,Delhi
+38,0.738,0.663,0.828,0.796,0.96,False,tracks the satellite like its peers,30,0.9659776951672863,50,"Punjabi Bagh, Delhi - DPCC",Delhi,Delhi
+34,0.752,0.663,0.938,0.826,0.96,False,tracks the satellite like its peers,30,0.9743478260869564,7005,"Loni, Ghaziabad - UPPCB",Ghaziabad,Delhi
+35,0.752,0.663,0.956,0.83,0.96,False,tracks the satellite like its peers,30,0.9743478260869564,10485,"Narela, Delhi - DPCC",Delhi,Delhi
+37,0.755,0.663,1.024,0.847,0.96,False,tracks the satellite like its peers,30,0.9754468085106381,11603,"Chandni Chowk, Delhi - IITM",Delhi,Delhi
+38,0.766,0.663,1.186,0.882,0.96,False,tracks the satellite like its peers,30,0.9862297297297299,6932,"Alipur, Delhi - DPCC",Delhi,Delhi
+39,0.767,0.663,1.216,0.888,0.96,False,tracks the satellite like its peers,30,0.9862297297297299,10831,"Rohini, Delhi - DPCC",Delhi,Delhi
+35,0.776,0.663,1.258,0.896,0.96,False,tracks the satellite like its peers,30,0.9862297297297299,8475,"Sonia Vihar, Delhi - DPCC",Delhi,Delhi
+36,0.785,0.663,1.401,0.919,0.96,False,tracks the satellite like its peers,30,0.9921836065573771,8472,"Bawana, Delhi - DPCC",Delhi,Delhi
+39,0.785,0.663,1.469,0.929,0.96,False,tracks the satellite like its peers,30,0.9921836065573771,6960,"Patparganj, Delhi - DPCC",Delhi,Delhi
+35,0.792,0.663,1.491,0.932,0.96,False,tracks the satellite like its peers,30,0.9921836065573771,6938,"Vivek Vihar, Delhi - DPCC",Delhi,Delhi
+35,0.794,0.663,1.51,0.934,0.96,False,tracks the satellite like its peers,30,0.9921836065573771,5610,"North Campus, DU, Delhi - IMD",Delhi,Delhi
+38,0.801,0.663,1.691,0.955,0.96,False,tracks the satellite like its peers,30,0.999,10486,"Mundka, Delhi - DPCC",Delhi,Delhi
+35,0.81,0.663,1.745,0.96,0.96,False,tracks the satellite like its peers,30,0.999,5404,"Pusa, Delhi - DPCC",Delhi,Delhi
+37,0.344,0.432,-0.567,0.285,0.795,False,tracks the satellite like its peers,33,0.9440956937799043,3409401,"Samrat Ashok Udhyan, Jodhpur - RSPCB",Jodhpur,Jodhpur
+32,0.376,0.432,-0.337,0.368,0.795,False,tracks the satellite like its peers,33,0.9440956937799043,5587,"Collectorate, Jodhpur - RSPCB",Jodhpur,Jodhpur
+33,0.389,0.432,-0.269,0.394,0.795,False,tracks the satellite like its peers,33,0.9440956937799043,5638,"Indira Colony Vistar, Pali - RSPCB",Pali,Jodhpur
+29,0.398,0.432,-0.196,0.422,0.795,False,tracks the satellite like its peers,33,0.9440956937799043,3409495,"Mudtra Sili, Jalore - RSPCB",Jalore,Jodhpur
+40,0.466,0.432,0.246,0.597,0.795,False,tracks the satellite like its peers,33,0.9440956937799043,3409431,"Digari Kalan, Jodhpur - RSPCB",Jodhpur,Jodhpur
+43,0.466,0.432,0.253,0.6,0.795,False,tracks the satellite like its peers,33,0.9440956937799043,3409445,"Mandor, Jodhpur - RSPCB",Jodhpur,Jodhpur
+41,0.501,0.432,0.511,0.695,0.795,False,tracks the satellite like its peers,33,0.9541525423728813,3409425,"Jhalamand, Jodhpur - RSPCB",Jodhpur,Jodhpur
+43,0.542,0.432,0.867,0.807,0.807,False,tracks the satellite like its peers,33,0.9684,3409410,"Vedhaynath Colony, Sirohi - RSPCB",Sirohi,Jodhpur
+34,-0.228,0.305,-2.871,0.002,0.027,False,"watch: looks decoupled, not significant across the country",35,0.108,227536,"Chandkheda, Ahmedabad - IITM",Ahmedabad,Ahmedabad
+37,-0.073,0.305,-2.134,0.016,0.107,False,"watch: looks decoupled, not significant across the country",35,0.3702857142857143,227533,"Rakhial, Ahmedabad - IITM",Ahmedabad,Ahmedabad
+38,0.081,0.305,-1.301,0.097,0.291,False,tracks the satellite like its peers,35,0.756,3409336,"GIFT City, Gandhinagar - IITM",Gandhinagar,Ahmedabad
+41,0.092,0.305,-1.294,0.098,0.291,False,tracks the satellite like its peers,35,0.756,301387,"Raikhad, Ahmedabad - IITM",Ahmedabad,Ahmedabad
+43,0.11,0.305,-1.216,0.112,0.291,False,tracks the satellite like its peers,35,0.7789787234042553,228301,"IIPHG Lekawada, Gandhinagar - IITM",Gandhinagar,Ahmedabad
+42,0.184,0.305,-0.756,0.225,0.487,False,tracks the satellite like its peers,35,0.9,228303,"SAC ISRO Bopal, Ahmedabad - IITM",Ahmedabad,Ahmedabad
+44,0.305,0.305,0.0,0.5,0.756,False,tracks the satellite like its peers,35,0.9440956937799043,227534,"Gyaspur, Ahmedabad - IITM",Ahmedabad,Ahmedabad
+42,0.311,0.305,0.041,0.516,0.756,False,tracks the satellite like its peers,35,0.9440956937799043,228300,"SAC ISRO Satellite, Ahmedabad - IITM",Ahmedabad,Ahmedabad
+38,0.314,0.305,0.058,0.523,0.756,False,tracks the satellite like its peers,35,0.9440956937799043,228297,"SVPI Airport Hansol, Ahmedabad - IITM",Ahmedabad,Ahmedabad
+39,0.395,0.305,0.581,0.719,0.88,False,tracks the satellite like its peers,35,0.9645801526717557,6942,"Phase-4 GIDC, Vatva - GPCB",Vatva,Ahmedabad
+43,0.401,0.305,0.659,0.745,0.88,False,tracks the satellite like its peers,35,0.9645801526717557,6937,"Sector-10, Gandhinagar - GPCB",Gandhinagar,Ahmedabad
+40,0.497,0.305,1.32,0.907,0.978,False,tracks the satellite like its peers,35,0.9894545454545455,5631,"Maninagar, Ahmedabad - GPCB",Ahmedabad,Ahmedabad
+15,0.732,0.305,2.022,0.978,0.978,False,tracks the satellite like its peers,35,0.999,8171,"GIDC, Nandesari - Nandesari Ind. Association",Nandesari,Ahmedabad
+32,0.487,0.653,-1.258,0.104,0.625,False,tracks the satellite like its peers,38,0.7789787234042553,3409447,"Bamboliya, Baran - RSPCB",Baran,Kota
+38,0.577,0.653,-0.679,0.249,0.746,False,tracks the satellite like its peers,38,0.9273103448275862,3409443,"New Colony, Bundi - RSPCB",Bundi,Kota
+31,0.626,0.653,-0.229,0.41,0.815,False,tracks the satellite like its peers,38,0.9440956937799043,5636,"Shrinath Puram, Kota - RSPCB",Kota,Kota
+33,0.68,0.653,0.252,0.599,0.815,False,tracks the satellite like its peers,38,0.9440956937799043,3409412,"Dhanmandi, Kota - RSPCB",Kota,Kota
+35,0.7,0.653,0.466,0.679,0.815,False,tracks the satellite like its peers,38,0.9484615384615386,3409406,"Nayapura, Kota - RSPCB",Kota,Kota
+39,0.788,0.653,1.613,0.947,0.947,False,tracks the satellite like its peers,38,0.999,3409429,"Rajlaxmi Nagar, Jhalawar - RSPCB",Jhalawar,Kota
+27,-0.255,0.36,-2.95,0.002,0.033,False,"watch: looks decoupled, not significant across the country",45,0.108,270774,"New DM Office, Arrah - BSPCB",Arrah,Patna
+12,-0.51,0.36,-2.662,0.004,0.041,False,"watch: looks decoupled, not significant across the country",45,0.162,10630,"Govt. High School Shikarpur, Patna - BSPCB",Patna,Patna
+24,-0.058,0.36,-1.882,0.03,0.209,False,"watch: looks decoupled, not significant across the country",45,0.5091428571428571,270703,"Dada Peer, Sasaram - BSPCB",Sasaram,Patna
+25,0.095,0.36,-1.249,0.106,0.556,False,tracks the satellite like its peers,45,0.7789787234042553,5652,"IGSC Planetarium Complex, Patna - BSPCB",Patna,Patna
+17,0.1,0.36,-0.975,0.165,0.568,False,tracks the satellite like its peers,45,0.868153846153846,270729,"Darshan Nagar, Chhapra - BSPCB",Chhapra,Patna
+15,0.093,0.36,-0.928,0.177,0.568,False,tracks the satellite like its peers,45,0.868153846153846,270724,"Kareemganj, Gaya - BSPCB",Gaya,Patna
+21,0.173,0.36,-0.811,0.209,0.568,False,tracks the satellite like its peers,45,0.868153846153846,5594,"Muzaffarpur Collectorate, Muzaffarpur - BSPCB",Muzaffarpur,Patna
+24,0.193,0.36,-0.785,0.216,0.568,False,tracks the satellite like its peers,45,0.8747999999999999,229987,"MIT-Daudpur Kothi, Muzaffarpur - BSPCB",Muzaffarpur,Patna
+28,0.294,0.36,-0.352,0.362,0.846,False,tracks the satellite like its peers,45,0.9440956937799043,10697,"Samanpura, Patna - BSPCB",Patna,Patna
+12,0.301,0.36,-0.189,0.425,0.893,False,tracks the satellite like its peers,45,0.9440956937799043,6551004,"Town Hall - Lal Bagh, Darbhanga - BSPCB",Darbhanga,Patna
+18,0.36,0.36,0.0,0.5,0.955,False,tracks the satellite like its peers,45,0.9440956937799043,301391,"DM Office_Kasipur, Samastipur - BSPCB",Samastipur,Patna
+22,0.399,0.36,0.188,0.574,0.989,False,tracks the satellite like its peers,45,0.9440956937799043,10823,"Buddha Colony, Muzaffarpur - BSPCB",Muzaffarpur,Patna
+16,0.488,0.36,0.533,0.703,0.989,False,tracks the satellite like its peers,45,0.9610632911392405,5559,"Collectorate, Gaya - BSPCB",Gaya,Patna
+27,0.49,0.36,0.736,0.769,0.989,False,tracks the satellite like its peers,45,0.9645801526717557,10599,"Rajbansi Nagar, Patna - BSPCB",Patna,Patna
+17,0.529,0.36,0.749,0.773,0.989,False,tracks the satellite like its peers,45,0.9645801526717557,7494,"SFTI Kusdihra, Gaya - BSPCB",Gaya,Patna
+23,0.52,0.36,0.839,0.799,0.989,False,tracks the satellite like its peers,45,0.9659776951672863,270730,"Dangi Tola, Rajgir - BSPCB",Rajgir,Patna
+29,0.536,0.36,1.065,0.857,0.989,False,tracks the satellite like its peers,45,0.9765314685314685,10645,"Industrial Area, Hajipur - BSPCB",Hajipur,Patna
+19,0.582,0.36,1.087,0.862,0.989,False,tracks the satellite like its peers,45,0.9765314685314685,10670,"Muradpur, Patna - BSPCB",Patna,Patna
+20,0.629,0.36,1.408,0.92,0.989,False,tracks the satellite like its peers,45,0.9921836065573771,304956,"Gurdeo Nagar, Aurangabad - BSPCB",Aurangabad,Patna
+25,0.709,0.36,2.25,0.988,0.989,False,tracks the satellite like its peers,45,0.999,229985,"D M Colony, Bihar Sharif - BSPCB",Bihar Sharif,Patna
+28,0.699,0.36,2.305,0.989,0.989,False,tracks the satellite like its peers,45,0.999,7495,"DRM Office Danapur, Patna - BSPCB",Patna,Patna
+22,0.2,0.419,-1.0,0.159,0.776,False,tracks the satellite like its peers,48,0.868153846153846,270728,"Police Line, Saharsa - BSPCB",Saharsa,Bhagalpur
+20,0.283,0.419,-0.606,0.272,0.776,False,tracks the satellite like its peers,48,0.9440956937799043,270723,"DM Office_Kachari Chowk, Bhagalpur - BSPCB",Bhagalpur,Bhagalpur
+25,0.315,0.419,-0.534,0.297,0.776,False,tracks the satellite like its peers,48,0.9440956937799043,270727,"SDM Office_Khagra, Kishanganj - BSPCB",Kishanganj,Bhagalpur
+11,0.327,0.419,-0.284,0.388,0.776,False,tracks the satellite like its peers,48,0.9440956937799043,270704,"Town Hall, Munger - BSPCB",Munger,Bhagalpur
+10,0.539,0.419,0.392,0.652,0.894,False,tracks the satellite like its peers,48,0.9484615384615386,270721,"Mayaganj, Bhagalpur - BSPCB",Bhagalpur,Bhagalpur
+19,0.511,0.419,0.442,0.671,0.894,False,tracks the satellite like its peers,48,0.9484615384615386,270725,"Mariam Nagar, Purnia - BSPCB",Purnia,Bhagalpur
+20,0.58,0.419,0.84,0.8,0.914,False,tracks the satellite like its peers,48,0.9659776951672863,270720,"Mirchaibari, Katihar - BSPCB",Katihar,Bhagalpur
+28,0.708,0.419,2.063,0.98,0.98,False,tracks the satellite like its peers,48,0.999,270775,"Kharahiya Basti, Araria - BSPCB",Araria,Bhagalpur
+22,0.042,0.08,-0.155,0.439,0.767,False,no flag: this region's stations do not track the satellite,49,0.9440956937799043,3409505,"Lingraj Mandir, Bhubaneswar - OSPCB",Bhubaneswar,Bhubaneswar
+19,0.051,0.08,-0.11,0.456,0.767,False,no flag: this region's stations do not track the satellite,49,0.9440956937799043,3409506,"CDA Area, Cuttack - OSPCB",Cuttack,Bhubaneswar
+11,0.073,0.08,-0.019,0.492,0.767,False,no flag: this region's stations do not track the satellite,49,0.9440956937799043,5566,"Talcher Coalfields,Talcher - OSPCB",Talcher,Bhubaneswar
+20,0.087,0.08,0.028,0.511,0.767,False,no flag: this region's stations do not track the satellite,49,0.9440956937799043,3409508,"Patia, Bhubaneswar - OSPCB",Bhubaneswar,Bhubaneswar
+23,0.192,0.08,0.481,0.685,0.822,False,no flag: this region's stations do not track the satellite,49,0.9484615384615386,3409507,"Ferro Chrome Colony, Byasanagar - OSPCB",Byasanagar,Bhubaneswar
+23,0.364,0.08,1.27,0.898,0.898,False,no flag: this region's stations do not track the satellite,49,0.9862297297297299,3409504,"Hakimapada, Angul - OSPCB",Angul,Bhubaneswar
+14,-0.033,0.373,-1.331,0.092,0.761,False,tracks the satellite like its peers,50,0.756,3409395,"Sector-2, Rourkela - OSPCB",Rourkela,Rourkela
+13,0.22,0.373,-0.504,0.307,0.761,False,tracks the satellite like its peers,50,0.9440956937799043,3409394,"Fertilizer Township, Rourkela - OSPCB",Rourkela,Rourkela
+19,0.277,0.373,-0.407,0.342,0.761,False,tracks the satellite like its peers,50,0.9440956937799043,3409382,"Raghunathpali, Rourkela - OSPCB",Rourkela,Rourkela
+29,0.331,0.373,-0.233,0.408,0.761,False,tracks the satellite like its peers,50,0.9440956937799043,3409377,"Meher Colony, Baripada - OSPCB",Baripada,Rourkela
+15,0.318,0.373,-0.207,0.418,0.761,False,tracks the satellite like its peers,50,0.9440956937799043,3409378,"Jagamohanpur, Keonjhar - OSPCB",Keonjhar,Rourkela
+24,0.364,0.373,-0.046,0.482,0.761,False,tracks the satellite like its peers,50,0.9440956937799043,3409379,"Divisional Forest Office, Rairangpur - OSPCB",Rairangpur,Rourkela
+16,0.383,0.373,0.036,0.514,0.761,False,tracks the satellite like its peers,50,0.9440956937799043,3409381,"Dabuna, Nayagarh - OSPCB",Nayagarh,Rourkela
+20,0.395,0.373,0.1,0.54,0.761,False,tracks the satellite like its peers,50,0.9440956937799043,3409380,"Tata Township, Bileipada - OSPCB",Bileipada,Rourkela
+13,0.489,0.373,0.424,0.664,0.761,False,tracks the satellite like its peers,50,0.9484615384615386,3409384,"Barsua Iron Ore Mines, Tensa - OSPCB",Tensa,Rourkela
+12,0.538,0.373,0.593,0.723,0.761,False,tracks the satellite like its peers,50,0.9645801526717557,3409383,"OMC Colony, Suakati - OSPCB",Suakati,Rourkela
+25,0.493,0.373,0.654,0.743,0.761,False,tracks the satellite like its peers,50,0.9645801526717557,3409502,"Kalidaspur, Balasore - OSPCB",Balasore,Rourkela
+20,0.519,0.373,0.71,0.761,0.761,False,tracks the satellite like its peers,50,0.9645801526717557,3409503,"Forest Office, Barbil - OSPCB",Barbil,Rourkela
+22,0.127,0.599,-2.317,0.01,0.133,False,"watch: looks decoupled, not significant across the country",51,0.324,3409530,"Dasnagar, Howrah - WBPCB",Howrah,Kolkata
+12,0.28,0.599,-1.143,0.127,0.702,False,tracks the satellite like its peers,51,0.7913076923076924,3409320,"Rabindra Bharati University, Kolkata - WBPCB",Kolkata,Kolkata
+15,0.396,0.599,-0.888,0.187,0.702,False,tracks the satellite like its peers,51,0.868153846153846,10633,"Victoria, Kolkata - WBPCB",Kolkata,Kolkata
+9,0.383,0.599,-0.664,0.253,0.702,False,tracks the satellite like its peers,51,0.9314999999999999,10844,"Ghusuri, Howrah - WBPCB",Howrah,Kolkata
+10,0.418,0.599,-0.613,0.27,0.702,False,tracks the satellite like its peers,51,0.9440956937799043,5614,"Padmapukur, Howrah - WBPCB",Howrah,Kolkata
+11,0.5,0.599,-0.379,0.352,0.71,False,tracks the satellite like its peers,51,0.9440956937799043,6981,"Fort William, Kolkata - WBPCB",Kolkata,Kolkata
+15,0.599,0.599,0.0,0.5,0.71,False,tracks the satellite like its peers,51,0.9440956937799043,3409509,"SVSPA Campus, Barrackpore - WBPCB",Barrackpore,Kolkata
+21,0.614,0.599,0.098,0.539,0.71,False,tracks the satellite like its peers,51,0.9440956937799043,6950,"Jadavpur, Kolkata - WBPCB",Kolkata,Kolkata
+18,0.618,0.599,0.113,0.545,0.71,False,tracks the satellite like its peers,51,0.9440956937799043,10918,"Ballygunge, Kolkata - WBPCB",Kolkata,Kolkata
+19,0.623,0.599,0.145,0.558,0.71,False,tracks the satellite like its peers,51,0.9440956937799043,10851,"Bidhannagar, Kolkata - WBPCB",Kolkata,Kolkata
+10,0.661,0.599,0.256,0.601,0.71,False,tracks the satellite like its peers,51,0.9440956937799043,3409524,"Botanical Garden, Howrah - WBPCB",Howrah,Kolkata
+9,0.7,0.599,0.407,0.658,0.713,False,tracks the satellite like its peers,51,0.9484615384615386,6946,"Belur Math, Howrah - WBPCB",Howrah,Kolkata
+19,0.757,0.599,1.127,0.87,0.87,False,tracks the satellite like its peers,51,0.97875,10904,"Rabindra Sarobar, Kolkata - WBPCB",Kolkata,Kolkata
+27,0.139,0.381,-1.208,0.113,0.681,False,tracks the satellite like its peers,52,0.7789787234042553,5602,"Asansol Court Area, Asansol - WBPCB",Asansol,Asansol
+32,0.336,0.381,-0.263,0.396,0.714,False,tracks the satellite like its peers,52,0.9440956937799043,3409529,"Mahishkapur Road_B-Zone, Durgapur - WBPCB",Durgapur,Asansol
+25,0.338,0.381,-0.222,0.412,0.714,False,tracks the satellite like its peers,52,0.9440956937799043,3409520,"PCBL Residential Complex, Durgapur - WBPCB",Durgapur,Asansol
+23,0.428,0.381,0.235,0.593,0.714,False,tracks the satellite like its peers,52,0.9440956937799043,3409522,"Mahabir Colliery, Asansol - WBPCB",Asansol,Asansol
+27,0.425,0.381,0.241,0.595,0.714,False,tracks the satellite like its peers,52,0.9440956937799043,3409521,"Evelyn Lodge, Asansol - WBPCB",Asansol,Asansol
+26,0.544,0.381,0.942,0.827,0.827,False,tracks the satellite like its peers,52,0.9743478260869564,3409525,"Trivenidevi Bhalotia College, Asansol - WBPCB",Asansol,Asansol
+26,0.271,0.362,-0.457,0.324,0.875,False,tracks the satellite like its peers,54,0.9440956937799043,6961,"Shrivastav Colony, Damoh - MPPCB",Damoh,Jabalpur
+38,0.328,0.362,-0.217,0.414,0.875,False,tracks the satellite like its peers,54,0.9440956937799043,3409488,"Suhagi, Jabalpur - JMC",Jabalpur,Jabalpur
+26,0.348,0.362,-0.071,0.472,0.875,False,tracks the satellite like its peers,54,0.9440956937799043,3409489,"Gupteshwar, Jabalpur - JMC",Jabalpur,Jabalpur
+31,0.362,0.362,0.0,0.5,0.875,False,tracks the satellite like its peers,54,0.9440956937799043,8245,"Gole Bazar, Katni - MPPCB",Katni,Jabalpur
+13,0.571,0.362,0.807,0.79,0.898,False,tracks the satellite like its peers,54,0.9658867924528303,7979,"Deen Dayal Nagar, Sagar - MPPCB",Sagar,Jabalpur
+37,0.495,0.362,0.896,0.815,0.898,False,tracks the satellite like its peers,54,0.9743478260869564,10911,"Marhatal, Jabalpur - MPPCB",Jabalpur,Jabalpur
+34,0.552,0.362,1.272,0.898,0.898,False,tracks the satellite like its peers,54,0.9862297297297299,3409370,"Civil Lines, Sagar - MPPCB",Sagar,Jabalpur
+31,0.339,0.494,-0.94,0.174,0.751,False,tracks the satellite like its peers,55,0.868153846153846,234568,"FTI Kidwai Nagar, Kanpur - UPPCB",Kanpur,Lucknow
+31,0.414,0.494,-0.501,0.308,0.751,False,tracks the satellite like its peers,55,0.9440956937799043,7140,"Gomti Nagar, Lucknow - UPPCB",Lucknow,Lucknow
+33,0.424,0.494,-0.454,0.325,0.751,False,tracks the satellite like its peers,55,0.9440956937799043,229252,"NSI Kalyanpur, Kanpur - UPPCB",Kanpur,Lucknow
+36,0.473,0.494,-0.144,0.443,0.751,False,tracks the satellite like its peers,55,0.9440956937799043,5659,"Lalbagh, Lucknow - CPCB",Lucknow,Lucknow
+30,0.514,0.494,0.134,0.553,0.751,False,tracks the satellite like its peers,55,0.9440956937799043,229404,"Kukrail Picnic Spot-1, Lucknow - UPPCB",Lucknow,Lucknow
+38,0.515,0.494,0.16,0.563,0.751,False,tracks the satellite like its peers,55,0.9440956937799043,2456,"Talkatora District Industries Center, Lucknow - CPCB",Lucknow,Lucknow
+34,0.582,0.494,0.656,0.744,0.84,False,tracks the satellite like its peers,55,0.9645801526717557,5662,"Nehru Nagar, Kanpur - UPPCB",Kanpur,Lucknow
+31,0.629,0.494,0.993,0.84,0.84,False,tracks the satellite like its peers,55,0.9754468085106381,227386,"B R Ambedkar University, Lucknow - UPPCB",Lucknow,Lucknow
+30,0.176,0.627,-2.74,0.003,0.022,False,"watch: looks decoupled, not significant across the country",56,0.13885714285714285,5590,"Ardhali Bazar, Varanasi - UPPCB",Varanasi,Varanasi
+19,0.442,0.627,-0.99,0.161,0.476,False,tracks the satellite like its peers,56,0.868153846153846,227384,"Jhunsi, Prayagraj - UPPCB",Prayagraj,Varanasi
+20,0.481,0.627,-0.827,0.204,0.476,False,tracks the satellite like its peers,56,0.868153846153846,228403,"Bhelupur, Varanasi - UPPCB",Varanasi,Varanasi
+26,0.627,0.627,0.0,0.5,0.737,False,tracks the satellite like its peers,56,0.9440956937799043,229195,"Maldahiya, Varanasi - UPPCB",Varanasi,Varanasi
+32,0.644,0.627,0.144,0.557,0.737,False,tracks the satellite like its peers,56,0.9440956937799043,233416,"Nagar Nigam, Prayagraj - UPPCB",Prayagraj,Varanasi
+18,0.68,0.627,0.336,0.632,0.737,False,tracks the satellite like its peers,56,0.9484615384615386,227387,"Motilal Nehru NIT, Prayagraj - UPPCB",Prayagraj,Varanasi
+24,0.747,0.627,0.991,0.839,0.839,False,tracks the satellite like its peers,56,0.9754468085106381,228397,"IESD Banaras Hindu University, Varanasi - UPPCB",Varanasi,Varanasi
+28,0.1,0.25,-0.733,0.232,0.701,False,no flag: this region's stations do not track the satellite,58,0.9095421686746988,3409317,"Chauhan Colony, Chandrapur - MPCB",Chandrapur,Nagpur
+27,0.117,0.25,-0.638,0.262,0.701,False,no flag: this region's stations do not track the satellite,58,0.9363956043956044,3409464,"Ambazari, Nagpur - MPCB",Nagpur,Nagpur
+19,0.153,0.25,-0.384,0.35,0.701,False,no flag: this region's stations do not track the satellite,58,0.9440956937799043,5565,"MIDC Khutala, Chandrapur - MPCB",Chandrapur,Nagpur
+35,0.348,0.25,0.573,0.717,0.767,False,no flag: this region's stations do not track the satellite,58,0.9645801526717557,3409468,"Mahal, Nagpur - MPCB",Nagpur,Nagpur
+33,0.367,0.25,0.667,0.748,0.767,False,no flag: this region's stations do not track the satellite,58,0.9645801526717557,5621,"Opp GPO Civil Lines, Nagpur - MPCB",Nagpur,Nagpur
+34,0.375,0.25,0.73,0.767,0.767,False,no flag: this region's stations do not track the satellite,58,0.9645801526717557,3409465,"Ram Nagar, Nagpur - MPCB",Nagpur,Nagpur
+33,-0.009,0.312,-1.714,0.043,0.277,False,"watch: looks decoupled, not significant across the country",59,0.55728,3409367,"Hathkhoj, Bhilai - CECB",Bhilai,Raipur
+27,0.017,0.312,-1.411,0.079,0.277,False,tracks the satellite like its peers,59,0.7528235294117647,3409363,"Krishak Nagar, Raipur - CECB",Raipur,Raipur
+30,0.254,0.312,-0.308,0.379,0.846,False,tracks the satellite like its peers,59,0.9440956937799043,3409364,"Bhatagaon New ISBT, Raipur - CECB",Raipur,Raipur
+30,0.312,0.312,0.0,0.5,0.846,False,tracks the satellite like its peers,59,0.9440956937799043,3409361,"AIIMS, Raipur - CECB",Raipur,Raipur
+32,0.373,0.312,0.351,0.637,0.846,False,tracks the satellite like its peers,59,0.9484615384615386,3409368,"32Bungalows, Bhilai - CECB",Bhilai,Raipur
+34,0.423,0.312,0.677,0.751,0.846,False,tracks the satellite like its peers,59,0.9645801526717557,3409362,"Siltara Phase-II, Raipur - CECB",Raipur,Raipur
+25,0.502,0.312,1.018,0.846,0.846,False,tracks the satellite like its peers,59,0.9754468085106381,270708,"Civic Center, Bhilai - Bhilai Steel Plant",Bhilai,Raipur
+25,-0.062,0.204,-1.192,0.117,0.438,False,no flag: this region's stations do not track the satellite,60,0.7897500000000001,3409396,"Nawapara SECL Colony, Chhal - CECB",Chhal,Korba
+28,-0.037,0.204,-1.15,0.125,0.438,False,no flag: this region's stations do not track the satellite,60,0.7913076923076924,3409366,"Urja Nagar, Korba - CECB",Korba,Korba
+29,0.161,0.204,-0.216,0.414,0.71,False,no flag: this region's stations do not track the satellite,60,0.9440956937799043,3409365,"Rampur, Korba - CECB",Korba,Korba
+26,0.204,0.204,0.0,0.5,0.71,False,no flag: this region's stations do not track the satellite,60,0.9440956937799043,5608,"GM Office, Brajrajnagar - OSPCB",Brajrajnagar,Korba
+28,0.208,0.204,0.018,0.507,0.71,False,no flag: this region's stations do not track the satellite,60,0.9440956937799043,3409397,"OP Jindal School, Kunjemura - CECB",Kunjemura,Korba
+30,0.284,0.204,0.415,0.661,0.771,False,no flag: this region's stations do not track the satellite,60,0.9484615384615386,3409399,"OP Jindal Industrial Park, Tumidih - CECB",Tumidih,Korba
+27,0.406,0.204,1.034,0.849,0.849,False,no flag: this region's stations do not track the satellite,60,0.9754468085106381,3409398,"Govt. Higher Secondary School, Milupara - CECB",Milupara,Korba
