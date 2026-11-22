@@ -66,3 +66,13 @@ def test_drift_status_is_cleared_when_later_years_are_clean_and_unresolved_witho
     wl = dh.drift_watchlist_html(a, m)
     assert "cleared: not drifting since" in wl and "unresolved: no later data to check" in wl
     assert "+" in wl and "-" in wl  # drift can go either way
+
+
+def test_replication_forest_escapes_nothing_unsafe_and_states_the_verdict_and_the_caveats():
+    rows = pd.DataFrame({"year": [2019, 2020], "testable": [True, True], "rho": [0.3, -0.1], "p_one_sided": [0.01, 0.7], "baseline400_rho": [0.5, 0.1],
+                         "dry_days_with_pm": [40, 45], "median_delhi_stations": [6.0, 34.0]})
+    summ = {"holds": True, "seasons_positive": 1, "testable_seasons": 2, "median_rho": 0.1, "seasons_p_below_0.05": 1, "combined_p": 0.03}
+    out = dh.replication_html(rows, summ)
+    assert out.count("<circle") == 4 and "the replication holds" in out and "wind-blind baseline" in out and "not a share of Delhi" in out
+    assert "does not hold" in dh.replication_html(rows, {**summ, "holds": False})
+    assert "not run" in dh.replication_html(None, None).lower() and "No season" in dh.replication_html(rows.assign(testable=False), summ)

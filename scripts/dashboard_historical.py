@@ -189,3 +189,40 @@ def drift_watchlist_html(audit: pd.DataFrame | None, master: pd.DataFrame | None
                    f'<td class="n">{_shift_text(r.shift)} over {r.shift_year}</td><td>{_esc(r.status)}</td></tr>' for r in out.itertuples())
     return ('<div class="scroll"><table class="tbl"><thead><tr><th>Station</th><th>Years drifting</th><th class="n">Largest shift vs neighbours</th><th>Status</th></tr></thead>'
             f"<tbody>{rows}</tbody></table></div>")
+
+
+def replication_html(rows: pd.DataFrame | None, summary: dict | None) -> str:
+    """Per-season forest plot of the replication (partial correlation, with the wind-blind baseline as a hollow marker) and its summary."""
+    if rows is None or summary is None or rows.empty:
+        return NA.format("Replication not run.")
+    t = rows[rows["testable"].astype(bool)].sort_values("year")
+    if t.empty:
+        return NA.format("No season had enough rain-free days.")
+    w, left, top, rh = 640, 70, 34, 26
+    h = top + rh * len(t) + 34
+    x = lambda v: left + (v + 0.4) / 1.4 * (w - left - 30)  # noqa: E731  axis from -0.4 to 1.0
+    parts = [f'<svg viewBox="0 0 {w} {h}" class="chart" role="img" aria-label="Per-season partial correlation between smoke exposure and Delhi PM2.5">']
+    for v in (-0.4, 0, 0.4, 0.8):
+        parts.append(f'<line x1="{x(v):.1f}" x2="{x(v):.1f}" y1="{top - 8}" y2="{h - 26}" class="grid"/><text x="{x(v):.1f}" y="{h - 10}" class="tick" text-anchor="middle">{v:+.1f}</text>')
+    parts.append(f'<line x1="{x(0):.1f}" x2="{x(0):.1f}" y1="{top - 8}" y2="{h - 26}" stroke="#98a3c2" stroke-width="1.4"/>')
+    for i, r in enumerate(t.itertuples()):
+        y = top + rh * i + rh / 2
+        sig = r.p_one_sided < 0.05
+        col = "#6fbfb2" if sig else "#98a3c2"
+        parts.append(f'<text x="{left - 10}" y="{y + 4:.1f}" class="tick" text-anchor="end">{int(r.year)}</text>')
+        parts.append(f'<circle cx="{x(r.baseline400_rho):.1f}" cy="{y:.1f}" r="4" fill="none" stroke="#dfb277" stroke-width="1.6"><title>{int(r.year)}: wind-blind baseline {r.baseline400_rho:+.2f}</title></circle>')
+        parts.append(f'<circle cx="{x(r.rho):.1f}" cy="{y:.1f}" r="5.5" fill="{col}"><title>{int(r.year)}: partial rho {r.rho:+.2f}, one-sided p {r.p_one_sided:.3f}, {int(r.dry_days_with_pm)} rain-free days, {r.median_delhi_stations:.0f} stations</title></circle>')
+    parts.append("</svg>")
+    verdict = "holds" if summary.get("holds") else "does not hold"
+    cp = summary.get("combined_p", 1)
+    cps = "below 0.0001" if cp < 1e-4 else f"{cp:.4f}"
+    legend = ('<div class="legend"><span><i class="dotc" style="background:#6fbfb2"></i>smoke exposure, p below 0.05</span>'
+              '<span><i class="dotc" style="background:#98a3c2"></i>smoke exposure, not significant</span>'
+              '<span><i class="dotc" style="background:none;border:1.6px solid #dfb277"></i>wind-blind count of fires within 400 km</span></div>')
+    return (f'<div class="scroll">{"".join(parts)}</div>{legend}'
+            f'<div class="note"><b>Under the rule fixed in advance, the replication {verdict}.</b> {summary["seasons_positive"]} of {summary["testable_seasons"]} seasons have a positive '
+            f'partial correlation (median {summary["median_rho"]:+.2f}) and {summary["seasons_p_below_0.05"]} are significant on their own; the seasons combined give p {cps}. '
+            "Each season uses only its rain-free days (38 to 54 of them) and controls boundary-layer height and temperature.</div>"
+            '<div class="note warn"><b>What this does not show.</b> The wind-blind baseline, simply counting fires within 400 km, correlates at least as well as the wind-driven exposure in 10 of the 11 seasons, so '
+            "the trajectory model adds nothing measurable over it. Only one season (2022) is significant when the test respects day-to-day autocorrelation, and with about 50 days a season "
+            "that test can barely reach significance. 2015 and 2016 rest on 6 Delhi stations. The exposure index is smoke arrival, not mass: this is not a share of Delhi&rsquo;s PM2.5 caused by burning.</div>")

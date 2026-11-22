@@ -94,3 +94,29 @@ changed after a result has been seen.
 A positive replication would say the association between smoke exposure and Delhi PM2.5 on rain-free days, net of boundary-layer
 height and temperature, is not specific to 2026. It would not give a share of Delhi's PM2.5 caused by burning: the model has no
 vertical mixing, deposition or plume rise, uses one receptor, and the exposure index measures smoke arrival, not mass.
+
+## Results (added after the single run, 2026-11-22)
+
+The script (`historical/stubble_replication.py`, committed before the run) was run once. No technical rerun was needed.
+Outputs: `data/processed/historical/stubble_replication.csv` and `stubble_replication_summary.json`.
+
+Under the decision rule above the replication holds: 11 of 11 seasons were testable (38 to 54 rain-free days each), 10 have a
+positive partial correlation (median +0.36), 6 are significant on their own at one-sided p below 0.05 (2015, 2016, 2020, 2021,
+2022, 2023), and the Stouffer combination gives z = 6.86, a combined one-sided p far below 0.0001. The one negative season is 2017
+(-0.09).
+
+Secondary results, as pre-listed:
+1. Circular-shift p (respects autocorrelation): only 2022 is below 0.05 (0.044). With about 50 days a season the smallest
+   attainable p is near 0.02, so this test has little power at this length.
+2. All days instead of rain-free days: similar partial correlations (rain did not drive the result in most seasons).
+3. Wind-blind baseline (fires within 400 km): its correlation is higher than the 925 hPa exposure in 10 of 11 seasons. The
+   trajectory model therefore adds nothing measurable over a plain nearby-fire count.
+4. Suomi NPP plus NOAA-20 (2018 onward): the same sign in every season, and close in size.
+
+Two data facts the protocol did not anticipate, neither a change of method: the hourly rain request ends at 23:00 UTC on 30
+November, so the 30 November IST day has no complete rain record and is never counted as rain-free; and 2015 and 2016 rest on 6
+Delhi stations, 2017 on 9, and 2018 onwards on 33 to 36.
+
+What the result means: the association between smoke exposure and Delhi PM2.5 on rain-free days, net of boundary-layer height
+and temperature, is not specific to 2026. What it does not mean: the wind-driven transport model is better than counting nearby
+fires, or that any share of Delhi's PM2.5 is caused by burning.

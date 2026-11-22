@@ -17,6 +17,7 @@ from __future__ import annotations
 import argparse
 import glob
 import html
+import json
 import re
 import sys
 from datetime import date, datetime, timedelta
@@ -588,7 +589,7 @@ def history_html(proc_dir: Path = PROC_DIR) -> tuple[str, str]:
     count = lambda sub, pat: len(list((local / sub).glob(pat))) if (local / sub).exists() else 0  # noqa: E731
     sources = [("CPCB station files, 15-minute", count("bronze/cpcb", "cpcb-air-quality-*.parquet"), 11, "One file per year, 2015 to 2025, from the CPCB data repository."),
                ("NASA FIRMS archive", count("firms", "firms_*.csv"), 19, "October and November, Suomi NPP from 2015 and NOAA-20 from 2018."),
-               ("ERA5 history (winds, rain)", count("era5", "era5_*.nc"), 6, "Requested from Copernicus; needed before the stubble test can be repeated on past seasons.")]
+               ("ERA5 history (winds, rain)", count("era5", "era5_*.nc"), 6, "925 hPa winds, boundary-layer height, temperature and hourly rain for October and November, 2015 to 2025.")]
     years = sorted(int(y) for y in audit["year"].unique()) if audit is not None and not audit.empty else []
     hy = years[-1] if years else 0
     season_years = sorted({int(str(d)[:4]) for d in delhi["date"]}) if delhi is not None and not delhi.empty else []
@@ -617,14 +618,14 @@ year&rsquo;s days, so there is no single start date to give. Cleared means the s
 is still drifting in the latest year or has no later data. A station can drift because it was moved, recalibrated or re-sited, which the data cannot tell
 apart from a failing sensor.</div>
 </section>"""
+    rep_path = proc_dir / "historical" / "stubble_replication_summary.json"
+    replication = dh.replication_html(_read("historical/stubble_replication.csv", proc_dir), json.loads(rep_path.read_text(encoding="utf-8")) if rep_path.exists() else None)
     seasons = f"""<section class="card" id="seasons"><h2>Delhi, ten burning seasons</h2>
 <div class="sub-h">Delhi in each burning season</div><div class="scroll">{dh.season_multiples_svg(delhi, fires, season_years)}</div>
 <div class="note">Descriptive only. These panels do not control for rain or wind, so a season with more fires and higher PM2.5 shows nothing about cause.
 Fire detections fall from about 100,000 a season around 2021 to under 15,000 in 2025 in this region.</div>
 
-<div class="sub-h">Does the stubble signal repeat across seasons?</div>
-<div class="note warn"><b>Not run yet.</b> The pre-registered test is applied to each season unchanged, once, and needs the 925 hPa winds and the rain record for those seasons.
-Those come from Copernicus, whose queue has not accepted the requests so far. No result is shown here until it can be produced the same way as in 2026.</div>
+<div class="sub-h">Does the stubble signal repeat across seasons?</div>{replication}
 </section>"""
     return india, seasons
 

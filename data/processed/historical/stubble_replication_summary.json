@@ -1,0 +1,9 @@
+{
+  "testable_seasons": 11,
+  "seasons_positive": 10,
+  "seasons_p_below_0.05": 6,
+  "stouffer_z": 6.855,
+  "combined_p": 0.0,
+  "median_rho": 0.358,
+  "holds": true
+}
