@@ -8,9 +8,9 @@ Built with Python, pandas, SciPy and xarray on public data (CPCB via data.gov.in
 
 **Live dashboard:** [halcyonvector.github.io/AQI-Network-Integrity-System](https://halcyonvector.github.io/AQI-Network-Integrity-System/) (rebuilt after every scheduled data pull)
 
-![Overview tab: the data-health banner, the tab bar and the live network by city, map and station ranking](docs/screenshots/overview.png)
+![India live tab: every station in the national feed on a map of India, the highest cities on the latest day and the national daily level](docs/screenshots/india-live.png)
 
-![India tab: completeness by state and month, and the 2025 station integrity map with the city league](docs/screenshots/india.png)
+![Stubble replication: per-season partial correlation between smoke exposure and Delhi PM2.5 for 2015 to 2025, with the wind-blind baseline](docs/screenshots/replication.png)
 
 <sub>Screenshots were captured from the built page in late November 2026.</sub>
 

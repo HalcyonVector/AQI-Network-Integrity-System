@@ -7,7 +7,9 @@ Values that come from data files are HTML-escaped.
 from __future__ import annotations
 
 import html
+import json
 import math
+from pathlib import Path
 
 import numpy as np
 import pandas as pd
@@ -15,6 +17,25 @@ import pandas as pd
 NA = '<p class="muted">{}</p>'
 LEVEL_COLOUR = {"ok": "#6fbfb2", "watch": "#dfb277", "flag": "#d9897c", "none": "#6b7b7e"}
 LEVEL_LABEL = {"ok": "consistent with neighbours", "watch": "on watch", "flag": "flagged", "none": "cannot be checked (no neighbour within 25 km)"}
+
+
+OUTLINE_PATH = Path(__file__).resolve().parent.parent / "data" / "reference" / "india_outline.json"
+_OUTLINE: list | None = None
+
+
+def india_outline_svg(pw: float, ph: float, bounds: tuple[float, float, float, float] = (6.0, 37.5, 68.0, 98.0), x0: float = 10, y0: float = 10) -> str:
+    """The country outline (Natural Earth, India point of view, simplified) as one SVG path in the same frame as the station dots."""
+    global _OUTLINE
+    if _OUTLINE is None:
+        try:
+            _OUTLINE = json.loads(OUTLINE_PATH.read_text(encoding="utf-8"))["rings"]
+        except (OSError, ValueError, KeyError):
+            _OUTLINE = []
+    if not _OUTLINE:
+        return ""
+    lat0, lat1, lon0, lon1 = bounds
+    d = "".join("M" + "L".join(f"{x0 + (lon - lon0) / (lon1 - lon0) * pw:.1f},{y0 + (lat1 - lat) / (lat1 - lat0) * ph:.1f}" for lon, lat in ring) + "Z" for ring in _OUTLINE)
+    return f'<path d="{d}" class="outline"/>'
 
 
 def _esc(x) -> str:
@@ -89,6 +110,7 @@ def india_map_svg(master: pd.DataFrame | None, audit: pd.DataFrame | None, year:
     for i in range(1, 6):
         parts.append(f'<line x1="{10 + pw * i / 6:.0f}" x2="{10 + pw * i / 6:.0f}" y1="10" y2="{10 + ph:.0f}" class="grid"/>')
         parts.append(f'<line x1="10" x2="{10 + pw}" y1="{10 + ph * i / 6:.0f}" y2="{10 + ph * i / 6:.0f}" class="grid"/>')
+    parts.append(india_outline_svg(pw, ph))
     # drawn in order so the notable stations sit on top of the unremarkable ones
     for level in ("none", "ok", "watch", "flag"):
         for r in a[a["level"] == level].itertuples():

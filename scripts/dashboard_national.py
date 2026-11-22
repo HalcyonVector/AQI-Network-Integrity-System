@@ -56,6 +56,7 @@ def _frame(width: int) -> tuple[list[str], float, float]:
     for i in range(1, 6):
         parts.append(f'<line x1="{10 + pw * i / 6:.0f}" x2="{10 + pw * i / 6:.0f}" y1="10" y2="{10 + ph:.0f}" class="grid"/>')
         parts.append(f'<line x1="10" x2="{10 + pw}" y1="{10 + ph * i / 6:.0f}" y2="{10 + ph * i / 6:.0f}" class="grid"/>')
+    parts.append(dh.india_outline_svg(pw, ph, (LAT0, LAT1, LON0, LON1)))
     return parts, pw, ph
 
 

@@ -567,6 +567,7 @@ main{max-width:1040px}
 .tbl td{padding:8px 10px;border-bottom:1px solid rgba(255,255,255,.05)}.tbl tr:last-child td{border-bottom:0}
 .tbl .n{text-align:right;font-variant-numeric:tabular-nums}.tbl td .muted{font-size:11.5px;white-space:nowrap;margin-left:6px}.tbl td .why{color:var(--muted);font-size:12px;margin-top:2px}
 .sources{grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.map .outline{fill:rgba(111,191,178,.05);stroke:#5d7c80;stroke-width:1.1;stroke-linejoin:round}
 .split>div{min-width:0}
 .scroll{overflow-x:auto}
 @media (max-width:760px){.split{grid-template-columns:minmax(0,1fr)}.rank-row{grid-template-columns:120px 1fr 34px}.tiles{grid-template-columns:repeat(2,1fr)}.hero{padding:26px 20px 20px}.card{padding:18px 16px 14px}
