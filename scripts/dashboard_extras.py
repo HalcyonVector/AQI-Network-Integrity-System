@@ -151,7 +151,7 @@ def dry_day_counter(daily: pd.DataFrame | None, exposure_col: str = "hit_frp_925
     dry = int((~d["washout"].map(lambda v: v is True or str(v) == "True")).sum())
     pct = min(100.0, 100.0 * dry / DRY_DAYS_TARGET)
     left = max(0, DRY_DAYS_TARGET - dry)
-    msg = ("Enough dry days. By the pre-registered rule the test is run once, after the data cover 30 November (about 8 December), so that it spans the same window as the ten past seasons." if left == 0
+    msg = ("Enough dry days. By the pre-registered rule the test is run once, on 1 December." if left == 0
            else f"{left} more rain-free day{'s' if left != 1 else ''} needed. Do not test before then.")
     return (f'<div class="meter"><div class="meter-top"><b>{dry} / {DRY_DAYS_TARGET}</b> rain-free days with data for the stubble test</div>'
             f'<div class="meter-track"><span class="meter-fill" style="width:{pct:.0f}%"></span></div>'

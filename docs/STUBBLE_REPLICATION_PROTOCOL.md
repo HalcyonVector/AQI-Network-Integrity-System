@@ -136,3 +136,11 @@ The 2026 season is tested once, with the same statistic as the replication, so t
 - **Reading it:** the result is reported next to the ten past seasons, whether or not it is significant. A positive and significant
   result adds one season to the replication; a null result is shown as a null.
 - **Once:** it is not rerun for a different outcome. A technical failure is fixed without changing any choice here, and listed.
+
+### Amendment (2026-11-22, still before any 2026 result): run date set to 1 December
+
+The author set the run date to 1 December 2026. OpenAQ and ERA5T each run about a week behind, so on that date the data will not
+reach 30 November. The rule is therefore: the test runs once on 1 December 2026, over 5 October to the last day on which both the
+live 925 hPa winds and the OpenAQ PM2.5 record are complete (expected around 24 November). Everything else in the addendum is
+unchanged. The shorter window is declared in the results, and it means this season covers a little less of the late-November
+decline than each past season does. The date was set by the author, not by any result.
