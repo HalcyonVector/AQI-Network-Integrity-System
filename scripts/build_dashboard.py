@@ -561,12 +561,14 @@ main{max-width:1040px}
 .tabbar b{display:block;font:600 13px/1.2 var(--sans)}.tabbar small{display:block;font:500 11px/1.3 var(--sans);opacity:.7}
 .panel{display:none}.panel>.card:first-child{margin-top:14px}
 @media (max-width:760px){.tabbar{top:4px}.tabbar label{padding:9px 12px}.tabbar small{display:none}}
-.tbl{width:100%;border-collapse:collapse;font-size:13px;min-width:520px}
+.tbl{width:100%;border-collapse:collapse;font-size:13px;min-width:0}
 .tbl th{text-align:left;font:600 10.5px/1.3 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:6px 10px 8px;border-bottom:1px solid var(--edge)}
 .tbl td{padding:8px 10px;border-bottom:1px solid rgba(255,255,255,.05)}.tbl tr:last-child td{border-bottom:0}
-.tbl .n{text-align:right;font-variant-numeric:tabular-nums}.tbl td .muted{font-size:11.5px}
+.tbl .n{text-align:right;font-variant-numeric:tabular-nums}.tbl td .muted{font-size:11.5px;white-space:nowrap;margin-left:6px}.tbl td .why{color:var(--muted);font-size:12px;margin-top:2px}
+.sources{grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.split>div{min-width:0}
 .scroll{overflow-x:auto}
-@media (max-width:760px){.split{grid-template-columns:1fr}.rank-row{grid-template-columns:120px 1fr 34px}.tiles{grid-template-columns:repeat(2,1fr)}.hero{padding:26px 20px 20px}.card{padding:18px 16px 14px}
+@media (max-width:760px){.split{grid-template-columns:minmax(0,1fr)}.rank-row{grid-template-columns:120px 1fr 34px}.tiles{grid-template-columns:repeat(2,1fr)}.hero{padding:26px 20px 20px}.card{padding:18px 16px 14px}
 .g-row{grid-template-columns:1fr 70px;gap:6px 12px}.g-track{grid-column:1 / -1;order:3}.g-head{display:none}}
 """
 
@@ -629,13 +631,11 @@ Those come from Copernicus, whose queue has not accepted the requests so far. No
 
 TAB_DEFS = [  # (id, label, hint, accent, icon path, section keys)
     ("indialive", "India live", "National network", "#7fb2d6", "M12 3a7 7 0 0 1 7 7c0 5-7 11-7 11S5 15 5 10a7 7 0 0 1 7-7zM12 8v4", ["indialive"]),
-    ("india", "India history", "2015 to 2025", "#a3d2b8", "M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2zM9 4v14M15 6v14", ["india"]),
+    ("india", "India history", "2015 to 2025, seasons", "#a3d2b8", "M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2zM9 4v14M15 6v14", ["india", "seasons"]),
     ("overview", "NCR now", "Delhi region", "#6fbfb2", "M3 12h4l3-8 4 16 3-8h4", ["now"]),
     ("fires", "NCR fires", "and weather", "#dfb277", "M12 3c1 4 5 5 5 10a5 5 0 0 1-10 0c0-2 1-3 2-4 0 2 1 3 2 3 0-3-1-5 1-9z", ["fires"]),
     ("stations", "NCR stations", "Health, satellite", "#d9897c", "M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3zM9 12l2 2 4-4", ["health", "sat"]),
-    ("data", "Data", "Flow, gaps", "#7fb2d6", "M4 19V5M4 19h16M8 15l3-4 3 2 5-6", ["flow", "quality", "heat"]),
-    ("seasons", "Delhi seasons", "Ten years", "#b7a6e0", "M3 17l5-6 4 3 5-8 4 5", ["seasons"]),
-    ("pipeline", "Pipeline", "Runs, what is next", "#8ea3a5", "M4 8h13l-3-3M20 16H7l3 3", ["ops"]),
+    ("data", "Data and pipeline", "Flow, gaps, runs", "#7fb2d6", "M4 19V5M4 19h16M8 15l3-4 3 2 5-6", ["flow", "quality", "heat", "ops"]),
 ]
 
 
@@ -688,7 +688,7 @@ def render(today: date, raw_dir: Path = RAW_DIR, proc_dir: Path = PROC_DIR) -> s
     aod = ex.aod_daily(raw_dir)
     if stubble_daily is not None and not aod.empty and "pm25_delhi" in stubble_daily:
         j2 = aod[aod["n"] >= 10].merge(stubble_daily[["date", "pm25_delhi"]].dropna(), on="date")
-        sat_scatter = ex.scatter_svg(list(j2["aod"]), list(j2["pm25_delhi"]), list(j2["date"]), "Network-mean satellite AOD (550 nm)", "Delhi PM2.5 (ug/m3)")
+        sat_scatter = ex.scatter_svg(list(j2["aod"]), list(j2["pm25_delhi"]), list(j2["date"]), "Network-mean satellite AOD (550 nm)", "Delhi PM2.5 (ug/m3)", width=860, height=360)
 
     history_india, history_seasons = history_html(proc_dir)
     nat_dir = proc_dir / "national"
@@ -697,12 +697,12 @@ def render(today: date, raw_dir: Path = RAW_DIR, proc_dir: Path = PROC_DIR) -> s
     nat_cities = pd.read_csv(nat_dir / "city_latest.csv") if (nat_dir / "city_latest.csv").exists() else None
     nat_qc = pd.read_csv(nat_dir / "qc_summary.csv") if (nat_dir / "qc_summary.csv").exists() else None
     sec_indialive = dn.national_html(dn.read_snapshot(raw_dir), nat_status, nat_daily, nat_cities, nat_qc)
-    sec_flow = f"""<section class="card" id="flow"><h2>Is the data flowing?</h2>
+    sec_flow = f"""<section class="card" id="flow"><h2>Is the Delhi NCR data flowing?</h2>
 <div class="scroll">{health_html(health, today)}</div>
 <div class="note"><b>OK</b> = as fresh as that source normally is. <b>GAPS</b> = fresh, but days are missing behind it. <b>STALE / DOWN</b> = nothing new
 for longer than usual. A gap in the CPCB feed cannot be recovered from that feed (it serves only the current snapshot); OpenAQ may cover some of it.</div>
 </section>"""
-    sec_now = f"""<section class="card" id="now"><h2>The network right now</h2>
+    sec_now = f"""<section class="card" id="now"><h2>The Delhi NCR network right now</h2>
 <div class="sub-h">By city</div>{ex.city_cards_html(feed)}
 <div class="split" style="margin-top:22px"><div><div class="sub-h">Station map</div>{ex.station_map_svg(feed, health_df)}</div>
 <div><div class="sub-h">Highest and lowest stations</div>{ex.ranking_html(feed)}</div></div>
@@ -719,20 +719,20 @@ yet (see the counter below). Suggestive, not established, and <b>not</b> a share
 <div class="sub-h">Regional fire activity</div><div class="scroll">{fire_chart}</div>
 <div class="sub-h">Delhi weather (the controls)</div>{ex.weather_html(stubble_daily)}
 </section>"""
-    sec_heat = f"""<section class="card" id="heat"><h2>Every station, every day</h2>
+    sec_heat = f"""<section class="card" id="heat"><h2>Delhi NCR: every station, every day</h2>
 <div class="scroll">{ex.heatmap_svg(filled)}</div>
 <div class="note">Daily mean PM2.5 from the gap-filled series, stations sorted from highest to lowest overall. A uniform band is a station that matches its neighbours; a block of empty cells is an outage; one odd row is worth a look.</div>
 </section>"""
-    sec_quality = f"""<section class="card" id="quality"><h2>Data completeness and daily rhythm</h2>
+    sec_quality = f"""<section class="card" id="quality"><h2>Delhi NCR data completeness and daily rhythm</h2>
 <div class="scroll">{ex.completeness_html(filled)}</div>
 <div class="sub-h">Typical day: network-mean PM2.5 by hour (IST)</div><div class="scroll">{diurnal_chart}</div>
 </section>"""
-    sec_health = f"""<section class="card" id="health"><h2>Station health (neighbour consistency)</h2>
+    sec_health = f"""<section class="card" id="health"><h2>Delhi NCR station health (neighbour consistency)</h2>
 <div class="scroll">{stations_html(health_df)}</div>
 <div class="note">A flag means "have someone look", not "faulty". A station beside a road or kiln legitimately differs from its neighbours. Flatlines
 (a sensor repeating one exact value for hours) are the clearest evidence; drift needs weeks of data to confirm.</div>
 </section>"""
-    sec_sat = f"""<section class="card" id="sat"><h2>Agreement with the satellite</h2>
+    sec_sat = f"""<section class="card" id="sat"><h2>Delhi NCR: agreement with the satellite</h2>
 <div class="scroll">{decoupling_html(_read("station_temporal_decoupling.csv", proc_dir))}</div>
 <div class="sub-h">Satellite AOD against Delhi PM2.5, day by day</div><div class="scroll">{sat_scatter}</div>
 <div class="note">The satellite tracks the city's day-to-day PM2.5 but not differences between stations on the same day, so it can only check whether a

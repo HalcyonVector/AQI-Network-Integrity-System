@@ -96,22 +96,22 @@ def health_map_svg(status: pd.DataFrame | None, width: int = 560) -> str:
     return "".join(parts) + f'<div class="legend">{leg}</div>'
 
 
-def daily_line_svg(daily: pd.DataFrame | None, width: int = 640, height: int = 190) -> str:
+def daily_line_svg(daily: pd.DataFrame | None, width: int = 920, height: int = 250) -> str:
     """National median station-day PM2.5 by day; the station count is in each point's hover text."""
     if daily is None or len(daily) < 2:
         return NA.format("Not enough days yet for a national trend.")
     d = daily.copy()
     d["date"] = pd.to_datetime(d["date"])
     full = pd.date_range(d["date"].min(), d["date"].max())
-    ml, mr, mt, mb = 44, 12, 12, 28
+    ml, mr, mt, mb = 40, 12, 12, 26
     w, h = width - ml - mr, height - mt - mb
-    top = float(max(d["p90_pm25"].max(), 10)) * 1.08
+    step = 50 if float(d["p90_pm25"].max()) > 120 else 25
+    top = math.ceil(max(float(d["p90_pm25"].max()), 10) / step) * step
     x = lambda t: ml + (t - full[0]).days / max((full[-1] - full[0]).days, 1) * w  # noqa: E731
     y = lambda v: mt + h - v / top * h  # noqa: E731
     parts = [f'<svg viewBox="0 0 {width} {height}" class="chart" role="img" aria-label="National daily PM2.5">']
-    for i in range(5):
-        v = top * i / 4
-        parts.append(f'<line x1="{ml}" x2="{ml + w}" y1="{y(v):.1f}" y2="{y(v):.1f}" class="grid"/><text x="{ml - 6}" y="{y(v) + 3:.1f}" class="axis" text-anchor="end">{v:.0f}</text>')
+    for v in range(0, int(top) + 1, step):
+        parts.append(f'<line x1="{ml}" x2="{ml + w}" y1="{y(v):.1f}" y2="{y(v):.1f}" class="grid"/><text x="{ml - 6}" y="{y(v) + 3:.1f}" class="tick" text-anchor="end">{v:.0f}</text>')
     seg, segs = [], []
     for t in full:  # a missing day breaks the line instead of being bridged
         row = d[d["date"] == t]
@@ -128,7 +128,7 @@ def daily_line_svg(daily: pd.DataFrame | None, width: int = 640, height: int = 1
     for r in d.itertuples():
         parts.append(f'<circle cx="{x(r.date):.1f}" cy="{y(r.median_pm25):.1f}" r="2.4" fill="#6fbfb2"><title>{r.date:%d %b}: median {r.median_pm25:.0f} ug/m3 over {int(r.stations)} stations</title></circle>')
     for t in full[:: max(len(full) // 6, 1)]:
-        parts.append(f'<text x="{x(t):.1f}" y="{height - 8}" class="axis" text-anchor="middle">{t:%d %b}</text>')
+        parts.append(f'<text x="{x(t):.1f}" y="{height - 8}" class="tick" text-anchor="middle">{t:%d %b}</text>')
     parts.append("</svg>")
     return "".join(parts)
 
@@ -139,6 +139,22 @@ def city_table_html(cities: pd.DataFrame | None, top: int = 12) -> str:
     rows = "".join(f'<tr><td>{_esc(r.city)}<span class="muted"> {_esc(r.state)}</span></td><td class="n">{int(r.stations)}</td>'
                    f'<td class="n">{r.pm25:.0f}</td><td class="n">{r.worst:.0f}</td></tr>' for r in cities.head(top).itertuples())
     return ('<div class="scroll"><table class="tbl"><thead><tr><th>City</th><th class="n">Stations</th><th class="n">Mean PM2.5</th><th class="n">Worst station</th></tr></thead>'
+            f"<tbody>{rows}</tbody></table></div>")
+
+
+def flagged_list_html(status: pd.DataFrame | None, top: int = 8) -> str:
+    """The stations with the largest share of hours flagged, with the reason the audit gave."""
+    if status is None or status.empty:
+        return NA.format("Station health not available.")
+    status = status.assign(**{c: status[c] if c in status else (0.0 if c == "failing_share" else "") for c in ("failing_share", "reason", "city", "name")})
+    status["failing_share"] = status["failing_share"].fillna(0.0)
+    d = status[status["level"].isin(["flag", "watch"])].sort_values("failing_share", ascending=False).head(top)
+    if d.empty:
+        return NA.format("No station is flagged or on watch.")
+    rows = "".join(
+        f'<tr><td>{_esc(r.name)}<span class="muted">{_esc(r.city)}</span><div class="why">{_esc(str(r.reason)[:90])}</div></td>'
+        f'<td class="n">{r.failing_share * 100:.0f}%</td></tr>' for r in d.itertuples())
+    return ('<div class="scroll"><table class="tbl"><thead><tr><th>Station and reason</th><th class="n">Hours flagged</th></tr></thead>'
             f"<tbody>{rows}</tbody></table></div>")
 
 
@@ -166,17 +182,17 @@ def national_html(snap, status, daily, cities, qc, audit_days: int = 30) -> str:
                    f"({(r.removed_range + r.removed_flatline) / max(r.hours_raw, 1) * 100:.1f}% of {int(r.hours_raw):,}).")
     return f"""<section class="card" id="indialive"><h2>India, live</h2>
 <p class="muted" style="margin-top:-6px">The same checks as the NCR network, applied to the CPCB stations across the country as they report.</p>
-<div class="sub-h">Right now: every station in the national feed</div>
-<div class="split"><div>{snapshot_map_svg(snap)}</div><div><div class="sub-h">Where the day&rsquo;s hourly record stands</div>{level_counts_html(status)}
-<div class="note">The hourly record comes from OpenAQ, which publishes about a week late, so its latest full day is {latest or "not yet known"}.{removed}</div></div></div>
+<div class="split"><div><div class="sub-h">Right now: every station in the national feed</div>{snapshot_map_svg(snap)}</div>
+<div><div class="sub-h">Highest cities on the latest full day</div>{city_table_html(cities, top=10)}
+<div class="note">Cities with at least two stations reporting that day. The hourly record comes from OpenAQ, which publishes about a week late, so its
+latest full day is {latest or "not yet known"}.{removed}</div></div></div>
 
 <div class="sub-h">National level by day</div>{daily_line_svg(daily)}
-<div class="note">Median of station-day means (a day needs at least 18 hours). Hover a point for the station count. The line breaks where no day was
-available instead of bridging it.</div>
+<div class="note">Median of station-day means (a day needs at least 18 hours); hover a point for the station count. The line breaks where no day was
+available instead of bridging it: the archive has holes and publishes late.</div>
 
-<div class="split" style="margin-top:22px"><div><div class="sub-h">Highest cities on the latest full day</div>{city_table_html(cities)}
-<div class="note">Cities with at least two stations reporting that day.</div></div>
-<div><div class="sub-h">Station health, last {audit_days} days</div>{health_map_svg(status)}</div></div>
+<div class="sub-h">Station health, last {audit_days} days</div>{level_counts_html(status)}
+<div class="split" style="margin-top:14px"><div>{health_map_svg(status)}</div><div><div class="sub-h">Flagged or on watch</div>{flagged_list_html(status)}</div></div>
 <div class="note warn"><b>Read with care.</b> The map above shows the feed&rsquo;s PM2.5 sub-index converted back to a concentration; it is capped at 500 on the
 index scale (about 500 ug/m3), so very high values are lower bounds. A flag means &ldquo;have someone look&rdquo;, not &ldquo;faulty&rdquo;. Stations with no
 neighbour within 25 km cannot be checked and are shown in grey.</div>

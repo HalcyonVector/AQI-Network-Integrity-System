@@ -111,7 +111,7 @@ def test_render_has_all_sections_and_flags_an_unhealthy_source(tmp_path):
     (raw / "cpcb_ncr_2026-09-01.csv").write_text("x")  # 45 days old: DOWN
     page = bd.render(TODAY, raw, proc)
     assert page.startswith("<!doctype html>") and "</html>" in page
-    assert "Is the data flowing?" in page and "Station health" in page and "Agreement with the satellite" in page
+    assert "Is the Delhi NCR data flowing?" in page and "NCR station health" in page and "agreement with the satellite" in page
     assert "GAPS" in bd.render(date(2026, 10, 16), *_gappy(tmp_path))
     assert "CPCB feed (data.gov.in) is DOWN" in page
     assert "<script" not in page  # a static page: no JavaScript anywhere
@@ -132,12 +132,12 @@ def test_tabs_select_panels_without_javascript_and_skip_empty_ones():
     assert 'for="t-overview"' in out and 'id="p-fires"' in out and "t-india" not in out  # empty tabs are left out
     assert "<script" not in out and "onclick" not in out
     css = bd.tabs_css()
-    assert "#t-overview:checked ~ #p-overview{display:block}" in css and "#t-seasons:focus-visible" in css
+    assert "#t-overview:checked ~ #p-overview{display:block}" in css and "#t-data:focus-visible" in css
 
 
 def test_page_is_tabbed_and_default_tab_is_overview(tmp_path):
     page = bd.render(date(2026, 10, 16), tmp_path, tmp_path)
-    assert page.count('class="tabin"') >= 5 and 'id="t-overview"' in page and "checked" in page
+    assert page.count('class="tabin"') >= 4 and 'id="t-overview"' in page and "checked" in page
     assert 'class="nav"' not in page  # the old anchor pills are gone
 
 

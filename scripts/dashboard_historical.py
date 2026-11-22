@@ -153,6 +153,13 @@ def season_multiples_svg(delhi: pd.DataFrame | None, fires: pd.DataFrame | None,
             '<span><i class="sw bar-sw"></i>Regional fire detections per day, Suomi NPP (same scale in every panel)</span></div>')
 
 
+def _shift_text(shift: float) -> str:
+    """A straight-line drift over a year compounds, so a short or noisy record can extrapolate to absurd percentages; cap the display."""
+    if shift > 10:
+        return "more than +1,000%"
+    return f"{shift * 100:+.0f}%"
+
+
 def drift_watchlist_html(audit: pd.DataFrame | None, master: pd.DataFrame | None, top: int = 12) -> str:
     """Stations whose residual drifted against their neighbours (confirmed after correction), most years first."""
     if audit is None or master is None or audit.empty:
@@ -179,6 +186,6 @@ def drift_watchlist_html(audit: pd.DataFrame | None, master: pd.DataFrame | None
     out = pd.DataFrame(rows_out, columns=["station_id", "years", "n", "shift", "shift_year", "status"]).sort_values(["n", "shift"], key=lambda c: c.abs() if c.name == "shift" else c, ascending=False).head(top)
     out = out.merge(master[["cpcb_id", "name", "city"]], left_on="station_id", right_on="cpcb_id", how="left")
     rows = "".join(f'<tr><td>{_esc(r.name)}<span class="muted"> {_esc(r.city)}</span></td><td>{_esc(r.years)}</td>'
-                   f'<td class="n">{r.shift * 100:+.0f}% over {r.shift_year}</td><td>{_esc(r.status)}</td></tr>' for r in out.itertuples())
+                   f'<td class="n">{_shift_text(r.shift)} over {r.shift_year}</td><td>{_esc(r.status)}</td></tr>' for r in out.itertuples())
     return ('<div class="scroll"><table class="tbl"><thead><tr><th>Station</th><th>Years drifting</th><th class="n">Largest shift vs neighbours</th><th>Status</th></tr></thead>'
             f"<tbody>{rows}</tbody></table></div>")
