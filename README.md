@@ -46,7 +46,7 @@ What the data showed, with the dates behind each number (the live pipeline rerun
 
 ### Dashboard
 
-- **Eight tabs, no JavaScript, India first:** India live (every station in the national feed on a map, the national daily level, the highest cities, neighbour-check health), India history (the 2015 to 2025 audit), then the Delhi NCR deep dive: NCR now (by city, map and ranking), NCR fires (Delhi PM2.5 against regional fire exposure and the weather controls), NCR stations (neighbour-consistency health and the satellite check), Data (source freshness, completeness, every station by day), Delhi seasons (ten burning seasons) and Pipeline (recent runs, what is next). A hidden radio input per tab selects its panel.
+- **Six tabs, no JavaScript, India first:** India live (every station in the national feed on a map, the national daily level, the highest cities, neighbour-check health), India history (the 2015 to 2025 audit and the ten Delhi burning seasons), then the Delhi NCR deep dive: NCR now (by city, map and ranking), NCR fires (Delhi PM2.5 against regional fire exposure and the weather controls), NCR stations (neighbour-consistency health and the satellite check) and Data and pipeline (source freshness, completeness, every station by day, recent runs, what is next). A hidden radio input per tab selects its panel.
 - **Findings next to their caveats.** Each chart carries a note saying what it does not show, and a result the analysis has not produced is shown as "not run yet" instead of being omitted.
 - **One static HTML file with inline SVG,** rebuilt after every data pull and deployed by a GitHub Actions workflow.
 
