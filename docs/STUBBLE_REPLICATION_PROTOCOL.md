@@ -120,3 +120,19 @@ Delhi stations, 2017 on 9, and 2018 onwards on 33 to 36.
 What the result means: the association between smoke exposure and Delhi PM2.5 on rain-free days, net of boundary-layer height
 and temperature, is not specific to 2026. What it does not mean: the wind-driven transport model is better than counting nearby
 fires, or that any share of Delhi's PM2.5 is caused by burning.
+
+## Addendum: the 2026 season's own test (fixed 2026-11-22, before it has been run)
+
+The 2026 season is tested once, with the same statistic as the replication, so the two are directly comparable.
+
+- **When:** on the first day that both the live ERA5 winds and the OpenAQ PM2.5 record cover 30 November 2026. OpenAQ and ERA5T each
+  run about a week behind, so this is expected around 8 December 2026. It is not run earlier, and the date does not depend on any
+  intermediate result: waiting makes the season complete, so it covers the same 5 October to 30 November window as each past season.
+- **Window:** 5 October to 30 November 2026 (the past seasons' window), not the longer live window that starts in late September.
+- **Days:** rain-free days in that window with Delhi PM2.5 (live OpenAQ, with the stuck-sensor check applied), needing at least 20.
+- **Statistic and p-value:** partial Spearman of the 925 hPa exposure (lag 0) with Delhi daily PM2.5, controlling the day's maximum
+  boundary-layer height and mean temperature, two-sided permutation p converted to one-sided positive exactly as above.
+- **Fires:** the live NOAA-20 and NOAA-21 near-real-time detections (the replication used Suomi NPP; this difference is declared).
+- **Reading it:** the result is reported next to the ten past seasons, whether or not it is significant. A positive and significant
+  result adds one season to the replication; a null result is shown as a null.
+- **Once:** it is not rerun for a different outcome. A technical failure is fixed without changing any choice here, and listed.

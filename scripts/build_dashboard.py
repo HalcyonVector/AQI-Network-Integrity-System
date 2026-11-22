@@ -49,7 +49,7 @@ FAVICON = ("data:image/svg+xml,%3Csvg xmlns='http%3A//www.w3.org/2000/svg' viewB
            "%3Crect x='2' y='2' width='44' height='44' rx='13' fill='%230c171b' stroke='%236fbfb2' stroke-width='2'/%3E"
            "%3Cpath d='M8 29 C13 21 17 21 22 28 S31 35 40 22' fill='none' stroke='%23a3d2b8' stroke-width='3' stroke-linecap='round'/%3E"
            "%3Ccircle cx='14' cy='15' r='3' fill='%23a3d2b8'/%3E%3Ccircle cx='24' cy='11' r='3' fill='%23dfb277'/%3E%3Ccircle cx='34' cy='16' r='3' fill='%23a3d2b8'/%3E%3C/svg%3E")
-LICENSE_URL = REPO_URL + "/blob/master/README.md#license"
+LICENSE_URL = REPO_URL + "/blob/master/LICENSE"
 # Footer content. Every URL was checked to resolve; with the project links they are the only external
 # addresses the page carries.
 # (name, url, what it provides)

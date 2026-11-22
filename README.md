@@ -300,4 +300,6 @@ GitHub: [@HalcyonVector](https://github.com/HalcyonVector)
 
 ## License
 
-No license specified yet. Contact the author for usage rights.
+The code is released under the [MIT License](LICENSE).
+
+The data keeps the terms of its sources, which the MIT licence does not change. The 15-minute CPCB station files come from Vonter/india-cpcb-aqi under the Open Database License (ODbL 1.0), so tables derived from them in this repository carry that licence's attribution and share-alike terms. OpenAQ, NASA FIRMS and MODIS, ERA5 from Copernicus, and data.gov.in each have their own terms of use; check them before reusing a derived table.
